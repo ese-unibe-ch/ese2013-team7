@@ -1,0 +1,14 @@
+package com.example.mensaunibe.api;
+
+import java.io.*;
+import java.net.*;
+
+final static String API_MENSA_LIST="http"; 
+
+public class MensaData {
+
+}
+
+public class getMensaList() {
+	
+}

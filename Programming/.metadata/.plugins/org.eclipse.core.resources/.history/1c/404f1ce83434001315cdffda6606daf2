@@ -1,0 +1,9 @@
+package com.example.mensaunibe.api;
+
+import java.io.*;
+import java.net.*;
+
+
+public class MensaData {
+
+}

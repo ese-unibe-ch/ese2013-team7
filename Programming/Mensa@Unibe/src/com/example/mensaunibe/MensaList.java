@@ -1,7 +1,9 @@
 package com.example.mensaunibe;
 
-import android.os.Bundle;
+import com.example.mensaunibe.api.MensaData;
+
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class MensaList extends Activity {
@@ -10,6 +12,10 @@ public class MensaList extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mensa_list);
+        
+        MensaData md = new MensaData();
+		System.out.println( md.getMensaList() );
+        
     }
 
 
