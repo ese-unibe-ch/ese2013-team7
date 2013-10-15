@@ -11,67 +11,54 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ese2013.mensaunibe.api.Mensa.Mensa;
-import com.ese2013.mensaunibe.api.Mensa.MensaData;
+import com.ese2013.mensaunibe.api.Menu.DailyMenu;
+import com.ese2013.mensaunibe.api.Menu.MenuData;
 
-public class MensaList extends Activity {
-
+public class MenuList extends Activity 
+{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mensa_list);
+        setContentView(R.layout.activity_menu_list);
+    
+        Intent intent = getIntent();
         
         List<String> valueList = new ArrayList<String>();
         
-        final MensaData md = new MensaData();
-		ArrayList<Mensa> mensas = md.getMensaList();
-		for(Mensa m : mensas) {
-			valueList.add(m.getName());
-		}
+        int mensaId = intent.getIntExtra("int_value", 0);
         
+    
+        MenuData md = new MenuData();
+        ArrayList<DailyMenu> menues = md.getMenuList(mensaId);
+        for(DailyMenu m : menues) {
+        	valueList.add(m.getTitle());
+        }
+    
         ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, valueList)
         {        
         	@Override
-        	public View getView(int position, View convertView,
-        			ViewGroup parent) {
+        	public View getView(int position, View convertView, ViewGroup parent) {
         		View view =super.getView(position, convertView, parent);
 
         		TextView textView=(TextView) view.findViewById(android.R.id.text1);
 
-        		/*YOUR CHOICE OF COLOR*/
+        		//YOUR CHOICE OF COLOR
         		textView.setTextColor(Color.BLACK);
 
         		return view;
         	}
         };
-        
+    
         final ListView lv = (ListView)findViewById(R.id.listView1);
 
-        lv.setAdapter(adapter);  
-        
-        lv.setOnItemClickListener(new OnItemClickListener()
-        {
-        	@Override
-        	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
-        	{
-        		Intent intent = new Intent();
-        		intent.setClassName(getPackageName(), getPackageName()+".MenuList");
-        		intent.putExtra("int_value", md.getMensaHashMap().get(lv.getAdapter().getItem(arg2).toString()));
-        		startActivity(intent);
-        	}
-        });
+        lv.setAdapter(adapter);
     }
     
-    
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -79,9 +66,8 @@ public class MensaList extends Activity {
         
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.actionbar_mensa_list, menu);
+        inflater.inflate(R.menu.actionbar_menu_list, menu);
         return super.onCreateOptionsMenu(menu);
 
     }
-    
 }

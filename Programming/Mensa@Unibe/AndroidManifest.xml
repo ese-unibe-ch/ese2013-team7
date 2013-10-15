@@ -24,6 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.ese2013.mensaunibe.MenuList"
+            android:label="@string/menu_list" >
+        </activity>
     </application>
 
 </manifest>
