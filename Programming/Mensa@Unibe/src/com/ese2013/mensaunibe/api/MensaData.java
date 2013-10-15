@@ -21,9 +21,14 @@ public class MensaData {
 		rq = new RequestData();
 	}
 	
-	/*public static void main( String[] args ) 
+	/*public static void main( String[] args )
+	{
 		MensaData md = new MensaData();
-		md.getMensaList();
+		ArrayList<Mensa> mensas = md.getMensaList();
+		for(Mensa m : mensas) {
+			System.out.println( m.getName() );
+		}
+		
 	}*/
 	
 	
