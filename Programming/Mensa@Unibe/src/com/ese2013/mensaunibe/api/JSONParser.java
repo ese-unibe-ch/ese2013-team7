@@ -14,4 +14,14 @@ public class JSONParser {
 		}
 		return json;
 	}
+	
+	public JSONObject parseMenus(String jsonString) {
+		JSONObject json = new JSONObject();
+		try {
+			JSONObject jsonObj = new JSONObject(jsonString);
+			json = jsonObj.getJSONObject("result").getJSONObject("content");
+		} catch (Exception e) {
+		}
+		return json;
+	}
 }

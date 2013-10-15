@@ -1,4 +1,4 @@
-package com.ese2013.mensaunibe.api;
+package com.ese2013.mensaunibe.api.Mensa;
 
 import android.annotation.SuppressLint;
 
