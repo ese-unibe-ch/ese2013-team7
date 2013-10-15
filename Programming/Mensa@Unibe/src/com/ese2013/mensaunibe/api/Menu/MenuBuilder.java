@@ -16,8 +16,8 @@ public class MenuBuilder {
 	}
 	
 	
-	public Menu create() {
-		return new Menu(this);
+	public DailyMenu create() {
+		return new DailyMenu(this);
 	}
 	
 	public String getTitle() { return title; }

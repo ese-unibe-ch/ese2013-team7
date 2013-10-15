@@ -6,12 +6,12 @@ import java.text.SimpleDateFormat;
 
 
 
-public class Menu {
+public class DailyMenu {
 	private String title;
 	private String menu;
 	private Date date;
 	
-	public Menu(MenuBuilder mb) {
+	public DailyMenu(MenuBuilder mb) {
 		title = mb.getTitle();
 		menu = mb.getMenu();
 		date = mb.getDate();

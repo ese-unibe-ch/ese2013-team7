@@ -19,8 +19,8 @@ public class MenuData {
 		rq = new RequestData();
 	}
 	
-	public ArrayList<Menu> getMenuList(int mensaId) {
-		ArrayList<Menu> menus = new ArrayList<Menu>();
+	public ArrayList<DailyMenu> getMenuList(int mensaId) {
+		ArrayList<DailyMenu> menus = new ArrayList<DailyMenu>();
 		rq.setUrl( String.format(ApiUrl.API_DAILY_MENU, mensaId) );
 		rq.execute();
 		try {
@@ -29,7 +29,7 @@ public class MenuData {
 			for(int i = 0; i<list.length(); i++) {
 				MenuBuilder mb = new MenuBuilder();
 				mb.parseJson(js,list.getJSONObject(i));
-				Menu menu = mb.create();
+				DailyMenu menu = mb.create();
 				menus.add( menu );
 			}
 		} catch(Exception e) {
