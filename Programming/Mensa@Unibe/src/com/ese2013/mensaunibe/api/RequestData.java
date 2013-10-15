@@ -1,29 +1,29 @@
-package com.example.mensaunibe.api;
+package com.ese2013.mensaunibe.api;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.google.gson.Gson;
-
-
-public class MensaData {
-	private final static String API_TOKEN = "6112255ca02b3040711015bbbda8d955";
-	private final static String API_MENSA_LIST = "http://mensa.xonix.ch/v1/mensas?tok="+API_TOKEN; 
+public class RequestData {
+	private String url;
 	
-	private void decodeJson(String json) {
-		String json = new Gson();
+	public RequestData() {
+		this.url = "";
 	}
 	
-	private String getHTTP(String urlString) {
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public String request() {
 		URL url;
 		HttpURLConnection conn;
 		BufferedReader rd;
 		String line;
 		String result = "";
 		try {
-			url = new URL(urlString);
+			url = new URL(this.url);
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -36,9 +36,4 @@ public class MensaData {
 		}
 		return result;
 	}
-	
-	public void getMensaList() {
-		
-	}
-	
 }

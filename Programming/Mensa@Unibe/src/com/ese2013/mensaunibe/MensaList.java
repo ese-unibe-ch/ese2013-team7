@@ -1,4 +1,4 @@
-package com.example.mensaunibe;
+package com.ese2013.mensaunibe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.mensaunibe.api.*;
+import com.ese2013.mensaunibe.api.*;
+import com.example.mensaunibe.R;
 
 public class MensaList extends Activity {
 
@@ -27,10 +28,9 @@ public class MensaList extends Activity {
         List<String> valueList = new ArrayList<String>();
         
         MensaData md = new MensaData();
-		List<Data> d = md.getMensaList();
-		for(Data g : d) {
-			valueList.add(g.getMensa());
-			
+		ArrayList<Mensa> mensas = md.getMensaList();
+		for(Mensa m : mensas) {
+			valueList.add(m.getName());
 		}
         
         ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, valueList)
