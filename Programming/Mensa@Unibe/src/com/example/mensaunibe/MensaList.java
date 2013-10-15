@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -45,7 +46,7 @@ public class MensaList extends Activity {
         
         final ListView lv = (ListView)findViewById(R.id.listView1);
 
-        lv.setAdapter(adapter);    
+        lv.setAdapter(adapter);  
     }
     
     
@@ -54,8 +55,13 @@ public class MensaList extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.mensa_list, menu);
-        return true;
+        // getMenuInflater().inflate(R.menu.mensa_list, menu);
+        
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+
     }
     
 }
