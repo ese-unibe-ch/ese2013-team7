@@ -15,6 +15,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.mensaunibe.api.*;
+
 public class MensaList extends Activity {
 
     @Override
@@ -22,11 +24,14 @@ public class MensaList extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mensa_list);
         
-        List valueList = new ArrayList<String>();
-        for (int i = 0; i < 10; i++)
-        {
-        	valueList.add("value"+i);
-        }    
+        List<String> valueList = new ArrayList<String>();
+        
+        MensaData md = new MensaData();
+		List<Data> d = md.getMensaList();
+		for(Data g : d) {
+			valueList.add(g.getMensa());
+			
+		}
         
         ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, valueList)
         {        

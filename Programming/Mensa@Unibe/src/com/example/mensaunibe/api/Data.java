@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import java.util.List;
 
 @SuppressLint("DefaultLocale")
-class Data {
+public class Data {
     private String mensa;
     private String street;
     private String plz;
