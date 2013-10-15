@@ -28,7 +28,6 @@ public class MensaData {
 		for(Mensa m : mensas) {
 			System.out.println( m.getName() );
 		}
-		
 	}*/
 	
 	

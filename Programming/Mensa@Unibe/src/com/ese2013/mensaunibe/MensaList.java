@@ -15,8 +15,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.api.*;
-import com.example.mensaunibe.R;
 
 public class MensaList extends Activity {
 
