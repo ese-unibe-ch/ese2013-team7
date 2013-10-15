@@ -21,11 +21,13 @@ public class MensaData {
 	private JSONParser parser;
 	private RequestData rq;
 	private final ArrayList<Mensa> mensas;
+	private final HashMap<String,Integer> mlist;
 	
 	public MensaData() {
 		parser = new JSONParser();
 		rq = new RequestData();
 		mensas = new ArrayList<Mensa>();
+		mlist = new HashMap<String,Integer>();
 	}
 	
 	/*public static void main( String[] args )
@@ -38,26 +40,10 @@ public class MensaData {
 	}*/
 	
 	public HashMap<String,Integer> getMensaHashMap() {
-		HashMap<String,Integer> mlist = new HashMap<String,Integer>();
-		rq.setUrl( ApiUrl.API_MENSA_LIST );
-		rq.execute();
-		try {
-			JSONArray js = parser.parse( rq.get() );
-		
-			for(int i = 0; i<js.length(); i++) {
-				JSONObject m = js.getJSONObject(i);
-				MensaBuilder mb = new MensaBuilder();
-				mb.parseJson(m);
-				Mensa mensa = mb.create();
-				mlist.put( mensa.getName(), Integer.valueOf(mensa.getId()) );
-			}
-		} catch(Exception e) {
-			
-		}
 		return mlist;
 	}
 	
-	/*public ArrayList<Mensa> getMensaList() {
+	public ArrayList<Mensa> getMensaList() {
 		rq.setUrl( ApiUrl.API_MENSA_LIST );
 		rq.execute();
 		try {
@@ -69,11 +55,12 @@ public class MensaData {
 				mb.parseJson(m);
 				Mensa mensa = mb.create();
 				mensas.add( mensa );
+				mlist.put( mensa.getName(), Integer.valueOf(mensa.getId()) );
 			}
 		} catch(Exception e) {
 			
 		}
 		return mensas;
-	}*/
+	}
 	
 }
