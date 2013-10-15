@@ -2,15 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="com.google.gson.Gson"/>
 <fullyQualifiedTypeName name="com.google.gson.reflect.TypeToken"/>
-<fullyQualifiedTypeName name="java.lang.reflect.Type"/>
-<fullyQualifiedTypeName name="android.widget.ListView"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="android.widget.ArrayAdapter"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="android.widget.AdapterView"/>
-<fullyQualifiedTypeName name="android.view.Menu"/>
-<fullyQualifiedTypeName name="android.widget.ListAdapter"/>
-<fullyQualifiedTypeName name="com.example.mensaunibe.R.layout"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Type"/>
 </qualifiedTypeNameHistroy>
