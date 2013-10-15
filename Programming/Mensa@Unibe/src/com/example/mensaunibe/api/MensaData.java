@@ -17,13 +17,13 @@ public class MensaData {
 	private final static String API_TOKEN = "6112255ca02b3040711015bbbda8d955";
 	private final static String API_MENSA_LIST = "http://mensa.xonix.ch/v1/mensas?tok="+API_TOKEN; 
 	
-	public static void main( String[] args ) {
+	/*public static void main( String[] args ) {
 		MensaData md = new MensaData();
 		List<Data> d = md.getMensaList();
 		for(Data g : d) {
 			System.out.println(g);
 		}
-	}
+	}*/
 	
 	public List<Data> getMensaList() {
 		Data d =  this.decodeJson( this.getHTTP( API_MENSA_LIST ) );
