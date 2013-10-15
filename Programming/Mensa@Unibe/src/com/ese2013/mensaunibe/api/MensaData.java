@@ -34,8 +34,9 @@ public class MensaData {
 	public ArrayList<Mensa> getMensaList() {
 		ArrayList<Mensa> mensas = new ArrayList<Mensa>();
 		rq.setUrl( MensaUrl.API_MENSA_LIST );
+		rq.execute();
 		try {
-			JSONArray js = parser.parse( rq.request() );
+			JSONArray js = parser.parse( rq.get() );
 		
 			for(int i = 0; i<js.length(); i++) {
 				JSONObject m = js.getJSONObject(i);

@@ -5,6 +5,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import android.os.AsyncTask;
+
+
 /*import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import org.apache.http.HttpEntity;
@@ -12,10 +16,24 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import java.io.InputStream;*/
+
+/*
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import android.net.Uri;
+import android.net.Uri.Builder;
 */
 
-public class RequestData {
+
+public class RequestData extends AsyncTask<String, Void, String> {
 	private String url;
 	
 	public RequestData() {
@@ -26,6 +44,7 @@ public class RequestData {
 		this.url = url;
 	}
 	
+		
 	public String request() {
 		URL url;
 		HttpURLConnection conn;
@@ -45,6 +64,10 @@ public class RequestData {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	protected String doInBackground(String... arg0) {
+		return this.request();
 	}
 	
 	/*public String request() {
