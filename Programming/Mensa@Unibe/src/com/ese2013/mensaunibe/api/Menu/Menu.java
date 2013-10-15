@@ -25,4 +25,12 @@ public class Menu {
 		SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy", Locale.GERMAN);
 		return fm.format(date);
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public String getMenu() {
+		return menu;
+	}
 }
