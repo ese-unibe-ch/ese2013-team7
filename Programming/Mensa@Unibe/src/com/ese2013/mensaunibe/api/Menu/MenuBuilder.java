@@ -31,6 +31,7 @@ public class MenuBuilder {
 
 			title = obj.getString("title");
 			JSONArray infos = obj.getJSONArray("menu");
+			menu = "";
 			for(int i = 0; i < infos.length(); i++) {
 				menu += infos.getString(i) + "\n";
 			}

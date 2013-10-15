@@ -36,7 +36,7 @@ public class MenuList extends Activity
         MenuData md = new MenuData();
         ArrayList<DailyMenu> menues = md.getMenuList(mensaId);
         for(DailyMenu m : menues) {
-        	valueList.add(m.getTitle());
+        	valueList.add(m.getTitle() + "\n" + m.getMenu());
         }
     
         ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, valueList)
