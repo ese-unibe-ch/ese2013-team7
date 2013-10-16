@@ -2,10 +2,7 @@ package com.ese2013.mensaunibe.api.Mensa;
 
 import org.json.JSONObject;
 
-import android.util.Log;
-
 public class MensaBuilder {
-	private static final String TAG = "MensaBuilder";
 	private int id;
 	private String name;
 	private String street;
@@ -25,7 +22,6 @@ public class MensaBuilder {
 			lat = o.getDouble("lat");
 			lon = o.getDouble("lon");
 		} catch(Exception e) {
-			Log.e(TAG, e.getMessage());
 		}
 	}
 	

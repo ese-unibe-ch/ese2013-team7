@@ -11,12 +11,8 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 import android.util.Log;
 
-<<<<<<< HEAD:Programming/Mensa@Unibe/src/com/ese2013/mensaunibe/api/DataRequest.java
 public class DataRequest extends AsyncTask<String, Void, String> {
-=======
-public class RequestData extends AsyncTask<String, Void, String> {
-	private static final String TAG = "RequestData";
->>>>>>> 5f0ef65e522163fed8e4dd40ee066789cd4fc7ac:Programming/Mensa@Unibe/src/com/ese2013/mensaunibe/api/RequestData.java
+	private static final String TAG = "DataRequest";
 	private String url;
 	private JSONParser parser;
 	

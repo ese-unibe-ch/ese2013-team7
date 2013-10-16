@@ -13,13 +13,9 @@ import com.ese2013.mensaunibe.api.DataRequest;
 
 
 public class MensaData {
-<<<<<<< HEAD
-	private DataRequest rq;
-=======
 	private static final String TAG = "MensaData";
-	private JSONParser parser;
-	private RequestData rq;
->>>>>>> 5f0ef65e522163fed8e4dd40ee066789cd4fc7ac
+	
+	private DataRequest rq;
 	private final ArrayList<Mensa> mensas;
 	private final HashMap<String,Integer> mlist;
 	
