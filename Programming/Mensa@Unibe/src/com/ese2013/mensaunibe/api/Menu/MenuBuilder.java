@@ -7,7 +7,10 @@ import java.util.Locale;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
+import android.util.Log;
+
 public class MenuBuilder {
+	private static final String TAG = "MensaBuilder";
 	private String title;
 	private String menu;
 	private Date date;
@@ -37,6 +40,7 @@ public class MenuBuilder {
 			}
 
 		} catch(Exception e) {
+			Log.e(TAG, e.getMessage());
 		}
 		
 		

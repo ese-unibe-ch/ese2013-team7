@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.ese2013.mensaunibe.api.ApiUrl;
 import com.ese2013.mensaunibe.api.JSONParser;
 import com.ese2013.mensaunibe.api.RequestData;
 
 public class MenuData {
-
+	private static final String TAG = "MenuData";
 	private JSONParser parser;
 	private RequestData rq;
 	
@@ -33,6 +35,7 @@ public class MenuData {
 				menus.add( menu );
 			}
 		} catch(Exception e) {
+			Log.e(TAG, e.getMessage());
 		}
 		return menus;
 	}

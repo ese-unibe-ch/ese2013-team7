@@ -1,14 +1,15 @@
 package com.ese2013.mensaunibe.api;
 
 import java.io.BufferedReader;
-
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class RequestData extends AsyncTask<String, Void, String> {
+	private static final String TAG = "RequestData";
 	private String url;
 	
 	public RequestData() {
@@ -37,6 +38,7 @@ public class RequestData extends AsyncTask<String, Void, String> {
 			rd.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			Log.e(TAG, e.getMessage());
 		}
 		return result;
 	}

@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 import org.json.*;
 
+import android.util.Log;
+
 import com.ese2013.mensaunibe.api.ApiUrl;
 import com.ese2013.mensaunibe.api.JSONParser;
 import com.ese2013.mensaunibe.api.RequestData;
@@ -17,7 +19,7 @@ import com.ese2013.mensaunibe.api.RequestData;
 
 
 public class MensaData {
-
+	private static final String TAG = "MensaData";
 	private JSONParser parser;
 	private RequestData rq;
 	private final ArrayList<Mensa> mensas;
@@ -58,7 +60,7 @@ public class MensaData {
 				mlist.put( mensa.getName(), Integer.valueOf(mensa.getId()) );
 			}
 		} catch(Exception e) {
-			
+			Log.e(TAG, e.getMessage());
 		}
 		return mensas;
 	}
