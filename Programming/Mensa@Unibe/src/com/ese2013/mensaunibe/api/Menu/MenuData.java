@@ -1,39 +1,45 @@
 package com.ese2013.mensaunibe.api.Menu;
 
-import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.ese2013.mensaunibe.api.ApiUrl;
-import com.ese2013.mensaunibe.api.JSONParser;
-import com.ese2013.mensaunibe.api.RequestData;
+import com.ese2013.mensaunibe.api.DataRequest;
 
 public class MenuData {
 
-	private JSONParser parser;
-	private RequestData rq;
+	private DataRequest rq;
 	
 	public MenuData() {
-		parser = new JSONParser();
-		rq = new RequestData();
+		rq = new DataRequest();
 	}
 	
-	public ArrayList<DailyMenu> getMenuList(int mensaId) {
-		ArrayList<DailyMenu> menus = new ArrayList<DailyMenu>();
+	public WeeklyMenu getWeeklyMenuList(int mensaId) {
+		return null;
+	}
+	
+	public Menuplan getMenuList(int mensaId) {
+		//ArrayList<DailyMenu> menus = new ArrayList<DailyMenu>();
+		Menuplan plan = new Menuplan();
 		rq.setUrl( String.format(ApiUrl.API_DAILY_MENU, mensaId) );
 		rq.execute();
+			
 		try {
-			JSONObject js = parser.parseMenus( rq.get() );
-			JSONArray list = js.getJSONArray("menus");
+			JSONObject js = rq.getJSONData();
+			JSONObject content = js.getJSONObject("content");
+			String date = content.getString("date");
+			plan.parseDate(date);
+			JSONArray list = content.getJSONArray("menus");
+			
 			for(int i = 0; i<list.length(); i++) {
-				MenuBuilder mb = new MenuBuilder();
-				mb.parseJson(js,list.getJSONObject(i));
+				DailyMenuBuilder mb = new DailyMenuBuilder();
+				mb.parseJson(list.getJSONObject(i));
 				DailyMenu menu = mb.create();
-				menus.add( menu );
+				plan.add( menu );
 			}
 		} catch(Exception e) {
 		}
-		return menus;
+		return plan;
 	}
 }

@@ -54,7 +54,7 @@ public class MensaList extends Activity {
         
         final ListView lv = (ListView)findViewById(R.id.listView1);
 
-        lv.setAdapter(adapter);  
+        lv.setAdapter(adapter);
         
         lv.setOnItemClickListener(new OnItemClickListener()
         {

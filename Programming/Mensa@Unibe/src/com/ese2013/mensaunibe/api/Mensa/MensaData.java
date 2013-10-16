@@ -7,25 +7,16 @@ import java.util.HashMap;
 import org.json.*;
 
 import com.ese2013.mensaunibe.api.ApiUrl;
-import com.ese2013.mensaunibe.api.JSONParser;
-import com.ese2013.mensaunibe.api.RequestData;
-
-
-/** Very important source:
- * http://stackoverflow.com/questions/1688099/converting-json-to-java/1688182#1688182
- */
+import com.ese2013.mensaunibe.api.DataRequest;
 
 
 public class MensaData {
-
-	private JSONParser parser;
-	private RequestData rq;
+	private DataRequest rq;
 	private final ArrayList<Mensa> mensas;
 	private final HashMap<String,Integer> mlist;
 	
 	public MensaData() {
-		parser = new JSONParser();
-		rq = new RequestData();
+		rq = new DataRequest();
 		mensas = new ArrayList<Mensa>();
 		mlist = new HashMap<String,Integer>();
 	}
@@ -47,8 +38,8 @@ public class MensaData {
 		rq.setUrl( ApiUrl.API_MENSA_LIST );
 		rq.execute();
 		try {
-			JSONArray js = parser.parse( rq.get() );
-		
+			JSONArray js = rq.getJSONData().getJSONArray("content");
+					
 			for(int i = 0; i<js.length(); i++) {
 				JSONObject m = js.getJSONObject(i);
 				MensaBuilder mb = new MensaBuilder();

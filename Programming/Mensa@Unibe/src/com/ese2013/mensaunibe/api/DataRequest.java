@@ -5,14 +5,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONObject;
 
 import android.os.AsyncTask;
 
-public class RequestData extends AsyncTask<String, Void, String> {
+public class DataRequest extends AsyncTask<String, Void, String> {
 	private String url;
+	private JSONParser parser;
 	
-	public RequestData() {
+	public DataRequest() {
 		this.url = "";
+		parser = new JSONParser();
 	}
 	
 	public void setUrl(String url) {
@@ -39,6 +44,10 @@ public class RequestData extends AsyncTask<String, Void, String> {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public JSONObject getJSONData() throws InterruptedException, ExecutionException {
+		return parser.parse( this.get() );
 	}
 
 	protected String doInBackground(String... arg0) {

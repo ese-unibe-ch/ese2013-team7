@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.ese2013.mensaunibe.api.Menu.DailyMenu;
 import com.ese2013.mensaunibe.api.Menu.MenuData;
+import com.ese2013.mensaunibe.api.Menu.Menuplan;
 
 public class MenuList extends Activity 
 {
@@ -34,8 +35,10 @@ public class MenuList extends Activity
         
     
         MenuData md = new MenuData();
-        ArrayList<DailyMenu> menues = md.getMenuList(mensaId);
-        for(DailyMenu m : menues) {
+        //ArrayList<DailyMenu> menues = md.getMenuList(mensaId);
+        Menuplan plan = md.getMenuList(mensaId);
+        
+        for(DailyMenu m : plan) {
         	valueList.add(m.getTitle() + "\n" + m.getMenu());
         }
     
