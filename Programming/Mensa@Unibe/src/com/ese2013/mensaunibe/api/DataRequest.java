@@ -1,7 +1,6 @@
 package com.ese2013.mensaunibe.api;
 
 import java.io.BufferedReader;
-
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -10,8 +9,14 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
+<<<<<<< HEAD:Programming/Mensa@Unibe/src/com/ese2013/mensaunibe/api/DataRequest.java
 public class DataRequest extends AsyncTask<String, Void, String> {
+=======
+public class RequestData extends AsyncTask<String, Void, String> {
+	private static final String TAG = "RequestData";
+>>>>>>> 5f0ef65e522163fed8e4dd40ee066789cd4fc7ac:Programming/Mensa@Unibe/src/com/ese2013/mensaunibe/api/RequestData.java
 	private String url;
 	private JSONParser parser;
 	
@@ -42,6 +47,7 @@ public class DataRequest extends AsyncTask<String, Void, String> {
 			rd.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			Log.e(TAG, e.getMessage());
 		}
 		return result;
 	}

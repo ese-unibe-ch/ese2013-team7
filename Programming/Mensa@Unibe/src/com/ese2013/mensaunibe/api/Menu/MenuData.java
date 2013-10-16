@@ -4,12 +4,20 @@ package com.ese2013.mensaunibe.api.Menu;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.ese2013.mensaunibe.api.ApiUrl;
 import com.ese2013.mensaunibe.api.DataRequest;
 
 public class MenuData {
+<<<<<<< HEAD
 
 	private DataRequest rq;
+=======
+	private static final String TAG = "MenuData";
+	private JSONParser parser;
+	private RequestData rq;
+>>>>>>> 5f0ef65e522163fed8e4dd40ee066789cd4fc7ac
 	
 	public MenuData() {
 		rq = new DataRequest();
@@ -39,6 +47,7 @@ public class MenuData {
 				plan.add( menu );
 			}
 		} catch(Exception e) {
+			Log.e(TAG, e.getMessage());
 		}
 		return plan;
 	}
