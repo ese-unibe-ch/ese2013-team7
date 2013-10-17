@@ -33,7 +33,7 @@ local.properties
 #found on https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore
 #.project
 #.classpath
-#.settings/
+.settings/
 *.pydevproject
 .metadata
 bin/**
