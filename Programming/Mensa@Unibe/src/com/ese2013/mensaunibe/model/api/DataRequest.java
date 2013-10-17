@@ -1,4 +1,4 @@
-package com.ese2013.mensaunibe.api;
+package com.ese2013.mensaunibe.model.api;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

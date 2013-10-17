@@ -16,9 +16,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ese2013.mensaunibe.api.Menu.DailyMenu;
-import com.ese2013.mensaunibe.api.Menu.MenuData;
-import com.ese2013.mensaunibe.api.Menu.Menuplan;
+import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.menu.DailyMenu;
+import com.ese2013.mensaunibe.model.menu.Menuplan;
 
 public class MenuList extends Activity 
 {
@@ -34,9 +34,11 @@ public class MenuList extends Activity
         int mensaId = intent.getIntExtra("int_value", 0);
         
     
-        MenuData md = new MenuData();
+        //MenuData md = new MenuData();
         //ArrayList<DailyMenu> menues = md.getMenuList(mensaId);
-        Menuplan plan = md.getMenuList(mensaId);
+        //Menuplan plan = md.getMenuList(mensaId);
+        
+        Menuplan plan = Model.getInstance().getTodaysMenu(mensaId);
         
         for(DailyMenu m : plan) {
         	valueList.add(m.getTitle() + "\n" + m.getMenu());

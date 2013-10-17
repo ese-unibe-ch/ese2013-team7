@@ -1,4 +1,4 @@
-package com.ese2013.mensaunibe.api;
+package com.ese2013.mensaunibe.model.api;
 
 public class ApiUrl {
 	public final static String API_TOKEN = "6112255ca02b3040711015bbbda8d955";

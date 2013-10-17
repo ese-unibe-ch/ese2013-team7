@@ -1,4 +1,4 @@
-package com.ese2013.mensaunibe.api.Mensa;
+package com.ese2013.mensaunibe.model.mensa;
 
 import org.json.JSONObject;
 

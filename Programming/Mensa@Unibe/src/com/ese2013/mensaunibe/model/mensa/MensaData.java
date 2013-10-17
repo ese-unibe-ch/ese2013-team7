@@ -1,4 +1,4 @@
-package com.ese2013.mensaunibe.api.Mensa;
+package com.ese2013.mensaunibe.model.mensa;
 
 
 import java.util.ArrayList;
@@ -8,8 +8,9 @@ import org.json.*;
 
 import android.util.Log;
 
-import com.ese2013.mensaunibe.api.ApiUrl;
-import com.ese2013.mensaunibe.api.DataRequest;
+import com.ese2013.mensaunibe.model.api.ApiUrl;
+import com.ese2013.mensaunibe.model.api.DataRequest;
+import com.ese2013.mensaunibe.model.menu.MenuData;
 
 
 public class MensaData {
@@ -49,6 +50,9 @@ public class MensaData {
 				MensaBuilder mb = new MensaBuilder();
 				mb.parseJson(m);
 				Mensa mensa = mb.create();
+				MenuData md = new MenuData();
+				mensa.setWeeklyMenu( md.getWeeklyMenuList( mensa.getId() ) );
+				Log.e(TAG, mensa.toString());
 				mensas.add( mensa );
 				mlist.put( mensa.getName(), Integer.valueOf(mensa.getId()) );
 			}

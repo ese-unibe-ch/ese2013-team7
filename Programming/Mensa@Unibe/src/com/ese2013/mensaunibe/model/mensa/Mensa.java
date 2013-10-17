@@ -1,4 +1,8 @@
-package com.ese2013.mensaunibe.api.Mensa;
+package com.ese2013.mensaunibe.model.mensa;
+
+import com.ese2013.mensaunibe.model.MenuDate;
+import com.ese2013.mensaunibe.model.menu.Menuplan;
+import com.ese2013.mensaunibe.model.menu.WeeklyMenu;
 
 import android.annotation.SuppressLint;
 
@@ -10,6 +14,7 @@ public class Mensa {
     private String plz;
     private Double lat;
     private Double lon;
+    private WeeklyMenu menu;
     
     public Mensa(MensaBuilder mb) {
     	id = mb.getId();
@@ -58,8 +63,20 @@ public class Mensa {
 	}
 	
 	public String toString() {
-        return String.format( "mensa:%s,street:%s,plz:%s,lon:%f,lat:%f,id:%d", name, street, plz, lat, lon, id);
+        return String.format("mensa:%s,street:%s,plz:%s,lon:%f,lat:%f,id:%d,menu:%s", name, street, plz, lat, lon, id, menu);
     }
+
+	public WeeklyMenu getWeeklyMenu() {
+		return menu;
+	}
+
+	public void setWeeklyMenu(WeeklyMenu menu) {
+		this.menu = menu;
+	}
+
+	public Menuplan getDailyMenu(MenuDate date) {
+		return menu.getDailyMenu(date);
+	}
     
     
 }

@@ -18,8 +18,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ese2013.mensaunibe.api.Mensa.Mensa;
-import com.ese2013.mensaunibe.api.Mensa.MensaData;
+import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.mensa.Mensa;
 
 public class MensaList extends Activity {
 
@@ -30,8 +30,8 @@ public class MensaList extends Activity {
         
         List<String> valueList = new ArrayList<String>();
         
-        final MensaData md = new MensaData();
-		ArrayList<Mensa> mensas = md.getMensaList();
+        //final MensaData md = new MensaData();
+		ArrayList<Mensa> mensas = Model.getInstance().getMensaList();
 		for(Mensa m : mensas) {
 			valueList.add(m.getName());
 		}
@@ -63,7 +63,7 @@ public class MensaList extends Activity {
         	{
         		Intent intent = new Intent();
         		intent.setClassName(getPackageName(), getPackageName()+".MenuList");
-        		intent.putExtra("int_value", md.getMensaHashMap().get(lv.getAdapter().getItem(arg2).toString()));
+        		intent.putExtra("int_value", Model.getInstance().getMensaHashMap().get(lv.getAdapter().getItem(arg2).toString()));
         		startActivity(intent);
         	}
         });
