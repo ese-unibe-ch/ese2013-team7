@@ -44,7 +44,7 @@ public class MenuData {
 				}
 			}
 			WeeklyMenu wk = new WeeklyMenu(menuHashMap);
-			Log.e(TAG, "oject weeklymenu: "+wk);
+			Log.i(TAG, "oject weeklymenu: "+wk);
 			return wk;
 		} catch(Exception e) {
 			Log.e(TAG, e.getMessage());

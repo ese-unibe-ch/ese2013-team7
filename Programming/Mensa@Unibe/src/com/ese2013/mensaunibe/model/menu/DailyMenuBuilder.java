@@ -6,9 +6,12 @@ import java.text.SimpleDateFormat;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
+import android.util.Log;
+
 import com.ese2013.mensaunibe.model.MenuDate;
 
 public class DailyMenuBuilder {
+	private static final String TAG = "DailyMenuBuilder";
 	private String title;
 	private String menu;
 	private MenuDate date;
@@ -42,6 +45,7 @@ public class DailyMenuBuilder {
 				menu += infos.getString(i) + "\n";
 			}
 		} catch(Exception e) {
+			Log.e(TAG, e.getMessage());
 		}		
 	}
 	

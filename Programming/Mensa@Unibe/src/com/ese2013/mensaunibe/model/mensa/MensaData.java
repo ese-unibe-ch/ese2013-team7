@@ -52,7 +52,7 @@ public class MensaData {
 				Mensa mensa = mb.create();
 				MenuData md = new MenuData();
 				mensa.setWeeklyMenu( md.getWeeklyMenuList( mensa.getId() ) );
-				Log.e(TAG, mensa.toString());
+				Log.i(TAG, mensa.toString());
 				mensas.add( mensa );
 				mlist.put( mensa.getName(), Integer.valueOf(mensa.getId()) );
 			}

@@ -3,10 +3,10 @@ package com.ese2013.mensaunibe;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 
-public class MensaList extends Activity {
+public class MensaList extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

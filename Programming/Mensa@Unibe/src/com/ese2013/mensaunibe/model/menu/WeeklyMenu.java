@@ -19,7 +19,7 @@ public class WeeklyMenu implements Iterable<Menuplan> {
 	}
 	public Menuplan getDailyMenu(MenuDate date) {
 		Menuplan m = menuPlans.get(date.toString());
-		//Log.e("WeeklyMenu", "date: "+date+" menuplan: "+m);
+		//Log.i("WeeklyMenu", "date: "+date+" menuplan: "+m);
 		return m;
 	}
 	

@@ -14,7 +14,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         <activity
             android:name="com.ese2013.mensaunibe.MensaList"
             android:label="@string/app_name" >
@@ -26,7 +26,12 @@
         </activity>
         <activity
             android:name="com.ese2013.mensaunibe.MenuList"
-            android:label="@string/menu_list" >
+            android:label="@string/menu_list"
+            android:parentActivityName="com.ese2013.mensaunibe.MensaList" >
+        	<!-- Parent activity meta-data to support 4.0 and lower -->
+	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value="com.example.myfirstapp.MainActivity" />
         </activity>
     </application>
 
