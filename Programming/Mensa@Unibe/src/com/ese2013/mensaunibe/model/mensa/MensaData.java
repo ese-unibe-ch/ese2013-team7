@@ -2,10 +2,7 @@ package com.ese2013.mensaunibe.model.mensa;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import org.json.*;
-
 import android.util.Log;
 
 import com.ese2013.mensaunibe.model.api.ApiUrl;
@@ -18,25 +15,10 @@ public class MensaData {
 	
 	private DataRequest rq;
 	private final ArrayList<Mensa> mensas;
-	private final HashMap<String,Integer> mlist;
 	
 	public MensaData() {
 		rq = new DataRequest();
 		mensas = new ArrayList<Mensa>();
-		mlist = new HashMap<String,Integer>();
-	}
-	
-	/*public static void main( String[] args )
-	{
-		MensaData md = new MensaData();
-		ArrayList<Mensa> mensas = md.getMensaList();
-		for(Mensa m : mensas) {
-			System.out.println( m.getName() );
-		}
-	}*/
-	
-	public HashMap<String,Integer> getMensaHashMap() {
-		return mlist;
 	}
 	
 	public ArrayList<Mensa> getMensaList() {
@@ -54,7 +36,6 @@ public class MensaData {
 				mensa.setWeeklyMenu( md.getWeeklyMenuList( mensa.getId() ) );
 				Log.i(TAG, mensa.toString());
 				mensas.add( mensa );
-				mlist.put( mensa.getName(), Integer.valueOf(mensa.getId()) );
 			}
 		} catch(Exception e) {
 			Log.e(TAG, e.getMessage());

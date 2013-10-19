@@ -55,21 +55,9 @@ public class MensaListAdapter extends BaseAdapter {
 			/*YOUR CHOICE OF COLOR*/
 			textView.setTextColor(Color.BLACK);
 			textView.setText( mensa.getName() );
-			//setTextViewListener(textView, position);
 		}
 		return view;
 	}
-	
-	/*public void setTextViewListener(View view, final int position){
-        view.setOnClickListener(new OnClickListener() {
-        	public void onClick(View viewIn) {
-        	Intent intent = new Intent();
-        	intent.setClass(viewIn.getContext(), MenuList.class);
-        	intent.putExtra("int_value", mensas.get(position).getId());
-        	context.startActivity(intent);
-            }
-        });
-	}*/
 	
 	private void populate() {
 		//fill
