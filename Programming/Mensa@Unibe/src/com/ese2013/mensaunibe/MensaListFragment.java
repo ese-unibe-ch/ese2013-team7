@@ -48,6 +48,7 @@ public class MensaListFragment extends ListFragment{
         		return view;
         	}
         };*/
+        
 		MensaListAdapter adapter = new MensaListAdapter(getActivity(), android.R.layout.simple_list_item_1);
 		
         setListAdapter(adapter);
@@ -59,8 +60,9 @@ public class MensaListFragment extends ListFragment{
 		intent.setClassName(getActivity().getPackageName(), getActivity().getPackageName()+".MenuList");
 		//intent.putExtra("int_value", Model.getInstance().getMensaHashMap().get(l.getAdapter().getItem(position).toString()));
 		MensaListAdapter a = (MensaListAdapter) l.getAdapter();
-		intent.putExtra("int_value", a.getItem(position).getId() );
-		startActivity(intent);
-
+		if(a.getItem(position) != null) {
+			intent.putExtra("int_value", a.getItem(position).getId() );
+			startActivity(intent);
+		}
     }
 }

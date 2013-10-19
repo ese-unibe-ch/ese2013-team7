@@ -22,12 +22,14 @@ public class MensaListAdapter extends BaseAdapter {
 	private int resource;
 	private LayoutInflater inflater;
 	
+	private ArrayList<ListItem> items;
 	private ArrayList<Mensa> mensas;
 	
 	public MensaListAdapter(Context context, int resource) {
 		super();
 		this.context = context;
 		this.resource = resource;
+		this.items = new ArrayList<ListItem>();
 		populate();
 	}
 	
@@ -36,14 +38,25 @@ public class MensaListAdapter extends BaseAdapter {
 		if(view == null) inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		view = inflater.inflate(this.resource, parent, false);
-        
+		
 		TextView textView=(TextView) view.findViewById(android.R.id.text1);
 
-		/*YOUR CHOICE OF COLOR*/
-		textView.setTextColor(Color.BLACK);
-		Mensa mensa = mensas.get(position);
-		textView.setText( mensa.getName() );
-		//setTextViewListener(textView, position);
+		ListItem item = items.get(position);
+		
+		if(item.isSection()) {
+			ListSectionItem si = (ListSectionItem)item;
+            view = inflater.inflate(R.layout.mensa_list_header, null);
+            view.setLongClickable(false);
+            final TextView sectionView =
+                (TextView) view.findViewById(R.id.mensa_list_header_title);
+            sectionView.setText(si.toString());
+		} else {
+			Mensa mensa = (Mensa)item;
+			/*YOUR CHOICE OF COLOR*/
+			textView.setTextColor(Color.BLACK);
+			textView.setText( mensa.getName() );
+			//setTextViewListener(textView, position);
+		}
 		return view;
 	}
 	
@@ -60,11 +73,23 @@ public class MensaListAdapter extends BaseAdapter {
 	
 	private void populate() {
 		//fill
-		this.mensas = Model.getInstance().getMensaList();
+		mensas = Model.getInstance().getMensaList();
+		mensas.get(0).setFavorite(true);
+		items.add(new ListSectionItem( context.getString(R.string.mensa_list_favorites) ) );
+		for(Mensa m : mensas) {
+			if(m.isFavorite()) items.add(m);
+		}
+		
+		items.add(new ListSectionItem( context.getString(R.string.mensa_list_header) ) );
+		for(Mensa m2 : mensas) {
+			if(!m2.isFavorite()) items.add(m2);
+		}
 	}
 	
+	
 	public Mensa getItem(int position) {
-		return mensas.get(position);
+		if( items.get(position).isSection() ) return null;
+		return (Mensa) items.get(position);
 	}
 	
 	public long getItemId(int position) {
@@ -72,8 +97,7 @@ public class MensaListAdapter extends BaseAdapter {
 	}
 	
 	public int getCount() {
-		return mensas.size();
+		return items.size();
 	}
-
 
 }

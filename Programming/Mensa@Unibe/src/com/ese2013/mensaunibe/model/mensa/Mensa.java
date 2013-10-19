@@ -1,5 +1,6 @@
 package com.ese2013.mensaunibe.model.mensa;
 
+import com.ese2013.mensaunibe.ListItem;
 import com.ese2013.mensaunibe.model.MenuDate;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 import com.ese2013.mensaunibe.model.menu.WeeklyMenu;
@@ -7,7 +8,7 @@ import com.ese2013.mensaunibe.model.menu.WeeklyMenu;
 import android.annotation.SuppressLint;
 
 @SuppressLint("DefaultLocale")
-public class Mensa {
+public class Mensa implements ListItem {
 	private int id;
 	private String name;
 	private String street;
@@ -15,6 +16,7 @@ public class Mensa {
     private Double lat;
     private Double lon;
     private WeeklyMenu menu;
+    private boolean isFavorite;
     
     public Mensa(MensaBuilder mb) {
     	id = mb.getId();
@@ -23,6 +25,7 @@ public class Mensa {
     	plz = mb.getPlz();
     	lat = mb.getLat();
     	lon = mb.getLon();
+    	isFavorite = false;
     }
     
 	public int getId() {
@@ -76,6 +79,19 @@ public class Mensa {
 
 	public Menuplan getDailyMenu(MenuDate date) {
 		return menu.getDailyMenu(date);
+	}
+
+	@Override
+	public boolean isSection() {
+		return false;
+	}
+
+	public boolean isFavorite() {
+		return isFavorite;
+	}
+
+	public void setFavorite(boolean b) {
+		this.isFavorite = b;
 	}
     
     
