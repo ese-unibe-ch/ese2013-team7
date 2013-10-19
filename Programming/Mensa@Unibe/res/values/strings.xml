@@ -6,5 +6,6 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_share">Share</string>
     <string name="menu_list">Menu</string>
+    <string name="no_menu">No menu available</string>
 
 </resources>

@@ -49,6 +49,10 @@ public class Menuplan implements Iterable<DailyMenu> {
 		}
 		return res;
 	}
+
+	public int size() {
+		return menuList.size();
+	}
 	
 	
 }

@@ -50,4 +50,11 @@ public class Model {
 		}
 		return null;
 	}
+
+	public Mensa getMensaById(int mensaId) {
+		for(Mensa m : mensas) {
+			if(m.getId() == mensaId) return m;
+		}
+		return null;
+	}
 }
