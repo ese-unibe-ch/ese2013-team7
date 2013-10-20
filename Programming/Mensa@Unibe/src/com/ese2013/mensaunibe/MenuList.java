@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
@@ -40,15 +41,18 @@ public class MenuList extends ActionBarActivity
         
         int mensaId = intent.getIntExtra("int_value", 0);
         
-    
-        //MenuData md = new MenuData();
-        //ArrayList<DailyMenu> menues = md.getMenuList(mensaId);
-        //Menuplan plan = md.getMenuList(mensaId);
+        setTitle( Model.getInstance().getMensaById(mensaId).getName() );
         
         Menuplan plan = Model.getInstance().getTodaysMenu(mensaId);
         
-        for(DailyMenu m : plan) {
-        	valueList.add(m.getTitle() + "\n" + m.getMenu());
+        if(plan.size() == 0) {
+        	Toast t = Toast.makeText(this, getString(R.string.no_menu), Toast.LENGTH_SHORT);
+            t.show();
+        } else {
+        
+	        for(DailyMenu m : plan) {
+	        	valueList.add(m.getTitle() + "\n" + m.getMenu());
+	        }
         }
     
         ListAdapter adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, valueList)

@@ -3,7 +3,7 @@ package com.ese2013.mensaunibe.model.menu;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import android.util.Log;
+//import android.util.Log;
 
 import com.ese2013.mensaunibe.model.MenuDate;
 

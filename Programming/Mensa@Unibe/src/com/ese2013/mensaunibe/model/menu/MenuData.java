@@ -54,7 +54,6 @@ public class MenuData {
 	}
 	
 	public Menuplan getMenuList(int mensaId) {
-		//ArrayList<DailyMenu> menus = new ArrayList<DailyMenu>();
 		Menuplan plan = new Menuplan();
 		rq.setUrl( String.format(ApiUrl.API_DAILY_MENU, mensaId) );
 		rq.execute();

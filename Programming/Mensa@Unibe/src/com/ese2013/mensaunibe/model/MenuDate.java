@@ -27,7 +27,7 @@ public class MenuDate implements Comparable<MenuDate> {
 	}
 	
 	public boolean equals(Object obj) {
-		if(obj != null || this.getClass() != obj.getClass()) return false;
+		if(obj != null && this.getClass() != obj.getClass()) return false;
 		MenuDate md = (MenuDate) obj;
 		if(day == md.getDay() && month == md.getMonth() && year == md.getYear()) return true;
 		return false;
