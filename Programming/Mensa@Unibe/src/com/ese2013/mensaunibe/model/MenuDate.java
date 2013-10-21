@@ -3,7 +3,11 @@ package com.ese2013.mensaunibe.model;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.util.Log;
+
 public class MenuDate implements Comparable<MenuDate> {
+	
+	private static final String TAG = "MenuDate";
 	private int day;
 	private int month;
 	private int year;
@@ -11,7 +15,8 @@ public class MenuDate implements Comparable<MenuDate> {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		day = cal.get(Calendar.DAY_OF_MONTH);
-		month = cal.get(Calendar.MONTH);
+		month = cal.get(Calendar.MONTH) + 1; //January = 0
+		//Log.d(TAG, "month " + month);
 		year = cal.get(Calendar.YEAR);
 	}
 	public MenuDate(int day, int month, int year) {

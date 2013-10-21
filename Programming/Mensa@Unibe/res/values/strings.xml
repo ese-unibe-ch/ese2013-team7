@@ -9,5 +9,16 @@
     <string name="no_menu">No menu available</string>
     <string name="mensa_list_favorites">Favorite Mensas</string>
     <string name="mensa_list_header">Mensas</string>
+    <string name="action_mensainfo">Mensa Information</string>
+    <string name="comingDaysTabTitle">Soon</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
 
 </resources>

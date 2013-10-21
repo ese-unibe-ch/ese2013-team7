@@ -93,6 +93,4 @@ public class Mensa implements ListItem {
 	public void setFavorite(boolean b) {
 		this.isFavorite = b;
 	}
-    
-    
 }

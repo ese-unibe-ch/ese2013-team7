@@ -1,9 +1,10 @@
 package com.ese2013.mensaunibe.model.menu;
 
 
+import com.ese2013.mensaunibe.ListItem;
 import com.ese2013.mensaunibe.model.MenuDate;
 
-public class DailyMenu {
+public class DailyMenu implements ListItem{
 	private String title;
 	private String menu;
 	private MenuDate date;
@@ -28,5 +29,10 @@ public class DailyMenu {
 	
 	public MenuDate getDate() {
 		return date;
+	}
+
+	@Override
+	public boolean isSection() {
+		return false;
 	}
 }

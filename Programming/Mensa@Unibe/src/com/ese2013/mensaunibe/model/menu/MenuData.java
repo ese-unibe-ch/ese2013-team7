@@ -3,6 +3,8 @@ package com.ese2013.mensaunibe.model.menu;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.Calendar;
 import java.util.HashMap;
 
 import android.util.Log;
@@ -21,9 +23,20 @@ public class MenuData {
 		rq = new DataRequest();
 	}
 	
-	public WeeklyMenu getWeeklyMenuList(int mensaId) {
-		rq.setUrl( String.format(ApiUrl.API_WEEKLY_MENU, mensaId));
+	public void setWeekUrl(int mensaId){
+		Calendar calendar = Calendar.getInstance();
+		int weekend = calendar.get(Calendar.DAY_OF_WEEK);
+		if(weekend == Calendar.SATURDAY || weekend == Calendar.SUNDAY){
+			int weekNr =calendar.get(Calendar.WEEK_OF_YEAR);
+			int nextWeek = (weekNr < 52) ? weekNr+1 : 1;
+			rq.setUrl( String.format(ApiUrl.API_NEXT_WEEK_MENU, mensaId, nextWeek));
+		}else{
+			rq.setUrl( String.format(ApiUrl.API_WEEKLY_MENU, mensaId));
+		}
 		rq.execute();
+	}
+	public WeeklyMenu getWeeklyMenuList(int mensaId) {
+		setWeekUrl(mensaId);
 		try {
 			JSONObject content = rq.getJSONData().getJSONObject("content");
 			JSONArray menus = content.getJSONArray("menus");

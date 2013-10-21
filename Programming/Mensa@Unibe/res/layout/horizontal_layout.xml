@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <fragment
+        android:id="@+id/MensaFragment"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        class="com.ese2013.mensaunibe.MensaListFragment.class" ></fragment>
+
+    <fragment
+        android:id="@+id/MenuFragment"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="match_parent"
+        class="com.ese2013.mensaunibe.MenuListFragment.class" >
+        <!-- Preview: layout=@layout/details -->
+    </fragment>
+
+</LinearLayout> 

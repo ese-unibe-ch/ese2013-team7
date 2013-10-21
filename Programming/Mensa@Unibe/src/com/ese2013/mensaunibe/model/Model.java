@@ -1,13 +1,17 @@
 package com.ese2013.mensaunibe.model;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+
+import android.util.Log;
 
 import com.ese2013.mensaunibe.model.mensa.*;
+import com.ese2013.mensaunibe.model.menu.DailyMenu;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 
 public class Model {
 
+	private static final String TAG ="Model";
 	private static Model instance = null;
 	private ArrayList<Mensa> mensas;
 	public Model() {
@@ -30,11 +34,20 @@ public class Model {
 		return instance;
 	}
 
-	public Menuplan getTodaysMenu(int mensaId) {
+	/*If today's menu is not available, (for example is weekend) 
+	 * then checks each day, till the first day with menu is found. max for one more week */
+	public Menuplan getTodaysOrClosestDayMenu(int mensaId) {
 		for(Mensa m : mensas) {
 			if(m.getId() == mensaId) {
-				Menuplan menu = m.getDailyMenu( new MenuDate( new Date() ) );
-				//
+				Calendar calendar = Calendar.getInstance();
+				Menuplan menu;
+				int checkForOneWeek = 1;
+				do{
+					menu = m.getDailyMenu( new MenuDate( calendar.getTime() ) );
+					calendar.add(Calendar.DATE, 1);//increment Date always with one day
+					checkForOneWeek++;
+				}while (menu == null && checkForOneWeek <= 7);
+
 				if(menu == null) menu = new Menuplan();
 				//Log.e("Model", "menuplan:"+menu.toString());
 				return menu;
@@ -49,4 +62,25 @@ public class Model {
 		}
 		return null;
 	}
+
+	public ArrayList<Menuplan> getComingDaysMenu(int mensaId) {
+		ArrayList <Menuplan> menuPlan = new ArrayList<Menuplan>();
+		for(Mensa m : mensas) {
+			if(m.getId() == mensaId) {
+				Calendar calendar = Calendar.getInstance();
+				Menuplan menu;
+				int checkForOneWeek = 1;
+				do{
+					calendar.add(Calendar.DATE, 1);//increment Date always with one day
+					menu = m.getDailyMenu( new MenuDate( calendar.getTime() ) );
+					checkForOneWeek++;
+					if(menu != null) menuPlan.add(menu);
+				}while (checkForOneWeek <= 7);
+
+				return menuPlan;
+			}
+		}
+		return null;
+	}
+
 }

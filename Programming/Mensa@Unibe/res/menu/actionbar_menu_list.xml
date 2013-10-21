@@ -5,9 +5,15 @@
     <item android:id="@+id/action_share"
           android:icon="@drawable/ic_action_share"
           android:title="@string/action_share"
-          mensaApp:showAsAction="ifRoom" />
+          mensaApp:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_mensainfo"
+          android:icon="@drawable/ic_action_about"
+          android:title="@string/action_mensainfo"
+          mensaApp:showAsAction="never"
+          android:orderInCategory="1" />
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"
-          mensaApp:showAsAction="never" />
+          mensaApp:showAsAction="never"
+          android:orderInCategory="5" />
 </menu>

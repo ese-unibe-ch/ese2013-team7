@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.ese2013.mensaunibe.MensaList"
+            android:name="com.ese2013.mensaunibe.MensaActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +25,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ese2013.mensaunibe.MenuList"
+            android:name="com.ese2013.mensaunibe.MenuActivity"
             android:label="@string/menu_list"
-            android:parentActivityName="com.ese2013.mensaunibe.MensaList" >
+            android:parentActivityName="com.ese2013.mensaunibe.MensaActivity" >
         	<!-- Parent activity meta-data to support 4.0 and lower -->
 	        <meta-data
 	            android:name="android.support.PARENT_ACTIVITY"

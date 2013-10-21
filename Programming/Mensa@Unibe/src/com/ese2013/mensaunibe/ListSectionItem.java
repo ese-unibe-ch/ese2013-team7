@@ -15,4 +15,5 @@ public class ListSectionItem implements ListItem {
 	public boolean isSection() {
 		return true;
 	}
+
 }

@@ -5,6 +5,9 @@ import java.util.Iterator;
 
 //import android.util.Log;
 
+
+import android.util.Log;
+
 import com.ese2013.mensaunibe.model.MenuDate;
 
 public class WeeklyMenu implements Iterable<Menuplan> {
@@ -19,7 +22,7 @@ public class WeeklyMenu implements Iterable<Menuplan> {
 	}
 	public Menuplan getDailyMenu(MenuDate date) {
 		Menuplan m = menuPlans.get(date.toString());
-		//Log.i("WeeklyMenu", "date: "+date+" menuplan: "+m);
+		Log.d("WeeklyMenu", "date: "+date+" menuplan: "+m);
 		return m;
 	}
 	

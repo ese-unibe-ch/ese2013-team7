@@ -1,5 +1,6 @@
 package com.ese2013.mensaunibe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -8,13 +9,13 @@ import android.view.Menu;
 
 
 
-public class MensaList extends ActionBarActivity {
+public class MensaActivity extends ActionBarActivity implements MensaListFragment.OnListItemClickListener{
 	private static final String TAG_MENSALIST_FRAGMENT ="MensaListFragment_tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mensa_list);
+        setContentView(R.layout.fragment_mensa_list);
         
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_MENSALIST_FRAGMENT);
         if (fragment == null) {
@@ -34,5 +35,19 @@ public class MensaList extends ActionBarActivity {
         return super.onCreateOptionsMenu(menu);
 
     }
+
+	@Override
+	public void onListItemSelected(int mensaId) {
+		   MenuTabHostFragment fragment = (MenuTabHostFragment) getSupportFragmentManager()
+		            .findFragmentById(R.id.MenuFragment);
+		        if (fragment != null && fragment.isInLayout()) {
+		          fragment.update(mensaId);
+		        } else{
+		        	Intent intent = new Intent();
+		            intent.setClassName(getPackageName(), getPackageName()+".MenuActivity");
+		            intent.putExtra("int_value", mensaId);
+		            startActivity(intent);		              
+		        }
+	}
     
 }

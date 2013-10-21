@@ -1,0 +1,18 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+  android:id="@+id/menu_title"
+  android:layout_height="50dp"
+  android:gravity="center_vertical"
+  android:visibility="visible"
+  android:layout_width="fill_parent"
+  android:textSize="18sp"
+  android:textStyle="bold"
+  android:paddingLeft="8dp"
+  android:textColor="#FF000000"
+  android:background="#FFFFFFFF" />
+
+</LinearLayout>

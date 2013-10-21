@@ -32,6 +32,7 @@ public class Menuplan implements Iterable<DailyMenu> {
 		try {
 			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN);
 			this.date = fm.parse( date );
+			Log.e(TAG, fm.format(date));
 		} catch(Exception e) {
 			Log.e(TAG, e.getMessage());
 		}
