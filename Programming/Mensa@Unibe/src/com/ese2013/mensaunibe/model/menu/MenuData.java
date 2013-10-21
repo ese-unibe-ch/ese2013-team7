@@ -33,6 +33,7 @@ public class MenuData {
 		}else{
 			rq.setUrl( String.format(ApiUrl.API_WEEKLY_MENU, mensaId));
 		}
+		rq.setType( "MENU_ " + mensaId );
 		rq.execute();
 	}
 	public WeeklyMenu getWeeklyMenuList(int mensaId) {

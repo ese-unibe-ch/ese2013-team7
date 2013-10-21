@@ -23,6 +23,7 @@ public class MensaData {
 	
 	public ArrayList<Mensa> getMensaList() {
 		rq.setUrl( ApiUrl.API_MENSA_LIST );
+		rq.setType( "MENSA" );
 		rq.execute();
 		try {
 			JSONArray js = rq.getJSONData().getJSONArray("content");
