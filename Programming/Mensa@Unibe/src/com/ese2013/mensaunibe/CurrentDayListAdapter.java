@@ -8,6 +8,9 @@ import com.ese2013.mensaunibe.model.menu.Menuplan;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +55,9 @@ public class CurrentDayListAdapter extends BaseAdapter{
 		} else {
 			DailyMenu dm = (DailyMenu) item;
 			textView.setTextColor(Color.BLACK);
-			textView.setText( dm.getMenu());
+			SpannableString menuString = new SpannableString(dm.getTitle() + "\n"+dm.getMenu());
+			menuString.setSpan(new StyleSpan(android.graphics.Typeface.BOLD_ITALIC), 0, dm.getTitle().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			textView.setText(menuString);
 		}
 		return view;
 	}
