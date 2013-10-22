@@ -6,13 +6,15 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
 
+import com.ese2013.mensaunibe.model.MenuDate;
+
 import android.util.Log;
 
 public class Menuplan implements Iterable<DailyMenu> {
 	private static final String TAG = "Menuplan";
 	
 	private ArrayList<DailyMenu> menuList;
-	private Date date;
+	private MenuDate date;
 	
 	public Menuplan() {
 		menuList = new ArrayList<DailyMenu>();
@@ -28,19 +30,18 @@ public class Menuplan implements Iterable<DailyMenu> {
 		return it;
 	}
 	
-	public void parseDate(String date) {
+	public void parseDate(String stringDate) {
 		try {
 			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN);
-			this.date = fm.parse( date );
-			Log.e(TAG, fm.format(date));
+			this.date = new MenuDate( fm.parse(stringDate) );
+			Log.e(TAG, date.toString());
 		} catch(Exception e) {
 			Log.e(TAG, e.getMessage());
 		}
 	}
 	
-	public String getDate() {
-		SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy", Locale.GERMAN);
-		return fm.format(date);
+	public MenuDate getDate() {
+		return date;
 	}
 	
 	public String toString() {
@@ -53,6 +54,11 @@ public class Menuplan implements Iterable<DailyMenu> {
 
 	public int size() {
 		return menuList.size();
+	}
+
+	public void setDate(MenuDate date) {
+		this.date = date;
+		
 	}
 	
 	

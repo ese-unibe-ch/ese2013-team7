@@ -62,9 +62,7 @@ public class ComingDaysListAdapter extends BaseAdapter{
 		//fill
 		mMenus = Model.getInstance().getComingDaysMenu(mMensaId);
 		for(Menuplan m : mMenus) {
-			// TODO get the dates of menuplans
-		//items.add(new ListSectionItem(mMenu.getDate()));
-		items.add(new ListSectionItem("34/10/2014"));//mMenu.getDate() is null
+		items.add(new ListSectionItem(m.getDate().toText()));
 			for (DailyMenu dm : m){
 				items.add(dm);
 			}

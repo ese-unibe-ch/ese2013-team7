@@ -37,8 +37,8 @@ public class MenuTabHostFragment extends Fragment{
     
 	public void update(int mensaId) {
 		mMensaId=mensaId;
-		CurrentDayMenuFragment.updateMensaId(mensaId);
-		ComingDaysMenuFragment.updateMensaId(mensaId);
+		CurrentDayMenuFragment.updateMensaId(mMensaId);
+		ComingDaysMenuFragment.updateMensaId(mMensaId);
 	}
 	    
     @Override

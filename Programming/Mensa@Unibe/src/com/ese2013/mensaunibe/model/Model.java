@@ -35,7 +35,7 @@ public class Model {
 	}
 
 	/*If today's menu is not available, (for example is weekend) 
-	 * then checks each day, till the first day with menu is found. max for one more week */
+	 * then checks each day, till the first day with menu is found*/
 	public Menuplan getTodaysOrClosestDayMenu(int mensaId) {
 		for(Mensa m : mensas) {
 			if(m.getId() == mensaId) {
