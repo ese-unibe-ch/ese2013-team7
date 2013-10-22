@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Button.Toggle" parent="android:Widget">
+    <item name="android:background">@drawable/star_toggle_button_bg</item>
+    <item name="android:disabledAlpha">?android:attr/disabledAlpha</item>
+</style>
+ 
+<style name="FavoriteTheme"  parent="@android:Theme.Holo.Light">
+    <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
+</style>
+</resources>
