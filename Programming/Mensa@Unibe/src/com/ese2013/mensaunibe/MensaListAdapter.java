@@ -12,9 +12,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 
 public class MensaListAdapter extends BaseAdapter {
@@ -39,9 +41,10 @@ public class MensaListAdapter extends BaseAdapter {
 		
 		view = inflater.inflate(this.resource, parent, false);
 		
-		TextView textView=(TextView) view.findViewById(R.id.mensa_list_row);
-		
+		TextView textView=(TextView) view.findViewById(android.R.id.text1);
 		ListItem item = items.get(position);
+		
+		
 		
 		if(item.isSection()) {
 			ListSectionItem si = (ListSectionItem)item;
@@ -55,14 +58,8 @@ public class MensaListAdapter extends BaseAdapter {
 			/*YOUR CHOICE OF COLOR*/
 			textView.setTextColor(Color.BLACK);
 			textView.setText( mensa.getName() );
-			textView.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					ToggleButton tb =(ToggleButton)v;
-					
-				}
-			}
+			ToggleButton favorite =(ToggleButton) view.findViewById(R.layout.mensa_list_favorite_toggle_button);
+			favorite.setOnClickListener(new FavoriteOnClickListener(mensa , favorite));
 		}
 		return view;
 	}
