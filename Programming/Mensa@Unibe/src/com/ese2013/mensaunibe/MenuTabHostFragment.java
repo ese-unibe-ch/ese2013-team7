@@ -17,7 +17,7 @@ public class MenuTabHostFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         mTabHost = new FragmentTabHost(getActivity());
-        mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.listViewMenu);
+        mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.menu_fragment_container);
 
         mTabHost.addTab(mTabHost.newTabSpec("today").setIndicator(getActivity().getString(R.string.today)),
                 CurrentDayMenuFragment.class, null);

@@ -7,10 +7,6 @@ import com.ese2013.mensaunibe.model.menu.DailyMenu;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,23 +37,24 @@ public class CurrentDayListAdapter extends BaseAdapter{
 		
 		view = inflater.inflate(this.resource, parent, false);
 		
-		TextView textView=(TextView) view.findViewById(android.R.id.text1);
+		TextView textView=(TextView) view.findViewById(R.id.menu_text);
+		TextView titleView=(TextView) view.findViewById(R.id.menu_title);
 
 		ListItem item = items.get(position);
 		
 		if(item.isSection()) {
 			ListSectionItem si = (ListSectionItem) item;
-            view = inflater.inflate(R.layout.menu_title, null);
             view.setLongClickable(false);
-            final TextView sectionView =
-                (TextView) view.findViewById(R.id.menu_title);
-            sectionView.setText(si.toString());
+            final TextView dateView =
+                (TextView) view.findViewById(R.id.menu_date);
+            dateView.setText(si.toString());
+            dateView.setVisibility(View.VISIBLE);
 		} else {
 			DailyMenu dm = (DailyMenu) item;
-			textView.setTextColor(Color.BLACK);
-			SpannableString menuString = new SpannableString(dm.getTitle() + "\n"+dm.getMenu());
-			menuString.setSpan(new StyleSpan(android.graphics.Typeface.BOLD_ITALIC), 0, dm.getTitle().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			textView.setText(menuString);
+			titleView.setText(dm.getTitle());
+			titleView.setVisibility(View.VISIBLE);
+			textView.setText(dm.getMenu());
+			textView.setVisibility(View.VISIBLE);
 		}
 		return view;
 	}
@@ -65,7 +62,6 @@ public class CurrentDayListAdapter extends BaseAdapter{
 	private void populate() {
 		//fill
 		mMenu = Model.getInstance().getTodaysOrClosestDayMenu(mMensaId);
-		//later use toText()
 		items.add(new ListSectionItem(mMenu.getDate().toText()));
 		for (DailyMenu dm : mMenu){
 			items.add(dm);

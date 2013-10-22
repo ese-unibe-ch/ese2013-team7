@@ -12,7 +12,7 @@ public class CurrentDayMenuFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         
-		ListAdapter adapter = new CurrentDayListAdapter(getActivity(), android.R.layout.simple_list_item_1, mMensaId);
+		ListAdapter adapter = new CurrentDayListAdapter(getActivity(), R.layout.menu_list_item, mMensaId);
         setListAdapter(adapter);
         //have to check android.app.LoaderManager
         //i think we could use it
