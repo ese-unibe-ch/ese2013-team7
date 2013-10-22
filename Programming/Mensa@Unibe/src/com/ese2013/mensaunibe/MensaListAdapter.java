@@ -39,8 +39,8 @@ public class MensaListAdapter extends BaseAdapter {
 		
 		view = inflater.inflate(this.resource, parent, false);
 		
-		TextView textView=(TextView) view.findViewById(android.R.id.text1);
-
+		TextView textView=(TextView) view.findViewById(R.id.mensa_list_row);
+		
 		ListItem item = items.get(position);
 		
 		if(item.isSection()) {
@@ -55,6 +55,14 @@ public class MensaListAdapter extends BaseAdapter {
 			/*YOUR CHOICE OF COLOR*/
 			textView.setTextColor(Color.BLACK);
 			textView.setText( mensa.getName() );
+			textView.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					ToggleButton tb =(ToggleButton)v;
+					
+				}
+			}
 		}
 		return view;
 	}
