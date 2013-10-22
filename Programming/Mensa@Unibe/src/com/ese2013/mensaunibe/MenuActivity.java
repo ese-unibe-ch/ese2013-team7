@@ -19,6 +19,8 @@ public class MenuActivity extends ActionBarActivity
         
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        // Specify that tabs should be displayed in the action bar.
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         
         mMensaId = getIntent().getIntExtra("int_value", 0);
         setTitle( Model.getInstance().getMensaById(mMensaId).getName() );
@@ -27,11 +29,12 @@ public class MenuActivity extends ActionBarActivity
         								.findFragmentByTag(TAG_MENULIST_FRAGMENT);
         if (fragment == null) {
             fragment = new MenuTabHostFragment();
-            fragment.update(mMensaId);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.add(android.R.id.content, fragment, TAG_MENULIST_FRAGMENT);
             ft.commit();
         }
+        
+        fragment.update(mMensaId);
        
     }
 }

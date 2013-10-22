@@ -36,6 +36,7 @@ public class MenuData {
 		rq.setType( "MENU_ " + mensaId );
 		rq.execute();
 	}
+	
 	public WeeklyMenu getWeeklyMenuList(int mensaId) {
 		setWeekUrl(mensaId);
 		try {
@@ -54,6 +55,7 @@ public class MenuData {
 				} else {
 					Menuplan plan = new Menuplan();
 					plan.add(menu);
+					plan.setDate(date);
 					menuHashMap.put(date.toString(), plan);
 				}
 			}
@@ -84,6 +86,7 @@ public class MenuData {
 				mb.parseJson(list.getJSONObject(i));
 				DailyMenu menu = mb.create();
 				plan.add( menu );
+				plan.setDate(menu.getDate());
 			}
 		} catch(Exception e) {
 			Log.e(TAG, e.getMessage());
