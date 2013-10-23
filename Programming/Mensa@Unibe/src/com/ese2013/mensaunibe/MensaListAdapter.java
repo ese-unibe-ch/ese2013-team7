@@ -62,8 +62,10 @@ public class MensaListAdapter extends BaseAdapter {
 			textView.setText( mensa.getName() );
 
 			ToggleButton favorite = (ToggleButton) view.findViewById(R.id.tgl_favorite);
+			if(mensa.isFavorite()) favorite.setChecked(true);
+			else favorite.setChecked(false);
 			Log.e("MensaListAdapter", "favorite1: "+favorite);
-			favorite.setOnClickListener(new FavoriteOnClickListener(mensa, favorite));
+			favorite.setOnClickListener(new FavoriteOnClickListener(mensa, favorite, this));
 		}
 		return view;
 	}
