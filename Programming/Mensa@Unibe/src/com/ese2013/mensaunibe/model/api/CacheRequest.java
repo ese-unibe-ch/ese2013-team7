@@ -20,20 +20,6 @@ public class CacheRequest {
         return readAllText(file);
     }
 
-    public static String readAllResourceText(Context context, int resourceId) {
-        InputStream inputStream = context.getResources().openRawResource(resourceId);
-        return readAllText(inputStream);
-    }
-
-    public static String readAllFileText(String file) {
-        try {
-            FileInputStream inputStream = new FileInputStream(file);
-            return readAllText(inputStream);
-        } catch(Exception ex) {
-            return null;
-        }
-    }
-
     public static String readAllText(File file) {
         try {
             FileInputStream inputStream = new FileInputStream(file);
@@ -65,16 +51,6 @@ public class CacheRequest {
     public static boolean writeAllCachedText(Context context, String filename, String text) {
         File file = new File(context.getCacheDir(), filename);
         return writeAllText(file, text);
-    }
-
-    public static boolean writeAllFileText(String filename, String text) {
-        try {
-            FileOutputStream outputStream = new FileOutputStream(filename);
-            return writeAllText(outputStream, text);
-        } catch(Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
     }
 
     public static boolean writeAllText(File file, String text) {
