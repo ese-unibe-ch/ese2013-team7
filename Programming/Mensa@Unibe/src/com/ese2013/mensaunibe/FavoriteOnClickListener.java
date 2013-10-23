@@ -3,6 +3,7 @@ package com.ese2013.mensaunibe;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class FavoriteOnClickListener implements OnClickListener{
@@ -17,15 +18,15 @@ public class FavoriteOnClickListener implements OnClickListener{
 	
 	@Override
 	public void onClick(View v) {
-		if(favorite.isChecked()){
+		/*if(favorite.isChecked()){
 		favorite.setChecked(false);
 		mensa.setFavorite(false);
 		}
 		else{
 			favorite.setChecked(true);
 			mensa.setFavorite(true);
-		}
-		
+		}*/
+		Toast.makeText(App.getAppContext(), "onclick togglebutton", Toast.LENGTH_SHORT).show();
 	}
 
 }

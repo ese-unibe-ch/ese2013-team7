@@ -11,11 +11,14 @@
         android:layout_centerVertical="true"
         android:paddingLeft="5dp" />
  
-        <ToggleButton
-            android:id="@+id/tgl_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:focusable="false"
-            android:clickable="false" />
+	<ToggleButton
+ 		android:id="@+id/tgl_favorite"
+ 		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+    	android:layout_alignParentRight="true"	    
+	    android:textOff="Off"
+	    android:textOn="On"
+	    android:focusable="false"
+	    android:clickable="false"
+	 />
 </RelativeLayout>

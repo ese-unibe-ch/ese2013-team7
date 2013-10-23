@@ -10,6 +10,7 @@ import com.ese2013.mensaunibe.model.Model;
 import android.view.View.OnClickListener;*/
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,7 +42,8 @@ public class MensaListAdapter extends BaseAdapter {
 		
 		view = inflater.inflate(this.resource, parent, false);
 		
-		TextView textView=(TextView) view.findViewById(android.R.id.text1);
+		//TextView textView=(TextView) view.findViewById(android.R.id.text1);
+		TextView textView=(TextView) view.findViewById(R.id.mensa_list_row);
 		ListItem item = items.get(position);
 		
 		
@@ -58,8 +60,10 @@ public class MensaListAdapter extends BaseAdapter {
 			/*YOUR CHOICE OF COLOR*/
 			textView.setTextColor(Color.BLACK);
 			textView.setText( mensa.getName() );
-			ToggleButton favorite =(ToggleButton) view.findViewById(R.layout.mensa_list_favorite_toggle_button);
-			favorite.setOnClickListener(new FavoriteOnClickListener(mensa , favorite));
+
+			ToggleButton favorite = (ToggleButton) view.findViewById(R.id.tgl_favorite);
+			Log.e("MensaListAdapter", "favorite1: "+favorite);
+			favorite.setOnClickListener(new FavoriteOnClickListener(mensa, favorite));
 		}
 		return view;
 	}
