@@ -4,6 +4,8 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.ese2013.mensaunibe.model.api.PreferenceRequest;
+
 public class MensaBuilder {
 	private static final String TAG = "MensaBuilder";
 	private int id;
@@ -12,6 +14,7 @@ public class MensaBuilder {
 	private String plz;
 	private Double lat;
 	private Double lon;
+	private boolean fav;
 	
 	public MensaBuilder() {
 	}
@@ -24,6 +27,7 @@ public class MensaBuilder {
 			plz = o.getString("plz");
 			lat = o.getDouble("lat");
 			lon = o.getDouble("lon");
+			loadFavorit();
 		} catch(Exception e) {
 			Log.e(TAG, e.getMessage());
 		}
@@ -39,5 +43,11 @@ public class MensaBuilder {
 	public String getPlz() { return plz; }
 	public Double getLat() { return lat; }
 	public Double getLon() { return lon; }
+	public boolean getFav() { return fav; }
+
+	public void loadFavorit() {
+		PreferenceRequest pr = new PreferenceRequest();
+		fav = pr.readPreference(id);		
+	}
 	
 }

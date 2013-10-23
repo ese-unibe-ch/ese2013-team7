@@ -2,6 +2,7 @@ package com.ese2013.mensaunibe.model.mensa;
 
 import com.ese2013.mensaunibe.ListItem;
 import com.ese2013.mensaunibe.model.MenuDate;
+import com.ese2013.mensaunibe.model.api.PreferenceRequest;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 import com.ese2013.mensaunibe.model.menu.WeeklyMenu;
 
@@ -25,7 +26,7 @@ public class Mensa implements ListItem {
     	plz = mb.getPlz();
     	lat = mb.getLat();
     	lon = mb.getLon();
-    	isFavorite = false;
+    	isFavorite = mb.getFav();
     }
     
 	public int getId() {
@@ -92,5 +93,7 @@ public class Mensa implements ListItem {
 
 	public void setFavorite(boolean b) {
 		this.isFavorite = b;
+		PreferenceRequest pr = new PreferenceRequest();
+		pr.writePreference(b, id);
 	}
 }
