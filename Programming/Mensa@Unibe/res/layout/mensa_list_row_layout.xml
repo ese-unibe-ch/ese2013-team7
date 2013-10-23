@@ -19,6 +19,6 @@
 	    android:textOff="Off"
 	    android:textOn="On"
 	    android:focusable="false"
-	    android:clickable="false"
+	    android:clickable="true"
 	 />
 </RelativeLayout>

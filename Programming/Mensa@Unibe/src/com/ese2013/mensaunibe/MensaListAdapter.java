@@ -5,15 +5,11 @@ import java.util.ArrayList;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.Model;
 
-
-/*import android.content.Intent;
-import android.view.View.OnClickListener;*/
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -32,7 +28,7 @@ public class MensaListAdapter extends BaseAdapter {
 		super();
 		this.context = context;
 		this.resource = resource;
-		this.items = new ArrayList<ListItem>();
+		//this.items = new ArrayList<ListItem>();
 		populate();
 	}
 	
@@ -64,16 +60,19 @@ public class MensaListAdapter extends BaseAdapter {
 			ToggleButton favorite = (ToggleButton) view.findViewById(R.id.tgl_favorite);
 			if(mensa.isFavorite()) favorite.setChecked(true);
 			else favorite.setChecked(false);
-			Log.e("MensaListAdapter", "favorite1: "+favorite);
-			favorite.setOnClickListener(new FavoriteOnClickListener(mensa, favorite, this));
+			favorite.setOnCheckedChangeListener(new FavoriteOnClickListener(mensa,favorite,this));
 		}
 		return view;
+	}
+	
+	public void update() {
+		populate();
 	}
 	
 	private void populate() {
 		//fill
 		mensas = Model.getInstance().getMensaList();
-		mensas.get(0).setFavorite(true);
+		items = new ArrayList<ListItem>();
 		items.add(new ListSectionItem( context.getString(R.string.mensa_list_favorites) ) );
 		for(Mensa m : mensas) {
 			if(m.isFavorite()) items.add(m);

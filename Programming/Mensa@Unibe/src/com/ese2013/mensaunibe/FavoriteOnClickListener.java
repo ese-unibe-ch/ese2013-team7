@@ -1,12 +1,11 @@
 package com.ese2013.mensaunibe;
 
 import com.ese2013.mensaunibe.model.mensa.Mensa;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Toast;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ToggleButton;
 
-public class FavoriteOnClickListener implements OnClickListener{
+public class FavoriteOnClickListener implements OnCheckedChangeListener{
 	private Mensa mensa;
 	private ToggleButton favorite;
 	private MensaListAdapter mensaAdapter;
@@ -17,24 +16,16 @@ public class FavoriteOnClickListener implements OnClickListener{
 		this.mensa = m;
 		this.mensaAdapter = adapter;
 	}
-	
+
+
 	@Override
-	public void onClick(View v) {
-		if(favorite.isChecked()) {
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		if(!favorite.isChecked()) {
 			mensa.setFavorite(false);
 		} else {
 			mensa.setFavorite(true);
 		}
+		mensaAdapter.update();
 		mensaAdapter.notifyDataSetChanged();
-		/*if(favorite.isChecked()){
-		favorite.setChecked(false);
-		mensa.setFavorite(false);
-		}
-		else{
-			favorite.setChecked(true);
-			mensa.setFavorite(true);
-		}*/
-		Toast.makeText(App.getAppContext(), "onclick togglebutton ischecked:"+favorite.isChecked(), Toast.LENGTH_SHORT).show();
 	}
-
 }
