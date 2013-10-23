@@ -3,10 +3,8 @@ package com.ese2013.mensaunibe.model;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import android.util.Log;
-
-import com.ese2013.mensaunibe.model.mensa.*;
-import com.ese2013.mensaunibe.model.menu.DailyMenu;
+import com.ese2013.mensaunibe.model.mensa.Mensa;
+import com.ese2013.mensaunibe.model.mensa.MensaData;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 
 public class Model {

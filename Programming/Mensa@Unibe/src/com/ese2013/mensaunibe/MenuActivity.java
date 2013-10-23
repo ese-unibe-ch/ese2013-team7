@@ -1,11 +1,9 @@
 package com.ese2013.mensaunibe;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar.Tab;
 
 import com.ese2013.mensaunibe.model.Model;
 

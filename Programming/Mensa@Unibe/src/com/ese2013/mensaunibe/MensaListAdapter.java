@@ -2,18 +2,17 @@ package com.ese2013.mensaunibe;
 
 import java.util.ArrayList;
 
-import com.ese2013.mensaunibe.model.mensa.Mensa;
-import com.ese2013.mensaunibe.model.Model;
-
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.mensa.Mensa;
 
 
 public class MensaListAdapter extends BaseAdapter {

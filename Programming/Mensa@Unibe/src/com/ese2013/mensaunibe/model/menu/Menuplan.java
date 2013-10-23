@@ -2,13 +2,12 @@ package com.ese2013.mensaunibe.model.menu;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
 
-import com.ese2013.mensaunibe.model.MenuDate;
-
 import android.util.Log;
+
+import com.ese2013.mensaunibe.model.MenuDate;
 
 public class Menuplan implements Iterable<DailyMenu> {
 	private static final String TAG = "Menuplan";

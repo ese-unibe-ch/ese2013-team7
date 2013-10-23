@@ -6,8 +6,6 @@ import java.util.Date;
 import com.ese2013.mensaunibe.App;
 import com.ese2013.mensaunibe.R;
 
-import android.util.Log;
-
 public class MenuDate implements Comparable<MenuDate> {
 	
 	private static final String TAG = "MenuDate";
