@@ -42,7 +42,7 @@ public class MenuDate implements Comparable<MenuDate> {
 		return day+"."+month+"."+year;
 	}
 	
-	public String toText() {
+	public String toText(boolean simple) {
 		String dayName = "";
 		Calendar cal = Calendar.getInstance();
 		if(compareDay(cal))//today
@@ -56,7 +56,7 @@ public class MenuDate implements Comparable<MenuDate> {
 		cal.set(year, month-1, day);
 		int dayNr = cal.get(Calendar.DAY_OF_WEEK);
 		dayName = dayOfWeek(dayNr);
-		
+		if(simple)return dayName;
 		return dayName +", " + day+"."+month+"."+year;
 	}
 	

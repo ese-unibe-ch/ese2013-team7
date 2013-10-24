@@ -1,85 +1,126 @@
 package com.ese2013.mensaunibe;
 
+import java.util.Calendar;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.TextView;
 
+import com.ese2013.mensaunibe.model.MenuDate;
 import com.ese2013.mensaunibe.model.Model;
 
-public class MenuActivity extends ActionBarActivity 
+public class MenuActivity extends ActionBarActivity implements ActionBar.TabListener
 {
-	private static final String TAG_MENULIST_FRAGMENT ="MenuListFragment_tag";
 	private int mMensaId;
-
+	TabCollectionPagerAdapter mTabCollectionPagerAdapter;
+	ViewPager mViewPager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu_list);
+
 		mMensaId = getIntent().getIntExtra("int_value", 0);
 		setTitle( Model.getInstance().getMensaById(mMensaId).getName() );
+
+		// swipe
+		mTabCollectionPagerAdapter = new TabCollectionPagerAdapter(getSupportFragmentManager());
+		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager.setAdapter(mTabCollectionPagerAdapter);
+		mViewPager.setOnPageChangeListener(
+				new ViewPager.SimpleOnPageChangeListener() {
+					@Override
+					public void onPageSelected(int position) {
+						// When swiping between pages, select the
+						// corresponding tab.
+						getSupportActionBar().setSelectedNavigationItem(position);
+					}
+				});
+		
+		//setup actionbar 
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		//lets pass it with arguments		updateFragmetsMensaId(mMensaId);
+		// For each of the sections in the app, add a tab to the action bar.
+		for (int i = 0; i < mTabCollectionPagerAdapter.getCount(); i++) {
+			actionBar.addTab(actionBar.newTab()
+					.setText(mTabCollectionPagerAdapter.getPageTitle(i))
+					.setTabListener(this));
+		}
+	}
 
-		ActionBar.Tab CurrentDayTab = actionBar.newTab().setText(getString(R.string.today));
-		ActionBar.Tab ComingDaysTab = actionBar.newTab().setText(getString(R.string.comingDaysTabTitle));
-
-		Fragment CurrentDayFrag= new CurrentDayMenuFragment();
-		Fragment ComingDaysFrag = new ComingDaysMenuFragment();
-		updateFragmetsMensaId(mMensaId);
-		
-		CurrentDayTab.setTabListener(new MenuTabsListener(CurrentDayFrag));
-		ComingDaysTab.setTabListener(new MenuTabsListener(ComingDaysFrag));
-
-		actionBar.addTab(CurrentDayTab);
-		actionBar.addTab(ComingDaysTab);
-
-
-		/*MenuTabHostFragment fragment = (MenuTabHostFragment)getSupportFragmentManager()
-        								.findFragmentByTag(TAG_MENULIST_FRAGMENT);
-        if (fragment == null) {
-            fragment = new MenuTabHostFragment();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(android.R.id.content, fragment, TAG_MENULIST_FRAGMENT);
-            ft.commit();
-        }
-
-        fragment.update(mMensaId);*/
+	@Override
+	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
 
 	}
 
-	private void updateFragmetsMensaId(int mensaId) {
-		mMensaId=mensaId;
-		CurrentDayMenuFragment.updateMensaId(mMensaId);
-		ComingDaysMenuFragment.updateMensaId(mMensaId);
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction arg1) {
+		mViewPager.setCurrentItem(tab.getPosition());
+		//ft.replace(R.id.menu_fragment_container, fragment);		
 	}
 
-	public class MenuTabsListener  implements ActionBar.TabListener {
-		public Fragment fragment;
+	@Override
+	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
 
-		public MenuTabsListener(Fragment fragment) {
-			this.fragment = fragment;
+	}
+
+	public class TabCollectionPagerAdapter extends FragmentPagerAdapter {
+		private static final int FRAGMENT_COUNT = 2;
+
+		public TabCollectionPagerAdapter(FragmentManager fm) {
+			super(fm);
 		}
 
 		@Override
-		public void onTabReselected(Tab tab, FragmentTransaction ft) {
-
+		public int getCount() {
+			return FRAGMENT_COUNT;
 		}
 
 		@Override
-		public void onTabSelected(Tab tab, FragmentTransaction ft) {
-			ft.replace(R.id.menu_fragment_container, fragment);
+		public CharSequence getPageTitle(int position) {
+			String tabTitle = "";
+			// have to think about some more relevant title
+			// and/or maybe method
+			switch (position) {
+			case 0:
+				tabTitle = getString(R.string.today);
+				break;
+			case 1:
+				tabTitle = getString(R.string.comingDaysTabTitle);
+				break;
+			}
+			return tabTitle;
 		}
 
 		@Override
-		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-			ft.remove(fragment);
-		}
+		public Fragment getItem(int position) {
+			Fragment fragment = null;
+			Bundle args = new Bundle();
 
+			switch (position) {
+			case 0:
+				fragment = new CurrentDayMenuFragment();
+				args.putInt(CurrentDayMenuFragment.MENSA_ID, mMensaId);
+				break;
+			case 1:
+				fragment = new ComingDaysMenuFragment();
+				args.putInt(ComingDaysMenuFragment.MENSA_ID, mMensaId);
+				break;
+			}
+			fragment.setArguments(args);
+			return fragment;
+		}
 	}
 }

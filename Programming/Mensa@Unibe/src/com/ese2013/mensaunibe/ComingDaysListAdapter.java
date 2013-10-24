@@ -68,7 +68,7 @@ public class ComingDaysListAdapter extends BaseAdapter{
 		//fill
 		mMenus = Model.getInstance().getComingDaysMenu(mMensaId);
 		for(Menuplan m : mMenus) {
-			items.add(new ListSectionItem(m.getDate().toText()));
+			items.add(new ListSectionItem(m.getDate().toText(false)));
 			for (DailyMenu dm : m){
 				items.add(dm);
 			}

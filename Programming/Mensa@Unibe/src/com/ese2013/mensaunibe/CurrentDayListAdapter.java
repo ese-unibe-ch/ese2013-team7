@@ -69,7 +69,7 @@ public class CurrentDayListAdapter extends BaseAdapter{
 	private void populate(int mensaId) {
 		//fill
 		mMenu = Model.getInstance().getTodaysOrClosestDayMenu(mensaId);
-		items.add(new ListSectionItem(mMenu.getDate().toText()));
+		items.add(new ListSectionItem(mMenu.getDate().toText(false)));
 		for (DailyMenu dm : mMenu){
 			items.add(dm);
 		}

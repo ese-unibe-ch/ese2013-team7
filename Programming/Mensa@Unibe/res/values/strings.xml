@@ -20,6 +20,7 @@
     <string name="Friday">Friday</string>
     <string name="Saturday">Saturday</string>
     <string name="Sunday">Sunday</string>
-    <string name="loading">loading...</string>
+    <string name="loading">loading</string>
+    <string name="from">from</string>
 
 </resources>
