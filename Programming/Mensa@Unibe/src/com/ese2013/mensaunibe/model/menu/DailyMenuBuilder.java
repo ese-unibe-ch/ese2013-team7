@@ -44,6 +44,12 @@ public class DailyMenuBuilder {
 			for(int i = 0; i < infos.length(); i++) {
 				menu += infos.getString(i) + "\n";
 			}
+			
+			/*Translation t = new Translation();
+			t.setText(menu);
+			t.setLanguage(Translation.LANG_DE, Translation.LANG_EN);
+			menu = t.translate();*/
+			
 		} catch(Exception e) {
 			Log.e(TAG, e.getMessage());
 		}		

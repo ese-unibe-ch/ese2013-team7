@@ -1,7 +1,6 @@
 package com.ese2013.mensaunibe.model.mensa;
 
 
-import java.net.ConnectException;
 import java.util.ArrayList;
 import org.json.*;
 import android.util.Log;
