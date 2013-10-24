@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.ese2013.mensaunibe.model.Model;
@@ -81,6 +82,8 @@ public class MensaListAdapter extends BaseAdapter {
 		for(Mensa m2 : mensas) {
 			if(!m2.isFavorite()) items.add(m2);
 		}
+		
+		if(mensas.size() == 0) Toast.makeText(this.context, "No data available. Please refresh.", Toast.LENGTH_LONG).show();
 	}
 	
 	

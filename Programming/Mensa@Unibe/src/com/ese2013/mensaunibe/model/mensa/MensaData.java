@@ -1,6 +1,7 @@
 package com.ese2013.mensaunibe.model.mensa;
 
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import org.json.*;
 import android.util.Log;
@@ -22,10 +23,14 @@ public class MensaData {
 	}
 	
 	public ArrayList<Mensa> getMensaList() {
+		return getMensaList(false);
+	}
+	
+	public ArrayList<Mensa> getMensaList(boolean forceReload) {
 		rq.setUrl( ApiUrl.API_MENSA_LIST );
-		rq.setType( "MENSA" );
-		rq.execute();
+		rq.setType( ApiUrl.API_TYP_MENSA, forceReload );
 		try {
+			rq.execute();
 			JSONArray js = rq.getJSONData().getJSONArray("content");
 					
 			for(int i = 0; i<js.length(); i++) {
@@ -38,7 +43,8 @@ public class MensaData {
 				Log.i(TAG, mensa.toString());
 				mensas.add( mensa );
 			}
-		} catch(Exception e) {
+		}
+		catch(Exception e) {
 			Log.e(TAG, e.getMessage());
 		}
 		return mensas;

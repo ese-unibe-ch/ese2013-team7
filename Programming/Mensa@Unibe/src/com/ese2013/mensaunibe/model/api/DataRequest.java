@@ -16,6 +16,7 @@ public class DataRequest extends AsyncTask<String, Void, String> {
 	private String url;
 	private String type;
 	private JSONParser parser;
+	private boolean forceReload;
 	
 	public DataRequest() {
 		this.url = "";
@@ -28,6 +29,12 @@ public class DataRequest extends AsyncTask<String, Void, String> {
 	
 	public void setType(String type) {
 		this.type = type;
+		this.forceReload = false;
+	}
+	
+	public void setType(String type, boolean forceReload) {
+		this.type = type;
+		this.forceReload = forceReload;
 	}
 		
 	public String request() {
@@ -35,7 +42,7 @@ public class DataRequest extends AsyncTask<String, Void, String> {
 		CacheHandler handler = new CacheHandler();
 		String result = "";
 		
-		if (handler.needNewCache(type)) {
+		if (handler.needNewCache(type) || this.forceReload) {
 			URL url;
 			HttpURLConnection conn;
 			BufferedReader rd;
@@ -64,7 +71,23 @@ public class DataRequest extends AsyncTask<String, Void, String> {
 		return parser.parse( this.get() );
 	}
 
+	/*public void executeRequest() throws ConnectException {
+		if(!checkInternet()) throw new ConnectException("No internet connection");
+		this.request();
+	}*/
+	
 	protected String doInBackground(String... arg0) {
 		return this.request();
 	}
+	
+	/*private boolean checkInternet() {
+		ConnectivityManager cm = (ConnectivityManager) App.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected()) {
+	        return true;
+	    } else {
+	        Log.v(TAG, "Internet Connection Not Present");
+	        return false;
+	    }
+	}*/
 }
