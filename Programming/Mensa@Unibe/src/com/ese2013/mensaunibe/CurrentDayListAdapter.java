@@ -20,48 +20,55 @@ public class CurrentDayListAdapter extends BaseAdapter{
 	
 	private ArrayList<ListItem> items;
 	private Menuplan mMenu;
-	private int mMensaId;
+	
+	static class ViewHolder {
+		public TextView date;
+		public TextView title;
+		public TextView text;
+	}
 	
 	public CurrentDayListAdapter(Context context, int resource, int mensaId) {
 		super();
 		this.context = context;
 		this.resource = resource;
 		this.items = new ArrayList<ListItem>();
-		mMensaId = mensaId;
-		populate();
+		populate(mensaId);
 	}
 	
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
-		if(view == null) inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		
-		view = inflater.inflate(this.resource, parent, false);
-		
-		TextView textView=(TextView) view.findViewById(R.id.menu_text);
-		TextView titleView=(TextView) view.findViewById(R.id.menu_title);
+		if(view == null) {
+			inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			view = inflater.inflate(this.resource, parent, false);
+			ViewHolder viewHolder = new ViewHolder();
+			viewHolder.date = (TextView) view.findViewById(R.id.menu_date);
+			viewHolder.title = (TextView) view.findViewById(R.id.menu_title);
+			viewHolder.text = (TextView) view.findViewById(R.id.menu_text);
+			view.setTag(viewHolder);
 
+		}
+		ViewHolder holder = (ViewHolder) view.getTag();
 		ListItem item = items.get(position);
-		
+
 		if(item.isSection()) {
 			ListSectionItem si = (ListSectionItem) item;
-            view.setLongClickable(false);
-            final TextView dateView =
-                (TextView) view.findViewById(R.id.menu_date);
-            dateView.setText(si.toString());
-            dateView.setVisibility(View.VISIBLE);
+			holder.date.setLongClickable(false);
+			holder.date.setText(si.toString());
+			holder.date.setVisibility(View.VISIBLE);
 		} else {
 			DailyMenu dm = (DailyMenu) item;
-			titleView.setText(dm.getTitle());
-			titleView.setVisibility(View.VISIBLE);
-			textView.setText(dm.getMenu());
-			textView.setVisibility(View.VISIBLE);
+			holder.title.setText(dm.getTitle());
+			holder.title.setVisibility(View.VISIBLE);
+			holder.text.setText(dm.getMenu());
+			holder.text.setVisibility(View.VISIBLE);
+
 		}
 		return view;
 	}
 	
-	private void populate() {
+	private void populate(int mensaId) {
 		//fill
-		mMenu = Model.getInstance().getTodaysOrClosestDayMenu(mMensaId);
+		mMenu = Model.getInstance().getTodaysOrClosestDayMenu(mensaId);
 		items.add(new ListSectionItem(mMenu.getDate().toText()));
 		for (DailyMenu dm : mMenu){
 			items.add(dm);

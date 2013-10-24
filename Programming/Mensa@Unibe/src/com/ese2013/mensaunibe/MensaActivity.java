@@ -38,16 +38,16 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 
 	@Override
 	public void onListItemSelected(int mensaId) {
-		   MenuTabHostFragment fragment = (MenuTabHostFragment) getSupportFragmentManager()
+		  /* MenuTabHostFragment fragment = (MenuTabHostFragment) getSupportFragmentManager()
 		            .findFragmentById(R.id.MenuFragment);
 		        if (fragment != null && fragment.isInLayout()) {
 		          fragment.update(mensaId);
-		        } else{
+		        } else{*/
 		        	Intent intent = new Intent();
 		            intent.setClassName(getPackageName(), getPackageName()+".MenuActivity");
 		            intent.putExtra("int_value", mensaId);
 		            startActivity(intent);		              
-		        }
+		        //}
 	}
     
 }
