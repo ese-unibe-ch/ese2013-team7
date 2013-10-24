@@ -46,6 +46,9 @@ public class ComingDaysListAdapter extends BaseAdapter{
 
 		}
 		ViewHolder holder = (ViewHolder) view.getTag();
+		//list is not consistent, if we don't clear the holder
+		clearHolder(holder);
+		
 		ListItem item = items.get(position);
 
 		if(item.isSection()) {
@@ -62,6 +65,15 @@ public class ComingDaysListAdapter extends BaseAdapter{
 
 		}
 		return view;
+	}
+
+	private void clearHolder(ViewHolder holder) {
+		holder.date.setText("");
+		holder.date.setVisibility(View.GONE);
+		holder.title.setText("");
+		holder.title.setVisibility(View.GONE);
+		holder.text.setText("");
+		holder.text.setVisibility(View.GONE);
 	}
 
 	private void populate() {

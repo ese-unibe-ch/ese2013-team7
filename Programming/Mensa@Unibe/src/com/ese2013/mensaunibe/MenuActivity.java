@@ -1,7 +1,5 @@
 package com.ese2013.mensaunibe;
 
-import java.util.Calendar;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,10 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
-import android.view.View;
-import android.widget.TextView;
 
-import com.ese2013.mensaunibe.model.MenuDate;
 import com.ese2013.mensaunibe.model.Model;
 
 public class MenuActivity extends ActionBarActivity implements ActionBar.TabListener
@@ -49,7 +44,7 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		//lets pass it with arguments		updateFragmetsMensaId(mMensaId);
+
 		// For each of the sections in the app, add a tab to the action bar.
 		for (int i = 0; i < mTabCollectionPagerAdapter.getCount(); i++) {
 			actionBar.addTab(actionBar.newTab()
