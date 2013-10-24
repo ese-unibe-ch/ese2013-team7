@@ -1,11 +1,17 @@
 package com.ese2013.mensaunibe;
 
+import com.ese2013.mensaunibe.model.Model;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 
 
@@ -48,6 +54,25 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 		            intent.putExtra("int_value", mensaId);
 		            startActivity(intent);		              
 		        //}
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	    	case R.id.action_refresh:
+	    		Log.v(TAG_MENSALIST_FRAGMENT, "Refresh data...");
+	    		if( Model.getInstance().forceReload() ) {
+	    			Log.v(TAG_MENSALIST_FRAGMENT, "finished refresh data...");
+	    			finish();
+	    			startActivity(getIntent());
+	    			Toast.makeText(this,  "Data has been refreshed", Toast.LENGTH_SHORT).show();
+	    		} else {
+	    			Toast.makeText(this,  "Data could not be refreshed", Toast.LENGTH_SHORT).show();
+	    		}
+	    		return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
     
 }

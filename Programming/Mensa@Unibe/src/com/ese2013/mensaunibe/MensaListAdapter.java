@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.ese2013.mensaunibe.model.Model;
@@ -45,11 +46,11 @@ public class MensaListAdapter extends BaseAdapter {
 		
 		if(item.isSection()) {
 			ListSectionItem si = (ListSectionItem)item;
-            view = inflater.inflate(R.layout.mensa_list_header, null);
-            view.setLongClickable(false);
-            final TextView sectionView =
-                (TextView) view.findViewById(R.id.mensa_list_header_title);
-            sectionView.setText(si.toString());
+			view = inflater.inflate(R.layout.mensa_list_header, null);
+	        view.setLongClickable(false);
+	        final TextView sectionView =
+	        (TextView) view.findViewById(R.id.mensa_list_header_title);
+	        sectionView.setText(si.toString());
 		} else {
 			Mensa mensa = (Mensa)item;
 			/*YOUR CHOICE OF COLOR*/
@@ -68,19 +69,30 @@ public class MensaListAdapter extends BaseAdapter {
 		populate();
 	}
 	
+	private boolean hasFavoriteMensas() {
+		for(Mensa m : mensas) {
+			if(m.isFavorite()) return true;
+		}
+		return false;
+	}
+	
 	private void populate() {
 		//fill
 		mensas = Model.getInstance().getMensaList();
 		items = new ArrayList<ListItem>();
-		items.add(new ListSectionItem( context.getString(R.string.mensa_list_favorites) ) );
-		for(Mensa m : mensas) {
-			if(m.isFavorite()) items.add(m);
+		if(hasFavoriteMensas()) {
+			items.add(new ListSectionItem( context.getString(R.string.mensa_list_favorites) ) );
+			for(Mensa m : mensas) {
+				if(m.isFavorite()) items.add(m);
+			}
 		}
-		
+			
 		items.add(new ListSectionItem( context.getString(R.string.mensa_list_header) ) );
 		for(Mensa m2 : mensas) {
 			if(!m2.isFavorite()) items.add(m2);
 		}
+		
+		if(mensas.size() == 0) Toast.makeText(this.context, "No data available. Please refresh.", Toast.LENGTH_LONG).show();
 	}
 	
 	

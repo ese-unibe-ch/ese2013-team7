@@ -31,6 +31,14 @@ public class Model {
 		if(instance == null) instance = new Model();
 		return instance;
 	}
+	
+	public boolean forceReload() {
+		MensaData md = new MensaData();
+		ArrayList<Mensa> m = md.getMensaList(true);
+		if(m.size() == 0) return false;
+		mensas = m;
+		return true;
+	}
 
 	/*If today's menu is not available, (for example is weekend) 
 	 * then checks each day, till the first day with menu is found*/
