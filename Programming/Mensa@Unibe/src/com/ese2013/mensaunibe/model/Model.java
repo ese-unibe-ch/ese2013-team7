@@ -40,28 +40,6 @@ public class Model {
 		return true;
 	}
 
-	/*If today's menu is not available, (for example is weekend) 
-	 * then checks each day, till the first day with menu is found*/
-	public Menuplan getTodaysOrClosestDayMenu(int mensaId) {
-		for(Mensa m : mensas) {
-			if(m.getId() == mensaId) {
-				Calendar calendar = Calendar.getInstance();
-				Menuplan menu;
-				int checkForOneWeek = 1;
-				do{
-					menu = m.getDailyMenu( new MenuDate( calendar.getTime() ) );
-					calendar.add(Calendar.DATE, 1);//increment Date always with one day
-					checkForOneWeek++;
-				}while (menu == null && checkForOneWeek <= 7);
-
-				if(menu == null) menu = new Menuplan();
-				//Log.e("Model", "menuplan:"+menu.toString());
-				return menu;
-			}
-		}
-		return null;
-	}
-
 	public Mensa getMensaById(int mensaId) {
 		for(Mensa m : mensas) {
 			if(m.getId() == mensaId) return m;
@@ -69,19 +47,21 @@ public class Model {
 		return null;
 	}
 
+	//check for one week
 	public ArrayList<Menuplan> getComingDaysMenu(int mensaId) {
 		ArrayList <Menuplan> menuPlan = new ArrayList<Menuplan>();
 		for(Mensa m : mensas) {
 			if(m.getId() == mensaId) {
 				Calendar calendar = Calendar.getInstance();
+				//calendar.add(Calendar.DATE, -7); //for testing
 				Menuplan menu;
 				int checkForOneWeek = 1;
 				do{
-					calendar.add(Calendar.DATE, 1);//increment Date always with one day
 					menu = m.getDailyMenu( new MenuDate( calendar.getTime() ) );
+					calendar.add(Calendar.DATE, 1);//increment Date always with one day
 					checkForOneWeek++;
 					if(menu != null) menuPlan.add(menu);
-				}while (checkForOneWeek <= 7);
+				}while (checkForOneWeek <= 8);
 
 				return menuPlan;
 			}

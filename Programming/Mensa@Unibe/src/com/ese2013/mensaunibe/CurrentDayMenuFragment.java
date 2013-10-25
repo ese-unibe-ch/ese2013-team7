@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ListAdapter;
 
-public class CurrentDayMenuFragment extends ListFragment {
+public class CurrentDayMenuFragment extends ListFragment{
 
 	public static final String MENSA_ID = "MENSA_ID";
 	private static final String TAG = "CurrentDayMenuFragment";
@@ -27,7 +27,9 @@ public class CurrentDayMenuFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		ListAdapter adapter = new CurrentDayListAdapter(getActivity(), R.layout.menu_list_item, mMensaId);
+		ListAdapter adapter = new MenuListAdapter(getActivity(), 
+				R.layout.menu_list_item, mMensaId, 
+				MenuListAdapter.FIRST_MENU);
 		setListAdapter(adapter);
 		setHasOptionsMenu(true);
 	}
@@ -37,5 +39,4 @@ public class CurrentDayMenuFragment extends ListFragment {
 		super.onCreateOptionsMenu(menu, inflater);
 		inflater.inflate(R.menu.actionbar_menu_list, menu);
 	}
-
 }

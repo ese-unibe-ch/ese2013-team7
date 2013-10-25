@@ -11,9 +11,9 @@ import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 
 import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.MenuListAdapter;
 
-public class MenuActivity extends ActionBarActivity implements ActionBar.TabListener
-{
+public class MenuActivity extends ActionBarActivity implements ActionBar.TabListener, MenuListAdapter.TitleListener{
 	private int mMensaId;
 	TabCollectionPagerAdapter mTabCollectionPagerAdapter;
 	ViewPager mViewPager;
@@ -47,8 +47,7 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 
 		// For each of the sections in the app, add a tab to the action bar.
 		for (int i = 0; i < mTabCollectionPagerAdapter.getCount(); i++) {
-			actionBar.addTab(actionBar.newTab()
-					.setText(mTabCollectionPagerAdapter.getPageTitle(i))
+			actionBar.addTab(actionBar.newTab().setText("tab"+i)
 					.setTabListener(this));
 		}
 	}
@@ -62,7 +61,6 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction arg1) {
 		mViewPager.setCurrentItem(tab.getPosition());
-		//ft.replace(R.id.menu_fragment_container, fragment);		
 	}
 
 	@Override
@@ -84,22 +82,6 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 		}
 
 		@Override
-		public CharSequence getPageTitle(int position) {
-			String tabTitle = "";
-			// have to think about some more relevant title
-			// and/or maybe method
-			switch (position) {
-			case 0:
-				tabTitle = getString(R.string.today);
-				break;
-			case 1:
-				tabTitle = getString(R.string.comingDaysTabTitle);
-				break;
-			}
-			return tabTitle;
-		}
-
-		@Override
 		public Fragment getItem(int position) {
 			Fragment fragment = null;
 			Bundle args = new Bundle();
@@ -117,5 +99,12 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 			fragment.setArguments(args);
 			return fragment;
 		}
+	}
+
+	@Override
+	public void updateTiteListener(String tabTitle, int firstMenu) {
+		Tab tab = getSupportActionBar().getTabAt(firstMenu);
+		tab.setText("");
+		tab.setText(tabTitle);
 	}
 }

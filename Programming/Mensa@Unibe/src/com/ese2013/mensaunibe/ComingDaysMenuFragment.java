@@ -24,7 +24,9 @@ public class ComingDaysMenuFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         
-		ListAdapter adapter = new ComingDaysListAdapter(getActivity(), R.layout.menu_list_item, mMensaId);
+		ListAdapter adapter = new MenuListAdapter(getActivity(),
+				R.layout.menu_list_item, mMensaId,
+				MenuListAdapter.ALL_EXCEPT_FIRST);
         setListAdapter(adapter);
         
 

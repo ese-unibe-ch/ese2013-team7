@@ -3,34 +3,50 @@ package com.ese2013.mensaunibe;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.ese2013.mensaunibe.CurrentDayListAdapter.ViewHolder;
+import com.ese2013.mensaunibe.model.MenuDate;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 
-public class ComingDaysListAdapter extends BaseAdapter{
+public class MenuListAdapter extends BaseAdapter{
 
+	TitleListener mCallback;
+	public static final int FIRST_MENU = 0;
+	public static final int ALL_EXCEPT_FIRST = 1;
 	private Context context;
 	private int resource;
 	private LayoutInflater inflater;
-
 	private ArrayList<ListItem> items;
 	private ArrayList<Menuplan> mMenus;
 	private int mMensaId;
+	private int mFirstOrAll;
 
-	public ComingDaysListAdapter(Context context, int resource, int mensaId) {
+	public MenuListAdapter(Context context, int resource, int mensaId, int firstOrAll) {
 		super();
 		this.context = context;
 		this.resource = resource;
 		this.items = new ArrayList<ListItem>();
 		mMensaId = mensaId;
-		populate();
+		mFirstOrAll = firstOrAll;
+		attachListener();
+		populate(firstOrAll);
+	}
+
+	private void attachListener() {
+		try {
+            mCallback = (TitleListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement TitleListener");
+        }
+		
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -76,15 +92,36 @@ public class ComingDaysListAdapter extends BaseAdapter{
 		holder.text.setVisibility(View.GONE);
 	}
 
-	private void populate() {
+	private void populate(int firstOrAll) {
 		//fill
+		boolean firstrun = true;
 		mMenus = Model.getInstance().getComingDaysMenu(mMensaId);
 		for(Menuplan m : mMenus) {
+			//skip first menuplan
+			if(firstrun && firstOrAll == ALL_EXCEPT_FIRST){
+				firstrun = false;
+				continue;
+			}
+			//first item will be also the tab title
+			if(items.isEmpty()){
+				notifyListeners(m.getDate());
+				Log.e("tag", m.getDate().toString());
+			}
 			items.add(new ListSectionItem(m.getDate().toText(false)));
 			for (DailyMenu dm : m){
 				items.add(dm);
 			}
+			
+			if(firstOrAll == FIRST_MENU) break;//stop if we need just first menuplan
 		}
+	}
+
+	private void notifyListeners(MenuDate date) {
+		String tabTitle = "";
+		if(FIRST_MENU != mFirstOrAll) tabTitle += context.getString(R.string.from)+" ";
+		tabTitle +=date.toText(true);
+		mCallback.updateTiteListener(tabTitle, mFirstOrAll);
+		
 	}
 
 	public long getItemId(int position) {
@@ -100,5 +137,15 @@ public class ComingDaysListAdapter extends BaseAdapter{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	public interface TitleListener {
+		public void updateTiteListener(String tabTitle, int firstMenu);
+	}
+	
+	static class ViewHolder {
+		public TextView date;
+		public TextView title;
+		public TextView text;
+	}
+	
 }
