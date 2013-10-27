@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+    	xmlns:mensaApp="http://schemas.android.com/apk/res-auto">
+    <!-- Search, should appear as action button -->
+    <item android:id="@+id/action_mensainfo"
+          android:icon="@drawable/ic_action_about"
+          android:title="@string/action_mensainfo"
+          mensaApp:showAsAction="ifRoom"
+          android:orderInCategory="2" />
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/action_settings"
+          android:title="@string/action_settings"
+          mensaApp:showAsAction="never"
+          android:orderInCategory="5" />
+</menu>

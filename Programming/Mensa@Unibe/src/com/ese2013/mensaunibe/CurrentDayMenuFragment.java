@@ -33,10 +33,16 @@ public class CurrentDayMenuFragment extends ListFragment{
 		setListAdapter(adapter);
 		setHasOptionsMenu(true);
 	}
-
+	
+	@Override
+	public void onStart() {
+	    super.onStart();
+	    setEmptyText(getString(R.string.empty_menu_list));
+	}
+	
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.actionbar_menu_list, menu);
+		inflater.inflate(R.menu.current_day_actionbar, menu);
 	}
 }

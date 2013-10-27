@@ -1,5 +1,7 @@
 package com.ese2013.mensaunibe;
 
+import java.util.Calendar;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +16,7 @@ import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.MenuListAdapter;
 
 public class MenuActivity extends ActionBarActivity implements ActionBar.TabListener, MenuListAdapter.TitleListener{
+	private static final String TAG_CURRENT_DAY_MENU_FRAGMENT = "CURRENT_DAY_MENU_FRAGMENT";
 	private int mMensaId;
 	TabCollectionPagerAdapter mTabCollectionPagerAdapter;
 	ViewPager mViewPager;
@@ -25,30 +28,51 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 
 		mMensaId = getIntent().getIntExtra("int_value", 0);
 		setTitle( Model.getInstance().getMensaById(mMensaId).getName() );
-
-		// swipe
-		mTabCollectionPagerAdapter = new TabCollectionPagerAdapter(getSupportFragmentManager());
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mTabCollectionPagerAdapter);
-		mViewPager.setOnPageChangeListener(
-				new ViewPager.SimpleOnPageChangeListener() {
-					@Override
-					public void onPageSelected(int position) {
-						// When swiping between pages, select the
-						// corresponding tab.
-						getSupportActionBar().setSelectedNavigationItem(position);
-					}
-				});
-		
-		//setup actionbar 
+	
+		//setup action bar 
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		// set up tabs on working days, except Friday
+		Calendar cal = Calendar.getInstance();
+		if(Calendar.FRIDAY != cal.get(Calendar.DAY_OF_WEEK)
+				&&Calendar.SATURDAY != cal.get(Calendar.DAY_OF_WEEK)
+				&&Calendar.SUNDAY != cal.get(Calendar.DAY_OF_WEEK)) {
+			
+			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+			
+			// swipe
+			mTabCollectionPagerAdapter = new TabCollectionPagerAdapter(getSupportFragmentManager());
+			mViewPager = (ViewPager) findViewById(R.id.pager);
+			mViewPager.setAdapter(mTabCollectionPagerAdapter);
+			mViewPager.setOnPageChangeListener(
+					new ViewPager.SimpleOnPageChangeListener() {
+						@Override
+						public void onPageSelected(int position) {
+							// When swiping between pages, select the
+							// corresponding tab.
+							getSupportActionBar().setSelectedNavigationItem(position);
+						}
+					});
 
-		// For each of the sections in the app, add a tab to the action bar.
-		for (int i = 0; i < mTabCollectionPagerAdapter.getCount(); i++) {
-			actionBar.addTab(actionBar.newTab().setText("tab"+i)
-					.setTabListener(this));
+			// For each of the sections in the app, add a tab to the action bar.
+			for (int i = 0; i < mTabCollectionPagerAdapter.getCount(); i++) {
+				if(i==0){
+					actionBar.addTab(actionBar.newTab().setText(R.string.today)
+							.setTabListener(this));
+				}else{
+					actionBar.addTab(actionBar.newTab().setText(R.string.comingDaysTabTitle)
+							.setTabListener(this));
+				}
+			}
+		}else{// if it's Friday, Saturday or Sunday we don't need tabs
+			Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_CURRENT_DAY_MENU_FRAGMENT);
+			if (fragment == null) {
+				fragment =  new TabCollectionPagerAdapter(getSupportFragmentManager()).getItem(0);
+				FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+				ft.add(android.R.id.content, fragment, TAG_CURRENT_DAY_MENU_FRAGMENT);
+				ft.commit();
+			}
 		}
 	}
 
@@ -70,7 +94,7 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 	}
 
 	public class TabCollectionPagerAdapter extends FragmentPagerAdapter {
-		private static final int FRAGMENT_COUNT = 2;
+		protected static final int FRAGMENT_COUNT = 2;
 
 		public TabCollectionPagerAdapter(FragmentManager fm) {
 			super(fm);

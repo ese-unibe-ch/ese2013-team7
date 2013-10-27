@@ -3,7 +3,6 @@ package com.ese2013.mensaunibe;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +40,12 @@ public class MenuListAdapter extends BaseAdapter{
 
 	private void attachListener() {
 		try {
-            mCallback = (TitleListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                    + " must implement TitleListener");
-        }
-		
+			mCallback = (TitleListener) context;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(context.toString()
+					+ " must implement TitleListener");
+		}
+
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -66,7 +65,7 @@ public class MenuListAdapter extends BaseAdapter{
 		clearHolder(holder);
 		
 		ListItem item = items.get(position);
-
+		
 		if(item.isSection()) {
 			ListSectionItem si = (ListSectionItem) item;
 			holder.date.setLongClickable(false);
@@ -105,13 +104,12 @@ public class MenuListAdapter extends BaseAdapter{
 			//first item will be also the tab title
 			if(items.isEmpty()){
 				notifyListeners(m.getDate());
-				Log.e("tag", m.getDate().toString());
 			}
 			items.add(new ListSectionItem(m.getDate().toText(false)));
 			for (DailyMenu dm : m){
-				items.add(dm);
+				if(dm != null)items.add(dm);
 			}
-			
+
 			if(firstOrAll == FIRST_MENU) break;//stop if we need just first menuplan
 		}
 	}
@@ -121,7 +119,7 @@ public class MenuListAdapter extends BaseAdapter{
 		if(FIRST_MENU != mFirstOrAll) tabTitle += context.getString(R.string.from)+" ";
 		tabTitle +=date.toText(true);
 		mCallback.updateTiteListener(tabTitle, mFirstOrAll);
-		
+
 	}
 
 	public long getItemId(int position) {
@@ -137,15 +135,15 @@ public class MenuListAdapter extends BaseAdapter{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public interface TitleListener {
 		public void updateTiteListener(String tabTitle, int firstMenu);
 	}
-	
+
 	static class ViewHolder {
 		public TextView date;
 		public TextView title;
 		public TextView text;
 	}
-	
+
 }

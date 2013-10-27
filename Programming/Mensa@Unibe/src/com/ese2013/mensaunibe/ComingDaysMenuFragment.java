@@ -3,6 +3,8 @@ package com.ese2013.mensaunibe;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ListAdapter;
 
 public class ComingDaysMenuFragment extends ListFragment {
@@ -28,8 +30,19 @@ public class ComingDaysMenuFragment extends ListFragment {
 				R.layout.menu_list_item, mMensaId,
 				MenuListAdapter.ALL_EXCEPT_FIRST);
         setListAdapter(adapter);
-        
-
-    }
+		setHasOptionsMenu(true);
+	}
+	
+	@Override
+	public void onStart() {
+	    super.onStart();
+	    setEmptyText(getString(R.string.empty_menu_list));
+	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.coming_days_actionbar, menu);
+	}
     
 }

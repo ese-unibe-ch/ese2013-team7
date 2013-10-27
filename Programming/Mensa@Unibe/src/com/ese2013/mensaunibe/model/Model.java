@@ -53,7 +53,7 @@ public class Model {
 		for(Mensa m : mensas) {
 			if(m.getId() == mensaId) {
 				Calendar calendar = Calendar.getInstance();
-				//calendar.add(Calendar.DATE, -7); //for testing
+				//calendar.add(Calendar.DATE, -5); //for testing
 				Menuplan menu;
 				int checkForOneWeek = 1;
 				do{
