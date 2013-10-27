@@ -22,6 +22,5 @@
     <string name="Sunday">Sunday</string>
     <string name="loading">loading</string>
     <string name="from">from</string>
-    <string name="empty_menu_list">There is no current data on the server. Please check back later.</string>
 
 </resources>

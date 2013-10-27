@@ -36,7 +36,7 @@ public class ComingDaysMenuFragment extends ListFragment {
 	@Override
 	public void onStart() {
 	    super.onStart();
-	    setEmptyText(getString(R.string.empty_menu_list));
+	    setEmptyText(getString(R.string.no_menu));
 	}
 	
 	@Override
