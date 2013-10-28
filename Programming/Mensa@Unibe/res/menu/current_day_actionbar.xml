@@ -14,7 +14,7 @@
           android:orderInCategory="2" />
     <!-- Settings, should always be in the overflow -->
      <item android:id="@+id/action_translate"
-          android:title="@string/action_translate"
+          android:title="@string/action_translate_to_english"
           mensaApp:showAsAction="never"
           android:orderInCategory="4" />
     <item android:id="@+id/action_settings"

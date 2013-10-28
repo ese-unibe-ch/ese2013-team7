@@ -66,6 +66,10 @@ public class MenuData {
 			Log.i(TAG, "oject weeklymenu: "+wk);
 			return wk;
 		} catch(Exception e) {
+			StackTraceElement[] a = e.getStackTrace();
+			for(StackTraceElement aa : a) {
+				Log.e(TAG, aa.toString());
+			}
 			Log.e(TAG, e.getMessage());
 		}
 		

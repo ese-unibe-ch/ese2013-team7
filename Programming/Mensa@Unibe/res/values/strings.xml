@@ -22,7 +22,8 @@
     <string name="Sunday">Sunday</string>
     <string name="loading">loading</string>
     <string name="from">from</string>
-    <string name="action_translate">Translate</string>
+    <string name="action_translate_to_german">Translate to German</string>
+    <string name="action_translate_to_english">Translate to English</string>
     <string name="empty_menu_list">No menu available</string>
     <string name="added_to_favorites">added to favorites</string>
     <string name="removed_from_favorites">removed from favorites</string>

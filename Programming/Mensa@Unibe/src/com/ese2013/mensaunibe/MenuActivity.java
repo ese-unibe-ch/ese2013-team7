@@ -14,10 +14,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.Toast;
 import android.view.MenuItem;
+import android.view.Menu;
 
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.MenuListAdapter;
+import com.memetix.mst.language.Language;
 
 public class MenuActivity extends ActionBarActivity implements ActionBar.TabListener, MenuListAdapter.TitleListener{
 	
@@ -137,11 +139,23 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 	}
 	
 	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		Language lang = Model.getInstance().getLanguage();
+		MenuItem item = menu.findItem(R.id.action_translate);
+		if(lang != null && lang.compareTo(Language.GERMAN) != 0) {
+			item.setTitle(getString(R.string.action_translate_to_german));
+		} else {
+			item.setTitle(getString(R.string.action_translate_to_english));
+		}
+		return true;
+	}
+	
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 			case R.id.action_translate:
 				if( Model.getInstance().changeLanguage() ) {
-	    			Log.v(TAG_CURRENT_DAY_MENU_FRAGMENT, "finished translating data...");
+	    			Log.v("MenuActivity", "finished translating data...");
 	    			//this.notifyAll();
 	    			finish();
 	    			startActivity(getIntent());

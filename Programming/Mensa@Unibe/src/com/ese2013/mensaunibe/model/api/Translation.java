@@ -41,9 +41,7 @@ public class Translation {
 	
 	private static final String CLIENT_ID = "39va9ZXtJS21GVYFGaf6";
 	private static final String CLIENT_TOKEN = "xqYAW+fcf8icgErpva8EVJHZx5gzBEH4iWOZMmlxiGo=";
-		
-	public static final Language LANG_DE = Language.GERMAN;
-	public static final Language LANG_EN = Language.ENGLISH;
+
 	public static final String TAG = "API_Translate";
 	
 	private String text;
