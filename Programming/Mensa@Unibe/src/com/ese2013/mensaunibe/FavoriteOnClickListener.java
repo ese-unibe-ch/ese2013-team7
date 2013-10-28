@@ -1,7 +1,10 @@
 package com.ese2013.mensaunibe;
 
 import com.ese2013.mensaunibe.model.mensa.Mensa;
+
+import android.content.Context;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ToggleButton;
 
@@ -20,10 +23,18 @@ public class FavoriteOnClickListener implements OnCheckedChangeListener{
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		Context context = App.getAppContext();
+		String mensaName = mensa.getName() + " ";
 		if(!favorite.isChecked()) {
 			mensa.setFavorite(false);
+			Toast.makeText(context,
+					mensaName + context.getString(R.string.removed_from_favorites),
+					Toast.LENGTH_SHORT).show();
 		} else {
 			mensa.setFavorite(true);
+			Toast.makeText(context,
+					mensaName + context.getString(R.string.added_to_favorites),
+					Toast.LENGTH_SHORT).show();
 		}
 		mensaAdapter.update();
 		mensaAdapter.notifyDataSetChanged();
