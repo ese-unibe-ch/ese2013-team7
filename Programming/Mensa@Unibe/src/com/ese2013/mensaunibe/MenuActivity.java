@@ -11,6 +11,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.widget.Toast;
+import android.view.MenuItem;
 
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.MenuListAdapter;
@@ -130,5 +133,24 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 		Tab tab = getSupportActionBar().getTabAt(firstMenu);
 		tab.setText("");
 		tab.setText(tabTitle);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+			case R.id.action_translate:
+				if( Model.getInstance().changeLanguage() ) {
+	    			Log.v(TAG_CURRENT_DAY_MENU_FRAGMENT, "finished translating data...");
+	    			//this.notifyAll();
+	    			finish();
+	    			startActivity(getIntent());
+	    			Toast.makeText(this, "Menus have been translated", Toast.LENGTH_SHORT).show();
+	    		} else {
+	    			Toast.makeText(this, "Menus could not have been translated", Toast.LENGTH_SHORT).show();
+	    		}
+	    		return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+		}
 	}
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import com.ese2013.mensaunibe.model.api.ApiUrl;
 import com.ese2013.mensaunibe.model.api.DataRequest;
 import com.ese2013.mensaunibe.model.menu.MenuData;
+import com.memetix.mst.language.Language;
 
 
 public class MensaData {
@@ -15,6 +16,7 @@ public class MensaData {
 	
 	private DataRequest rq;
 	private final ArrayList<Mensa> mensas;
+	private Language language;
 	
 	public MensaData() {
 		rq = new DataRequest();
@@ -38,6 +40,7 @@ public class MensaData {
 				mb.parseJson(m);
 				Mensa mensa = mb.create();
 				MenuData md = new MenuData();
+				md.setLanguage(this.language);
 				mensa.setWeeklyMenu( md.getWeeklyMenuList( mensa.getId() ) );
 				Log.i(TAG, mensa.toString());
 				mensas.add( mensa );
@@ -47,6 +50,10 @@ public class MensaData {
 			Log.e(TAG, e.getMessage());
 		}
 		return mensas;
+	}
+
+	public void setLanguage(Language l) {
+		this.language = l;	
 	}
 	
 }

@@ -22,5 +22,7 @@
     <string name="Sunday">Sunday</string>
     <string name="loading">loading</string>
     <string name="from">from</string>
+    <string name="action_translate">Translate</string>
+    <string name="empty_menu_list">No menu available</string>
 
 </resources>

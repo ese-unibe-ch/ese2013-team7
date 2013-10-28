@@ -6,12 +6,14 @@ import java.util.Calendar;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.mensa.MensaData;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
+import com.memetix.mst.language.Language;
 
 public class Model {
 
 	private static final String TAG ="Model";
 	private static Model instance = null;
 	private ArrayList<Mensa> mensas;
+	private Language language;
 	public Model() {
 		instance = this;
 		mensas = createMensas();
@@ -33,11 +35,28 @@ public class Model {
 	}
 	
 	public boolean forceReload() {
+		return this.forceReload(Language.GERMAN);
+	}
+	
+	private boolean forceReload(Language l) {
 		MensaData md = new MensaData();
+		md.setLanguage(l);
 		ArrayList<Mensa> m = md.getMensaList(true);
 		if(m.size() == 0) return false;
 		mensas = m;
 		return true;
+	}
+	
+	public boolean changeLanguage() {
+		boolean success = false;
+		if(this.language == Language.ENGLISH) {
+			success = forceReload(Language.GERMAN);
+			if(success) this.language = Language.GERMAN;
+		} else {
+			success = forceReload(Language.ENGLISH);
+			if(success) this.language = Language.ENGLISH;
+		}
+		return success;
 	}
 
 	public Mensa getMensaById(int mensaId) {

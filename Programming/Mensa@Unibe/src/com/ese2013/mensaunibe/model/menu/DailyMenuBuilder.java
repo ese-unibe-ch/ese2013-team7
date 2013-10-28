@@ -9,12 +9,15 @@ import org.json.JSONArray;
 import android.util.Log;
 
 import com.ese2013.mensaunibe.model.MenuDate;
+import com.ese2013.mensaunibe.model.api.Translation;
+import com.memetix.mst.language.Language;
 
 public class DailyMenuBuilder {
 	private static final String TAG = "DailyMenuBuilder";
 	private String title;
 	private String menu;
 	private MenuDate date;
+	private Language language;
 	
 	public DailyMenuBuilder() {
 	}
@@ -40,9 +43,21 @@ public class DailyMenuBuilder {
 			
 			JSONArray infos = obj.getJSONArray("menu");
 			
+			Translation t = new Translation();
+			
 			menu = "";
+			String menuLine = "";
+			String translated = "";
 			for(int i = 0; i < infos.length(); i++) {
-				menu += infos.getString(i) + "\n";
+				menuLine = infos.getString(i);
+				if(this.language != Translation.LANG_DE) {
+					t.setText(menuLine);
+					t.setLanguage(Translation.LANG_DE, Translation.LANG_EN);
+					translated = t.translate();
+				}
+				if(translated.length() > 1) menuLine = translated;
+				
+				menu += menuLine + "\n";
 			}
 			
 			/*Translation t = new Translation();
@@ -53,6 +68,11 @@ public class DailyMenuBuilder {
 		} catch(Exception e) {
 			Log.e(TAG, e.getMessage());
 		}		
+	}
+
+
+	public void setLanguage(Language language) {
+		this.language = language;	
 	}
 	
 }
