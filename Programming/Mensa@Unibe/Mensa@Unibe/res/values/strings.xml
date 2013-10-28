@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mensa@Unibe</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_share">Share</string>
+    <string name="menu_list">Menu</string>
+    <string name="no_menu">No menu available</string>
+    <string name="mensa_list_favorites">Favorite Mensas</string>
+    <string name="mensa_list_header">Mensas</string>
+    <string name="action_mensainfo">Mensa Information</string>
+    <string name="comingDaysTabTitle">Soon</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
+    <string name="loading">loading</string>
+    <string name="from">from</string>
+    <string name="added_to_favorites">added to favorites</string>
+    <string name="removed_from_favorites">removed from favorites</string>
+
+    <!-- Debug Messages -->
+    <string name="connected">Client connected</string>
+    <string name="disconnected">Client disconnected</string>
+    <string name="resolved">Error resolved. Please re-try operation.</string>
+    <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
+    <string name="unknown_activity_request_code">        Received an unknown activity request code %1$d in onActivityResult.</string>
+    <string name="play_services_available">Google Play services is available</string>
+    <string name="location_requested">Periodic updates requested</string>
+    <string name="location_updated">Location updated</string>
+    <string name="location_updates_stopped">Periodic updates stopped</string>
+    <string name="error_when_retrieving_data">Error when retrieving Data</string>
+
+</resources>
