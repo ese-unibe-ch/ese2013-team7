@@ -19,12 +19,12 @@ import android.widget.Toast;
 
 
 public class MensaActivity extends ActionBarActivity implements MensaListFragment.OnListItemClickListener{
-	private MyLocation mLocation;
+	//private MyLocation mLocation;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_mensa_list);
-		if(mLocation == null) mLocation = new MyLocation(this);
+		//if(mLocation == null) mLocation = new MyLocation(this);
 		Fragment fragment = getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
 		if (fragment == null) {
 			fragment = new MensaListFragment();
@@ -76,7 +76,7 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 			return super.onOptionsItemSelected(item);
 		}
 	}
-
+/*
 	@Override
 	public void onStop() {
 		mLocation.CallOnStop();
@@ -104,5 +104,5 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		mLocation.CallOnActivityResult(requestCode, resultCode, intent);
-	}
+	}*/
 }

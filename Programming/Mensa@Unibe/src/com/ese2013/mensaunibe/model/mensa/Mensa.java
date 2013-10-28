@@ -2,6 +2,7 @@ package com.ese2013.mensaunibe.model.mensa;
 
 import com.ese2013.mensaunibe.ListItem;
 import com.ese2013.mensaunibe.model.MenuDate;
+import com.ese2013.mensaunibe.model.api.MyLocation;
 import com.ese2013.mensaunibe.model.api.PreferenceRequest;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 import com.ese2013.mensaunibe.model.menu.WeeklyMenu;
@@ -106,8 +107,8 @@ public class Mensa implements ListItem {
 		pr.writePreference(b, id);
 	}
 	
-	public String getDistance(Location myLocation){
-		float distanceInMeters = location.distanceTo(myLocation);
+	public String getDistance(MyLocation myLocation){
+		float distanceInMeters = location.distanceTo(myLocation.getLocation());
 		String meters = formatDist(distanceInMeters);
 		return meters;
 	}
