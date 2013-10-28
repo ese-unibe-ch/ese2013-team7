@@ -35,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/empty_menu_list" />
+                android:text="@string/no_menu" />
     </FrameLayout>
         
 </FrameLayout>

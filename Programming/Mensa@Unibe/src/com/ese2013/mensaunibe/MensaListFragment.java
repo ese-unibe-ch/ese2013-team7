@@ -4,7 +4,6 @@ import android.app.Activity;
 //import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
 /*import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
@@ -50,10 +49,4 @@ public class MensaListFragment extends ListFragment{
    public interface OnListItemClickListener {
         public void onListItemSelected(int itemId);
       }
-        
-    // May also be triggered from the Activity
-    public void updateDetail(int MensaId) {
-    	Log.d(TAG, "updateDetail called with mensaID: " + MensaId);
-      listener.onListItemSelected(MensaId);
-    }
 }

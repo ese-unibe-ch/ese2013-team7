@@ -24,5 +24,18 @@
     <string name="from">from</string>
     <string name="action_translate">Translate</string>
     <string name="empty_menu_list">No menu available</string>
+    <string name="added_to_favorites">added to favorites</string>
+    <string name="removed_from_favorites">removed from favorites</string>
+
+    <!-- Debug Messages -->
+    <string name="connected">Client connected</string>
+    <string name="disconnected">Client disconnected</string>
+    <string name="resolved">Error resolved. Please re-try operation.</string>
+    <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
+    <string name="unknown_activity_request_code">        Received an unknown activity request code %1$d in onActivityResult.</string>
+    <string name="play_services_available">Google Play services is available</string>
+    <string name="location_requested">Periodic updates requested</string>
+    <string name="location_updated">Location updated</string>
+    <string name="location_updates_stopped">Periodic updates stopped</string>
 
 </resources>

@@ -16,10 +16,11 @@ import android.widget.Toast;
 import android.view.MenuItem;
 
 import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.MenuListAdapter;
 
 public class MenuActivity extends ActionBarActivity implements ActionBar.TabListener, MenuListAdapter.TitleListener{
-	private static final String TAG_CURRENT_DAY_MENU_FRAGMENT = "CURRENT_DAY_MENU_FRAGMENT";
+	
 	private int mMensaId;
 	TabCollectionPagerAdapter mTabCollectionPagerAdapter;
 	ViewPager mViewPager;
@@ -69,11 +70,11 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 				}
 			}
 		}else{// if it's Friday, Saturday or Sunday we don't need tabs
-			Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_CURRENT_DAY_MENU_FRAGMENT);
+			Fragment fragment = getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_CURRENT_DAY_MENU_FRAGMENT);
 			if (fragment == null) {
 				fragment =  new TabCollectionPagerAdapter(getSupportFragmentManager()).getItem(0);
 				FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-				ft.add(android.R.id.content, fragment, TAG_CURRENT_DAY_MENU_FRAGMENT);
+				ft.add(android.R.id.content, fragment, AppUtils.TAG_CURRENT_DAY_MENU_FRAGMENT);
 				ft.commit();
 			}
 		}
@@ -116,11 +117,11 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 			switch (position) {
 			case 0:
 				fragment = new CurrentDayMenuFragment();
-				args.putInt(CurrentDayMenuFragment.MENSA_ID, mMensaId);
+				args.putInt(AppUtils.MENSA_ID, mMensaId);
 				break;
 			case 1:
 				fragment = new ComingDaysMenuFragment();
-				args.putInt(ComingDaysMenuFragment.MENSA_ID, mMensaId);
+				args.putInt(AppUtils.MENSA_ID, mMensaId);
 				break;
 			}
 			fragment.setArguments(args);

@@ -11,14 +11,13 @@ import android.widget.TextView;
 
 import com.ese2013.mensaunibe.model.MenuDate;
 import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 
 public class MenuListAdapter extends BaseAdapter{
 
 	TitleListener mCallback;
-	public static final int FIRST_MENU = 0;
-	public static final int ALL_EXCEPT_FIRST = 1;
 	private Context context;
 	private int resource;
 	private LayoutInflater inflater;
@@ -97,7 +96,7 @@ public class MenuListAdapter extends BaseAdapter{
 		mMenus = Model.getInstance().getComingDaysMenu(mMensaId);
 		for(Menuplan m : mMenus) {
 			//skip first menuplan
-			if(firstrun && firstOrAll == ALL_EXCEPT_FIRST){
+			if(firstrun && firstOrAll == AppUtils.ALL_EXCEPT_FIRST){
 				firstrun = false;
 				continue;
 			}
@@ -110,13 +109,13 @@ public class MenuListAdapter extends BaseAdapter{
 				if(dm != null)items.add(dm);
 			}
 
-			if(firstOrAll == FIRST_MENU) break;//stop if we need just first menuplan
+			if(firstOrAll == AppUtils.FIRST_MENU) break;//stop if we need just first menuplan
 		}
 	}
 
 	private void notifyListeners(MenuDate date) {
 		String tabTitle = "";
-		if(FIRST_MENU != mFirstOrAll) tabTitle += context.getString(R.string.from)+" ";
+		if(AppUtils.FIRST_MENU != mFirstOrAll) tabTitle += context.getString(R.string.from)+" ";
 		tabTitle +=date.toText(true);
 		mCallback.updateTiteListener(tabTitle, mFirstOrAll);
 
