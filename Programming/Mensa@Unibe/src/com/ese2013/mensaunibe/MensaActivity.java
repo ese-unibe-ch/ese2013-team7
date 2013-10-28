@@ -1,6 +1,9 @@
 package com.ese2013.mensaunibe;
 
 import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.api.AppUtils;
+import com.ese2013.mensaunibe.model.api.MyLocation;
+import com.google.android.gms.location.LocationClient;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,63 +19,90 @@ import android.widget.Toast;
 
 
 public class MensaActivity extends ActionBarActivity implements MensaListFragment.OnListItemClickListener{
-	private static final String TAG_MENSALIST_FRAGMENT ="MensaListFragment_tag";
+	private MyLocation mLocation;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.fragment_mensa_list);
+		if(mLocation == null) mLocation = new MyLocation(this);
+		Fragment fragment = getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
+		if (fragment == null) {
+			fragment = new MensaListFragment();
+			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+			ft.add(android.R.id.content, fragment, AppUtils.TAG_MENSALIST_FRAGMENT);
+			ft.commit();
+		}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_mensa_list);
-        
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_MENSALIST_FRAGMENT);
-        if (fragment == null) {
-            fragment = new MensaListFragment();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(android.R.id.content, fragment, TAG_MENSALIST_FRAGMENT);
-            ft.commit();
-        }
-       
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_mensa_list, menu);
+	}
 
-        //MenuItem shareItem = menu.findItem(R.id.action_share);
-        return super.onCreateOptionsMenu(menu);
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.actionbar_mensa_list, menu);
 
-    }
+		//MenuItem shareItem = menu.findItem(R.id.action_share);
+		return super.onCreateOptionsMenu(menu);
+
+	}
 
 	@Override
 	public void onListItemSelected(int mensaId) {
-		  /* MenuTabHostFragment fragment = (MenuTabHostFragment) getSupportFragmentManager()
+		/* MenuTabHostFragment fragment = (MenuTabHostFragment) getSupportFragmentManager()
 		            .findFragmentById(R.id.MenuFragment);
 		        if (fragment != null && fragment.isInLayout()) {
 		          fragment.update(mensaId);
 		        } else{*/
-		        	Intent intent = new Intent();
-		            intent.setClassName(getPackageName(), getPackageName()+".MenuActivity");
-		            intent.putExtra("int_value", mensaId);
-		            startActivity(intent);		              
-		        //}
+		Intent intent = new Intent();
+		intent.setClassName(getPackageName(), getPackageName()+".MenuActivity");
+		intent.putExtra("int_value", mensaId);
+		startActivity(intent);		              
+		//}
+}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+		case R.id.action_refresh:
+			Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "Refresh data...");
+			if( Model.getInstance().forceReload() ) {
+				Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "finished refresh data...");
+				finish();
+				startActivity(getIntent());
+				Toast.makeText(this,  "Data has been refreshed", Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(this,  "Data could not be refreshed", Toast.LENGTH_SHORT).show();
+			}
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@Override
+	public void onStop() {
+		mLocation.CallOnStop();
+		super.onStop();
+	}
+
+	@Override
+	public void onPause() {
+		mLocation.CallOnPause();
+		super.onPause();
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		mLocation.CallOnStart();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		mLocation.CallOnResume();
 	}
 	
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle presses on the action bar items
-	    switch (item.getItemId()) {
-	    	case R.id.action_refresh:
-	    		Log.v(TAG_MENSALIST_FRAGMENT, "Refresh data...");
-	    		if( Model.getInstance().forceReload() ) {
-	    			Log.v(TAG_MENSALIST_FRAGMENT, "finished refresh data...");
-	    			finish();
-	    			startActivity(getIntent());
-	    			Toast.makeText(this,  "Data has been refreshed", Toast.LENGTH_SHORT).show();
-	    		} else {
-	    			Toast.makeText(this,  "Data could not be refreshed", Toast.LENGTH_SHORT).show();
-	    		}
-	    		return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		mLocation.CallOnActivityResult(requestCode, resultCode, intent);
 	}
-    
 }

@@ -1,5 +1,7 @@
 package com.ese2013.mensaunibe;
 
+import com.ese2013.mensaunibe.model.api.AppUtils;
+
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -8,7 +10,7 @@ import android.view.MenuInflater;
 import android.widget.ListAdapter;
 
 public class ComingDaysMenuFragment extends ListFragment {
-	public static final String MENSA_ID = "MENSA_ID";
+	
 	private static final String TAG = "ComingDaysMenuFragment";
 	private static int mMensaId;
 
@@ -19,7 +21,7 @@ public class ComingDaysMenuFragment extends ListFragment {
          if (arguments == null)
              Log.e(TAG, "Arguments is NULL");
          else
-             mMensaId = getArguments().getInt(MENSA_ID);
+             mMensaId = getArguments().getInt(AppUtils.MENSA_ID);
      }
 	
 	@Override
@@ -28,7 +30,7 @@ public class ComingDaysMenuFragment extends ListFragment {
         
 		ListAdapter adapter = new MenuListAdapter(getActivity(),
 				R.layout.menu_list_item, mMensaId,
-				MenuListAdapter.ALL_EXCEPT_FIRST);
+				AppUtils.ALL_EXCEPT_FIRST);
         setListAdapter(adapter);
 		setHasOptionsMenu(true);
 	}

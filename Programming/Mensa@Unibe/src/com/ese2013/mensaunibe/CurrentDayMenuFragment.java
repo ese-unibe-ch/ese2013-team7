@@ -1,5 +1,7 @@
 package com.ese2013.mensaunibe;
 
+import com.ese2013.mensaunibe.model.api.AppUtils;
+
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -9,7 +11,6 @@ import android.widget.ListAdapter;
 
 public class CurrentDayMenuFragment extends ListFragment{
 
-	public static final String MENSA_ID = "MENSA_ID";
 	private static final String TAG = "CurrentDayMenuFragment";
 	private static int mMensaId;
 
@@ -20,7 +21,7 @@ public class CurrentDayMenuFragment extends ListFragment{
          if (arguments == null)
              Log.e(TAG, "Arguments is NULL");
          else
-             mMensaId = getArguments().getInt(MENSA_ID);
+             mMensaId = getArguments().getInt(AppUtils.MENSA_ID);
      }
 	 
 	@Override
@@ -29,7 +30,7 @@ public class CurrentDayMenuFragment extends ListFragment{
 
 		ListAdapter adapter = new MenuListAdapter(getActivity(), 
 				R.layout.menu_list_item, mMensaId, 
-				MenuListAdapter.FIRST_MENU);
+				AppUtils.FIRST_MENU);
 		setListAdapter(adapter);
 		setHasOptionsMenu(true);
 	}
