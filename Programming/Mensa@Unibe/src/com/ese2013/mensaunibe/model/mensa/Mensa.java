@@ -6,6 +6,7 @@ import com.ese2013.mensaunibe.model.api.MyLocation;
 import com.ese2013.mensaunibe.model.api.PreferenceRequest;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 import com.ese2013.mensaunibe.model.menu.WeeklyMenu;
+import com.memetix.mst.language.Language;
 
 import android.annotation.SuppressLint;
 import android.location.Location;
@@ -21,6 +22,7 @@ public class Mensa implements ListItem {
     private WeeklyMenu menu;
     private boolean isFavorite;
     private Location location;
+    private Language language;
     
     public Mensa(MensaBuilder mb) {
     	id = mb.getId();
@@ -31,6 +33,7 @@ public class Mensa implements ListItem {
     	lon = mb.getLon();
     	isFavorite = mb.getFav();
     	setupLocation(lat, lon);
+    	language = Language.GERMAN;
     }
     
 	private void setupLocation(Double latitude, Double longitude) {
@@ -74,6 +77,12 @@ public class Mensa implements ListItem {
 	}
 	public void setLon(Double lon) {
 		this.lon = lon;
+	}
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
+	public Language getLanguage() {
+		return language;
 	}
 	
 	public String toString() {

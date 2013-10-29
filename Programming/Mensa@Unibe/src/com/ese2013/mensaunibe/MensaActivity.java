@@ -70,9 +70,7 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 		case R.id.action_refresh:
 			Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "Refresh data...");
 			if( Model.getInstance().forceReload() ) {
-				Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "finished refresh data...");
-				//finish();
-				//startActivity(getIntent());				
+				Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "finished refresh data...");			
 				MensaListAdapter adapter = (MensaListAdapter) fragment.getListAdapter();
 				adapter.update();
 				adapter.notifyDataSetChanged();

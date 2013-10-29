@@ -35,4 +35,12 @@ public class DailyMenu implements ListItem{
 	public boolean isSection() {
 		return false;
 	}
+
+	public void setMenu(String menu) {
+		this.menu = menu;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;		
+	}
 }

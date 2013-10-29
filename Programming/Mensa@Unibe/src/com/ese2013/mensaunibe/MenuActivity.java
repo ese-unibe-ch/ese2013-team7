@@ -1,12 +1,16 @@
 package com.ese2013.mensaunibe;
 
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
@@ -21,7 +25,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.api.ApiUrl;
 import com.ese2013.mensaunibe.model.api.AppUtils;
+import com.ese2013.mensaunibe.model.api.LanguageChanger;
+import com.ese2013.mensaunibe.model.api.URLRequest;
+import com.ese2013.mensaunibe.model.mensa.Mensa;
+import com.ese2013.mensaunibe.model.menu.DailyMenu;
+import com.ese2013.mensaunibe.model.menu.Menuplan;
 import com.ese2013.mensaunibe.MenuListAdapter;
 import com.memetix.mst.language.Language;
 
@@ -38,7 +48,6 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 
 		mMensaId = getIntent().getIntExtra("int_value", 0);
 		setTitle( Model.getInstance().getMensaById(mMensaId).getName() );
-	
 		//setup action bar 
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -105,7 +114,7 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 
 	public class TabCollectionPagerAdapter extends FragmentPagerAdapter {
 		protected static final int FRAGMENT_COUNT = 2;
-
+		private Fragment fragment = null;
 		public TabCollectionPagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
@@ -117,7 +126,6 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 
 		@Override
 		public Fragment getItem(int position) {
-			Fragment fragment = null;
 			Bundle args = new Bundle();
 
 			switch (position) {
@@ -133,6 +141,10 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 			fragment.setArguments(args);
 			return fragment;
 		}
+		
+		public Fragment getActualFragment() {
+			return fragment;
+		}
 	}
 
 	@Override
@@ -144,7 +156,7 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		Language lang = Model.getInstance().getLanguage();
+		Language lang = Model.getInstance().getMensaById(mMensaId).getLanguage();
 		//sorry, had to comment out. I couldn't find out why item is always null for me in ComingDaysMenuFragment
 		MenuItem item = menu.findItem(R.id.action_translate);
 		if(lang != null && lang.compareTo(Language.GERMAN) != 0) {
@@ -154,61 +166,39 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 		}
 		return true;
 	}
-
 	
-	private class LanguageChanger extends AsyncTask<Void, Void, Boolean> {
-		private ProgressDialog dialog;
-		private Context context;
-		
-		public LanguageChanger(Context context) {
-			this.dialog = new ProgressDialog(context);
-			this.context = context;
-		}
-		
-		protected Boolean doInBackground(Void... params) {
-			return Model.getInstance().changeLanguage();
-		}
-		
-		protected void onPreExecute() {
-	        this.dialog.setMessage("Translating menu data...");
-	        this.dialog.show();
-	    }
-		
-		protected void onPostExecute(final Boolean success) {
-			if (dialog.isShowing()) {
-				dialog.dismiss();
-			}
-			if(success) {
-				Toast.makeText(context, "Menus have been translated", Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(context, "Menus could not have been translated", Toast.LENGTH_SHORT).show();
-			}
-			if( success ) {
-	    		//Log.v("MenuActivity", "finished translating data...");
-	    		finish();
-	    		startActivity(getIntent());
-	    	}
-		}
-	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 			case R.id.action_translate:
-
-				//LanguageChanger lc = new LanguageChanger(this);
-				//lc.execute();
-				//AsyncTask<Void, Void, Boolean> task = new LanguageChanger(this);
-				//task.execute();
-				boolean result = Model.getInstance().changeLanguage();
-				if(result) {
-					Toast.makeText(this, "Menus have been translated", Toast.LENGTH_SHORT).show();
-					finish();
-					startActivity(getIntent());
+				ListFragment f = (ListFragment) mTabCollectionPagerAdapter.getActualFragment();
+				MenuListAdapter adapter = (MenuListAdapter) f.getListAdapter();
+				
+				Mensa mensa = Model.getInstance().getMensaById(mMensaId);
+				if(mensa.getLanguage() != null && mensa.getLanguage().compareTo(Language.ENGLISH) == 0) {
+					Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "Refresh data...");
+					if( Model.getInstance().forceReload() ) {
+						Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "finished refresh data...");
+						//finish();
+						//startActivity(getIntent());			
+						adapter.update();
+						adapter.notifyDataSetChanged();
+						Toast.makeText(this,  "Data has been refreshed", Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(this,  "Data could not be refreshed", Toast.LENGTH_SHORT).show();
+					}
 				} else {
-					Toast.makeText(this, "Menus could not have been translated", Toast.LENGTH_SHORT).show();
+					LanguageChanger lc = new LanguageChanger(this, mensa);
+									
+					adapter.update();
+					adapter.notifyDataSetChanged();
+					
+					lc.setAdapter( adapter );
+					lc.execute();
 				}
 	    		return true;
+	    		
 			case R.id.action_direction:
 				startActivity(new Intent(getApplicationContext(), MapActivity.class));
 				return true;

@@ -16,8 +16,7 @@ public class MensaData {
 	
 	private DataRequest rq;
 	private final ArrayList<Mensa> mensas;
-	private Language language;
-	
+
 	public MensaData() {
 		rq = new DataRequest();
 		mensas = new ArrayList<Mensa>();
@@ -40,7 +39,6 @@ public class MensaData {
 				mb.parseJson(m);
 				Mensa mensa = mb.create();
 				MenuData md = new MenuData();
-				md.setLanguage(this.language);
 				mensa.setWeeklyMenu( md.getWeeklyMenuList( mensa.getId() ) );
 				//Log.i(TAG, mensa.toString());
 				mensas.add( mensa );
@@ -51,9 +49,4 @@ public class MensaData {
 		}
 		return mensas;
 	}
-
-	public void setLanguage(Language l) {
-		this.language = l;	
-	}
-	
 }

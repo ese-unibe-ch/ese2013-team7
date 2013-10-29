@@ -6,7 +6,7 @@ import android.util.Log;
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
 
-
+//ATM unused
 public class Translation {
 	private class AsyncTranslation extends AsyncTask<String, Void, String> {
 		private Language langFrom;
@@ -61,19 +61,6 @@ public class Translation {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
-	/*public String translateTo(Language langTo) {
-		String result = "";
-		try {
-			result = Translate.execute(text, langFrom, langTo);
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-			for(StackTraceElement s: e.getStackTrace()) {
-				Log.e(TAG, s.toString());
-			}
-		}
-		return result;
-	}*/
 
 	public String translate() {
 		AsyncTranslation as = new AsyncTranslation(text, langFrom, langTo);
@@ -84,17 +71,6 @@ public class Translation {
 		} catch(Exception e) {
 			Log.e(TAG, e.getMessage());
 		}
-		//result = this.translateTo(this.langTo);
 		return result;
 	}
-	
-	/*public String getTranslation() {
-		String result = "";
-		try {
-			result = this.get();
-		} catch (Exception e) {
-			Log.e(TAG, e.getMessage());
-		}
-		return result;
-	}*/
 }
