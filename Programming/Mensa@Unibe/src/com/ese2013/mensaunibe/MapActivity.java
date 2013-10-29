@@ -25,36 +25,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.Tab;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.widget.Toast;
-import android.view.MenuItem;
-import android.view.Menu;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.AsyncTask;
 
-import com.ese2013.mensaunibe.model.Model;
-import com.ese2013.mensaunibe.model.api.AppUtils;
-import com.ese2013.mensaunibe.MenuListAdapter;
-import com.memetix.mst.language.Language;
+import android.support.v7.app.ActionBarActivity;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class MapActivity extends ActionBarActivity {
-		private final LatLng mensaLocation;
+		private final LatLng mensaLocation= new LatLng(46.94824814351828, 7.440162956845597);
 		private GoogleMap map;
 		
-		MapActivity(LatLng cord){
-			mensaLocation=cord;
-		}
 	  @Override
 	  	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -74,8 +52,8 @@ public class MapActivity extends ActionBarActivity {
 
 	  @Override
 	  public boolean onCreateOptionsMenu(Menu menu) {
-   // getMenuInflater().inflate(R.menu.activity_main, menu);
-	    return true;
+		  getMenuInflater().inflate(R.menu.actionbar_mensa_list, menu);
+	    return super.onCreateOptionsMenu(menu);
 	  }
 
 	public void handleGetDirectionsResult(ArrayList<LatLng> directionPoints) {
