@@ -148,9 +148,9 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 		//sorry, had to comment out. I couldn't find out why item is always null for me in ComingDaysMenuFragment
 		MenuItem item = menu.findItem(R.id.action_translate);
 		if(lang != null && lang.compareTo(Language.GERMAN) != 0) {
-			//item.setTitle(getString(R.string.action_translate_to_german));
+			item.setTitle(getString(R.string.action_translate_to_german));
 		} else {
-			//item.setTitle(getString(R.string.action_translate_to_english));
+			item.setTitle(getString(R.string.action_translate_to_english));
 		}
 		return true;
 	}

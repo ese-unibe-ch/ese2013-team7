@@ -1,7 +1,5 @@
 package com.ese2013.mensaunibe;
 
-import com.ese2013.mensaunibe.model.api.MyLocation;
-
 import android.app.Activity;
 //import android.graphics.Color;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.widget.ListView;
 
 public class MensaListFragment extends ListFragment{
 	private static final String TAG= "MensaListFragment";
-	private MyLocation mLocation;
 	private OnListItemClickListener listener;
 
 	@Override
@@ -50,10 +47,5 @@ public class MensaListFragment extends ListFragment{
 
 	public interface OnListItemClickListener {
 		public void onListItemSelected(int itemId);
-	}
-
-	public void setMyLocation(MyLocation location) {
-		mLocation = location;
-
 	}
 }

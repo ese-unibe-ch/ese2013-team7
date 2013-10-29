@@ -4,13 +4,10 @@ import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.MensaListAdapter;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.api.MyLocation;
-import com.google.android.gms.location.LocationClient;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -37,7 +34,6 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 		fragment = (MensaListFragment) getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
 		if (fragment == null) {
 			fragment = new MensaListFragment();
-			fragment.setMyLocation(mLocation);
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			ft.add(android.R.id.content, fragment, AppUtils.TAG_MENSALIST_FRAGMENT);
 			ft.commit();

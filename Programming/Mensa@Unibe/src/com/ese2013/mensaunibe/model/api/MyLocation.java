@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.ese2013.mensaunibe.App;

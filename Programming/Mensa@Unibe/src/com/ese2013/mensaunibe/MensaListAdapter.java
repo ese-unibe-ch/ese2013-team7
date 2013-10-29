@@ -36,7 +36,6 @@ public class MensaListAdapter extends BaseAdapter {
 			mLocation = MyLocation.getInstance();
 			mLocation.setAdapter(this);
 		}
-		//this.items = new ArrayList<ListItem>();
 		populate();
 	}
 
