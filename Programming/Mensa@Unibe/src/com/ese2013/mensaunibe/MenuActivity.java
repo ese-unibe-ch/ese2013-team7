@@ -15,6 +15,9 @@ import android.util.Log;
 import android.widget.Toast;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
 
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.AppUtils;
@@ -149,20 +152,60 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 		}
 		return true;
 	}
+
+	
+	private class LanguageChanger extends AsyncTask<Void, Void, Boolean> {
+		private ProgressDialog dialog;
+		private Context context;
+		
+		public LanguageChanger(Context context) {
+			this.dialog = new ProgressDialog(context);
+			this.context = context;
+		}
+		
+		protected Boolean doInBackground(Void... params) {
+			return Model.getInstance().changeLanguage();
+		}
+		
+		protected void onPreExecute() {
+	        this.dialog.setMessage("Translating menu data...");
+	        this.dialog.show();
+	    }
+		
+		protected void onPostExecute(final Boolean success) {
+			if (dialog.isShowing()) {
+				dialog.dismiss();
+			}
+			if(success) {
+				Toast.makeText(context, "Menus have been translated", Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(context, "Menus could not have been translated", Toast.LENGTH_SHORT).show();
+			}
+			if( success ) {
+	    		//Log.v("MenuActivity", "finished translating data...");
+	    		finish();
+	    		startActivity(getIntent());
+	    	}
+		}
+	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 			case R.id.action_translate:
-				if( Model.getInstance().changeLanguage() ) {
-	    			Log.v("MenuActivity", "finished translating data...");
-	    			//this.notifyAll();
-	    			finish();
-	    			startActivity(getIntent());
-	    			Toast.makeText(this, "Menus have been translated", Toast.LENGTH_SHORT).show();
-	    		} else {
-	    			Toast.makeText(this, "Menus could not have been translated", Toast.LENGTH_SHORT).show();
-	    		}
+
+				//LanguageChanger lc = new LanguageChanger(this);
+				//lc.execute();
+				//AsyncTask<Void, Void, Boolean> task = new LanguageChanger(this);
+				//task.execute();
+				boolean result = Model.getInstance().changeLanguage();
+				if(result) {
+					Toast.makeText(this, "Menus have been translated", Toast.LENGTH_SHORT).show();
+					finish();
+					startActivity(getIntent());
+				} else {
+					Toast.makeText(this, "Menus could not have been translated", Toast.LENGTH_SHORT).show();
+				}
 	    		return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
