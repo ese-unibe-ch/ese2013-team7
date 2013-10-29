@@ -4,6 +4,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 header('Content-Type: text/html; charset=utf-8');
 
 include("connect.php");
+include("json_readable.php");
 
 if (isset($_GET['androidrequest']) AND 
     isset($_GET['menutitle'])) {
@@ -19,7 +20,7 @@ if (isset($_GET['androidrequest']) AND
     if (!$stmt = $db->prepare($sql)) {
        die ('Etwas stimmte mit dem Query 1 nicht: '.$db->error);
     }
-    $stmt->bind_param('s', $_POST['menutitle']);
+    $stmt->bind_param('s', $_GET['menutitle']);
     if (!$stmt->execute()) {
        die ('Query 1 konnte nicht ausgeführt werden: '.$stmt->error);
     }
@@ -35,7 +36,7 @@ if (isset($_GET['androidrequest']) AND
         if (!$stmt = $db->prepare($sql)) {
             die ('Etwas stimmte mit dem Query 2 nicht: '.$db->error);
         }
-        $stmt->bind_param('s', $_POST['menutitle']);
+        $stmt->bind_param('s', $_GET['menutitle']);
         if (!$stmt->execute()) {
             die ('Query 2 konnte nicht ausgeführt werden: '.$stmt->error);
         }
@@ -69,7 +70,7 @@ if (isset($_GET['androidrequest']) AND
     $numOfRatings = 0;
     $totalStars = 0;
     while ($stmt->fetch()) {
-        $ratings[] = array('username' => $name,
+        $ratings['result']['content'][] = array('username' => $name,
                            'stars' => $stars,
                            'comment' => $comment);
         $totalStars += $stars;
@@ -79,9 +80,15 @@ if (isset($_GET['androidrequest']) AND
         $avgStars = ($totalStars / $numOfRatings);
     } else {
         $avgStars = -1;
-    }
+    } 
     
-    
+    $ratings['result']['avgstars'] = $avgStars;
     
     $stmt->close();
+    
+    echo "<pre>";    
+    echo indent(json_encode($ratings));
+    echo "</pre>";
+
+}
 ?>
