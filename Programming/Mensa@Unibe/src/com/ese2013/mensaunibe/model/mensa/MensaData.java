@@ -8,7 +8,6 @@ import android.util.Log;
 import com.ese2013.mensaunibe.model.api.ApiUrl;
 import com.ese2013.mensaunibe.model.api.DataRequest;
 import com.ese2013.mensaunibe.model.menu.MenuData;
-import com.memetix.mst.language.Language;
 
 
 public class MensaData {

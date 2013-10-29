@@ -1,9 +1,6 @@
 package com.ese2013.mensaunibe;
 
 import java.util.Calendar;
-import java.util.concurrent.ExecutionException;
-
-import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,19 +16,13 @@ import android.util.Log;
 import android.widget.Toast;
 import android.view.MenuItem;
 import android.view.Menu;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 
 import com.ese2013.mensaunibe.model.Model;
-import com.ese2013.mensaunibe.model.api.ApiUrl;
 import com.ese2013.mensaunibe.model.api.AppUtils;
+import com.ese2013.mensaunibe.model.api.ForceReloadTask;
 import com.ese2013.mensaunibe.model.api.LanguageChanger;
-import com.ese2013.mensaunibe.model.api.URLRequest;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
-import com.ese2013.mensaunibe.model.menu.DailyMenu;
-import com.ese2013.mensaunibe.model.menu.Menuplan;
 import com.ese2013.mensaunibe.MenuListAdapter;
 import com.memetix.mst.language.Language;
 
@@ -114,7 +105,6 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 
 	public class TabCollectionPagerAdapter extends FragmentPagerAdapter {
 		protected static final int FRAGMENT_COUNT = 2;
-		private Fragment fragment = null;
 		public TabCollectionPagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
@@ -127,7 +117,7 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 		@Override
 		public Fragment getItem(int position) {
 			Bundle args = new Bundle();
-
+			Fragment fragment = null;
 			switch (position) {
 			case 0:
 				fragment = new CurrentDayMenuFragment();
@@ -142,8 +132,8 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 			return fragment;
 		}
 		
-		public Fragment getActualFragment() {
-			return fragment;
+		public int getItemPosition(Object object) {
+		    return POSITION_NONE;
 		}
 	}
 
@@ -171,30 +161,14 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
-			case R.id.action_translate:
-				ListFragment f = (ListFragment) mTabCollectionPagerAdapter.getActualFragment();
-				MenuListAdapter adapter = (MenuListAdapter) f.getListAdapter();
-				
+			case R.id.action_translate:				
 				Mensa mensa = Model.getInstance().getMensaById(mMensaId);
 				if(mensa.getLanguage() != null && mensa.getLanguage().compareTo(Language.ENGLISH) == 0) {
-					Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "Refresh data...");
-					if( Model.getInstance().forceReload() ) {
-						Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "finished refresh data...");
-						//finish();
-						//startActivity(getIntent());			
-						adapter.update();
-						adapter.notifyDataSetChanged();
-						Toast.makeText(this,  "Data has been refreshed", Toast.LENGTH_SHORT).show();
-					} else {
-						Toast.makeText(this,  "Data could not be refreshed", Toast.LENGTH_SHORT).show();
-					}
+					ForceReloadTask task = new ForceReloadTask(this, mTabCollectionPagerAdapter);
+					task.execute();
 				} else {
-					LanguageChanger lc = new LanguageChanger(this, mensa);
-									
-					adapter.update();
-					adapter.notifyDataSetChanged();
-					
-					lc.setAdapter( adapter );
+					LanguageChanger lc = new LanguageChanger(this, mensa);					
+					lc.setAdapter(mTabCollectionPagerAdapter);
 					lc.execute();
 				}
 	    		return true;

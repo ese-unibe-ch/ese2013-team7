@@ -126,5 +126,4 @@ public class MensaListAdapter extends BaseAdapter {
 	public int getCount() {
 		return items.size();
 	}
-
 }

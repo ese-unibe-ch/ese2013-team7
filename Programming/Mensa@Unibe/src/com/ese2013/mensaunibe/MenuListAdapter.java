@@ -88,10 +88,6 @@ public class MenuListAdapter extends BaseAdapter{
 		holder.text.setText("");
 		holder.text.setVisibility(View.GONE);
 	}
-	
-	public void update() {
-		this.populate(mFirstOrAll);
-	}
 
 	private void populate(int firstOrAll) {
 		//fill
