@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.Menu;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.ese2013.mensaunibe.model.Model;
@@ -208,6 +209,9 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 					Toast.makeText(this, "Menus could not have been translated", Toast.LENGTH_SHORT).show();
 				}
 	    		return true;
+			case R.id.action_direction:
+				startActivity(new Intent(getApplicationContext(), MapActivity.class));
+				return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 		}
