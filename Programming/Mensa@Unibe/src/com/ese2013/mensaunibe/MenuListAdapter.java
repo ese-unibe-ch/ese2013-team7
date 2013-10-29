@@ -30,7 +30,6 @@ public class MenuListAdapter extends BaseAdapter{
 		super();
 		this.context = context;
 		this.resource = resource;
-		this.items = new ArrayList<ListItem>();
 		mMensaId = mensaId;
 		mFirstOrAll = firstOrAll;
 		attachListener();
@@ -89,9 +88,14 @@ public class MenuListAdapter extends BaseAdapter{
 		holder.text.setText("");
 		holder.text.setVisibility(View.GONE);
 	}
+	
+	public void update() {
+		this.populate(mFirstOrAll);
+	}
 
 	private void populate(int firstOrAll) {
 		//fill
+		this.items = new ArrayList<ListItem>();
 		boolean firstrun = true;
 		mMenus = Model.getInstance().getComingDaysMenu(mMensaId);
 		for(Menuplan m : mMenus) {

@@ -19,7 +19,6 @@ public class MenuData {
 	private static final String TAG = "MenuData";
 
 	private DataRequest rq;
-	private Language language;
 
 	public MenuData() {
 		rq = new DataRequest();
@@ -48,7 +47,6 @@ public class MenuData {
 			
 			for(int i = 0; i<menus.length(); i++) {
 				DailyMenuBuilder mb = new DailyMenuBuilder();
-				mb.setLanguage(this.language);
 				mb.parseJson( menus.getJSONObject(i) );
 				
 				DailyMenu menu = mb.create();
@@ -99,10 +97,5 @@ public class MenuData {
 			Log.e(TAG, e.getMessage());
 		}
 		return plan;
-	}
-
-	public void setLanguage(Language language) {
-		this.language = language;
-		
 	}
 }
