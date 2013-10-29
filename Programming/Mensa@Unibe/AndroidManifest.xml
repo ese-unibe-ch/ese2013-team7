@@ -3,10 +3,8 @@
     package="com.ese2013.mensaunibe"
     android:versionCode="1"
     android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="18" />
+	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="18" />		
+  
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -32,10 +30,11 @@
             android:label="@string/menu_list"
             android:parentActivityName="com.ese2013.mensaunibe.MensaActivity" >
         	<!-- Parent activity meta-data to support 4.0 and lower -->
-	        <meta-data
+	    
+        </activity>
+            <meta-data
 	           	android:name="com.google.android.maps.v2.API_KEY"
 	            android:value="AIzaSyCgQfyY6jguLrVkNJTkFnyZNjvYW3Y4Sbw" />
-        </activity>
     </application>
 
 </manifest>
