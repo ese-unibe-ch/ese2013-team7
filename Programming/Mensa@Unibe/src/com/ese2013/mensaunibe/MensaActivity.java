@@ -1,6 +1,7 @@
 package com.ese2013.mensaunibe;
 
 import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.MensaListAdapter;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.api.MyLocation;
 import com.google.android.gms.location.LocationClient;
@@ -19,15 +20,24 @@ import android.widget.Toast;
 
 
 public class MensaActivity extends ActionBarActivity implements MensaListFragment.OnListItemClickListener{
-	//private MyLocation mLocation;
+
+	private MyLocation mLocation;
+	private MensaListFragment fragment;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_mensa_list);
-		//if(mLocation == null) mLocation = new MyLocation(this);
-		Fragment fragment = getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
+		
+		if(mLocation == null){
+			mLocation = MyLocation.getInstance();
+			mLocation.setActivity(this);
+		}
+		
+		fragment = (MensaListFragment) getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
 		if (fragment == null) {
 			fragment = new MensaListFragment();
+			fragment.setMyLocation(mLocation);
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			ft.add(android.R.id.content, fragment, AppUtils.TAG_MENSALIST_FRAGMENT);
 			ft.commit();
@@ -65,8 +75,11 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 			Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "Refresh data...");
 			if( Model.getInstance().forceReload() ) {
 				Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "finished refresh data...");
-				finish();
-				startActivity(getIntent());
+				//finish();
+				//startActivity(getIntent());				
+				MensaListAdapter adapter = (MensaListAdapter) fragment.getListAdapter();
+				adapter.update();
+				adapter.notifyDataSetChanged();
 				Toast.makeText(this,  "Data has been refreshed", Toast.LENGTH_SHORT).show();
 			} else {
 				Toast.makeText(this,  "Data could not be refreshed", Toast.LENGTH_SHORT).show();
@@ -76,33 +89,33 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 			return super.onOptionsItemSelected(item);
 		}
 	}
-/*
+
 	@Override
 	public void onStop() {
-		mLocation.CallOnStop();
+		mLocation.callOnStop();
 		super.onStop();
 	}
 
 	@Override
 	public void onPause() {
-		mLocation.CallOnPause();
+		mLocation.callOnPause();
 		super.onPause();
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		mLocation.CallOnStart();
+		mLocation.callOnStart();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		mLocation.CallOnResume();
+		mLocation.callOnResume();
 	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		mLocation.CallOnActivityResult(requestCode, resultCode, intent);
-	}*/
+		mLocation.callOnActivityResult(requestCode, resultCode, intent);
+	}
 }

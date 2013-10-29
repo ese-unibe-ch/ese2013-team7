@@ -28,6 +28,7 @@
     <string name="added_to_favorites">added to favorites</string>
     <string name="removed_from_favorites">removed from favorites</string>
     <string name="action_direction">find Mensa Direction</string>
+    <string name="get_directions">get directions</string>
 
     <!-- Debug Messages -->
     <string name="connected">Client connected</string>

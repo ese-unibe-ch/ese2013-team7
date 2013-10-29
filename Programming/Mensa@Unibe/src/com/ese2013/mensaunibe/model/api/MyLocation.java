@@ -12,6 +12,9 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.ese2013.mensaunibe.App;
+import com.ese2013.mensaunibe.MensaActivity;
+import com.ese2013.mensaunibe.MensaListAdapter;
 import com.ese2013.mensaunibe.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -27,11 +30,13 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 
 	private static final String TAG = "MyLocation";
 	// A request to connect to Location Services
-	private LocationRequest mLocationRequest;
+	private static LocationRequest mLocationRequest;
 
 	// Stores the current instantiation of the location client in this object
-	private LocationClient mLocationClient;
+	private static LocationClient mLocationClient;
 
+	private static MensaActivity mFragActivity;
+	
 	// Handle to SharedPreferences for this app
 	SharedPreferences mPrefs;
 
@@ -45,14 +50,15 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 */
 	boolean mUpdatesRequested = false;
 
-	private FragmentActivity mFragActivity;
-	
-	public MyLocation(FragmentActivity fragAct){
-		mFragActivity = fragAct;
-
-		// Create a new global location parameters object
-		mLocationRequest = LocationRequest.create();
-
+	//private FragmentActivity mFragActivity;
+	private MensaListAdapter mMensaListAdapter;
+    private static MyLocation mySingelton = null;
+    
+    private MyLocation(){
+    	//mFragActivity = fragAct;
+    	// Create a new global location parameters object
+    	mLocationRequest = LocationRequest.create();
+    	
 		/*
 		 * Set the update interval
 		 */
@@ -68,7 +74,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		mUpdatesRequested = true;
 
 		// Open Shared Preferences
-		mPrefs = mFragActivity.getSharedPreferences(AppUtils.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+		mPrefs = App.getAppContext().getSharedPreferences(AppUtils.SHARED_PREFERENCES, Context.MODE_PRIVATE);
 
 		// Get an editor
 		mEditor = mPrefs.edit();
@@ -77,20 +83,26 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		 * Create a new location client, using the enclosing class to
 		 * handle callbacks.
 		 */
-		mLocationClient = new LocationClient(mFragActivity, this, this);
-
+		mLocationClient = new LocationClient(App.getAppContext(), this, this);
+		
+    }
+ 
+	public static  MyLocation getInstance (){
+		if (mySingelton == null)
+            mySingelton = new MyLocation();
+		 return mySingelton;
 	}
 
 	/*
 	 * Called when the Activity is no longer visible at all.
 	 * Stop updates and disconnect.
 	 */
-	public void CallOnStop() {
+	public void callOnStop() {
 		// If the client is connected
 		if (mLocationClient.isConnected()) {
 			stopPeriodicUpdates();
 		}
-
+		if (mMensaListAdapter != null) mMensaListAdapter.locationReady(false);
 		// After disconnect() is called, the client is considered "dead".
 		mLocationClient.disconnect();
 	}
@@ -99,27 +111,27 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 * Called when the Activity is going into the background.
 	 * Parts of the UI may be visible, but the Activity is inactive.
 	 */
-	public void CallOnPause() {
+	public void callOnPause() {
 		// Save the current setting for updates
 		mEditor.putBoolean(AppUtils.KEY_UPDATES_REQUESTED, mUpdatesRequested);
 		mEditor.commit();
+		if (mMensaListAdapter != null) mMensaListAdapter.locationReady(false);
 	}
 
 	/*
 	 * Called when the Activity is restarted, even before it becomes visible.
 	 */
-	public void CallOnStart() {
+	public void callOnStart() {
 		/*
 		 * Connect the client. Don't re-start any requests here;
 		 * instead, wait for onResume()
 		 */
 		mLocationClient.connect();
-
 	}
 	/*
 	 * Called when the system detects that this Activity is now visible.
 	 */
-	public void CallOnResume() {
+	public void callOnResume() {
 		// If the app already has a setting for getting location updates, get it
 		if (mPrefs.contains(AppUtils.KEY_UPDATES_REQUESTED)) {
 			mUpdatesRequested = mPrefs.getBoolean(AppUtils.KEY_UPDATES_REQUESTED, true);
@@ -138,7 +150,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 * start an Activity that handles Google Play services problems. The result of this
 	 * call returns here, to onActivityResult.
 	 */
-	public void CallOnActivityResult(int requestCode, int resultCode, Intent intent) {
+	public void callOnActivityResult(int requestCode, int resultCode, Intent intent) {
 
 		// Choose what to do based on the request code
 		switch (requestCode) {
@@ -151,13 +163,13 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 			case Activity.RESULT_OK:
 
 				// Log the result
-				Log.d(TAG, mFragActivity.getString(R.string.resolved));
+				Log.d(TAG, App.getAppContext().getString(R.string.resolved));
 				break;
 
 				// If any other result was returned by Google Play services
 			default:
 				// Log the result
-				Log.d(TAG, mFragActivity.getString(R.string.no_resolution));
+				Log.d(TAG, App.getAppContext().getString(R.string.no_resolution));
 				break;
 			}
 
@@ -165,7 +177,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		default:
 			// Report that this Activity received an unknown requestCode
 			Log.d(TAG,
-					mFragActivity.getString(R.string.unknown_activity_request_code, requestCode));
+					App.getAppContext().getString(R.string.unknown_activity_request_code, requestCode));
 			break;
 		}
 	}
@@ -179,12 +191,12 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 
 		// Check that Google Play services is available
 		int resultCode =
-				GooglePlayServicesUtil.isGooglePlayServicesAvailable(mFragActivity);
+				GooglePlayServicesUtil.isGooglePlayServicesAvailable(App.getAppContext());
 
 		// If Google Play services is available
 		if (ConnectionResult.SUCCESS == resultCode) {
 			// In debug mode, log the status
-			Log.d(TAG, mFragActivity.getString(R.string.play_services_available));
+			Log.d(TAG, App.getAppContext().getString(R.string.play_services_available));
 
 			// Continue
 			return true;
@@ -201,13 +213,6 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		}
 	}
 
-	/**
-	 * Invoked by the "Get Location" button.
-	 *
-	 * Calls getLastLocation() to get the current location
-	 *
-	 * @param v The view object associated with this method, in this case a Button.
-	 */
 	public Location getLocation() {
 		// If Google Play Services is available
 		if (servicesConnected()) {
@@ -225,9 +230,14 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 */
 	@Override
 	public void onConnected(Bundle bundle) {
-		Log.d(TAG, mFragActivity.getString(R.string.connected));
+		Log.d(TAG, App.getAppContext().getString(R.string.connected));
 		if (mUpdatesRequested) {
 			startPeriodicUpdates();
+		}
+
+		if (mMensaListAdapter != null){
+			mMensaListAdapter.locationReady(true);
+			mMensaListAdapter.notifyDataSetChanged();
 		}
 	}
 
@@ -237,7 +247,8 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 */
 	@Override
 	public void onDisconnected() {
-		Log.d(TAG, mFragActivity.getString(R.string.disconnected));
+		Log.d(TAG, App.getAppContext().getString(R.string.disconnected));
+		if (mMensaListAdapter != null) mMensaListAdapter.locationReady(false);
 	}
 
 	/*
@@ -286,10 +297,12 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	@Override
 	public void onLocationChanged(Location location) {
 
-		Log.d(TAG, mFragActivity.getString(R.string.location_updated));
+		Log.d(TAG, App.getAppContext().getString(R.string.location_updated));
 
-		// In the UI, set the latitude and longitude to the value received
-		//mLatLng.setText(LocationUtils.getLatLng(this, location));
+		if (mMensaListAdapter != null){
+			mMensaListAdapter.locationReady(true);
+			mMensaListAdapter.notifyDataSetChanged();
+		}
 	}
 
 	/**
@@ -297,9 +310,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 * to Location Services
 	 */
 	private void startPeriodicUpdates() {
-
 		mLocationClient.requestLocationUpdates(mLocationRequest, this);
-		Log.d(TAG, mFragActivity.getString(R.string.location_requested));
 	}
 
 	/**
@@ -308,7 +319,6 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 */
 	private void stopPeriodicUpdates() {
 		mLocationClient.removeLocationUpdates(this);
-		Log.d(TAG, mFragActivity.getString(R.string.location_updates_stopped));
 	}
 
 	/**
@@ -372,5 +382,15 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			return mDialog;
 		}
+	}
+
+	public void setAdapter(MensaListAdapter mensaListAdapter) {
+		mMensaListAdapter = mensaListAdapter;
+		
+	}
+
+	public void setActivity(MensaActivity mensaActivity) {
+		mFragActivity = mensaActivity;
+		
 	}
 }

@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.Menu;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.ese2013.mensaunibe.model.Model;
@@ -145,11 +144,12 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		Language lang = Model.getInstance().getLanguage();
+		//sorry, had to comment out. I couldn't find out why item is always null for me in ComingDaysMenuFragment
 		MenuItem item = menu.findItem(R.id.action_translate);
 		if(lang != null && lang.compareTo(Language.GERMAN) != 0) {
-			item.setTitle(getString(R.string.action_translate_to_german));
+			//item.setTitle(getString(R.string.action_translate_to_german));
 		} else {
-			item.setTitle(getString(R.string.action_translate_to_english));
+			//item.setTitle(getString(R.string.action_translate_to_english));
 		}
 		return true;
 	}
@@ -207,8 +207,6 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 				} else {
 					Toast.makeText(this, "Menus could not have been translated", Toast.LENGTH_SHORT).show();
 				}
-			case R.id.action_direction:
-				startActivity(new Intent(getApplicationContext(), MapActivity.class));
 	    		return true;
 	        default:
 	            return super.onOptionsItemSelected(item);

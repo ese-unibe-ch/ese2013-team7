@@ -42,7 +42,7 @@ public class MensaData {
 				MenuData md = new MenuData();
 				md.setLanguage(this.language);
 				mensa.setWeeklyMenu( md.getWeeklyMenuList( mensa.getId() ) );
-				Log.i(TAG, mensa.toString());
+				//Log.i(TAG, mensa.toString());
 				mensas.add( mensa );
 			}
 		}

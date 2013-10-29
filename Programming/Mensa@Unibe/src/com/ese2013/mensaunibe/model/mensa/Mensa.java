@@ -107,6 +107,10 @@ public class Mensa implements ListItem {
 		pr.writePreference(b, id);
 	}
 	
+	public Location getLocation(){
+		return location;
+	}
+	
 	public String getDistance(MyLocation myLocation){
 		float distanceInMeters = location.distanceTo(myLocation.getLocation());
 		String meters = formatDist(distanceInMeters);
@@ -115,11 +119,11 @@ public class Mensa implements ListItem {
 
 	private static String formatDist(float meters) {
 		if (meters < 1000) {
-			return ((int) meters) + "m";
+			return ((int) meters) + " m";
 		} else if (meters < 10000) {
-			return formatDec(meters / 1000f, 1) + "km";
+			return formatDec(meters / 1000f, 1) + " km";
 		} else {
-			return ((int) (meters / 1000f)) + "km";
+			return ((int) (meters / 1000f)) + " km";
 		}
 	}
 	

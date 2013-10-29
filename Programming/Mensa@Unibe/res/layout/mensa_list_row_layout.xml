@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
- 
+    android:layout_height="match_parent" >
+
+    <ToggleButton
+        android:id="@+id/tgl_favorite"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/star_toggle_button"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:focusable="false"
+        android:padding="5dp"
+        android:layout_marginLeft="5dp"
+        android:textOff=""
+        android:textOn="" />
+
     <TextView
         android:id="@+id/mensa_list_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/tgl_favorite"
         android:paddingLeft="5dp" />
- 
-	<ToggleButton
- 		android:id="@+id/tgl_favorite"
- 		android:layout_width="48dp"
-		android:layout_height="48dp"
-		android:background="@drawable/star_toggle_button"   
-    	android:layout_alignParentRight="true"	    
-	    android:textOff=""
-	    android:textOn=""
-	    android:focusable="false"
-	    android:clickable="true"
-	 />
+
+    <TextView
+        android:id="@+id/mensa_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/get_directions"
+        android:drawableTop="@drawable/ic_location_directions"
+        android:padding="5dp"
+        android:layout_marginRight="10dp" />
+
 </RelativeLayout>
