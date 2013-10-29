@@ -19,15 +19,23 @@ import android.widget.Toast;
 
 
 public class MensaActivity extends ActionBarActivity implements MensaListFragment.OnListItemClickListener{
-	//private MyLocation mLocation;
+
+	private MyLocation mLocation;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_mensa_list);
-		//if(mLocation == null) mLocation = new MyLocation(this);
-		Fragment fragment = getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
+		
+		if(mLocation == null){
+			mLocation = MyLocation.getInstance();
+			mLocation.setActivity(this);
+		}
+		
+		MensaListFragment fragment = (MensaListFragment) getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
 		if (fragment == null) {
 			fragment = new MensaListFragment();
+			fragment.setMyLocation(mLocation);
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			ft.add(android.R.id.content, fragment, AppUtils.TAG_MENSALIST_FRAGMENT);
 			ft.commit();
@@ -76,33 +84,33 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 			return super.onOptionsItemSelected(item);
 		}
 	}
-/*
+
 	@Override
 	public void onStop() {
-		mLocation.CallOnStop();
+		mLocation.callOnStop();
 		super.onStop();
 	}
 
 	@Override
 	public void onPause() {
-		mLocation.CallOnPause();
+		mLocation.callOnPause();
 		super.onPause();
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		mLocation.CallOnStart();
+		mLocation.callOnStart();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		mLocation.CallOnResume();
+		mLocation.callOnResume();
 	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		mLocation.CallOnActivityResult(requestCode, resultCode, intent);
-	}*/
+		mLocation.callOnActivityResult(requestCode, resultCode, intent);
+	}
 }

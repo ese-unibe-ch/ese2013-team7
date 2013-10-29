@@ -140,9 +140,9 @@ public class MenuListAdapter extends BaseAdapter{
 	}
 
 	static class ViewHolder {
-		public TextView date;
-		public TextView title;
-		public TextView text;
+		private TextView date;
+		private TextView title;
+		private TextView text;
 	}
 
 }
