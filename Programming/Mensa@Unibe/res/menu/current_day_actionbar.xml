@@ -21,4 +21,8 @@
           android:title="@string/action_settings"
           mensaApp:showAsAction="never"
           android:orderInCategory="5" />
+    <item android:id="@+id/action_direction"
+          android:icon="@drawable/ic_action_direction"
+          android:title="@string/action_direction"
+          mensaApp:showAsAction="ifRoom" />
 </menu>
