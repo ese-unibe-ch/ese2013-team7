@@ -45,7 +45,7 @@ public class MensaInfoDialogFragment extends DialogFragment {
     
     private String buildMessage(){
     	String message = getString(R.string.address) + ":\n";
-    		message += mMensa.getStreet() + ", ";
+    		message += mMensa.getStreet() + ",\n";
     		message += mMensa.getPlz();
     	return message;
     }
