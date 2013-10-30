@@ -3,22 +3,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.w3c.dom.Document;
-
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 
 import com.ese2013.mensaunibe.model.api.GetDirectionsAsyncTask;
 import com.ese2013.mensaunibe.model.api.GetMapDirection;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -28,7 +21,6 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import android.support.v7.app.ActionBarActivity;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class MapActivity extends ActionBarActivity {
 		private final LatLng mensaLocation= new LatLng(46.94824814351828, 7.440162956845597);
 		private GoogleMap map;
@@ -41,7 +33,7 @@ public class MapActivity extends ActionBarActivity {
 	    ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
-	    map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+	    map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 	    Marker mensaMarker = map.addMarker(new MarkerOptions().position(mensaLocation));
 	    
 	   

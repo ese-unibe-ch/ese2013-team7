@@ -2,10 +2,8 @@ package com.ese2013.mensaunibe.model.api;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -35,26 +33,14 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	private static LocationClient mLocationClient;
 
 	private static MensaActivity mFragActivity;
-	
-	// Handle to SharedPreferences for this app
-	SharedPreferences mPrefs;
 
-	// Handle to a SharedPreferences editor
-	SharedPreferences.Editor mEditor;
-
-	/*
-	 * Note if updates have been turned on. Starts out as "false"; is set to "true" in the
-	 * method handleRequestSuccess of LocationUpdateReceiver.
-	 *
-	 */
 	boolean mUpdatesRequested = false;
 
-	//private FragmentActivity mFragActivity;
 	private MensaListAdapter mMensaListAdapter;
     private static MyLocation mySingelton = null;
     
     private MyLocation(){
-    	//mFragActivity = fragAct;
+
     	// Create a new global location parameters object
     	mLocationRequest = LocationRequest.create();
     	
@@ -71,12 +57,6 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 
 		// Turn on location updates
 		mUpdatesRequested = true;
-
-		// Open Shared Preferences
-		mPrefs = App.getAppContext().getSharedPreferences(AppUtils.SHARED_PREFERENCES, Context.MODE_PRIVATE);
-
-		// Get an editor
-		mEditor = mPrefs.edit();
 
 		/*
 		 * Create a new location client, using the enclosing class to
@@ -101,7 +81,6 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		if (mLocationClient.isConnected()) {
 			stopPeriodicUpdates();
 		}
-		if (mMensaListAdapter != null) mMensaListAdapter.locationReady(false);
 		// After disconnect() is called, the client is considered "dead".
 		mLocationClient.disconnect();
 	}
@@ -111,9 +90,6 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 * Parts of the UI may be visible, but the Activity is inactive.
 	 */
 	public void callOnPause() {
-		// Save the current setting for updates
-		mEditor.putBoolean(AppUtils.KEY_UPDATES_REQUESTED, mUpdatesRequested);
-		mEditor.commit();
 		if (mMensaListAdapter != null) mMensaListAdapter.locationReady(false);
 	}
 
@@ -131,15 +107,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 * Called when the system detects that this Activity is now visible.
 	 */
 	public void callOnResume() {
-		// If the app already has a setting for getting location updates, get it
-		if (mPrefs.contains(AppUtils.KEY_UPDATES_REQUESTED)) {
-			mUpdatesRequested = mPrefs.getBoolean(AppUtils.KEY_UPDATES_REQUESTED, true);
-
-			// Otherwise, turn off location updates until requested
-		} else {
-			mEditor.putBoolean(AppUtils.KEY_UPDATES_REQUESTED, true);
-			mEditor.commit();
-		}
+		mUpdatesRequested = true;
 	}
 
 	/*
@@ -233,10 +201,10 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		if (mUpdatesRequested) {
 			startPeriodicUpdates();
 		}
-
 		if (mMensaListAdapter != null){
 			mMensaListAdapter.locationReady(true);
 			mMensaListAdapter.notifyDataSetChanged();
+			mMensaListAdapter.locationReady(false);
 		}
 	}
 

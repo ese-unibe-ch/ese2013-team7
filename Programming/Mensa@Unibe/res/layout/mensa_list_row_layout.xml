@@ -34,6 +34,7 @@
         android:contentDescription="@string/get_directions"
         android:drawableTop="@drawable/ic_location_directions"
         android:padding="5dp"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp" 
+        android:visibility="gone"/>
 
 </RelativeLayout>

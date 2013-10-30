@@ -68,6 +68,7 @@ public class MensaListAdapter extends BaseAdapter {
 			else favorite.setChecked(false);
 			favorite.setOnCheckedChangeListener(new FavoriteOnClickListener(mensa,favorite,this));
 			if(locationReady){
+				distance.setVisibility(View.VISIBLE);
 				distance.setText(mensa.getDistance(mLocation));
 				Log.v("Distance of " +mensa.getName(), mensa.getDistance(mLocation));
 			}

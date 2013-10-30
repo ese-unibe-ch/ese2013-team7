@@ -40,7 +40,7 @@ import android.widget.Toast;
 */
 		@Override
 		public void onPostExecute(ArrayList<LatLng> result) {
-		    progressDialog.dismiss();
+		    if (progressDialog != null) progressDialog.dismiss();
 
 		    if (exception == null) {
 		        activity.handleGetDirectionsResult(result);
