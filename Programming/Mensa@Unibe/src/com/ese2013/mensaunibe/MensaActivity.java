@@ -3,6 +3,7 @@ package com.ese2013.mensaunibe;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.MensaListAdapter;
 import com.ese2013.mensaunibe.model.api.AppUtils;
+import com.ese2013.mensaunibe.model.api.ForceReloadTask;
 import com.ese2013.mensaunibe.model.api.MyLocation;
 
 import android.content.Intent;
@@ -12,7 +13,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 
 
@@ -69,15 +69,8 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 		switch (item.getItemId()) {
 		case R.id.action_refresh:
 			Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "Refresh data...");
-			if( Model.getInstance().forceReload() ) {
-				Log.v(AppUtils.TAG_MENSALIST_FRAGMENT, "finished refresh data...");			
-				MensaListAdapter adapter = (MensaListAdapter) fragment.getListAdapter();
-				adapter.update();
-				adapter.notifyDataSetChanged();
-				Toast.makeText(this,  "Data has been refreshed", Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(this,  "Data could not be refreshed", Toast.LENGTH_SHORT).show();
-			}
+			ForceReloadTask task = new ForceReloadTask(this, (MensaListAdapter) fragment.getListAdapter());
+			task.execute();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

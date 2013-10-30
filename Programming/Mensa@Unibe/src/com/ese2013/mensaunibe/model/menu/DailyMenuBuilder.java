@@ -9,9 +9,6 @@ import org.json.JSONArray;
 import android.util.Log;
 
 import com.ese2013.mensaunibe.model.MenuDate;
-import com.ese2013.mensaunibe.model.api.Translation;
-import com.memetix.mst.language.Language;
-
 public class DailyMenuBuilder {
 	private static final String TAG = "DailyMenuBuilder";
 	private String title;
