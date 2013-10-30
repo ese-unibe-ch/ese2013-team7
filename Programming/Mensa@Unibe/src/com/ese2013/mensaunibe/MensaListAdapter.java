@@ -113,7 +113,6 @@ public class MensaListAdapter extends BaseAdapter {
 		if(mensas.size() == 0) Toast.makeText(this.context, "No data available. Please refresh.", Toast.LENGTH_LONG).show();
 	}
 
-
 	public Mensa getItem(int position) {
 		if( items.get(position).isSection() ) return null;
 		return (Mensa) items.get(position);
