@@ -147,8 +147,8 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		Language lang = Model.getInstance().getMensaById(mMensaId).getLanguage();
-		//sorry, had to comment out. I couldn't find out why item is always null for me in ComingDaysMenuFragment
 		MenuItem item = menu.findItem(R.id.action_translate);
+		//had to check if item is null, because for me in ComingDaysMenuFragment is always null
 		if(lang != null && lang.compareTo(Language.GERMAN) != 0 && item != null) {
 			item.setTitle(getString(R.string.action_translate_to_german));
 		} else if (item != null) {
