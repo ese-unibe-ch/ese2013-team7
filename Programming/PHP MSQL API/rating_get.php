@@ -85,10 +85,8 @@ if (isset($_GET['androidrequest']) AND
     $ratings['result']['avgstars'] = $avgStars;
     
     $stmt->close();
-    
-    echo "<pre>";    
-    echo indent(json_encode($ratings));
-    echo "</pre>";
+    echo json_encode($ratings);    
+    //echo indent(json_encode($ratings));
 
 }
 ?>
