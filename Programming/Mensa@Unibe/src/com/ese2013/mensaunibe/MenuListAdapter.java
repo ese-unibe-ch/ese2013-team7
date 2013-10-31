@@ -3,12 +3,12 @@ package com.ese2013.mensaunibe;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -93,10 +93,12 @@ public class MenuListAdapter extends BaseAdapter{
 		
 		@Override
 		public void onClick(View view) {
-			// TODO Auto-generated method stub
-			Log.v("MenuListadapter","onclick: "+title);
+			Log.v("MenuListAdapter","onclick: "+title);
+			Intent intent = new Intent();
+			intent.setClassName(context.getPackageName(), context.getPackageName()+".RatingActivity");
+			intent.putExtra("menu", this.title);
+			context.startActivity(intent);
 		}
-	
 	}
 
 	private void clearHolder(ViewHolder holder) {

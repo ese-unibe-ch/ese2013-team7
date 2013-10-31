@@ -42,5 +42,8 @@
     <string name="location_requested">Periodic updates requested</string>
     <string name="location_updated">Location updated</string>
     <string name="location_updates_stopped">Periodic updates stopped</string>
-	<string name="error_when_retrieving_data">error when retrieving DATA</string>
+    <string name="error_when_retrieving_data">error when retrieving DATA</string>
+    <string name="title_activity_rating">RatingActivity</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

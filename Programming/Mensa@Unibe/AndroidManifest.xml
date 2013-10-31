@@ -3,15 +3,21 @@
     package="com.ese2013.mensaunibe"
     android:versionCode="1"
     android:versionName="1.0" >
-	<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="18" />		
-  
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	
-    <application android:name="com.ese2013.mensaunibe.App"
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.ese2013.mensaunibe.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -29,20 +35,27 @@
             android:name="com.ese2013.mensaunibe.MenuActivity"
             android:label="@string/menu_list"
             android:parentActivityName="com.ese2013.mensaunibe.MensaActivity" >
-        	<!-- Parent activity meta-data to support 4.0 and lower -->
-	    
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+
         </activity>
-        
         <activity
             android:name="com.ese2013.mensaunibe.MapActivity"
             android:label="@string/map_activity"
             android:parentActivityName="com.ese2013.mensaunibe.MapActivity" >
-        	<!-- Parent activity meta-data to support 4.0 and lower -->
-	    
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+
         </activity>
-            <meta-data
-	           	android:name="com.google.android.maps.v2.API_KEY"
-	            android:value="AIzaSyCgQfyY6jguLrVkNJTkFnyZNjvYW3Y4Sbw" />
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCgQfyY6jguLrVkNJTkFnyZNjvYW3Y4Sbw" />
+
+        <activity
+            android:name="com.ese2013.mensaunibe.RatingActivity"
+            android:label="@string/title_activity_rating" >
+        </activity>
     </application>
 
 </manifest>
