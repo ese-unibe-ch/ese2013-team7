@@ -3,9 +3,12 @@ package com.ese2013.mensaunibe;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -75,9 +78,25 @@ public class MenuListAdapter extends BaseAdapter{
 			holder.title.setVisibility(View.VISIBLE);
 			holder.text.setText(dm.getMenu());
 			holder.text.setVisibility(View.VISIBLE);
-
+			
+			view.setOnClickListener( new MenuOnClickListener( dm.getMenu() ) );
+			//OnItemClickListener n = new OnItemClickListener();
 		}
 		return view;
+	}
+	
+	private class MenuOnClickListener implements OnClickListener {
+		private String title;
+		public MenuOnClickListener(String title) {
+			this.title = title;
+		}
+		
+		@Override
+		public void onClick(View view) {
+			// TODO Auto-generated method stub
+			Log.v("MenuListadapter","onclick: "+title);
+		}
+	
 	}
 
 	private void clearHolder(ViewHolder holder) {
