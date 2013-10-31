@@ -11,7 +11,7 @@
     <string name="mensa_list_favorites">Favorite Mensas</string>
     <string name="mensa_list_header">Mensas</string>
     <string name="action_mensainfo">Mensa Information</string>
-    <string name="comingDaysTabTitle">Soon</string>
+    <string name="soon">Soon</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="Monday">Monday</string>
@@ -25,11 +25,12 @@
     <string name="from">from</string>
     <string name="action_translate_to_german">Translate to German</string>
     <string name="action_translate_to_english">Translate to English</string>
-    <string name="empty_menu_list">No menu available</string>
     <string name="added_to_favorites">added to favorites</string>
     <string name="removed_from_favorites">removed from favorites</string>
     <string name="action_direction">find Mensa Direction</string>
     <string name="get_directions">get directions</string>
+    <string name="ok">OK</string>
+    <string name="address">Address</string>
 
     <!-- Debug Messages -->
     <string name="connected">Client connected</string>

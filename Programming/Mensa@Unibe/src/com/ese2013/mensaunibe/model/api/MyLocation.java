@@ -66,7 +66,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		
     }
  
-	public static  MyLocation getInstance (){
+	public static  MyLocation getInstance(){
 		if (mySingelton == null)
             mySingelton = new MyLocation();
 		 return mySingelton;

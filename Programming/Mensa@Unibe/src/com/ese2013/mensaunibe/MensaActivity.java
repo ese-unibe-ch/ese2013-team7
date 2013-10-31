@@ -1,6 +1,5 @@
 package com.ese2013.mensaunibe;
 
-import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.MensaListAdapter;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.api.ForceReloadTask;
@@ -44,8 +43,6 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.actionbar_mensa_list, menu);
-
-		//MenuItem shareItem = menu.findItem(R.id.action_share);
 		return super.onCreateOptionsMenu(menu);
 
 	}
