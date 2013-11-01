@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.ese2013.mensaunibe.MenuListAdapter.ViewHolder;
 import com.ese2013.mensaunibe.model.menu.Rating;
 
 
@@ -36,21 +38,31 @@ public class RatingListAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
-		if(view == null) inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-		view = inflater.inflate(this.resource, parent, false);
-
-		//TextView textView=(TextView) view.findViewById(android.R.id.text1);
-		TextView textView=(TextView) view.findViewById(R.id.rating_list_row);
-		//ListItem item = items.get(position);
-		Rating rating = items.get(position);
-
+		if(view == null) {
+			inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			ViewHolder viewHolder = new ViewHolder();
+			view = inflater.inflate(this.resource, parent, false);
+			viewHolder.user = (TextView) view.findViewById(R.id.rating_user);
+			viewHolder.text = (TextView) view.findViewById(R.id.rating_text);
+			viewHolder.rating = (RatingBar) view.findViewById(R.id.rating_stars);
+			view.setTag(viewHolder);
+		}
 		
-		//Mensa mensa = (Mensa)item;
-		/*YOUR CHOICE OF COLOR*/
-		textView.setTextColor(Color.BLACK);
-		textView.setText( rating.getNickname()+"\n"+rating.getText() );
+		ViewHolder holder = (ViewHolder) view.getTag();
+		clearHolder(holder);
+		
+		view.setClickable(false);
+		view.setFocusable(false);
 
+		Rating rating = items.get(position);
+		
+		holder.user.setText(rating.getNickname());
+		holder.user.setVisibility(View.VISIBLE);
+		holder.text.setText(rating.getText());
+		holder.text.setVisibility(View.VISIBLE);
+		holder.rating.setRating(rating.getRating());
+		holder.rating.setVisibility(View.VISIBLE);
+		
 		return view;
 	}
 
@@ -77,5 +89,20 @@ public class RatingListAdapter extends BaseAdapter {
 
 	public int getCount() {
 		return items.size();
+	}
+	
+	static class ViewHolder {
+		public TextView user;
+		public TextView text;
+		public RatingBar rating;
+	}
+	
+	private void clearHolder(ViewHolder holder) {
+		holder.rating.setRating(0);
+		holder.rating.setVisibility(View.GONE);
+		holder.user.setText("");
+		holder.user.setVisibility(View.GONE);
+		holder.text.setText("");
+		holder.text.setVisibility(View.GONE);
 	}
 }

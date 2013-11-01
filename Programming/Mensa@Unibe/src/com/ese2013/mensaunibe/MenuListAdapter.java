@@ -151,8 +151,10 @@ public class MenuListAdapter extends BaseAdapter{
 	}
 
 	@Override
-	public Object getItem(int arg0) {
-		// TODO Auto-generated method stub
+	public DailyMenu getItem(int position) {
+		if(!items.get(position).isSection()) {
+			return (DailyMenu) items.get(position);
+		}
 		return null;
 	}
 
