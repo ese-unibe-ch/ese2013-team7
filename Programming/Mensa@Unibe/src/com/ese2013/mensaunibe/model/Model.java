@@ -3,9 +3,14 @@ package com.ese2013.mensaunibe.model;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import android.content.Context;
+
+import com.ese2013.mensaunibe.RatingListAdapter;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.mensa.MensaData;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
+import com.ese2013.mensaunibe.model.menu.Rating;
+import com.ese2013.mensaunibe.model.menu.RatingData;
 import com.memetix.mst.language.Language;
 
 public class Model {
@@ -46,6 +51,12 @@ public class Model {
 			if(m.getId() == mensaId) return m;
 		}
 		return null;
+	}
+	
+	public void loadMenuRating(Context context, RatingListAdapter adapter, String menu, int type) {
+		RatingData rd = new RatingData(context, menu, type);
+		rd.setAdapter(adapter);
+		rd.execute();
 	}
 
 	//check for one week

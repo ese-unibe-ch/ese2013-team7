@@ -1,6 +1,8 @@
 package com.ese2013.mensaunibe;
 
+import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.AppUtils;
+import com.ese2013.mensaunibe.model.menu.RatingData;
 
 import android.app.Activity;
 //import android.graphics.Color;
@@ -37,6 +39,8 @@ public class RatingListFragment extends ListFragment{
 		//MensaListAdapter adapter = new MensaListAdapter(getActivity(), android.R.layout.simple_list_item_1);
 		RatingListAdapter adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout, this.mMensaId, this.menu);
 		setListAdapter(adapter);
+		//Model.getInstance().loadMenuRating(getActivity(), adapter, menu, RatingData.TYPE_LOAD);
+		
 		//have to check android.app.LoaderManager
 		//i think we could use it
 		//setListShown(false);

@@ -66,14 +66,11 @@ public class RatingListAdapter extends BaseAdapter {
 		return view;
 	}
 
-	public void update() {
-		populate();
-	}
-
-
 	private void populate() {
 		//fill
 		items = new ArrayList<Rating>();
+		//RatingData rd = new RatingData(this, this.mMenu);
+		//rd.execute();
 		items.add( new Rating("Nickname", "Bewärtig und so", 1) );
 	}
 

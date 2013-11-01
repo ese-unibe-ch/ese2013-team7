@@ -8,4 +8,7 @@ public class ApiUrl {
 	public final static String API_NEXT_WEEK_MENU = "http://mensa.xonix.ch/v1/mensas/%d/weeklyplan/%d?tok="+API_TOKEN;
 	
 	public static final String API_TYP_MENSA = "MENSA";
+	
+	public static final String API_RATING_GET = "http://ese.andi-hohler.ch/";
+	public static final String API_RATING_POST = "http://ese.andi-hohler.ch/";
 }
