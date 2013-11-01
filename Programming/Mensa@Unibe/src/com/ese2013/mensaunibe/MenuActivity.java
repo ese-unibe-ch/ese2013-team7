@@ -13,8 +13,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.widget.Toast;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.app.AlertDialog;
@@ -143,9 +141,12 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 
 	@Override
 	public void updateTiteListener(String tabTitle, int firstMenu) {
-		Tab tab = getSupportActionBar().getTabAt(firstMenu);
-		tab.setText("");
-		tab.setText(tabTitle);
+		ActionBar actionBar = getSupportActionBar();
+		if( actionBar.getNavigationMode() == ActionBar.NAVIGATION_MODE_TABS) {
+			Tab tab = getSupportActionBar().getTabAt(firstMenu);
+			tab.setText("");
+			tab.setText(tabTitle);
+		}
 	}
 	
 	@Override

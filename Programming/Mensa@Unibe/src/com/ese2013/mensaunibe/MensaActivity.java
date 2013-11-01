@@ -59,7 +59,7 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 		intent.putExtra("int_value", mensaId);
 		startActivity(intent);		              
 		//}
-}
+	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items

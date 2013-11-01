@@ -1,4 +1,11 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mensaApp="http://schemas.android.com/apk/res-auto">
+	
+	<item android:id="@+id/action_rate"
+          android:icon="@drawable/ic_action_new"
+          android:title="@string/action_rate"
+          mensaApp:showAsAction="ifRoom"
+          android:orderInCategory="1"/>
 
     <item
         android:id="@+id/action_settings"

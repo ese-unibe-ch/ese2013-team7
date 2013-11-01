@@ -93,10 +93,10 @@ public class MenuListAdapter extends BaseAdapter{
 		
 		@Override
 		public void onClick(View view) {
-			Log.v("MenuListAdapter","onclick: "+title);
 			Intent intent = new Intent();
 			intent.setClassName(context.getPackageName(), context.getPackageName()+".RatingActivity");
 			intent.putExtra("menu", this.title);
+			intent.putExtra(AppUtils.MENSA_ID, mMensaId);
 			context.startActivity(intent);
 		}
 	}

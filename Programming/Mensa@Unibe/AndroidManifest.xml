@@ -54,7 +54,8 @@
 
         <activity
             android:name="com.ese2013.mensaunibe.RatingActivity"
-            android:label="@string/title_activity_rating" >
+            android:label="@string/title_activity_rating"
+            android:parentActivityName="com.ese2013.mensaunibe.ratingActivity" >
         </activity>
     </application>
 

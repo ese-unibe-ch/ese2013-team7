@@ -31,6 +31,8 @@
     <string name="get_directions">get directions</string>
     <string name="ok">OK</string>
     <string name="address">Address</string>
+    <string name="menurating_title">Rating of</string>
+    <string name="action_rate">Rate the menu</string>
 
     <!-- Debug Messages -->
     <string name="connected">Client connected</string>

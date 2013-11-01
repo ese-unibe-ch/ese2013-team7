@@ -51,6 +51,7 @@ public final class AppUtils {
     public static final String TAG_MENSA_INFO_DIALOG = "MENSA_INFO_DIALOG";
     
     public static final String TAG_MENSALIST_FRAGMENT ="MensaListFragment_tag";
+    public static final String TAG_RATINGLIST_FRAGMENT ="RatingListFragment_tag";
     
     public static final String TAG_CURRENT_DAY_MENU_FRAGMENT = "CURRENT_DAY_MENU_FRAGMENT";
     
