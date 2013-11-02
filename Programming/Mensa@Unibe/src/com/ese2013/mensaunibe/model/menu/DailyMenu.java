@@ -10,6 +10,7 @@ public class DailyMenu implements ListItem{
 	private MenuDate date;
 	
 	public DailyMenu(DailyMenuBuilder mb) {
+		assert mb != null;
 		title = mb.getTitle();
 		menu = mb.getMenu();
 		date = mb.getDate();

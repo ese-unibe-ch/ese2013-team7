@@ -13,6 +13,7 @@ import com.ese2013.mensaunibe.model.MenuDate;
 public class WeeklyMenu implements Iterable<Menuplan> {
 	private HashMap<String, Menuplan> menuPlans;
 	public WeeklyMenu( HashMap<String, Menuplan> map ) {
+		assert map != null;
 		menuPlans = map;
 	}
 	@Override
@@ -21,6 +22,7 @@ public class WeeklyMenu implements Iterable<Menuplan> {
 		return it;
 	}
 	public Menuplan getDailyMenu(MenuDate date) {
+		assert date != null;
 		Menuplan m = menuPlans.get(date.toString());
 		Log.d("WeeklyMenu", "date: "+date+" menuplan: "+m);
 		return m;

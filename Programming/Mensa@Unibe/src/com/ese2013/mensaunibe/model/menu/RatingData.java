@@ -43,13 +43,15 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	private String postData;
 	
 	public RatingData(Context context, String menu, int type) {
+		assert context != null && menu.length() > 2 && type != 0;
 		this.dialog = new ProgressDialog(context);
 		this.menu = menu;
 		this.context = context;
 		parser = new JSONParser();
-		
+		String[] menu2 = this.menu.split("\n");
+		this.menu = menu2[0];
 		this.type = type;
-		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET;
+		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET + "?androidrequest&menutitle="+menu;
 		else if(type == TYPE_SAVE) url = ApiUrl.API_RATING_POST;
 	}
 	
@@ -57,7 +59,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		this.text = text;
 		this.rating = rating;
 		this.nickname = nickname;
-		this.postData = ""; //merge string for post
+		this.postData = "androidrequest&usernamemd5="+nickname+"menutitle="+menu+"stars="+rating+"comment="+text;
 	}
 	
 	protected void onPreExecute() {
@@ -70,11 +72,11 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 			dialog.dismiss();
 		}
 		
-		JSONObject json = parser.parse( result );
-		
-		
 		if(type == TYPE_LOAD) {
 			if(result.length() > 2) {
+				
+				JSONObject json = parser.parse( result );
+				
 				Toast.makeText(context, "Menu ratings have been loaded", Toast.LENGTH_SHORT).show();
 				adapter.notifyDataSetChanged();
 			} else {

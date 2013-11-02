@@ -17,12 +17,14 @@ public class ForceReloadTask /*extends AsyncTask<Void, Void, Boolean>*/{
 	private TabCollectionPagerAdapter listAdapter2;
 	
 	public ForceReloadTask(ActionBarActivity context, MensaListAdapter listAdapter) {
+		assert context != null && listAdapter != null;
 		this.dialog = new ProgressDialog(context);
 		this.listAdapter = listAdapter;
 		this.context = context;
 	}
 	
 	public ForceReloadTask(ActionBarActivity context, TabCollectionPagerAdapter listAdapter) {
+		assert context != null && listAdapter != null;
 		this.dialog = new ProgressDialog(context);
 		this.listAdapter2 = listAdapter;
 		this.context = context;

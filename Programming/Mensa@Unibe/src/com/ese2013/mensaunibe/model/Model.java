@@ -47,6 +47,7 @@ public class Model {
 	}
 
 	public Mensa getMensaById(int mensaId) {
+		assert mensaId != 0;
 		for(Mensa m : mensas) {
 			if(m.getId() == mensaId) return m;
 		}
@@ -54,6 +55,7 @@ public class Model {
 	}
 	
 	public void loadMenuRating(Context context, RatingListAdapter adapter, String menu, int type) {
+		assert context != null && adapter != null && menu.length() > 2 && type != 0;
 		RatingData rd = new RatingData(context, menu, type);
 		rd.setAdapter(adapter);
 		rd.execute();
@@ -61,6 +63,7 @@ public class Model {
 
 	//check for one week
 	public ArrayList<Menuplan> getComingDaysMenu(int mensaId) {
+		assert mensaId != 0;
 		ArrayList <Menuplan> menuPlan = new ArrayList<Menuplan>();
 		for(Mensa m : mensas) {
 			if(m.getId() == mensaId) {

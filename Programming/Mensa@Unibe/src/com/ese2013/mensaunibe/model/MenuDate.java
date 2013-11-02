@@ -27,6 +27,7 @@ public class MenuDate implements Comparable<MenuDate> {
 
 	@Override
 	public int compareTo(MenuDate md) {
+		assert md != null;
 		if(day == md.getDay() && month == md.getMonth() && year == md.getYear()) return 0;
 		return 1;
 	}
@@ -89,6 +90,7 @@ public class MenuDate implements Comparable<MenuDate> {
 	}
 
 	private boolean compareDay(Calendar c){
+		assert c != null;
 		return (day == c.get(Calendar.DAY_OF_MONTH)
 				&& month == (c.get(Calendar.MONTH) + 1)
 				&& year == c.get(Calendar.YEAR));

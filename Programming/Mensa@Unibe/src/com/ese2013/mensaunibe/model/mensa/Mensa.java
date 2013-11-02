@@ -25,6 +25,7 @@ public class Mensa implements ListItem {
     private Language language;
     
     public Mensa(MensaBuilder mb) {
+    	assert mb != null;
     	id = mb.getId();
     	name = mb.getName();
     	street = mb.getStreet();
@@ -121,6 +122,7 @@ public class Mensa implements ListItem {
 	}
 	
 	public String getDistance(MyLocation myLocation){
+		assert myLocation != null;
 		float distanceInMeters = location.distanceTo(myLocation.getLocation());
 		String meters = formatDist(distanceInMeters);
 		return meters;

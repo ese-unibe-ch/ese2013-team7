@@ -31,6 +31,7 @@ public class LanguageChanger extends AsyncTask<Void, Void, Boolean> {
 
 	
 	public LanguageChanger(Context context, Mensa mensa) {
+		assert context != null && mensa != null;
 		this.dialog = new ProgressDialog(context);
 		this.mensa = mensa;
 		this.context = context;
@@ -58,6 +59,7 @@ public class LanguageChanger extends AsyncTask<Void, Void, Boolean> {
 	}
 	
 	public void setAdapter(TabCollectionPagerAdapter adapter) {
+		assert adapter != null;
 		this.adapter = adapter;
 	}
 	

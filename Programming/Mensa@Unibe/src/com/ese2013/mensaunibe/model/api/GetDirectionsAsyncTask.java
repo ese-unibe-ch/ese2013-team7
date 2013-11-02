@@ -30,6 +30,7 @@ import android.widget.Toast;
 		public GetDirectionsAsyncTask(MapActivity activity ) 
 		{
 		    super();
+		    assert activity != null;
 		    this.activity = activity;
 		}
 

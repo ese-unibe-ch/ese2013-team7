@@ -9,6 +9,6 @@ public class ApiUrl {
 	
 	public static final String API_TYP_MENSA = "MENSA";
 	
-	public static final String API_RATING_GET = "http://ese.andi-hohler.ch/";
-	public static final String API_RATING_POST = "http://ese.andi-hohler.ch/";
+	public static final String API_RATING_GET = "http://ese.andi-hohler.ch/rating_get.php";
+	public static final String API_RATING_POST = "http://ese.andi-hohler.ch/rating_submit.php";
 }

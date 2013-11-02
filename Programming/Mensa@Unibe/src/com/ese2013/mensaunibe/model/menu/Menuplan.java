@@ -20,6 +20,7 @@ public class Menuplan implements Iterable<DailyMenu> {
 	}
 	
 	public void add(DailyMenu m) {
+		assert m != null;
 		menuList.add(m);
 	}
 
@@ -56,6 +57,7 @@ public class Menuplan implements Iterable<DailyMenu> {
 	}
 
 	public void setDate(MenuDate date) {
+		assert date != null;
 		this.date = date;
 		
 	}
