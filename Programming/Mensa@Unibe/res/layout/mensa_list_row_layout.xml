@@ -25,14 +25,16 @@
         android:layout_toRightOf="@id/tgl_favorite"
         android:paddingLeft="5dp" />
 
-    <TextView
-        android:id="@+id/mensa_distance"
+    <Button
+        android:id="@+id/direction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/get_directions"
         android:drawableTop="@drawable/ic_location_directions"
+        android:clickable="true"
+        android:focusable="false"
         android:padding="5dp"
         android:layout_marginRight="10dp" 
         android:visibility="gone"/>

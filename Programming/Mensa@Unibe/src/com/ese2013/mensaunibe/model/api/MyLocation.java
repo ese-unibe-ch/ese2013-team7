@@ -7,9 +7,11 @@ import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
 import com.ese2013.mensaunibe.App;
+import com.ese2013.mensaunibe.MapActivity;
 import com.ese2013.mensaunibe.MensaActivity;
 import com.ese2013.mensaunibe.MensaListAdapter;
 import com.ese2013.mensaunibe.R;
@@ -32,7 +34,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	// Stores the current instantiation of the location client in this object
 	private static LocationClient mLocationClient;
 
-	private static MensaActivity mFragActivity;
+	private static ActionBarActivity mFragActivity;
 
 	boolean mUpdatesRequested = false;
 
@@ -359,5 +361,8 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	public void setActivity(MensaActivity mensaActivity) {
 		mFragActivity = mensaActivity;
 		
+	}
+	public void setActivity(MapActivity mapActivity){
+		mFragActivity = mapActivity;
 	}
 }

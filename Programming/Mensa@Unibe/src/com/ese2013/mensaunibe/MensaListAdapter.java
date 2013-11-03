@@ -3,12 +3,14 @@ package com.ese2013.mensaunibe;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -47,7 +49,7 @@ public class MensaListAdapter extends BaseAdapter {
 
 		//TextView textView=(TextView) view.findViewById(android.R.id.text1);
 		TextView textView=(TextView) view.findViewById(R.id.mensa_list_row);
-		TextView distance = (TextView)view.findViewById(R.id.mensa_distance);
+		Button direction = (Button) view.findViewById(R.id.direction);
 		ListItem item = items.get(position);
 
 		if(item.isSection()) {
@@ -67,10 +69,18 @@ public class MensaListAdapter extends BaseAdapter {
 			if(mensa.isFavorite()) favorite.setChecked(true);
 			else favorite.setChecked(false);
 			favorite.setOnCheckedChangeListener(new FavoriteOnClickListener(mensa,favorite,this));
-			if(locationReady){
-				distance.setVisibility(View.VISIBLE);
-				distance.setText(mensa.getDistance(mLocation));
+			if(locationReady){	
+				
+				direction.setVisibility(View.VISIBLE);
+				direction.setText(mensa.getDistance(mLocation));
 				Log.v("Distance of " +mensa.getName(), mensa.getDistance(mLocation));
+				direction.setOnClickListener(new View.OnClickListener() {
+				     @Override
+				     public void onClick(View v) {
+				     Intent intent = new Intent(context, MapActivity.class);
+				     context.startActivity(intent);
+				     }
+				 });
 			}
 		}
 		return view;
