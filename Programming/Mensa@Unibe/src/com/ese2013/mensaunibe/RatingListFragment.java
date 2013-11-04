@@ -4,16 +4,10 @@ import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.menu.RatingData;
 
-import android.app.Activity;
-//import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
-import android.view.View;
-/*import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.TextView;*/
-import android.widget.ListView;
+
 
 public class RatingListFragment extends ListFragment{
 	private static final String TAG= "RatingListFragment";
@@ -35,7 +29,8 @@ public class RatingListFragment extends ListFragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
+		
+		//((RatingBar)this.getView().findViewById(R.id.rating_avg)).setRating(3.5);
 		//MensaListAdapter adapter = new MensaListAdapter(getActivity(), android.R.layout.simple_list_item_1);
 		RatingListAdapter adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout, this.mMensaId, this.menu);
 		setListAdapter(adapter);

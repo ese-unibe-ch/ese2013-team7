@@ -3,6 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
+	<TextView
+        android:id="@+id/rating_avg_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:text="@string/avg_rating"
+        android:visibility="invisible"
+        android:textSize="18sp" />
+	<RatingBar
+        android:id="@+id/rating_avg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:visibility="invisible"
+        android:isIndicator="true"
+        android:rating="0" />
 
     <RatingBar
         android:id="@+id/rating_stars"
@@ -19,15 +39,13 @@
     	android:layout_height="50dp"
         android:layout_marginTop="24dp"
         android:paddingLeft="5dp"
-        android:gravity="center_vertical"
-        android:text="Nickname" />
+        android:gravity="center_vertical" />
         
     <TextView
         android:id="@+id/rating_text"
         android:layout_width="match_parent"
     	android:layout_height="50dp"
         android:layout_marginTop="24dp"
-        android:paddingLeft="5dp"
-        android:text="Text" />
+        android:paddingLeft="5dp" />
     
 </LinearLayout>

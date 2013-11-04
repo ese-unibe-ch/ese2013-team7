@@ -87,9 +87,9 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 				if( !json.has("content") ) {
 					Toast.makeText(context, "No ratings available for this menu", Toast.LENGTH_SHORT).show();
 				} else {
-					int avg = 0;
+					float avg = 0;
 					try {
-						avg = json.getInt("avgstars");
+						avg = (float) json.getDouble("avgstars");
 						JSONArray ratings = json.getJSONArray("content");
 						JSONObject rating;
 						for(int i = 0; i< ( json.length() == 1 ? 0 : json.length() ); i++) {

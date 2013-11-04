@@ -26,7 +26,7 @@ public class RatingListAdapter extends BaseAdapter {
 
 	private int mMensaId;
 	private String mMenu;
-	private int avgStars;
+	private float avgStars;
 
 	public RatingListAdapter(Context context, int resource, int mensaId, String menu) {
 		super();
@@ -45,8 +45,11 @@ public class RatingListAdapter extends BaseAdapter {
 			viewHolder.user = (TextView) view.findViewById(R.id.rating_user);
 			viewHolder.text = (TextView) view.findViewById(R.id.rating_text);
 			viewHolder.rating = (RatingBar) view.findViewById(R.id.rating_stars);
+			viewHolder.avg_rating = (RatingBar) view.findViewById(R.id.rating_avg);
+			viewHolder.avg_rating_text = (TextView) view.findViewById(R.id.rating_avg_text);
 			view.setTag(viewHolder);
 		}
+		
 		
 		ViewHolder holder = (ViewHolder) view.getTag();
 		clearHolder(holder);
@@ -56,23 +59,31 @@ public class RatingListAdapter extends BaseAdapter {
 
 		Rating rating = items.get(position);
 		
-		holder.user.setText(rating.getNickname());
-		holder.user.setVisibility(View.VISIBLE);
-		holder.text.setText(rating.getText());
-		holder.text.setVisibility(View.VISIBLE);
-		holder.rating.setRating(rating.getRating());
-		holder.rating.setVisibility(View.VISIBLE);
-		
+		if(rating.isAvg()) {
+			holder.avg_rating_text.setVisibility(View.VISIBLE);
+			holder.avg_rating.setRating(this.avgStars);
+			holder.avg_rating.setVisibility(View.VISIBLE);
+		} else {
+			holder.user.setText(rating.getNickname());
+			holder.user.setVisibility(View.VISIBLE);
+			holder.text.setText(rating.getText());
+			holder.text.setVisibility(View.VISIBLE);
+			holder.rating.setRating(rating.getRating());
+			holder.rating.setVisibility(View.VISIBLE);
+		}
 		return view;
 	}
 
 	
-	public void populate(ArrayList<Rating> r, int avgStars) {
+	public void populate(ArrayList<Rating> r, float avgStars) {
 		//fill
 		//items = new ArrayList<Rating>();
 		//RatingData rd = new RatingData(this, this.mMenu);
 		//rd.execute();
 		//items.add( new Rating("Nickname", "Bewärtig und so", 1) );
+		Rating avg = new Rating("Average Rating", "", 0);
+		avg.setAvg(true);
+		items.add( avg );
 		this.avgStars = avgStars; 
 		for(Rating ra : r) {
 			items.add(ra);
@@ -98,6 +109,8 @@ public class RatingListAdapter extends BaseAdapter {
 		public TextView user;
 		public TextView text;
 		public RatingBar rating;
+		public TextView avg_rating_text;
+		public RatingBar avg_rating;
 	}
 	
 	private void clearHolder(ViewHolder holder) {
@@ -107,5 +120,7 @@ public class RatingListAdapter extends BaseAdapter {
 		holder.user.setVisibility(View.GONE);
 		holder.text.setText("");
 		holder.text.setVisibility(View.GONE);
+		holder.avg_rating.setVisibility(View.GONE);
+		holder.avg_rating_text.setVisibility(View.GONE);
 	}
 }
