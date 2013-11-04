@@ -1,7 +1,9 @@
 package com.ese2013.mensaunibe.model.menu;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
@@ -45,21 +47,27 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	public RatingData(Context context, String menu, int type) {
 		assert context != null && menu.length() > 2 && type != 0;
 		this.dialog = new ProgressDialog(context);
-		this.menu = menu;
+		//this.menu = menu;
 		this.context = context;
 		parser = new JSONParser();
-		String[] menu2 = this.menu.split("\n");
-		this.menu = menu2[0];
+		//String[] menu2 = this.menu.split("\n");
+		//this.menu = menu2[0];
+		this.menu = parseMenuTitle( menu );
 		this.type = type;
-		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET + "?androidrequest&menutitle="+menu;
+		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET + "?androidrequest&menutitle="+this.menu.replace(" ", "%20");
 		else if(type == TYPE_SAVE) url = ApiUrl.API_RATING_POST;
+		Log.v(TAG, url);
 	}
 	
+	private String parseMenuTitle( String menu ) {
+		String[] tmp = menu.split("\n");
+		return tmp[0];
+	}
 	public void setPostData(String nickname, String text, int rating) {
 		this.text = text;
 		this.rating = rating;
 		this.nickname = nickname;
-		this.postData = "androidrequest&usernamemd5="+nickname+"menutitle="+menu+"stars="+rating+"comment="+text;
+		this.postData = "androidrequest&usernamemd5="+nickname+"menutitle="+menu.replace(" ", "%20")+"stars="+rating+"comment="+text;
 	}
 	
 	protected void onPreExecute() {
@@ -74,13 +82,34 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		
 		if(type == TYPE_LOAD) {
 			if(result.length() > 2) {
-				
+				ArrayList<Rating> r = new ArrayList<Rating>();
 				JSONObject json = parser.parse( result );
-				
-				Toast.makeText(context, "Menu ratings have been loaded", Toast.LENGTH_SHORT).show();
-				adapter.notifyDataSetChanged();
+				if( !json.has("content") ) {
+					Toast.makeText(context, "No ratings available for this menu", Toast.LENGTH_SHORT).show();
+				} else {
+					int avg = 0;
+					try {
+						avg = json.getInt("avgstars");
+						JSONArray ratings = json.getJSONArray("content");
+						JSONObject rating;
+						for(int i = 0; i< ( json.length() == 1 ? 0 : json.length() ); i++) {
+							rating = ratings.getJSONObject(i);
+							r.add( new Rating( rating.getString("username"), rating.getString("comment"), rating.getInt("stars")) );
+							
+						}
+					} catch(Exception e) {
+							Log.e(TAG, e.getMessage());
+							StackTraceElement[] tt = e.getStackTrace();
+							for(StackTraceElement t : tt) {
+								Log.e(TAG, t.toString());
+							}
+					}
+					Toast.makeText(context, "Menu ratings habe been loaded", Toast.LENGTH_SHORT).show();
+					adapter.populate(r, avg);
+					adapter.notifyDataSetChanged();
+				}
 			} else {
-				Toast.makeText(context, "Menu ratings could not have been loaded", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "Menu ratings could not be loaded", Toast.LENGTH_SHORT).show();
 			}
 		} else
 		if(type == TYPE_SAVE) {

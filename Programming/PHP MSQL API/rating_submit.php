@@ -38,6 +38,8 @@ if (isset($_POST['androidrequest']) AND
         if (!$stmt = $db->prepare($sql)) {
             die ('Etwas stimmte mit dem Query 2 nicht: '.$db->error);
         }
+		
+		$_POST['menutitle'] = str_replace("%20%"," ", $_POST['menutitle']);
         $stmt->bind_param('s', $_POST['menutitle']);
         if (!$stmt->execute()) {
             die ('Query 2 konnte nicht ausgeführt werden: '.$stmt->error);

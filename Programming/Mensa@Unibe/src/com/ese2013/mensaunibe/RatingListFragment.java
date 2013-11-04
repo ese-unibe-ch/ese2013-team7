@@ -39,7 +39,7 @@ public class RatingListFragment extends ListFragment{
 		//MensaListAdapter adapter = new MensaListAdapter(getActivity(), android.R.layout.simple_list_item_1);
 		RatingListAdapter adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout, this.mMensaId, this.menu);
 		setListAdapter(adapter);
-		//Model.getInstance().loadMenuRating(getActivity(), adapter, menu, RatingData.TYPE_LOAD);
+		Model.getInstance().loadMenuRating(getActivity(), adapter, menu, RatingData.TYPE_LOAD);
 		
 		//have to check android.app.LoaderManager
 		//i think we could use it

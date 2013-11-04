@@ -21,11 +21,12 @@ public class RatingListAdapter extends BaseAdapter {
 	private int resource;
 	private LayoutInflater inflater;
 
-	private ArrayList<Rating> items;
+	private ArrayList<Rating> items = new ArrayList<Rating>();
 	//private ArrayList<Rating> ratings;
 
 	private int mMensaId;
 	private String mMenu;
+	private int avgStars;
 
 	public RatingListAdapter(Context context, int resource, int mensaId, String menu) {
 		super();
@@ -33,7 +34,6 @@ public class RatingListAdapter extends BaseAdapter {
 		this.resource = resource;
 		this.mMensaId = mensaId;
 		this.mMenu = menu;
-		populate();
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -66,12 +66,18 @@ public class RatingListAdapter extends BaseAdapter {
 		return view;
 	}
 
-	private void populate() {
+	
+	public void populate(ArrayList<Rating> r, int avgStars) {
 		//fill
-		items = new ArrayList<Rating>();
+		//items = new ArrayList<Rating>();
 		//RatingData rd = new RatingData(this, this.mMenu);
 		//rd.execute();
-		items.add( new Rating("Nickname", "Bewärtig und so", 1) );
+		//items.add( new Rating("Nickname", "Bewärtig und so", 1) );
+		this.avgStars = avgStars; 
+		for(Rating ra : r) {
+			items.add(ra);
+		}
+		//items = r;
 	}
 
 	public Rating getItem(int position) {

@@ -1,7 +1,9 @@
-<?php 
+<?php
+header('Content-Type: application/json');
+header('Cache-Control: no-cache, must-revalidate');
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 
-error_reporting(E_ALL ^ E_NOTICE);	 
-header('Content-Type: text/html; charset=utf-8');
+error_reporting(E_ALL ^ E_NOTICE);
 
 include("connect.php");
 include("json_readable.php");
@@ -85,8 +87,8 @@ if (isset($_GET['androidrequest']) AND
     $ratings['result']['avgstars'] = $avgStars;
     
     $stmt->close();
-    echo json_encode($ratings);    
-    //echo indent(json_encode($ratings));
+    //echo json_encode($ratings);    
+    echo indent(json_encode($ratings));
 
 }
 ?>
