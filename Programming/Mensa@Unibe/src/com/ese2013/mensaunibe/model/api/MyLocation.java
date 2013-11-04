@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.widget.BaseAdapter;
 
 import com.ese2013.mensaunibe.App;
 import com.ese2013.mensaunibe.MapActivity;
@@ -93,6 +94,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 */
 	public void callOnPause() {
 		if (mMensaListAdapter != null) mMensaListAdapter.locationReady(false);
+		if(mFragActivity instanceof MapActivity)((MapActivity) mFragActivity).locationReady(false);
 	}
 
 	/*
@@ -208,6 +210,11 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 			mMensaListAdapter.notifyDataSetChanged();
 			mMensaListAdapter.locationReady(false);
 		}
+		/*if(mFragActivity instanceof MapActivity){
+			((MapActivity) mFragActivity).locationReady(true);
+			((MapActivity) mFragActivity).notifyDataSetChanged();
+			((MapActivity) mFragActivity).locationReady(false);
+		}*/
 	}
 
 	/*
@@ -217,8 +224,10 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	@Override
 	public void onDisconnected() {
 		Log.d(TAG, App.getAppContext().getString(R.string.disconnected));
-		if (mMensaListAdapter != null) mMensaListAdapter.locationReady(false);
+		if (mMensaListAdapter != null) {mMensaListAdapter.locationReady(false);}
+		if(mFragActivity instanceof MapActivity){mMensaListAdapter.locationReady(false);}
 	}
+
 
 	/*
 	 * Called by Location Services if the attempt to

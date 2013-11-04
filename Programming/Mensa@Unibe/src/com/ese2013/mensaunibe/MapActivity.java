@@ -3,12 +3,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.api.GetDirectionsAsyncTask;
 import com.ese2013.mensaunibe.model.api.GetMapDirection;
 import com.ese2013.mensaunibe.model.api.MyLocation;
@@ -28,10 +31,15 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import android.support.v7.app.ActionBarActivity;
 
 public class MapActivity extends ActionBarActivity {
-		private final LatLng mensaLocation= new LatLng(46.94824814351828, 7.440162956845597);
+		private Mensa mensa;
 		private GoogleMap map;
 		private MyLocation mLocation;
 		private LatLng mLocationLatLng;
+		private boolean locationReady = false;
+		private Marker mensaMarker;
+		private int mMensaId;
+		
+	
 	  @Override
 	  	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -39,21 +47,21 @@ public class MapActivity extends ActionBarActivity {
 	    //Setup action bar
 	    ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-
- /*if(mLocation == null){
-			mLocation = MyLocation.getInstance();
-			mLocation.setActivity(this);
-		}
-		mLocationLatLng =new LatLng(mLocation.getLocation().getLatitude(),mLocation.getLocation().getLongitude());
-		*/
+		
+				
 		initilizeMap();
-	    Marker mensaMarker = map.addMarker(new MarkerOptions().position(mensaLocation));
-	    
+		mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon())));
+		
+		/*for(int i = 0;i<mensas.size(); i++){
+			mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensas.get(i).getLat(),mensas.get(i).getLon())));
+		}
+		*/
 	   
-	    // add User Location
-	    findDirections(46.94824814351828, 7.440162956845597,
+	   findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
              mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, GetMapDirection.MODE_WALKING );
-  }
+	
+		}
+		
 
 	  @Override
 	  public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,9 +94,9 @@ public class MapActivity extends ActionBarActivity {
 	}
 	  private void initilizeMap() {
 	        if (map == null) {
-	        	
+	        	setUpMap();
 	        	map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-	        	map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(46.9, 7.4),14.0f) );
+	        	map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(mLocationLatLng.latitude, mLocationLatLng.longitude),14.0f) );
 	            // check if map is created successfully or not
 	            if (map == null) {
 	                Toast.makeText(getApplicationContext(),
@@ -102,5 +110,25 @@ public class MapActivity extends ActionBarActivity {
         super.onResume();
         initilizeMap();
     }
-
+	private void setUpMap(){
+		if(mLocation == null){
+			mLocation = MyLocation.getInstance();
+			mLocation.setActivity(this);
+		}
+		mMensaId = getIntent().getIntExtra("int_value",0);
+		mensa = Model.getInstance().getMensaById(mMensaId);
+		mLocationLatLng =new LatLng(mLocation.getLocation().getLatitude(),mLocation.getLocation().getLongitude());
+		
+	}
+	
+	
+	public void locationReady(boolean b){
+		if(b){
+			locationReady = true;
+		}else locationReady = false;
+	}
+	public void notifyDataSetChanged() {
+		// TODO Auto-generated method stub
+		
+	}
 }

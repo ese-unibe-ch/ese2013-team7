@@ -60,12 +60,13 @@ public class MensaListAdapter extends BaseAdapter {
 					(TextView) view.findViewById(R.id.mensa_list_header_title);
 			sectionView.setText(si.toString());
 		} else {
-			Mensa mensa = (Mensa)item;
+			final Mensa mensa = (Mensa)item;
 			/*YOUR CHOICE OF COLOR*/
 			textView.setTextColor(Color.BLACK);
 			textView.setText( mensa.getName() );
 
 			ToggleButton favorite = (ToggleButton) view.findViewById(R.id.tgl_favorite);
+			
 			if(mensa.isFavorite()) favorite.setChecked(true);
 			else favorite.setChecked(false);
 			favorite.setOnCheckedChangeListener(new FavoriteOnClickListener(mensa,favorite,this));
@@ -78,6 +79,7 @@ public class MensaListAdapter extends BaseAdapter {
 				     @Override
 				     public void onClick(View v) {
 				     Intent intent = new Intent(context, MapActivity.class);
+				     intent.putExtra("int_value", mensa.getId());
 				     context.startActivity(intent);
 				     }
 				 });
