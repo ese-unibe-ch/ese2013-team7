@@ -3,6 +3,7 @@ package com.ese2013.mensaunibe;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -59,7 +60,10 @@ public class RatingActivity extends ActionBarActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
-			case android.R.id.home:
+		case R.id.action_rate:
+			startActivity(new Intent(getApplicationContext(), NewRatingActivity.class));
+			return true;	
+		case android.R.id.home:
 				onBackPressed();
 				return true;
 	        default:
