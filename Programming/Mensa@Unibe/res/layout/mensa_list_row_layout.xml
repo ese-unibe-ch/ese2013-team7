@@ -25,7 +25,7 @@
         android:layout_toRightOf="@id/tgl_favorite"
         android:paddingLeft="5dp" />
 
-    <Button
+    <TextView
         android:id="@+id/direction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,8 +35,11 @@
         android:drawableTop="@drawable/ic_location_directions"
         android:clickable="true"
         android:focusable="false"
-        android:padding="5dp"
-        android:layout_marginRight="10dp" 
-        android:visibility="gone"/>
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="@drawable/map_launch_direction"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

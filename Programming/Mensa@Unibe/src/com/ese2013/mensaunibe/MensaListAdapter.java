@@ -49,7 +49,7 @@ public class MensaListAdapter extends BaseAdapter {
 
 		//TextView textView=(TextView) view.findViewById(android.R.id.text1);
 		TextView textView=(TextView) view.findViewById(R.id.mensa_list_row);
-		Button direction = (Button) view.findViewById(R.id.direction);
+		TextView direction = (TextView) view.findViewById(R.id.direction);
 		ListItem item = items.get(position);
 
 		if(item.isSection()) {

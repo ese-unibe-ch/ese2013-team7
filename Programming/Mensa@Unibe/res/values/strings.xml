@@ -33,6 +33,7 @@
     <string name="address">Address</string>
     <string name="menurating_title">Rating of</string>
     <string name="action_rate">Rate the menu</string>
+    <string name="avg_rating">Average</string>
 
     <!-- Debug Messages -->
     <string name="connected">Client connected</string>
