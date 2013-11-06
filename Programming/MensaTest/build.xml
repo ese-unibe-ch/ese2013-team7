@@ -6,7 +6,7 @@
     <!--
          The local.properties file is created and updated by the 'android' tool.
          It contains the path to the SDK. It should *NOT* be checked into
-         Version Control Systems.
+         Version Control Systems.
     -->
 
     <property file="local.properties" />
@@ -29,7 +29,7 @@
          be updated using the 'android' tool with the 'update' action.
 
          This file is an integral part of the build system for your
-         application and should be checked into Version Control Systems.
+         application and should be checked into Version Control Systems.
     -->
 
     <property file="ant.properties" />
@@ -38,7 +38,7 @@
          if sdk.dir was not set from one of the property file, then
          get it from the ANDROID_HOME env var.
          This must be done before we load project.properties since
-         the proguard config can use sdk.dir
+         the proguard config can use sdk.dir
     -->
 
     <property environment="env" />
@@ -59,7 +59,7 @@
          (or in .classpath for Eclipse projects).
 
          This file is an integral part of the build system for your
-         application and should be checked into Version Control Systems.
+         application and should be checked into Version Control Systems.
     -->
 
     <loadproperties srcFile="project.properties" />
@@ -80,7 +80,7 @@
                            If this is not done in place, override ${out.dex.input.absolute.dir})
             -post-package
             -post-build
-            -pre-clean
+            -pre-clean
     -->
 
     <import
@@ -104,16 +104,36 @@
          ****** IMPORTANT ******
          ***********************
          In all cases you must update the value of version-tag below to read 'custom' instead of an integer,
-         in order to avoid having your file be overridden by tools such as "android update project"
+         in order to avoid having your file be overridden by tools such as "android update project"
     -->
-    <!-- version-tag: 1 -->
+    <!-- version-tag: custom -->
 
     <import file="${sdk.dir}/tools/ant/build.xml" />
+
+    <taskdef
+        name="findbugs"
+        classname="edu.umd.cs.findbugs.anttask.FindBugsTask" />
+
+    <target name="findbugs" >
+
+        <mkdir dir="reports" />
+
+        <findbugs
+            excludeFilter="findbugs_exclude.xml"
+            home="${findbugs.home}"
+            output="xml"
+            outputFile="reports/findbugs.xml" >
+
+            <auxClasspath path="${android.jar}" />
+
+            <class location="${out.dir}" />
+        </findbugs>
+    </target>
 
     <target name="fetch-test-report" >
 
         <echo>
-Downloading XML test report…
+Downloading XML test report…
         </echo>
 
         <mkdir dir="junitreports" />
