@@ -14,16 +14,18 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:stepSize="1"
-        android:isIndicator="true" />
+        android:isIndicator="false" />
 
     <EditText android:id="@+id/edit_message"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ratingBar1"
         android:hint="@string/edit_message" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_message"
         android:text="@string/button_submit" />
     
 </RelativeLayout>

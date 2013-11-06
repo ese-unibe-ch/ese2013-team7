@@ -9,6 +9,7 @@ if (isset($_POST['androidrequest']) AND
     isset($_POST['usernamemd5']) AND 
     isset($_POST['menutitle']) AND 
     isset($_POST['stars']) AND 
+    isset($_POST['mensaid']) AND 
     isset($_POST['comment'])) {
     
     $sql = 'SELECT
@@ -105,13 +106,13 @@ if (isset($_POST['androidrequest']) AND
     
     if (!$statusRating) {
         $sql = 'INSERT INTO
-                    rating(stars, comment, time, userid, menuid)
+                    rating(stars, comment, time, userid, menuid, mensaid)
                 VALUES
-                    (?, ?, , NOW(), ?, ?)';
+                    (?, ?, , NOW(), ?, ?, ?)';
         if (!$stmt = $db->prepare($sql)) {
             die ('Etwas stimmte mit dem Query 6 nicht: '.$db->error);
         }
-        $stmt->bind_param('isii', $_POST['stars'], $_POST['comment'], $userid, $menuid);
+        $stmt->bind_param('isiii', $_POST['stars'], $_POST['comment'], $userid, $menuid, $_POST['mensaid']);
         if (!$stmt->execute()) {
             die ('Query 6 konnte nicht ausgefÃ¼hrt werden: '.$stmt->error);
         }
@@ -125,12 +126,12 @@ if (isset($_POST['androidrequest']) AND
                     comment = ?,
                     time = NOW(),
                 WHERE 
-                    userid  = ? AND menuid = ?';
+                    userid  = ? AND menuid = ? AND mensaid = ?';
         	  $stmt = $db->prepare($sql);
          if (!$stmt) {
             die ('Etwas stimmte mit dem Query 7 nicht: '.$db->error);
          } 
-         $stmt->bind_param('isii', $_POST['stars'], $_POST['comment'], $userid, $menuid);
+         $stmt->bind_param('isiii', $_POST['stars'], $_POST['comment'], $userid, $menuid, $_POST['mensaid']);
          if (!$stmt->execute()) {
             die ('Query 7 konnte nicht ausgeführt werden: '.$stmt->error);
          }

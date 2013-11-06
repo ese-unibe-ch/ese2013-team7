@@ -9,6 +9,7 @@ include("connect.php");
 include("json_readable.php");
 
 if (isset($_GET['androidrequest']) AND 
+    isset($_GET['mensaid']) AND 
     isset($_GET['menutitle'])) {
     
     $sql = 'SELECT
@@ -57,13 +58,13 @@ if (isset($_GET['androidrequest']) AND
            ON
                rating.userid = user.id
            WHERE
-               rating.menuid = ?
+               rating.menuid = ? AND rating.mensaid = ?
            ORDER BY
                rating.time DESC';
     if (!$stmt = $db->prepare($sql)) {
         die ('Etwas stimmte mit dem Query 3 nicht: '.$db->error);
     }
-    $stmt->bind_param('i', $menuid);
+    $stmt->bind_param('ii', $menuid, $_GET['mensaid']);
     if (!$stmt->execute()) {
         die ('Query 3 konnte nicht ausgeführt werden: '.$stmt->error);
     }

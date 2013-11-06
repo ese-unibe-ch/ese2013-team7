@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.5.2
 -- http://www.phpmyadmin.net
 --
@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS `rating` (
   `stars` int(11) NOT NULL,
   `comment` varchar(200) CHARACTER SET utf8 NOT NULL,
   `userid` int(11) NOT NULL,
-  `menuid` int(11) NOT NULL
+  `menuid` int(11) NOT NULL,
+  `mensaid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
