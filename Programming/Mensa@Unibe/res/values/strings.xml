@@ -34,6 +34,8 @@
     <string name="menurating_title">Rating of</string>
     <string name="action_rate">Rate the menu</string>
     <string name="avg_rating">Average</string>
+    <string name="edit_message">Rating text</string>
+    <string name="button_submit">Submit</string>
 
     <!-- Debug Messages -->
     <string name="connected">Client connected</string>
@@ -48,5 +50,6 @@
     <string name="error_when_retrieving_data">error when retrieving DATA</string>
     <string name="title_activity_rating">RatingActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_new_rating">NewRatingActivity</string>
 
 </resources>
