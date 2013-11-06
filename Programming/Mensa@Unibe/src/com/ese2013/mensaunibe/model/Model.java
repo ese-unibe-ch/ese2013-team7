@@ -84,7 +84,10 @@ public class Model {
 		return null;
 	}
 
-	public void saveRating(String string, String string2, int rating) {
-			
+	public void saveRating(Context context, String menu, int mensaId, String username, String comment, int rating) {
+		assert context != null && rating != 0 && username.length() > 0;
+		RatingData rd = new RatingData(context, menu, mensaId, RatingData.TYPE_SAVE);
+		rd.setPostData(username, comment, rating);
+		rd.execute();
 	}
 }

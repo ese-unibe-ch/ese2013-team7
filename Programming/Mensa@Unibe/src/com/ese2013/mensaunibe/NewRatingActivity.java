@@ -2,6 +2,7 @@ package com.ese2013.mensaunibe;
 
 import com.ese2013.mensaunibe.model.Model;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -16,15 +17,23 @@ import android.widget.RatingBar;
 
 public class NewRatingActivity extends ActionBarActivity {
 
+	private String mMenu;
+	private int mMensaId;
+	private Context context;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_rating);
 				
 		setTitle( "New Rating" );
-		
+				
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		
+		mMensaId = getIntent().getIntExtra("mensaid", 0);
+		mMenu = getIntent().getStringExtra("menu");
+		//context = getApplicationContext();
+		context = this;
 		
 		Button submit = (Button) findViewById(R.id.submit_rating);
 		submit.setOnClickListener( new OnClickListener() {
@@ -35,7 +44,7 @@ public class NewRatingActivity extends ActionBarActivity {
 				if( rating.getRating() != 0.0 ) {
 					EditText comment = (EditText) findViewById(R.id.rating_comment);
 					
-					Model.getInstance().saveRating( "user", comment.getText().toString(), (int) rating.getRating() );
+					Model.getInstance().saveRating(context, mMenu, mMensaId, "user", comment.getText().toString(), (int) rating.getRating() );
 				}
 			}
 		

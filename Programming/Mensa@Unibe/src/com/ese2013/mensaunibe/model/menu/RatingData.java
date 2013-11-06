@@ -34,9 +34,6 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	private RatingListAdapter adapter;
 	private JSONParser parser;
 	private String url;
-	private String text;
-	private int rating;
-	private String username;
 	private int type;
 	private String postData;
 	
@@ -52,7 +49,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		//this.menu = menu2[0];
 		this.menu = parseMenuTitle( menu );
 		this.type = type;
-		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET + "?androidrequest&mensaid="+this.mensaId
+		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET + "&mensaid="+this.mensaId
 				+"&menutitle="+this.menu.replace(" ", "%20");
 		else if(type == TYPE_SAVE) url = ApiUrl.API_RATING_POST;
 		Log.v(TAG, url);
@@ -63,15 +60,13 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		return tmp[0];
 	}
 	public void setPostData(String nickname, String text, int rating) {
-		this.text = text;
-		this.rating = rating;
-		this.username = nickname;
-		this.postData = "androidrequest&mensaId="+mensaId+"&usernamemd5="
+		this.postData = "&mensaid="+mensaId+"&usernamemd5="
 				+nickname+"&menutitle="+menu.replace(" ", "%20")+"&stars="+rating+"&comment="+text;
 	}
 	
 	protected void onPreExecute() {
-        this.dialog.setMessage("Load menu ratings...");
+        if(this.type == TYPE_LOAD) this.dialog.setMessage("Load menu ratings...");
+        else if(this.type == TYPE_SAVE) this.dialog.setMessage("Save menu rating...");
         this.dialog.show();
     }
 	
@@ -139,6 +134,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 				result = urlRequest.get(this.url);
 			} else
 			if(this.type == TYPE_SAVE) {
+				Log.v(TAG, this.url+this.postData);
 				result = urlRequest.post(this.url, this.postData);
 			}
 		} catch(Exception e) {

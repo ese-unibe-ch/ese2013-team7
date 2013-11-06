@@ -4,6 +4,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 header('Content-Type: text/html; charset=utf-8');
 
 include("connect.php");
+var_dump($_POST);
 
 if (isset($_POST['androidrequest']) AND 
     isset($_POST['usernamemd5']) AND 
@@ -11,7 +12,9 @@ if (isset($_POST['androidrequest']) AND
     isset($_POST['stars']) AND 
     isset($_POST['mensaid']) AND 
     isset($_POST['comment'])) {
-    
+ 
+	$_POST['menutitle'] = str_replace("%20"," ", $_POST['menutitle']);
+	
     $sql = 'SELECT
                id
            FROM
@@ -62,7 +65,7 @@ if (isset($_POST['androidrequest']) AND
     }
     $stmt->bind_param('s', $_POST['usernamemd5']);
     if (!$stmt->execute()) {
-       die ('Query 3 konnte nicht ausgeführt werden: '.$stmt->error);
+       die ('Query 3 konnte nicht ausgefÃ¼hrt werden: '.$stmt->error);
     }
     $stmt->bind_result($userid);
     $statusUser = (bool) $stmt->fetch();
@@ -98,7 +101,7 @@ if (isset($_POST['androidrequest']) AND
     }
     $stmt->bind_param('ii', $userid, $menuid);
     if (!$stmt->execute()) {
-       die ('Query 5 konnte nicht ausgeführt werden: '.$stmt->error);
+       die ('Query 5 konnte nicht ausgefÃ¼hrt werden: '.$stmt->error);
     }
     $stmt->bind_result($ratingid);
     $statusRating = (bool) $stmt->fetch();
@@ -133,7 +136,7 @@ if (isset($_POST['androidrequest']) AND
          } 
          $stmt->bind_param('isiii', $_POST['stars'], $_POST['comment'], $userid, $menuid, $_POST['mensaid']);
          if (!$stmt->execute()) {
-            die ('Query 7 konnte nicht ausgeführt werden: '.$stmt->error);
+            die ('Query 7 konnte nicht ausgefÃ¼hrt werden: '.$stmt->error);
          }
          $stmt->close();
     }
