@@ -1,10 +1,17 @@
 package com.ese2013.mensaunibe.test;
 
 import com.ese2013.mensaunibe.MensaActivity;
+import com.ese2013.mensaunibe.MenuActivity;
+import com.ese2013.mensaunibe.R;
 
+import android.app.Instrumentation.ActivityMonitor;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.TouchUtils;
+import android.test.ViewAsserts;
+import android.view.KeyEvent;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class MensaListTest extends ActivityInstrumentationTestCase2<MensaActivity> {
 
@@ -32,9 +39,7 @@ public class MensaListTest extends ActivityInstrumentationTestCase2<MensaActivit
 	}
 
 	public void testPreConditions() {
-		assertNotNull(mListView.getOnItemClickListener());
-		assertNotNull(mAdapter);
-		assertEquals(mAdapter.getCount(), ADAPTER_COUNT);
+		assertNotNull(mActivity);
 	}
-
+	
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="2.0.3-rc1" sequence="0" timestamp="1383698712859" analysisTimestamp="1383698712879" release="">
+  <Project projectName="">
+    <Jar>C:\Users\sa\workspace\eclipse\mensa\Programming\MensaTest\bin</Jar>
+    <AuxClasspathEntry>C:\Users\sa\workspace\eclipse\mensa\Programming\MensaTest\${android.jar}</AuxClasspathEntry>
+  </Project>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" abbrev="UrF" category="PERFORMANCE">
+    <Class classname="com.ese2013.mensaunibe.test.MensaListTest">
+      <SourceLine classname="com.ese2013.mensaunibe.test.MensaListTest" start="17" end="38" sourcefile="MensaListTest.java" sourcepath="com/ese2013/mensaunibe/test/MensaListTest.java"/>
+    </Class>
+    <Field classname="com.ese2013.mensaunibe.test.MensaListTest" name="mAdapter" signature="Landroid/widget/ListAdapter;" isStatic="false">
+      <SourceLine classname="com.ese2013.mensaunibe.test.MensaListTest" sourcefile="MensaListTest.java" sourcepath="com/ese2013/mensaunibe/test/MensaListTest.java"/>
+    </Field>
+    <SourceLine classname="com.ese2013.mensaunibe.test.MensaListTest" start="30" end="30" startBytecode="44" endBytecode="44" sourcefile="MensaListTest.java" sourcepath="com/ese2013/mensaunibe/test/MensaListTest.java"/>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="com.ese2013.mensaunibe.test.R$attr">
+      <SourceLine classname="com.ese2013.mensaunibe.test.R$attr" start="11" end="11" sourcefile="R.java" sourcepath="com/ese2013/mensaunibe/test/R.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="com.ese2013.mensaunibe.test.R$drawable">
+      <SourceLine classname="com.ese2013.mensaunibe.test.R$drawable" start="13" end="13" sourcefile="R.java" sourcepath="com/ese2013/mensaunibe/test/R.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="NM_CLASS_NAMING_CONVENTION" priority="2" abbrev="Nm" category="BAD_PRACTICE">
+    <Class classname="com.ese2013.mensaunibe.test.R$string">
+      <SourceLine classname="com.ese2013.mensaunibe.test.R$string" start="16" end="16" sourcefile="R.java" sourcepath="com/ese2013/mensaunibe/test/R.java"/>
+    </Class>
+  </BugInstance>
+  <Errors errors="1" missingClasses="3">
+    <Error>
+      <ErrorMessage>File not found: filesystem:C:\Users\sa\workspace\eclipse\mensa\Programming\MensaTest\${android.jar}</ErrorMessage>
+    </Error>
+    <MissingClass>android.test.ActivityInstrumentationTestCase2</MissingClass>
+    <MissingClass>android.widget.ListView</MissingClass>
+    <MissingClass>com.ese2013.mensaunibe.MensaActivity</MissingClass>
+  </Errors>
+  <FindBugsSummary timestamp="Wed, 6 Nov 2013 01:45:12 +0100" total_classes="6" referenced_classes="15" total_bugs="4" total_size="37" num_packages="1" vm_version="24.0-b56" cpu_seconds="6.98" clock_seconds="2.37" peak_mbytes="67.46" alloc_mbytes="2183.00" gc_seconds="0.02" priority_2="4">
+    <PackageStats package="com.ese2013.mensaunibe.test" total_bugs="4" total_types="6" total_size="37" priority_2="4">
+      <ClassStats class="com.ese2013.mensaunibe.test.BuildConfig" sourceFile="BuildConfig.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="com.ese2013.mensaunibe.test.MensaListTest" sourceFile="MensaListTest.java" interface="false" size="18" bugs="1" priority_2="1"/>
+      <ClassStats class="com.ese2013.mensaunibe.test.R" sourceFile="R.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="com.ese2013.mensaunibe.test.R$attr" sourceFile="R.java" interface="false" size="3" bugs="1" priority_2="1"/>
+      <ClassStats class="com.ese2013.mensaunibe.test.R$drawable" sourceFile="R.java" interface="false" size="4" bugs="1" priority_2="1"/>
+      <ClassStats class="com.ese2013.mensaunibe.test.R$string" sourceFile="R.java" interface="false" size="4" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="468" invocations="291" avgMicrosecondsPerInvocation="1609" maxMicrosecondsPerInvocation="25463" standardDeviationMircosecondsPerInvocation="3131"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="143" invocations="294" avgMicrosecondsPerInvocation="488" maxMicrosecondsPerInvocation="1072" standardDeviationMircosecondsPerInvocation="192"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="110" invocations="254" avgMicrosecondsPerInvocation="434" maxMicrosecondsPerInvocation="13129" standardDeviationMircosecondsPerInvocation="1015"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="105" invocations="15" avgMicrosecondsPerInvocation="7056" maxMicrosecondsPerInvocation="34430" standardDeviationMircosecondsPerInvocation="10442"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="77" invocations="37" avgMicrosecondsPerInvocation="2100" maxMicrosecondsPerInvocation="11766" standardDeviationMircosecondsPerInvocation="2312"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="70" invocations="8" avgMicrosecondsPerInvocation="8796" maxMicrosecondsPerInvocation="68367" standardDeviationMircosecondsPerInvocation="22516"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="62" invocations="23" avgMicrosecondsPerInvocation="2700" maxMicrosecondsPerInvocation="22323" standardDeviationMircosecondsPerInvocation="5798"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="43" invocations="15" avgMicrosecondsPerInvocation="2899" maxMicrosecondsPerInvocation="17076" standardDeviationMircosecondsPerInvocation="4226"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="40" invocations="15" avgMicrosecondsPerInvocation="2672" maxMicrosecondsPerInvocation="12330" standardDeviationMircosecondsPerInvocation="3907"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="30" invocations="15" avgMicrosecondsPerInvocation="2063" maxMicrosecondsPerInvocation="10243" standardDeviationMircosecondsPerInvocation="3352"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="30" invocations="15" avgMicrosecondsPerInvocation="2030" maxMicrosecondsPerInvocation="13157" standardDeviationMircosecondsPerInvocation="3394"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ExplicitSerialization" totalMilliseconds="28" invocations="15" avgMicrosecondsPerInvocation="1909" maxMicrosecondsPerInvocation="28413" standardDeviationMircosecondsPerInvocation="7083"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>
