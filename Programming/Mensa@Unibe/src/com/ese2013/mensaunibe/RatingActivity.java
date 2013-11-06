@@ -61,7 +61,10 @@ public class RatingActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 		case R.id.action_rate:
-			startActivity(new Intent(getApplicationContext(), NewRatingActivity.class));
+			Intent intent = new Intent(getApplicationContext(), NewRatingActivity.class);
+			intent.putExtra("mensaid", mMensaId);
+			intent.putExtra("menu", mMenu);
+			startActivity(intent);
 			return true;	
 		case android.R.id.home:
 				onBackPressed();

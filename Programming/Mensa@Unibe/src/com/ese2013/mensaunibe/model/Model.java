@@ -54,9 +54,9 @@ public class Model {
 		return null;
 	}
 	
-	public void loadMenuRating(Context context, RatingListAdapter adapter, String menu, int type) {
+	public void loadMenuRating(Context context, RatingListAdapter adapter, String menu, int mensaId, int type) {
 		assert context != null && adapter != null && menu.length() > 2 && type != 0;
-		RatingData rd = new RatingData(context, menu, type);
+		RatingData rd = new RatingData(context, menu, mensaId, type);
 		rd.setAdapter(adapter);
 		rd.execute();
 	}
@@ -82,5 +82,9 @@ public class Model {
 			}
 		}
 		return null;
+	}
+
+	public void saveRating(String string, String string2, int rating) {
+			
 	}
 }

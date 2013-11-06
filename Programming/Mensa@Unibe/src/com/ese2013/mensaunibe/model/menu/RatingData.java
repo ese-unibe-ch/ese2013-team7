@@ -1,29 +1,23 @@
 package com.ese2013.mensaunibe.model.menu;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 
-import com.ese2013.mensaunibe.MenuActivity.TabCollectionPagerAdapter;
 import com.ese2013.mensaunibe.RatingListAdapter;
 import com.ese2013.mensaunibe.model.api.ApiUrl;
+import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.api.JSONParser;
 import com.ese2013.mensaunibe.model.api.URLRequest;
-import com.ese2013.mensaunibe.model.mensa.Mensa;
-import com.ese2013.mensaunibe.model.menu.DailyMenu;
-import com.ese2013.mensaunibe.model.menu.Menuplan;
-import com.memetix.mst.language.Language;
 
 import android.util.Log;
 import android.widget.Toast;
-
-import com.memetix.mst.translate.Translate;
 
 
 public class RatingData extends AsyncTask<Void, Void, String> {
@@ -34,27 +28,32 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	
 	private ProgressDialog dialog;
 	private String menu;
+	private String menuRaw;
+	private int mensaId;
 	private Context context;
 	private RatingListAdapter adapter;
 	private JSONParser parser;
 	private String url;
 	private String text;
 	private int rating;
-	private String nickname;
+	private String username;
 	private int type;
 	private String postData;
 	
-	public RatingData(Context context, String menu, int type) {
+	public RatingData(Context context, String menu, int mensaId, int type) {
 		assert context != null && menu.length() > 2 && type != 0;
 		this.dialog = new ProgressDialog(context);
 		//this.menu = menu;
 		this.context = context;
+		this.mensaId = mensaId;
+		this.menuRaw = menu;
 		parser = new JSONParser();
 		//String[] menu2 = this.menu.split("\n");
 		//this.menu = menu2[0];
 		this.menu = parseMenuTitle( menu );
 		this.type = type;
-		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET + "?androidrequest&menutitle="+this.menu.replace(" ", "%20");
+		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET + "?androidrequest&mensaid="+this.mensaId
+				+"&menutitle="+this.menu.replace(" ", "%20");
 		else if(type == TYPE_SAVE) url = ApiUrl.API_RATING_POST;
 		Log.v(TAG, url);
 	}
@@ -66,8 +65,9 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	public void setPostData(String nickname, String text, int rating) {
 		this.text = text;
 		this.rating = rating;
-		this.nickname = nickname;
-		this.postData = "androidrequest&usernamemd5="+nickname+"menutitle="+menu.replace(" ", "%20")+"stars="+rating+"comment="+text;
+		this.username = nickname;
+		this.postData = "androidrequest&mensaId="+mensaId+"&usernamemd5="
+				+nickname+"&menutitle="+menu.replace(" ", "%20")+"&stars="+rating+"&comment="+text;
 	}
 	
 	protected void onPreExecute() {
@@ -93,8 +93,10 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 						JSONArray ratings = json.getJSONArray("content");
 						JSONObject rating;
 						for(int i = 0; i< ( json.length() == 1 ? 0 : json.length() ); i++) {
-							rating = ratings.getJSONObject(i);
-							r.add( new Rating( rating.getString("username"), rating.getString("comment"), rating.getInt("stars")) );
+							if(!ratings.isNull(i)) {
+								rating = ratings.getJSONObject(i);
+								r.add( new Rating( rating.getString("username"), rating.getString("comment"), rating.getInt("stars")) );
+							}
 							
 						}
 					} catch(Exception e) {
@@ -113,7 +115,14 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 			}
 		} else
 		if(type == TYPE_SAVE) {
-			
+			Toast.makeText(context, "Your rating has been saved", Toast.LENGTH_SHORT).show();
+			//adapter.add( new Rating( this.username, this.text, this.rating ) );
+			//adapter.notifyDataSetChanged();
+			Intent intent = new Intent();
+			intent.setClassName(context.getPackageName(), context.getPackageName()+".RatingActivity");
+			intent.putExtra("menu", this.menuRaw);
+			intent.putExtra(AppUtils.MENSA_ID, this.mensaId);
+			context.startActivity(intent);
 		}
 		
 	}

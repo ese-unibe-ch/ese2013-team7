@@ -9,23 +9,24 @@
     tools:context=".NewRatingActivity" >
 
     <RatingBar
-        android:id="@+id/ratingBar1"
+        android:id="@+id/new_rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
         android:stepSize="1"
         android:isIndicator="false" />
 
-    <EditText android:id="@+id/edit_message"
+    <EditText android:id="@+id/rating_comment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ratingBar1"
+        android:layout_below="@+id/new_rating_bar"
         android:hint="@string/edit_message" />
 
     <Button
+        android:id="@+id/submit_rating"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_message"
+        android:layout_below="@+id/rating_comment"
         android:text="@string/button_submit" />
     
 </RelativeLayout>
