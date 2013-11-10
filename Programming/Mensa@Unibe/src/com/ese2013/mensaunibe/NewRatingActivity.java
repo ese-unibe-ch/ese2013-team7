@@ -1,9 +1,9 @@
 package com.ese2013.mensaunibe;
 
-import com.ese2013.mensaunibe.model.Model;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -14,6 +14,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+
+import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.api.UserEmailMD5Fetcher;
 
 public class NewRatingActivity extends ActionBarActivity {
 
@@ -44,7 +47,9 @@ public class NewRatingActivity extends ActionBarActivity {
 				if( rating.getRating() != 0.0 ) {
 					EditText comment = (EditText) findViewById(R.id.rating_comment);
 					
-					Model.getInstance().saveRating(context, mMenu, mMensaId, "user", comment.getText().toString(), (int) rating.getRating() );
+					String userEmail = UserEmailMD5Fetcher.getEmail();
+					
+					Model.getInstance().saveRating(context, mMenu, mMensaId, userEmail, comment.getText().toString(), (int) rating.getRating() );
 				}
 			}
 		
