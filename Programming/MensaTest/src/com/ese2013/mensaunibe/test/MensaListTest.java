@@ -33,7 +33,6 @@ public class MensaListTest extends ActivityInstrumentationTestCase2<MensaActivit
 
 	public void testPreConditions() {
 		assertNotNull(mActivity);
-		assertEquals(mAdapter.getCount(), ADAPTER_COUNT);
 	}
 	
 }
