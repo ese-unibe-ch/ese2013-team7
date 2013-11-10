@@ -110,26 +110,6 @@
 
     <import file="${sdk.dir}/tools/ant/build.xml" />
 
-    <taskdef
-        name="findbugs"
-        classname="edu.umd.cs.findbugs.anttask.FindBugsTask" />
-
-    <target name="findbugs" >
-
-        <mkdir dir="reports" />
-
-        <findbugs
-            excludeFilter="findbugs_exclude.xml"
-            home="${findbugs.home}"
-            output="xml"
-            outputFile="reports/findbugs.xml" >
-
-            <auxClasspath path="${android.jar}" />
-
-            <class location="${out.dir}" />
-        </findbugs>
-    </target>
-
     <target name="fetch-test-report" >
 
         <echo>
