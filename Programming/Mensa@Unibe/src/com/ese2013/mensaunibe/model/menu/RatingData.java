@@ -60,7 +60,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		return tmp[0];
 	}
 	public void setPostData(String nickname, String text, int rating) {
-		this.postData = "&mensaid="+mensaId+"&usernamemd5="
+		this.postData = "androidrequest=1&mensaid="+mensaId+"&usernamemd5="
 				+nickname+"&menutitle="+menu.replace(" ", "%20")+"&stars="+rating+"&comment="+text;
 	}
 	
@@ -136,6 +136,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 			if(this.type == TYPE_SAVE) {
 				Log.v(TAG, this.url+this.postData);
 				result = urlRequest.post(this.url, this.postData);
+				Log.v(TAG, result);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
