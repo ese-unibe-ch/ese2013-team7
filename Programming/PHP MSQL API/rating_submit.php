@@ -129,7 +129,7 @@ if (isset($_POST['androidrequest']) AND
                 SET 
                     stars = ?,
                     comment = ?,
-                    time = ?,
+                    time = ?
                 WHERE 
                     userid  = ? AND menuid = ? AND mensaid = ?';
         	  $stmt = $db->prepare($sql);
