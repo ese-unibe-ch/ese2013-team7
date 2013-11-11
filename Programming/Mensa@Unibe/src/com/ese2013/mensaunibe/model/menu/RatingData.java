@@ -7,12 +7,10 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.ese2013.mensaunibe.RatingListAdapter;
 import com.ese2013.mensaunibe.model.api.ApiUrl;
-import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.api.JSONParser;
 import com.ese2013.mensaunibe.model.api.URLRequest;
 
@@ -28,7 +26,6 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	
 	private ProgressDialog dialog;
 	private String menu;
-	private String menuRaw;
 	private int mensaId;
 	private Context context;
 	private RatingListAdapter adapter;
@@ -40,13 +37,9 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	public RatingData(Context context, String menu, int mensaId, int type) {
 		assert context != null && menu.length() > 2 && type != 0;
 		this.dialog = new ProgressDialog(context);
-		//this.menu = menu;
 		this.context = context;
 		this.mensaId = mensaId;
-		this.menuRaw = menu;
 		parser = new JSONParser();
-		//String[] menu2 = this.menu.split("\n");
-		//this.menu = menu2[0];
 		this.menu = parseMenuTitle( menu );
 		this.type = type;
 		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET + "&mensaid="+this.mensaId
@@ -71,8 +64,12 @@ public class RatingData extends AsyncTask<Void, Void, String> {
     }
 	
 	protected void onPostExecute(final String result) {
-		if (dialog.isShowing()) {
-			dialog.dismiss();
+		try {
+			if (dialog.isShowing()) {
+				dialog.dismiss();
+			}
+		}catch(Exception e) {
+			
 		}
 		
 		if(type == TYPE_LOAD) {
@@ -111,13 +108,6 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		} else
 		if(type == TYPE_SAVE) {
 			Toast.makeText(context, "Your rating has been saved", Toast.LENGTH_SHORT).show();
-			//adapter.add( new Rating( this.username, this.text, this.rating ) );
-			//adapter.notifyDataSetChanged();
-			Intent intent = new Intent();
-			intent.setClassName(context.getPackageName(), context.getPackageName()+".RatingActivity");
-			intent.putExtra("menu", this.menuRaw);
-			intent.putExtra(AppUtils.MENSA_ID, this.mensaId);
-			context.startActivity(intent);
 		}
 		
 	}

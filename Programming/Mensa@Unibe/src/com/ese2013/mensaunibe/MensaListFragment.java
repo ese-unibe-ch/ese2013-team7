@@ -17,13 +17,8 @@ public class MensaListFragment extends ListFragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
-		//MensaListAdapter adapter = new MensaListAdapter(getActivity(), android.R.layout.simple_list_item_1);
 		MensaListAdapter adapter = new MensaListAdapter(getActivity(), R.layout.mensa_list_row_layout);
 		setListAdapter(adapter);
-		//have to check android.app.LoaderManager
-		//i think we could use it
-		//setListShown(false);
 	}
 
 	@Override

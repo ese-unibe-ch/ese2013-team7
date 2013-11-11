@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -80,7 +79,6 @@ public class MenuListAdapter extends BaseAdapter{
 			holder.text.setVisibility(View.VISIBLE);
 			
 			view.setOnClickListener( new MenuOnClickListener( dm.getMenu() ) );
-			//OnItemClickListener n = new OnItemClickListener();
 		}
 		return view;
 	}
