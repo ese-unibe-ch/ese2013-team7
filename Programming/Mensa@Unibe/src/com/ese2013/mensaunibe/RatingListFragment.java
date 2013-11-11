@@ -30,37 +30,13 @@ public class RatingListFragment extends ListFragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		//((RatingBar)this.getView().findViewById(R.id.rating_avg)).setRating(3.5);
-		//MensaListAdapter adapter = new MensaListAdapter(getActivity(), android.R.layout.simple_list_item_1);
-		RatingListAdapter adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout, this.mMensaId, this.menu);
+		RatingListAdapter adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout);
 		setListAdapter(adapter);
 		Model.getInstance().loadMenuRating(getActivity(), adapter, menu, mMensaId, RatingData.TYPE_LOAD);
-		
-		//have to check android.app.LoaderManager
-		//i think we could use it
-		//setListShown(false);
 	}
-
-	/*@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		RatingListAdapter a = (RatingListAdapter) l.getAdapter();
-		if(a.getItem(position) != null) {
-			listener.onListItemSelected(a.getItem(position).getId());			
-		}
-	}*/
-
-	/*@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		if (activity instanceof OnListItemClickListener) {
-			listener = (OnListItemClickListener) activity;
-		} else {
-			throw new ClassCastException(activity.toString()
-					+ " must implemenet " +TAG +".OnItemSelectedListener");
-		}
+	
+	public void update() {
+		RatingListAdapter a = (RatingListAdapter) getListAdapter();
+		Model.getInstance().loadMenuRating(getActivity(), a, menu, mMensaId, RatingData.TYPE_LOAD);
 	}
-
-	public interface OnListItemClickListener {
-		public void onListItemSelected(int itemId);
-	}*/
 }

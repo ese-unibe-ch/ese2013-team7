@@ -6,7 +6,9 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_share">Share</string>
     <string name="menu_list">Menu</string>
-    <string name="map_activity">Mensa Map</string>
+    <string name="base_map_activity">Map</string>
+    <string name="map_activity_one_mensa">Mensa Map</string>
+    <string name="map_activity_all_mensas">Mensa Map</string>
     <string name="no_menu">No menu available</string>
     <string name="mensa_list_favorites">Favorite Mensas</string>
     <string name="mensa_list_header">Mensas</string>

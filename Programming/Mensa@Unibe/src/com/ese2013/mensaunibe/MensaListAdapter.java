@@ -78,7 +78,7 @@ public class MensaListAdapter extends BaseAdapter {
 				direction.setOnClickListener(new View.OnClickListener() {
 				     @Override
 				     public void onClick(View v) {
-				     Intent intent = new Intent(context, MapActivity.class);
+				     Intent intent = new Intent(context, MapActivityOneMensa.class);
 				     intent.putExtra("int_value", mensa.getId());
 				     context.startActivity(intent);
 				     }

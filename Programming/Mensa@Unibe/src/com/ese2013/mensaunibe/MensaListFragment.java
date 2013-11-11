@@ -1,13 +1,9 @@
 package com.ese2013.mensaunibe;
 
 import android.app.Activity;
-//import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-/*import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.TextView;*/
 import android.widget.ListView;
 
 public class MensaListFragment extends ListFragment{
@@ -17,7 +13,6 @@ public class MensaListFragment extends ListFragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
 		MensaListAdapter adapter = new MensaListAdapter(getActivity(), R.layout.mensa_list_row_layout);
 		setListAdapter(adapter);
 	}

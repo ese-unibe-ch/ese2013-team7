@@ -12,7 +12,7 @@ import android.util.Log;
 import android.widget.BaseAdapter;
 
 import com.ese2013.mensaunibe.App;
-import com.ese2013.mensaunibe.MapActivity;
+import com.ese2013.mensaunibe.BaseMapActivity;
 import com.ese2013.mensaunibe.MensaActivity;
 import com.ese2013.mensaunibe.MensaListAdapter;
 import com.ese2013.mensaunibe.R;
@@ -94,7 +94,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	 */
 	public void callOnPause() {
 		if (mMensaListAdapter != null) mMensaListAdapter.locationReady(false);
-		if(mFragActivity instanceof MapActivity)((MapActivity) mFragActivity).locationReady(false);
+		if(mFragActivity instanceof BaseMapActivity)((BaseMapActivity) mFragActivity).locationReady(false);
 	}
 
 	/*
@@ -225,7 +225,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	public void onDisconnected() {
 		Log.d(TAG, App.getAppContext().getString(R.string.disconnected));
 		if (mMensaListAdapter != null) {mMensaListAdapter.locationReady(false);}
-		if(mFragActivity instanceof MapActivity){mMensaListAdapter.locationReady(false);}
+		if(mFragActivity instanceof BaseMapActivity){mMensaListAdapter.locationReady(false);}
 	}
 
 
@@ -371,7 +371,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 		mFragActivity = mensaActivity;
 		
 	}
-	public void setActivity(MapActivity mapActivity){
+	public void setActivity(BaseMapActivity mapActivity){
 		mFragActivity = mapActivity;
 	}
 }

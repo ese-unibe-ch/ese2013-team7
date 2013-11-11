@@ -1,8 +1,5 @@
 package com.ese2013.mensaunibe;
 
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -23,6 +20,7 @@ public class NewRatingActivity extends ActionBarActivity {
 	private String mMenu;
 	private int mMensaId;
 	private Context context;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,7 +33,6 @@ public class NewRatingActivity extends ActionBarActivity {
 		
 		mMensaId = getIntent().getIntExtra("mensaid", 0);
 		mMenu = getIntent().getStringExtra("menu");
-		//context = getApplicationContext();
 		context = this;
 		
 		Button submit = (Button) findViewById(R.id.submit_rating);
@@ -50,6 +47,12 @@ public class NewRatingActivity extends ActionBarActivity {
 					String userEmail = UserEmailMD5Fetcher.getEmail();
 					
 					Model.getInstance().saveRating(context, mMenu, mMensaId, userEmail, comment.getText().toString(), (int) rating.getRating() );
+					if (getParent() == null) {
+					    setResult(RESULT_OK);
+					} else {
+					    getParent().setResult(RESULT_OK);
+					}
+					finish();
 				}
 			}
 		
@@ -58,8 +61,6 @@ public class NewRatingActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.new_rating, menu);
 		return true;
 	}
 

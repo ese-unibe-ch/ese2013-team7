@@ -177,10 +177,6 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 					lc.execute();
 				}
 	    		return true;
-	    		
-			case R.id.action_direction:
-				startActivity(new Intent(getApplicationContext(), MapActivity.class));
-				return true;
 			case R.id.action_mensainfo:
 				DialogFragment newFragment = new MensaInfoDialogFragment();
 				Bundle args = new Bundle();

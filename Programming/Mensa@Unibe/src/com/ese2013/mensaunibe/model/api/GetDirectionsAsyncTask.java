@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import org.w3c.dom.Document;
 
-import com.ese2013.mensaunibe.MapActivity;
+import com.ese2013.mensaunibe.BaseMapActivity;
+import com.ese2013.mensaunibe.BaseMapActivity;
 import com.ese2013.mensaunibe.R;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -21,13 +22,13 @@ import android.widget.Toast;
 		public static final String DESTINATION_LAT = "destination_lat";
 		public static final String DESTINATION_LONG = "destination_long";
 		public static final String DIRECTIONS_MODE = "directions_mode";
-		private MapActivity activity;
+		private BaseMapActivity activity;
 
 		private Exception exception;
 
 		private Dialog progressDialog;
 
-		public GetDirectionsAsyncTask(MapActivity activity ) 
+		public GetDirectionsAsyncTask(BaseMapActivity activity ) 
 		{
 		    super();
 		    assert activity != null;

@@ -5,15 +5,8 @@ import com.ese2013.mensaunibe.model.api.AppUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.Menu;
@@ -43,7 +36,6 @@ public class RatingActivity extends ActionBarActivity {
 			args.putInt(AppUtils.MENSA_ID, mMensaId);
 			args.putString("menu", mMenu);
 			fragment.setArguments(args);
-			
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			ft.add(android.R.id.content, fragment, AppUtils.TAG_RATINGLIST_FRAGMENT);
 			ft.commit();
@@ -64,7 +56,7 @@ public class RatingActivity extends ActionBarActivity {
 			Intent intent = new Intent(getApplicationContext(), NewRatingActivity.class);
 			intent.putExtra("mensaid", mMensaId);
 			intent.putExtra("menu", mMenu);
-			startActivity(intent);
+			startActivityForResult(intent, 1);
 			return true;	
 		case android.R.id.home:
 				onBackPressed();
@@ -73,4 +65,13 @@ public class RatingActivity extends ActionBarActivity {
 	            return super.onOptionsItemSelected(item);
 		}
 	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode == RESULT_OK) {
+			fragment.update();
+		}
+	}
+	
 }
