@@ -125,11 +125,6 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		
 	}
 	@Override
-	protected void onResumeFragments() {
-	    super.onResumeFragments();
-	    initilizeMap();
-	}
-	@Override
 	public void onStart() {
 		super.onStart();
 		mLocation.callOnStart();
@@ -168,8 +163,4 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		}else locationReady = false;
 	}
 	
-	public void notifyDataSetChanged() {
-		// TODO Auto-generated method stub
-		
-	}
 }

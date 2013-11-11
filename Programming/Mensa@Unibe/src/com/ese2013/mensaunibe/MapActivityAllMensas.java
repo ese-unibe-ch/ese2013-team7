@@ -17,11 +17,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.Toast;
 
 public class MapActivityAllMensas extends BaseMapActivity {
@@ -100,9 +104,27 @@ public class MapActivityAllMensas extends BaseMapActivity {
 		if(mLocation == null){
 			mLocation = MyLocation.getInstance();
 			mLocation.setActivity(this);
+		}if(mLocation == null){
+			mLocation = MyLocation.getInstance();
+			mLocation.setActivity(this);
 		}
 		mensas = Model.getInstance().getMensaList();
-		mLocationLatLng =new LatLng(mLocation.getLocation().getLatitude(),mLocation.getLocation().getLongitude());	
+		mLocationLatLng =new LatLng(mLocation.getLocation().getLatitude(),mLocation.getLocation().getLongitude());
+		
+		final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
+        if (mapView.getViewTreeObserver().isAlive()) {
+            mapView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+                @SuppressLint("NewApi") // We check which build version we are using.
+                @Override
+                public void onGlobalLayout() {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                      mapView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    } else {
+                      mapView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    }
+                    map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(mLocationLatLng.latitude, mLocationLatLng.longitude),14.0f) );
+                }
+            });}
 	}
 	
 	protected void initializeMap() {

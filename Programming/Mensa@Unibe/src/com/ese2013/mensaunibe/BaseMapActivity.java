@@ -33,7 +33,6 @@ public class BaseMapActivity extends ActionBarActivity {
 
 @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-	  getMenuInflater().inflate(R.menu.actionbar_mensa_list, menu);
     return super.onCreateOptionsMenu(menu);
   }
 
