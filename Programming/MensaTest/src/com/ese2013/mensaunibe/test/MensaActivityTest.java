@@ -34,12 +34,12 @@ public class MensaActivityTest extends
 		setActivityInitialTouchMode(false);
 
 		mActivity = getActivity();
-		mFragment = (MensaListFragment) mActivity.getSupportFragmentManager()
+		mFragment = (MensaListFragment) getActivity().getSupportFragmentManager()
 				.findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
 		mAdapter = mFragment.getListAdapter();
-		mListView = (ListView) mActivity
+		mListView = (ListView) getActivity()
 				.findViewById(com.ese2013.mensaunibe.R.id.listViewMensa);
-		mFavButton = (ToggleButton) mActivity
+		mFavButton = (ToggleButton) getActivity()
 				.findViewById(com.ese2013.mensaunibe.R.id.tgl_favorite);
 
 	}
@@ -71,8 +71,9 @@ public class MensaActivityTest extends
 	@SmallTest
 	public void testFavoriteToggleViaOnClick() {
 		assertNotNull("Favorite button not allowed to be null", mFavButton);
+		assertTrue("Favorite toggle button shouldn't be checked", !mFavButton.isChecked());
 		TouchUtils.clickView(this, mFavButton);
-		assertTrue(mFavButton.isChecked());
+		assertTrue("Favorite toggle button should be checked",mFavButton.isChecked());
 	}
 
 	@MediumTest
