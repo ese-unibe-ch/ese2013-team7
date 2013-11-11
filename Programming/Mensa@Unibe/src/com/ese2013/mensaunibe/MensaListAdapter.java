@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -77,7 +78,7 @@ public class MensaListAdapter extends BaseAdapter {
 				direction.setOnClickListener(new View.OnClickListener() {
 				     @Override
 				     public void onClick(View v) {
-				     Intent intent = new Intent(context, MapActivity.class);
+				     Intent intent = new Intent(context, MapActivityOneMensa.class);
 				     intent.putExtra("int_value", mensa.getId());
 				     context.startActivity(intent);
 				     }

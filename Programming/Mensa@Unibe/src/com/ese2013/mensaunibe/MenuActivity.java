@@ -8,12 +8,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import com.ese2013.mensaunibe.model.Model;
@@ -86,6 +90,8 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 
 	@Override
 	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -95,6 +101,8 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 
 	@Override
 	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+
 	}
 
 	public class TabCollectionPagerAdapter extends FragmentPagerAdapter {
@@ -169,10 +177,6 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 					lc.execute();
 				}
 	    		return true;
-	    		
-			case R.id.action_direction:
-				startActivity(new Intent(getApplicationContext(), MapActivity.class));
-				return true;
 			case R.id.action_mensainfo:
 				DialogFragment newFragment = new MensaInfoDialogFragment();
 				Bundle args = new Bundle();

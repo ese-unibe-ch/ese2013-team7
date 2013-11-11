@@ -6,7 +6,9 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_share">Share</string>
     <string name="menu_list">Menu</string>
-    <string name="map_activity">Mensa Map</string>
+    <string name="base_map_activity">Map</string>
+    <string name="map_activity_one_mensa">Mensa Map</string>
+    <string name="map_activity_all_mensas">Mensa Map</string>
     <string name="no_menu">No menu available</string>
     <string name="mensa_list_favorites">Favorite Mensas</string>
     <string name="mensa_list_header">Mensas</string>
@@ -33,7 +35,7 @@
     <string name="address">Address</string>
     <string name="menurating_title">Rating of</string>
     <string name="action_rate">Rate the menu</string>
-    <string name="avg_rating">Average rating</string>
+    <string name="avg_rating">Average</string>
     <string name="edit_message">Rating text</string>
     <string name="button_submit">Submit</string>
 
