@@ -50,6 +50,9 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	
 	private String parseMenuTitle( String menu ) {
 		String[] tmp = menu.split("\n");
+		if(tmp[0].contains("VEGI+")) {
+			return tmp[1];
+		}
 		return tmp[0];
 	}
 	public void setPostData(String nickname, String text, int rating) {
