@@ -58,21 +58,22 @@ public class MensaTest extends InstrumentationTestCase{
 	
 	public void testLanguage(){
 		mensa.setLanguage(Language.ENGLISH);
-		assertEquals("Language should be English",mensa.getLanguage(), Language.ENGLISH);
+		assertEquals("Language should be English", Language.ENGLISH, mensa.getLanguage());
 	}
 	
 	public void testToString() {
 		WeeklyMenu mockWm = mock(WeeklyMenu.class);
 		when(mockWm.toString()).thenReturn("Yummi");
 		mensa.setWeeklyMenu(mockWm);
-		assertEquals("String should be equal", mensa.toString(), 
+		assertEquals("String should be equal",
 				"mensa:Mensa Gesellschaftsstrasse,"
 				+ "street:Gesellschaftsstrasse 2,"
 				+ "plz:3012 Bern,"
 				+ "lat:46.951800,"
 				+ "lon:7.438350,"
 				+ "id:1,"
-				+ "menu:Yummi");
+				+ "menu:Yummi",
+				 mensa.toString());
 	}
 
 	public void testDistance() {
