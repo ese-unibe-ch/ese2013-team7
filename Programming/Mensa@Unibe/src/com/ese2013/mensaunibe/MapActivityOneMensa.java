@@ -113,6 +113,60 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 	            }
 	        }
 	    }
+	
+	public void setUpMap(){
+		if(mLocation == null){
+			mLocation = MyLocation.getInstance();
+			mLocation.setActivity(this);
+		}
+		mMensaId = getIntent().getIntExtra("int_value",0);
+		mensa = Model.getInstance().getMensaById(mMensaId);
+		mLocationLatLng =new LatLng(mLocation.getLocation().getLatitude(),mLocation.getLocation().getLongitude());
+		
+		final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
+        if (mapView.getViewTreeObserver().isAlive()) {
+            mapView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(mLocationLatLng.latitude, mLocationLatLng.longitude),14.0f) );
+                    mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon()))
+            				.title(mensa.getName())); 
+                	findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
+                               mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
+                }
+            });}
+		
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+			case R.id.action_travel_mode:				
+				if(travelMode.contentEquals("walking")) {
+					travelMode ="driveing";
+					map.clear();
+					mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon()))
+            				.title(mensa.getName()));
+					findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
+                            mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
+					item.setTitle(getString(R.string.action_travel_mode_walking));
+					
+					}
+				else {
+					travelMode ="walking";
+					map.clear();
+					mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon()))
+            				.title(mensa.getName()));
+					findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
+                            mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
+					
+					item.setTitle(getString(R.string.action_travel_mode_driveing));
+					}
+				
+				return true;
+			default:
+		           return super.onOptionsItemSelected(item);
+	    	}
+	}
 	@Override
 	public void onResume() {
         super.onResume();
@@ -136,34 +190,6 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		super.onStart();
 		mLocation.callOnStart();
 	}
-
-	
-	public void setUpMap(){
-		if(mLocation == null){
-			mLocation = MyLocation.getInstance();
-			mLocation.setActivity(this);
-		}
-		mMensaId = getIntent().getIntExtra("int_value",0);
-		mensa = Model.getInstance().getMensaById(mMensaId);
-		mLocationLatLng =new LatLng(mLocation.getLocation().getLatitude(),mLocation.getLocation().getLongitude());
-		
-		final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
-        if (mapView.getViewTreeObserver().isAlive()) {
-            mapView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-                @SuppressLint("NewApi") // We check which build version we are using.
-                @Override
-                public void onGlobalLayout() {
-                    map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(mLocationLatLng.latitude, mLocationLatLng.longitude),14.0f) );
-                    mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon()))
-            				.title(mensa.getName()));
-                    if(newPolyline==null){
-                		findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
-                                mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
-                		}
-                }
-            });}
-		
-	}
 	
 	public void locationReady(boolean b){
 		if(b){
@@ -171,32 +197,8 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		}else locationReady = false;
 	}
 	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()) {
-			case R.id.action_travel_mode:				
-				if(travelMode.contentEquals("walking")) {
-					travelMode ="driveing";
-					newPolyline.remove();
-					findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
-                            mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
-					item.setTitle(getString(R.string.action_travel_mode_walking));
-					
-					}
-				else {
-					travelMode ="walking";
-					newPolyline.remove();
-					findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
-                            mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
-					
-					item.setTitle(getString(R.string.action_travel_mode_driveing));
-					}
-				
-				return true;
-			default:
-		           return super.onOptionsItemSelected(item);
-	    	}
-	}
+
+	
 
 	
 }
