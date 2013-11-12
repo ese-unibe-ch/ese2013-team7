@@ -8,12 +8,19 @@ import android.test.AndroidTestCase;
 import com.ese2013.mensaunibe.App;
 import com.ese2013.mensaunibe.model.MenuDate;
 
+/**
+ * @author group7
+ * @author Sandor Torok
+ */
 public class MenuDateTest extends AndroidTestCase{
 
 
 	private MenuDate menuDate;
 	private	Calendar cal;
 
+	/**
+	 * @see android.test.AndroidTestCase#setUp()
+	 */
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();

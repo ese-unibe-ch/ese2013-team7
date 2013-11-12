@@ -11,6 +11,10 @@ import com.ese2013.mensaunibe.MensaActivity;
 import com.ese2013.mensaunibe.MensaListFragment;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 
+/**
+ * @author group7
+ * @author Sandor Torok
+ */
 public class MensaActivityTest extends
 		ActivityInstrumentationTestCase2<MensaActivity> {
 
@@ -24,6 +28,10 @@ public class MensaActivityTest extends
 		super(MensaActivity.class);
 	}
 
+	
+	/**
+	 * @see android.test.ActivityInstrumentationTestCase2#setUp()
+	 */
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -39,12 +47,18 @@ public class MensaActivityTest extends
 
 	}
 
+	/**
+	 * Testing preconditions for test cases
+	 */
 	public void testPreConditions() {
 		assertNotNull(activity);
 		assertNotNull(mFragment);
 		assertNotNull(mAdapter);
 	}
 
+	/**
+	 * Test if correct number of list elements are in the List View
+	 */
 	@SmallTest
 	public void testListCount() {
 		int adapterCount = AVAILABLE_MENSAS;
@@ -59,6 +73,7 @@ public class MensaActivityTest extends
 	}
 
 	/**
+	 * Test favorite Button state.
 	 * Emulator should be started with wiped user data for this test case to
 	 * work properly
 	 */
@@ -68,6 +83,9 @@ public class MensaActivityTest extends
 		assertTrue("Favorite toggle button should not be checked", !mFavButton.isChecked());
 	}
 
+	/**
+	 * Test if application state is preserved between launches 
+	 */
 	@MediumTest
 	public void testFavMensaPersistedBetweenLaunches() {
 		mFavButton = (ToggleButton) getActivity()
