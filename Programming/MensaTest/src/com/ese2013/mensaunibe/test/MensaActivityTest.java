@@ -1,5 +1,7 @@
 package com.ese2013.mensaunibe.test;
 
+import java.util.ArrayList;
+
 import android.app.Instrumentation.ActivityMonitor;
 import android.support.v4.app.ListFragment;
 import android.test.ActivityInstrumentationTestCase2;
@@ -8,6 +10,7 @@ import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -117,33 +120,4 @@ public class MensaActivityTest extends
 				.findViewById(com.ese2013.mensaunibe.R.id.tgl_favorite);
 		assertEquals(mFavButton.isChecked(), false);
 	}
-	
-	@MediumTest
-	 public void testStartSecondActivity() throws Exception {    
-		    
-		    // add monitor to check for the second activity
-		    ActivityMonitor monitor =
-		        getInstrumentation().
-		          addMonitor(MenuActivity.class.getName(), null, false);
-
-		    // find mensa row and click it
-		    TextView view = (TextView) activity.findViewById(com.ese2013.mensaunibe.R.id.mensa_list_row);
-		    TouchUtils.clickView(this, view);
-
-		    // wait 3 seconds for the start of the activity
-		    MenuActivity startedActivity = (MenuActivity) monitor
-		        .waitForActivityWithTimeout(4000);
-		    assertNotNull(startedActivity);
-
-		    // search for the list view
-		    ListView lView = (ListView) startedActivity.findViewById(android.R.id.list);
-		    
-		    // check that the view is on the screen
-		    ViewAsserts.assertOnScreen(startedActivity.getWindow().getDecorView(),
-		        lView);
-	    
-		    // press back and click again
-		    this.sendKeys(KeyEvent.KEYCODE_BACK);
-		    TouchUtils.clickView(this, view);
-		  }
 }
