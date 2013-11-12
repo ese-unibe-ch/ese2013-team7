@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.widget.BaseAdapter;
 
 import com.ese2013.mensaunibe.App;
 import com.ese2013.mensaunibe.BaseMapActivity;
@@ -22,6 +21,11 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
+
+/**
+ * @author group7
+ * @author Sandor Torok
+ */
 
 public class MyLocation implements 
 LocationListener,

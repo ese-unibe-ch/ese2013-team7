@@ -15,10 +15,6 @@ import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.Menu;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.AppUtils;
@@ -27,6 +23,12 @@ import com.ese2013.mensaunibe.model.api.LanguageChanger;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.MenuListAdapter;
 import com.memetix.mst.language.Language;
+
+/**
+ * @author group7
+ * @author Sandor Torok
+ * @author Andreas Hohler
+ */
 
 public class MenuActivity extends ActionBarActivity implements ActionBar.TabListener, MenuListAdapter.TitleListener{
 	

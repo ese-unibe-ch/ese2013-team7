@@ -24,6 +24,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.widget.Toast;
 
+/**
+ * @author group7
+ * @author Marc Dojtschinov
+ */
+
 public class MapActivityAllMensas extends BaseMapActivity {
 	protected ArrayList<Mensa> mensas;
 	protected GoogleMap map;

@@ -11,6 +11,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.Menu;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
+
 public class RatingActivity extends ActionBarActivity {
 	private int mMensaId;
 	private String mMenu;

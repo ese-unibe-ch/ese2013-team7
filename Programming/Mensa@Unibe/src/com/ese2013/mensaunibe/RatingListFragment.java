@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
 
 public class RatingListFragment extends ListFragment{
 	private static final String TAG= "RatingListFragment";
@@ -35,6 +39,9 @@ public class RatingListFragment extends ListFragment{
 		Model.getInstance().loadMenuRating(getActivity(), adapter, menu, mMensaId, RatingData.TYPE_LOAD);
 	}
 	
+	/**
+	 * public method to repopulate the rating list
+	 */
 	public void update() {
 		RatingListAdapter a = (RatingListAdapter) getListAdapter();
 		Model.getInstance().loadMenuRating(getActivity(), a, menu, mMensaId, RatingData.TYPE_LOAD);

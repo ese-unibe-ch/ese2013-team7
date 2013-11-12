@@ -17,6 +17,12 @@ import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 
+/**
+ * @author group7
+ * @author Sandor Torok
+ * @author Andreas Hohler
+ */
+
 public class MenuListAdapter extends BaseAdapter{
 
 	TitleListener mCallback;
@@ -83,6 +89,10 @@ public class MenuListAdapter extends BaseAdapter{
 		return view;
 	}
 	
+	/**
+	 * OnClickListener on Menu-Item.
+	 * @author Andreas Hohler
+	 */
 	private class MenuOnClickListener implements OnClickListener {
 		private String title;
 		public MenuOnClickListener(String title) {
@@ -99,6 +109,10 @@ public class MenuListAdapter extends BaseAdapter{
 		}
 	}
 
+	/**
+	 * clears all views in a ViewHolder and hide them.
+	 * @param ViewHolder
+	 */
 	private void clearHolder(ViewHolder holder) {
 		holder.date.setText("");
 		holder.date.setVisibility(View.GONE);
@@ -108,6 +122,10 @@ public class MenuListAdapter extends BaseAdapter{
 		holder.text.setVisibility(View.GONE);
 	}
 
+	/**
+	 * populates the menu list.
+	 * @param firstOrAll: if only one day should be displayed
+	 */
 	private void populate(int firstOrAll) {
 		//fill
 		this.items = new ArrayList<ListItem>();
@@ -160,6 +178,11 @@ public class MenuListAdapter extends BaseAdapter{
 		public void updateTiteListener(String tabTitle, int firstMenu);
 	}
 
+	/**
+	 * @author group7
+	 * @author Sandor Torok
+	 * Just holds the TextView variables (pattern)
+	 */
 	static class ViewHolder {
 		public TextView date;
 		public TextView title;

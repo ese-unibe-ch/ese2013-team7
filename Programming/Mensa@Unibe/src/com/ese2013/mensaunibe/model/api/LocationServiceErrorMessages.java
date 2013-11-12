@@ -9,6 +9,12 @@ import com.google.android.gms.common.ConnectionResult;
 /**
  * Map error codes to error messages.
  */
+
+/**
+ * @author group7
+ * @author Sandor Torok
+ */
+
 public class LocationServiceErrorMessages {
 
     // Don't allow instantiation

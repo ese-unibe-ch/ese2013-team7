@@ -13,13 +13,29 @@ import java.io.OutputStreamWriter;
 
 import android.content.Context;
 
+/**
+ * @author group7
+ * @author Jan Binzegger
+ */
+
 public class CacheRequest {
 
+	/**
+	 * returns the whole content of one file
+	 * @param context
+	 * @param filename
+	 * @return file content as a string
+	 */
     public static String readAllCachedText(Context context, String filename) {
         File file = new File(context.getCacheDir(), filename);
         return readAllText(file);
     }
 
+    /**
+     * actually reads the whole file and returns it as string
+     * @param file
+     * @return the file content as a string
+     */
     public static String readAllText(File file) {
         try {
             FileInputStream inputStream = new FileInputStream(file);
@@ -29,6 +45,11 @@ public class CacheRequest {
         }
     }
 
+    /**
+     * read the text from an input stream
+     * @param inputStream
+     * @return string of read text
+     */
     public static String readAllText(InputStream inputStream) {
         InputStreamReader inputreader = new InputStreamReader(inputStream);
         BufferedReader buffreader = new BufferedReader(inputreader);
@@ -48,11 +69,24 @@ public class CacheRequest {
         return text.toString();
     }
 
+    /**
+     * write text to cache
+     * @param context
+     * @param filename
+     * @param text
+     * @return true, if it was fine, other else false
+     */
     public static boolean writeAllCachedText(Context context, String filename, String text) {
         File file = new File(context.getCacheDir(), filename);
         return writeAllText(file, text);
     }
-
+    
+    /**
+     * writes the text to a file with an outputstream
+     * @param file
+     * @param text
+     * @return true, if it worked, otherelse false
+     */
     public static boolean writeAllText(File file, String text) {
         try {
             FileOutputStream outputStream = new FileOutputStream(file);
@@ -63,6 +97,12 @@ public class CacheRequest {
         }
     }
 
+    /**
+     * write all text to an output stream
+     * @param outputStream
+     * @param text
+     * @return true if it worked, otherelse false
+     */
     public static boolean writeAllText(OutputStream outputStream, String text) {
         OutputStreamWriter outputWriter = new OutputStreamWriter(outputStream);
         BufferedWriter bufferedWriter = new BufferedWriter(outputWriter);

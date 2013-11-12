@@ -14,6 +14,11 @@ import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 
+/**
+ * @author group17
+ * @author Sandor Torok
+ */
+
 public class MensaInfoDialogFragment extends DialogFragment {
 	private static final String TAG = "MensaInfoDialogFragment";
 	private int mMensaId;
@@ -52,7 +57,12 @@ public class MensaInfoDialogFragment extends DialogFragment {
 		// Create the AlertDialog object and return it
 		return builder.create();
 	}
-
+	
+	/**
+	 * Builds the information message of the mensas
+	 * it includes the location and in future the opening times
+	 * @return a full string of all informations of the mensa
+	 */
 	private String buildMessage(){
 		String message = mMensa.getStreet() + ",\n";
 		message += mMensa.getPlz();

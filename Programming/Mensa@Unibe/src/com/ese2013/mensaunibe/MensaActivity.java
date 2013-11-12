@@ -13,7 +13,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
 
 public class MensaActivity extends ActionBarActivity implements MensaListFragment.OnListItemClickListener{
 

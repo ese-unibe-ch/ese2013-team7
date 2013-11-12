@@ -10,6 +10,10 @@ import android.util.Log;
 
 import com.ese2013.mensaunibe.model.MenuDate;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
 public class WeeklyMenu implements Iterable<Menuplan> {
 	private HashMap<String, Menuplan> menuPlans;
 	public WeeklyMenu( HashMap<String, Menuplan> map ) {
@@ -21,6 +25,12 @@ public class WeeklyMenu implements Iterable<Menuplan> {
 		Iterator<Menuplan> it = menuPlans.values().iterator();
 		return it;
 	}
+	
+	/**
+	 * returns the daily menu as menuplan
+	 * @param date
+	 * @return Menuplan of one day
+	 */
 	public Menuplan getDailyMenu(MenuDate date) {
 		assert date != null;
 		Menuplan m = menuPlans.get(date.toString());

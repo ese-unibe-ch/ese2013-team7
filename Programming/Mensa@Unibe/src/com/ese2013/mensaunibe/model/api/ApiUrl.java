@@ -1,5 +1,10 @@
 package com.ese2013.mensaunibe.model.api;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
+
 public class ApiUrl {
 	public final static String API_TOKEN = "6112255ca02b3040711015bbbda8d955";
 	public final static String API_MENSA_LIST = "http://mensa.xonix.ch/v1/mensas?tok="+API_TOKEN;

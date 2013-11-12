@@ -6,8 +6,13 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
+/**
+ * @author group7
+ * @author Sandor Torok
+ */
+
 public class MensaListFragment extends ListFragment{
-	private static final String TAG= "MensaListFragment";
+	private static final String TAG = "MensaListFragment";
 	private OnListItemClickListener listener;
 
 	@Override

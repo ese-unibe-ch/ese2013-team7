@@ -9,6 +9,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ListAdapter;
 
+/**
+ * @author group7
+ * @author Sandor Torok
+ * @see MenuActivity
+ */
+
 public class CurrentDayMenuFragment extends ListFragment{
 
 	private static final String TAG = "CurrentDayMenuFragment";

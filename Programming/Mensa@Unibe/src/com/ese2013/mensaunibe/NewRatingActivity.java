@@ -15,6 +15,11 @@ import android.widget.RatingBar;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.UserEmailMD5Fetcher;
 
+/**
+ * @author group17
+ * @author Jan Binzegger
+ */
+
 public class NewRatingActivity extends ActionBarActivity {
 
 	private String mMenu;
