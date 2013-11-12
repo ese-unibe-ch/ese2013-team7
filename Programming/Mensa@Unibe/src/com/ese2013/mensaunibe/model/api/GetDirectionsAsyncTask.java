@@ -9,6 +9,7 @@ import com.ese2013.mensaunibe.R;
 import com.google.android.gms.maps.model.LatLng;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 
 import android.os.AsyncTask;
 import android.widget.Toast;
@@ -37,11 +38,13 @@ public class GetDirectionsAsyncTask extends AsyncTask<Map<String, String>, Objec
 	    this.activity = activity;
 	}
 
-	/*public void onPreExecute() {
-		    progressDialog = DialogUtils.createProgressDialog(activity, activity.getString(R.string.get_data_dialog_message));
+	public void onPreExecute() {
+		    progressDialog = new ProgressDialog(activity);
+		    progressDialog.setTitle(R.string.load_map_message);
+		    progressDialog.setCancelable(false);
 		    progressDialog.show();
 		}
-*/
+
 	@Override
 	public void onPostExecute(ArrayList<LatLng> result) {
 	    if (progressDialog != null) progressDialog.dismiss();

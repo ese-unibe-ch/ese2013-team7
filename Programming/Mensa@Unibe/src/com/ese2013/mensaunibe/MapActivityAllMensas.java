@@ -52,7 +52,7 @@ public class MapActivityAllMensas extends BaseMapActivity {
 	    ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 	
-		initializeMap();
+		initilizeMap();
 		for(Mensa m: mensas){
 		mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensas.get(m.getId()).getLat(),mensas.get(m.getId()).getLon()))
 				.title(mensas.get(m.getId()).getName()));
@@ -93,12 +93,6 @@ public class MapActivityAllMensas extends BaseMapActivity {
 				
 			}
 
-	@Override
-	public void onResume() {
-	    super.onResume();
-	    initializeMap();
-	}
-
 	public void locationReady(boolean b) {
 		if(b){
 			locationReady = true;
@@ -132,17 +126,37 @@ public class MapActivityAllMensas extends BaseMapActivity {
             });}
 	}
 	
-	protected void initializeMap() {
-        if (map == null) {
-        	setUpMap();
-        	map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-        	map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(mLocationLatLng.latitude, mLocationLatLng.longitude),14.0f) );
-            // check if map is created successfully or not
-            if (map == null) {
-                Toast.makeText(getApplicationContext(),
-                        "Sorry! unable to create maps", Toast.LENGTH_SHORT)
-                        .show();
-            }
-        }
-    }
+		public void initilizeMap() {
+	        if (map == null) {
+	        	map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+	            // check if map is created successfully or not
+	            if (map != null) {
+	            	setUpMap();
+	            }
+	        }
+	    }
+		
+		@Override
+		public void onResume() {
+	        super.onResume();
+	        mLocation.callOnResume();
+		}
+		@Override
+		public void onStop() {
+			super.onStop();
+			mLocation.callOnStop();
+			
+		}
+
+		@Override
+		public void onPause() {
+			super.onPause();
+			mLocation.callOnPause();
+			
+		}
+		@Override
+		public void onStart() {
+			super.onStart();
+			mLocation.callOnStart();
+		}
 }

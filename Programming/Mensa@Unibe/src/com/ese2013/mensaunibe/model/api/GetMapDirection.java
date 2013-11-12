@@ -26,8 +26,6 @@ import com.google.android.gms.maps.model.LatLng;
  */
 
 public class GetMapDirection {
-	public final static String MODE_DRIVING = "driving";
-	public final static String MODE_WALKING = "walking";
 
 
 	public Document getDocument(LatLng start, LatLng end, String mode) {

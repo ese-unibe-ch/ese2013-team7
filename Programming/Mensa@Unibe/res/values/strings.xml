@@ -25,6 +25,9 @@
     <string name="Sunday">Sunday</string>
     <string name="loading">loading</string>
     <string name="from">from</string>
+    <string name="action_travel_mode">travel mode</string>
+    <string name="action_travel_mode_driveing">Change to driveing</string>
+    <string name="action_travel_mode_walking">Change to walking</string>
     <string name="action_translate_to_german">Translate to German</string>
     <string name="action_translate_to_english">Translate to English</string>
     <string name="added_to_favorites">added to favorites</string>
@@ -40,6 +43,8 @@
     <string name="button_submit">Submit</string>
 
     <!-- Debug Messages -->
+    <string name ="pls_wait">Please wait</string>
+    <string name="load_map_message">loading Map</string> 
     <string name="connected">Client connected</string>
     <string name="disconnected">Client disconnected</string>
     <string name="resolved">Error resolved. Please re-try operation.</string>
