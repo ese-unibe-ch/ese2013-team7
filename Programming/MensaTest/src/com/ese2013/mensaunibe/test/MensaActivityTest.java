@@ -22,7 +22,6 @@ public class MensaActivityTest extends
 		ActivityInstrumentationTestCase2<MensaActivity> {
 
 	private MensaActivity activity;
-	private ListView mListView;
 	private ListFragment mFragment;
 	private ListAdapter mAdapter;
 	private ToggleButton mFavButton;
@@ -42,8 +41,6 @@ public class MensaActivityTest extends
 		mFragment = (MensaListFragment) getActivity().getSupportFragmentManager()
 				.findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
 		mAdapter = mFragment.getListAdapter();
-		mListView = (ListView) getActivity()
-				.findViewById(com.ese2013.mensaunibe.R.id.listViewMensa);
 		mFavButton = (ToggleButton) getActivity()
 				.findViewById(com.ese2013.mensaunibe.R.id.tgl_favorite);
 
@@ -51,7 +48,6 @@ public class MensaActivityTest extends
 
 	public void testPreConditions() {
 		assertNotNull(activity);
-		assertNotNull(mListView);
 		assertNotNull(mFragment);
 		assertNotNull(mAdapter);
 	}
@@ -130,17 +126,16 @@ public class MensaActivityTest extends
 		        getInstrumentation().
 		          addMonitor(MenuActivity.class.getName(), null, false);
 
-		    // find button and click it
+		    // find mensa row and click it
 		    TextView view = (TextView) activity.findViewById(com.ese2013.mensaunibe.R.id.mensa_list_row);
-
 		    TouchUtils.clickView(this, view);
 
-		    // wait 2 seconds for the start of the activity
+		    // wait 3 seconds for the start of the activity
 		    MenuActivity startedActivity = (MenuActivity) monitor
-		        .waitForActivityWithTimeout(2000);
+		        .waitForActivityWithTimeout(4000);
 		    assertNotNull(startedActivity);
 
-		    // search for the mapFragment
+		    // search for the list view
 		    ListView lView = (ListView) startedActivity.findViewById(android.R.id.list);
 		    
 		    // check that the view is on the screen
