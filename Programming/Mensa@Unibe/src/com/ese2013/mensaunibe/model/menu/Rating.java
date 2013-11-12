@@ -1,5 +1,10 @@
 package com.ese2013.mensaunibe.model.menu;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
+
 public class Rating {
 	private String text;
 	private int rating;
@@ -28,6 +33,10 @@ public class Rating {
 		return rating;
 	}
 
+	/**
+	 * for the average rating of every menu
+	 * @param true, if this is an average object or not
+	 */
 	public void setAvg(boolean b) {
 		this.avg = b;
 	}

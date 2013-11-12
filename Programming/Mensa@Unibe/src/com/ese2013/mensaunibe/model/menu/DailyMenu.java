@@ -1,14 +1,22 @@
 package com.ese2013.mensaunibe.model.menu;
 
-
 import com.ese2013.mensaunibe.ListItem;
 import com.ese2013.mensaunibe.model.MenuDate;
+
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
 
 public class DailyMenu implements ListItem{
 	private String title;
 	private String menu;
 	private MenuDate date;
 	
+	/**
+	 * creates the DailyMenu with the Builder data
+	 * @param mb DailyMenuBuilder
+	 */
 	public DailyMenu(DailyMenuBuilder mb) {
 		assert mb != null;
 		title = mb.getTitle();

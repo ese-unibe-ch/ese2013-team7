@@ -18,6 +18,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+/**
+ * @author group7
+ * @author Marc Dojtschinov
+ */
+
 public class BaseMapActivity extends ActionBarActivity {
 	private GoogleMap map;
 	private MyLocation mLocation;

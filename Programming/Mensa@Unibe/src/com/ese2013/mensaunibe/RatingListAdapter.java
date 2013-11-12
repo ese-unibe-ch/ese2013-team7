@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 import com.ese2013.mensaunibe.model.menu.Rating;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
 
 public class RatingListAdapter extends BaseAdapter {
 	private Context context;
@@ -66,7 +70,11 @@ public class RatingListAdapter extends BaseAdapter {
 		return view;
 	}
 
-	
+	/**
+	 * populates the Ratinng list with ratings
+	 * @param r: List of Ratings
+	 * @param avgStars: average rating
+	 */
 	public void populate(ArrayList<Rating> r, float avgStars) {
 		assert avgStars <= 5;
 		//fill
@@ -101,6 +109,10 @@ public class RatingListAdapter extends BaseAdapter {
 		public RatingBar avg_rating;
 	}
 	
+	/**
+	 * Clears all the views and hide them
+	 * @param ViewHolder that holds all views
+	 */
 	private void clearHolder(ViewHolder holder) {
 		holder.rating.setRating(0);
 		holder.rating.setVisibility(View.GONE);

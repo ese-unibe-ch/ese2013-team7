@@ -9,6 +9,11 @@ import android.content.Context;
 
 import com.ese2013.mensaunibe.App;
 
+/**
+ * @author group7
+ * @author Jan Binzegger
+ */
+
 @SuppressLint("SimpleDateFormat")
 public class CacheHandler {
 	
@@ -18,7 +23,12 @@ public class CacheHandler {
 		context = App.getAppContext();
 	}
 
-	public boolean needNewCache(String type) 
+	/**
+	 * checks, if the cached data is outdated and has to be renewed
+	 * @param type: Mensa or menu, is just the file name
+	 * @return true, if new cache is needed, other else false
+	 */
+	public boolean needNewCache(String type)
 	{
 		File file = new File(context.getCacheDir(), type + ".txt");
 		
@@ -34,11 +44,21 @@ public class CacheHandler {
 		return true;
 	}
 
+	/**
+	 * saves the data to the cache
+	 * @param textToCache: string to be cached [json format]
+	 * @param type: mensa or menu, is actually the filename
+	 */
 	public void setNewCache(String textToCache, String type) 
 	{
 		CacheRequest.writeAllCachedText(context, type + ".txt", textToCache);
 	}
 
+	/**
+	 * loads data out of the cache
+	 * @param type: filename, mensa or menu
+	 * @return a json string of data
+	 */
 	public String loadCache(String type) 
 	{
 		return CacheRequest.readAllCachedText(context, type + ".txt");

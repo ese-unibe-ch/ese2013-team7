@@ -2,9 +2,14 @@ package com.ese2013.mensaunibe.model;
 
 import java.util.Calendar;
 import java.util.Date;
-
 import com.ese2013.mensaunibe.App;
 import com.ese2013.mensaunibe.R;
+
+/**
+ * @author group7
+ * @author Andreas Hohler
+ * @author Sandor Torok
+ */
 
 public class MenuDate implements Comparable<MenuDate> {
 
@@ -42,6 +47,11 @@ public class MenuDate implements Comparable<MenuDate> {
 		return day+"."+month+"."+year;
 	}
 
+	/**
+	 * Returns a nice formatted string of the object's date.
+	 * @param simple: the view is simple - only the day is displayed. other else, the whole information.
+	 * @return string with the day name or the whole date.
+	 */
 	public String toText(boolean simple) {
 		String dayName = "";
 		Calendar cal = Calendar.getInstance();
@@ -60,6 +70,11 @@ public class MenuDate implements Comparable<MenuDate> {
 		return dayName +", " + day+"."+month+"."+year;
 	}
 
+	/**
+	 * returns the name of a specific day (1-7) (not real day number)
+	 * @param day as an integer
+	 * @return name of day
+	 */
 	private String dayOfWeek(int day){
 		String dayOfWeek = "";
 		switch(day){
@@ -88,6 +103,11 @@ public class MenuDate implements Comparable<MenuDate> {
 		return dayOfWeek;
 	}
 
+	/**
+	 * Compares this date with another Calendar date.
+	 * @param date as Calendar
+	 * @return true if equal, other else false
+	 */
 	private boolean compareDay(Calendar c){
 		assert c != null;
 		return (day == c.get(Calendar.DAY_OF_MONTH)
@@ -99,12 +119,24 @@ public class MenuDate implements Comparable<MenuDate> {
 		return day+month+year;
 	}
 
+	/**
+	 * returns the month of this date
+	 * @return month
+	 */
 	public int getMonth() {
 		return month;
 	}
+	/**
+	 * returns the year of this date
+	 * @return year
+	 */
 	public int getYear() {
 		return year;
 	}
+	/**
+	 * returns the day of this date
+	 * @return day
+	 */
 	public int getDay() {
 		return day;
 	}

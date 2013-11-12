@@ -8,6 +8,12 @@ import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ToggleButton;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ * @see MensaListAdapter
+ */
+
 public class FavoriteOnClickListener implements OnCheckedChangeListener{
 	private Mensa mensa;
 	private ToggleButton favorite;
@@ -21,6 +27,7 @@ public class FavoriteOnClickListener implements OnCheckedChangeListener{
 	}
 
 
+	
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		Context context = App.getAppContext();
