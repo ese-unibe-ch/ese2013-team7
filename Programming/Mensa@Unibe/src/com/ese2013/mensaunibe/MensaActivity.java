@@ -13,7 +13,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
 
 public class MensaActivity extends ActionBarActivity implements MensaListFragment.OnListItemClickListener{
 
@@ -49,16 +52,10 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 
 	@Override
 	public void onListItemSelected(int mensaId) {
-		/* MenuTabHostFragment fragment = (MenuTabHostFragment) getSupportFragmentManager()
-		            .findFragmentById(R.id.MenuFragment);
-		        if (fragment != null && fragment.isInLayout()) {
-		          fragment.update(mensaId);
-		        } else{*/
 		Intent intent = new Intent();
 		intent.setClassName(getPackageName(), getPackageName()+".MenuActivity");
 		intent.putExtra("int_value", mensaId);
 		startActivity(intent);		              
-		//}
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {

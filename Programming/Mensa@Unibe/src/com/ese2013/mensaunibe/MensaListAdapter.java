@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -19,6 +18,11 @@ import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.MyLocation;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 
+/**
+ * @author group17
+ * @author Andreas Hohler
+ * @author Sandor Torok
+ */
 
 public class MensaListAdapter extends BaseAdapter {
 	private Context context;
@@ -88,10 +92,17 @@ public class MensaListAdapter extends BaseAdapter {
 		return view;
 	}
 
+	/**
+	 * Is the public method to repopulate the whole List.
+	 */
 	public void update() {
 		populate();
 	}
 
+	/**
+	 * Decides to populate or not. Is dependent on the location
+	 * @param b - true for location is ready, or false for not
+	 */
 	public void locationReady(boolean b){
 		if(b){
 			locationReady = true;
@@ -99,13 +110,21 @@ public class MensaListAdapter extends BaseAdapter {
 		}else locationReady = false;
 	}
 
+	/**
+	 * Checks, if there are any favorite mensas in order to display this section or not
+	 * @return true, if there are favorite mensas, or false if not
+	 */
 	private boolean hasFavoriteMensas() {
 		for(Mensa m : mensas) {
 			if(m.isFavorite()) return true;
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Populates the List with the data from the Model.
+	 * Can show a toast, if no data is available
+	 */
 	private void populate() {
 		//fill
 		mensas = Model.getInstance().getMensaList();
@@ -125,15 +144,29 @@ public class MensaListAdapter extends BaseAdapter {
 		if(mensas.size() == 0) Toast.makeText(this.context, "No data available. Please refresh.", Toast.LENGTH_LONG).show();
 	}
 
+	/**
+	 * Returns the Mensa-object of a specific list position
+	 * or null, if it's a section
+	 * @param position: position of the item
+	 * @return the Mensa object
+	 */
 	public Mensa getItem(int position) {
 		if( items.get(position).isSection() ) return null;
 		return (Mensa) items.get(position);
 	}
 
+	/**
+	 * returns just the Id of an list item (it's the position itself)
+	 * @param position - position of the item
+	 * @return position of the item
+	 */
 	public long getItemId(int position) {
 		return position;
 	}
 
+	/**
+	 * @return the size of the list
+	 */
 	public int getCount() {
 		return items.size();
 	}

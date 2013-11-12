@@ -1,17 +1,18 @@
 package com.ese2013.mensaunibe;
 
 import android.app.Activity;
-//import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-/*import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.TextView;*/
 import android.widget.ListView;
 
+/**
+ * @author group7
+ * @author Sandor Torok
+ */
+
 public class MensaListFragment extends ListFragment{
-	private static final String TAG= "MensaListFragment";
+	private static final String TAG = "MensaListFragment";
 	private OnListItemClickListener listener;
 
 	@Override

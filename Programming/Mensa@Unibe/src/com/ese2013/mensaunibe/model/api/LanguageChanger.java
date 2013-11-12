@@ -15,9 +15,12 @@ import android.widget.Toast;
 
 import com.memetix.mst.translate.Translate;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
 
 public class LanguageChanger extends AsyncTask<Void, Void, Boolean> {
-	
 	
 	private static final String CLIENT_ID = "39va9ZXtJS21GVYFGaf6";
 	private static final String CLIENT_TOKEN = "xqYAW+fcf8icgErpva8EVJHZx5gzBEH4iWOZMmlxiGo=";
@@ -58,11 +61,20 @@ public class LanguageChanger extends AsyncTask<Void, Void, Boolean> {
 		
 	}
 	
+	/**
+	 * Sets the ListAdapter of the menus
+	 * @param adapter
+	 */
 	public void setAdapter(TabCollectionPagerAdapter adapter) {
 		assert adapter != null;
 		this.adapter = adapter;
 	}
 	
+	/**
+	 * Core - translates a string
+	 * @param text
+	 * @return the translated string
+	 */
 	private String translate(String text) {
 		String result = "";
 		try {

@@ -1,10 +1,15 @@
 
 package com.ese2013.mensaunibe.model.api;
 
-
 /**
  * Defines app-wide constants and utilities
  */
+
+/**
+ * @author group7
+ * @author Sandor Torok
+ */
+
 public final class AppUtils {
 
     // Debugging tag for the application

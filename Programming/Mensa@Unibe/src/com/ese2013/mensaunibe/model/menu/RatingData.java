@@ -17,6 +17,10 @@ import com.ese2013.mensaunibe.model.api.URLRequest;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
 
 public class RatingData extends AsyncTask<Void, Void, String> {
 	
@@ -34,6 +38,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	private int type;
 	private String postData;
 	
+	
 	public RatingData(Context context, String menu, int mensaId, int type) {
 		assert context != null && menu.length() > 2 && type != 0;
 		this.dialog = new ProgressDialog(context);
@@ -48,10 +53,25 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		Log.v(TAG, url);
 	}
 	
+	/**
+	 * parse menu title (if VEGI+, take the second line)
+	 * @param menu
+	 * @return revelant menu title
+	 */
 	private String parseMenuTitle( String menu ) {
 		String[] tmp = menu.split("\n");
+		if(tmp[0].contains("VEGI+")) {
+			return tmp[1];
+		}
 		return tmp[0];
 	}
+	
+	/**
+	 * sets the data that will be posted to the API (submit rating)
+	 * @param nickname
+	 * @param text
+	 * @param rating
+	 */
 	public void setPostData(String nickname, String text, int rating) {
 		this.postData = "androidrequest=1&mensaid="+mensaId+"&usernamemd5="
 				+nickname+"&menutitle="+menu.replace(" ", "%20")+"&stars="+rating+"&comment="+text;
@@ -112,6 +132,10 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		
 	}
 	
+	/**
+	 * set the RatingListAdapter for updates
+	 * @param adapter
+	 */
 	public void setAdapter(RatingListAdapter adapter) {
 		this.adapter = adapter;
 	}

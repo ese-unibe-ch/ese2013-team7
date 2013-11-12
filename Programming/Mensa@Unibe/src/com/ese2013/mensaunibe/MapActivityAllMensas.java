@@ -28,6 +28,11 @@ import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.Toast;
 
+/**
+ * @author group7
+ * @author Marc Dojtschinov
+ */
+
 public class MapActivityAllMensas extends BaseMapActivity {
 	protected ArrayList<Mensa> mensas;
 	protected GoogleMap map;

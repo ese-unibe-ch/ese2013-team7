@@ -35,6 +35,11 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import android.support.v7.app.ActionBarActivity;
 
+/**
+ * @author group17
+ * @author Marc Dojtschinov
+ */
+
 public class MapActivityOneMensa extends BaseMapActivity  {
 		private Mensa mensa;
 		private GoogleMap map;

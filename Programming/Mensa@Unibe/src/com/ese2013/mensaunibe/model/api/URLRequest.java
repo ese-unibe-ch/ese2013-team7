@@ -6,8 +6,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ */
+
 public class URLRequest {
 	
+	/**
+	 * HTTP-GET method, returns the output of a get request
+	 * @param inputUrl
+	 * @return string of output
+	 * @throws Exception
+	 */
 	public String get(String inputUrl) throws Exception {
 		String result = "";
 		URL url;
@@ -26,6 +37,12 @@ public class URLRequest {
 		return result;	
 	}
 	
+	/**
+	 * HTTP-POST method, returns the output of a post request
+	 * @param inputUrl
+	 * @return string of output
+	 * @throws Exception
+	 */
 	public String post(String inputUrl, String postData) throws Exception {
 		String result = "";
 		URL url;

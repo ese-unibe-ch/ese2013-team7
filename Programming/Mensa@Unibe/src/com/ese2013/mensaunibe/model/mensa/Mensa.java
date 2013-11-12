@@ -11,6 +11,12 @@ import com.memetix.mst.language.Language;
 import android.annotation.SuppressLint;
 import android.location.Location;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ * @author Sandor Torok
+ */
+
 @SuppressLint("DefaultLocale")
 public class Mensa implements ListItem {
 	private int id;
@@ -24,6 +30,10 @@ public class Mensa implements ListItem {
     private Location location;
     private Language language;
     
+    /**
+     * creates the Mensa object with the MensaBuilder data
+     * @param mb MensaBuilder
+     */
     public Mensa(MensaBuilder mb) {
     	assert mb != null;
     	id = mb.getId();
@@ -37,6 +47,11 @@ public class Mensa implements ListItem {
     	language = Language.GERMAN;
     }
     
+    /**
+     * setup the location with coordinates
+     * @param latitude
+     * @param longitude
+     */
 	private void setupLocation(Double latitude, Double longitude) {
 		location = new Location(name);
 		location.setLatitude(latitude);
@@ -87,7 +102,7 @@ public class Mensa implements ListItem {
 	}
 	
 	public String toString() {
-        return String.format("mensa:%s,street:%s,plz:%s,lon:%f,lat:%f,id:%d,menu:%s", name, street, plz, lat, lon, id, menu);
+        return String.format("mensa:%s,street:%s,plz:%s,lat:%f,lon:%f,id:%d,menu:%s", name, street, plz, lat, lon, id, menu);
     }
 
 	public WeeklyMenu getWeeklyMenu() {

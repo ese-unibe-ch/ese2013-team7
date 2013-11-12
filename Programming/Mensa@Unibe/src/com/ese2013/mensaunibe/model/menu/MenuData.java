@@ -1,17 +1,20 @@
 package com.ese2013.mensaunibe.model.menu;
 
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.Calendar;
 import java.util.HashMap;
-
 import android.util.Log;
-
 import com.ese2013.mensaunibe.model.MenuDate;
 import com.ese2013.mensaunibe.model.api.ApiUrl;
 import com.ese2013.mensaunibe.model.api.DataRequest;
+
+
+/**
+ * @author group7
+ * @author Andreas Hohler
+ * @author Sandor Torok
+ */
 
 public class MenuData {
 	
@@ -23,6 +26,10 @@ public class MenuData {
 		rq = new DataRequest();
 	}
 	
+	/**
+	 * decides if this or next week should be loaded
+	 * @param mensaId
+	 */
 	public void setWeekUrl(int mensaId){
 		Calendar calendar = Calendar.getInstance();
 		int weekend = calendar.get(Calendar.DAY_OF_WEEK);
@@ -37,6 +44,11 @@ public class MenuData {
 		rq.execute();
 	}
 	
+	/**
+	 * returns a weekly menu of a specific mensa
+	 * @param mensaId
+	 * @return WeeklyMenu object
+	 */
 	public WeeklyMenu getWeeklyMenuList(int mensaId) {
 		setWeekUrl(mensaId);
 		try {
@@ -73,6 +85,11 @@ public class MenuData {
 		return null;
 	}
 	
+	/**
+	 * returns the daily menu of a specific mensa
+	 * @param mensaId
+	 * @return Menuplan of one day
+	 */
 	public Menuplan getMenuList(int mensaId) {
 		Menuplan plan = new Menuplan();
 		rq.setUrl( String.format(ApiUrl.API_DAILY_MENU, mensaId) );

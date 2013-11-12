@@ -20,6 +20,11 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
+/**
+ * @author group7
+ * @author Marc Dojtschinov
+ */
+
 public class GetMapDirection {
 	public final static String MODE_DRIVING = "driving";
 	public final static String MODE_WALKING = "walking";

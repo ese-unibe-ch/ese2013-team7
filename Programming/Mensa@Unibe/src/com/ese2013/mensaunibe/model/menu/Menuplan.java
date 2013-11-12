@@ -4,10 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
-
 import android.util.Log;
-
 import com.ese2013.mensaunibe.model.MenuDate;
+
+/**
+ * @author group7
+ * @author Andreas Hohler
+ *
+ */
 
 public class Menuplan implements Iterable<DailyMenu> {
 	private static final String TAG = "Menuplan";
@@ -19,6 +23,10 @@ public class Menuplan implements Iterable<DailyMenu> {
 		menuList = new ArrayList<DailyMenu>();
 	}
 	
+	/**
+	 * add a new DailyMenu to the Menuplan
+	 * @param DailyMenu
+	 */
 	public void add(DailyMenu m) {
 		assert m != null;
 		menuList.add(m);
@@ -30,6 +38,10 @@ public class Menuplan implements Iterable<DailyMenu> {
 		return it;
 	}
 	
+	/**
+	 * parse a date of string
+	 * @param stringDate
+	 */
 	public void parseDate(String stringDate) {
 		try {
 			SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN);

@@ -8,7 +8,16 @@ import android.accounts.AccountManager;
 
 import com.ese2013.mensaunibe.App;
 
+/**
+ * @author group7
+ * @author Jan Binzegger
+ */
+
 public class UserEmailMD5Fetcher {
+	/**
+	 * reads the user's account email and returns a hash of it
+	 * @return the md5 hash of the user's email
+	 */
 	public static String getEmail() {
 	      AccountManager accountManager = AccountManager.get(App.getAppContext()); 
 	      Account account = getAccount(accountManager);
@@ -31,6 +40,11 @@ public class UserEmailMD5Fetcher {
 	      return account;
 	  }
 	  
+	  /**
+	   * do the actual md5 hashing
+	   * @param string
+	   * @return a md5-hashed string
+	   */
 	  public static String doMD5(String string) {
 		  String hashtext = null;
 		  
@@ -47,8 +61,7 @@ public class UserEmailMD5Fetcher {
 			  }
 		  } catch (Exception e) {
 			  
-		  }  
-		  
+		  }
 		  return hashtext;
 	  }
 }
