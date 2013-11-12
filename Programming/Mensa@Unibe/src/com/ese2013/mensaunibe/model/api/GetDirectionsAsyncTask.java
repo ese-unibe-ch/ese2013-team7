@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 /**
  * @author group7
- * @authot Sandor Torok
+ * @author Marc Dojtschinov
  */
 
 public class GetDirectionsAsyncTask extends AsyncTask<Map<String, String>, Object, ArrayList<LatLng>> {

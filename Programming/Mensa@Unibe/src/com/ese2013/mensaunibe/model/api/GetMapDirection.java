@@ -22,8 +22,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 /**
  * @author group7
- * @author Sandor Torok
- *
+ * @author Marc Dojtschinov
  */
 
 public class GetMapDirection {
