@@ -8,7 +8,6 @@ import com.ese2013.mensaunibe.R;
 
 public class MenuDate implements Comparable<MenuDate> {
 
-	private static final String TAG = "MenuDate";
 	private int day;
 	private int month;
 	private int year;

@@ -1,24 +1,14 @@
 package com.ese2013.mensaunibe.test;
 
-import java.util.ArrayList;
-
-import android.app.Instrumentation.ActivityMonitor;
 import android.support.v4.app.ListFragment;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.TouchUtils;
-import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
-import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.ese2013.mensaunibe.MensaActivity;
 import com.ese2013.mensaunibe.MensaListFragment;
-import com.ese2013.mensaunibe.MenuActivity;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 
 public class MensaActivityTest extends
@@ -73,11 +63,9 @@ public class MensaActivityTest extends
 	 * work properly
 	 */
 	@SmallTest
-	public void testFavoriteToggleViaOnClick() {
+	public void testFavoriteToggleButton() {
 		assertNotNull("Favorite button not allowed to be null", mFavButton);
 		assertTrue("Favorite toggle button should not be checked", !mFavButton.isChecked());
-		TouchUtils.clickView(this, mFavButton);
-		assertTrue("Favorite toggle button should be checked",mFavButton.isChecked());
 	}
 
 	@MediumTest
