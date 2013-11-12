@@ -87,7 +87,7 @@ public class Mensa implements ListItem {
 	}
 	
 	public String toString() {
-        return String.format("mensa:%s,street:%s,plz:%s,lon:%f,lat:%f,id:%d,menu:%s", name, street, plz, lat, lon, id, menu);
+        return String.format("mensa:%s,street:%s,plz:%s,lat:%f,lon:%f,id:%d,menu:%s", name, street, plz, lat, lon, id, menu);
     }
 
 	public WeeklyMenu getWeeklyMenu() {

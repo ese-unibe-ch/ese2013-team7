@@ -1,4 +1,4 @@
-package com.ese2013.mensaunibe.test;
+package com.ese2013.mensaunibe.model.test;
 
 import java.util.Calendar;
 
