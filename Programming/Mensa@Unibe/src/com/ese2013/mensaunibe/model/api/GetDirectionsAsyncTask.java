@@ -55,7 +55,12 @@ public class GetDirectionsAsyncTask extends AsyncTask<Map<String, String>, Objec
 	        processException();
 	    }
 	}
-
+	/**
+	 * Creates An Array with direction points
+	 * for TabCollectionPagerAdapter (Menu lists)
+	 * @param Map
+	 * @return returns an Array<LatLng> with direction pint coordinates
+	 */
 	@Override
 	protected ArrayList<LatLng> doInBackground(Map<String, String>... params) {
 
