@@ -2,6 +2,7 @@ package com.ese2013.mensaunibe;
 
 import java.util.Calendar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -185,6 +186,7 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 				args.putInt(AppUtils.MENSA_ID, mMensaId);
 				newFragment.setArguments(args);
 			    newFragment.show(getSupportFragmentManager(), AppUtils.TAG_MENSA_INFO_DIALOG);
+			    return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 		}

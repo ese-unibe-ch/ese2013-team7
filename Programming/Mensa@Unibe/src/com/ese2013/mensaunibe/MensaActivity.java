@@ -66,9 +66,10 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 			ForceReloadTask task = new ForceReloadTask(this, (MensaListAdapter) fragment.getListAdapter());
 			task.execute();
 			return true;
-		case R.id.action_direction:
+		case R.id.action_map:
 			startActivity(new Intent(getApplicationContext(), MapActivityAllMensas.class));
 			return true;
+		
 		default:
 			return super.onOptionsItemSelected(item);
 		}

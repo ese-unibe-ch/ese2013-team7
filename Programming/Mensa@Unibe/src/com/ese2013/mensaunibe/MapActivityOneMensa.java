@@ -8,16 +8,21 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.Toast;
 
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
+import com.ese2013.mensaunibe.model.api.AppUtils;
+import com.ese2013.mensaunibe.model.api.ForceReloadTask;
 import com.ese2013.mensaunibe.model.api.GetDirectionsAsyncTask;
 import com.ese2013.mensaunibe.model.api.GetMapDirection;
+import com.ese2013.mensaunibe.model.api.LanguageChanger;
 import com.ese2013.mensaunibe.model.api.MyLocation;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,6 +36,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.memetix.mst.language.Language;
 
 
 import android.support.v7.app.ActionBarActivity;
@@ -48,23 +54,20 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		private boolean locationReady = false;
 		private Marker mensaMarker;
 		private int mMensaId;
-		
+		private String  travelMode = "walking";// default
+		private Polyline newPolyline;
 	
-	  @Override
+	 
+
+	@Override
 	  	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.fragment_map);
 	    //Setup action bar
 	    ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		
-				
 		initilizeMap();
-		mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon()))
-				.title(mensa.getName()));	   
-		findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
-             mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, GetMapDirection.MODE_WALKING );
-	
+		
 		}
 	 
 	
@@ -75,15 +78,14 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 	  }
 
 
-	public void handleGetDirectionsResult(ArrayList<LatLng> directionPoints) {
-		 Polyline newPolyline;
-		 PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.RED);		 
+	public void handleGetDirectionsResult(ArrayList<LatLng> directionPoints) { 
+		
+		PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.RED);		 
 		    for(int i = 0 ; i < directionPoints.size() ; i++) 
 		    {          
 		        rectLine.add(directionPoints.get(i));
 		    }
-		    newPolyline = map.addPolyline(rectLine);
-		
+		    newPolyline = map.addPolyline(rectLine);	
 	}
 
 
@@ -111,6 +113,60 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 	            }
 	        }
 	    }
+	
+	public void setUpMap(){
+		if(mLocation == null){
+			mLocation = MyLocation.getInstance();
+			mLocation.setActivity(this);
+		}
+		mMensaId = getIntent().getIntExtra("int_value",0);
+		mensa = Model.getInstance().getMensaById(mMensaId);
+		mLocationLatLng =new LatLng(mLocation.getLocation().getLatitude(),mLocation.getLocation().getLongitude());
+		
+		final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
+        if (mapView.getViewTreeObserver().isAlive()) {
+            mapView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(mLocationLatLng.latitude, mLocationLatLng.longitude),14.0f) );
+                    mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon()))
+            				.title(mensa.getName())); 
+                	findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
+                               mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
+                }
+            });}
+		
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+			case R.id.action_travel_mode:				
+				if(travelMode.contentEquals("walking")) {
+					travelMode ="driveing";
+					map.clear();
+					mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon()))
+            				.title(mensa.getName()));
+					findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
+                            mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
+					item.setTitle(getString(R.string.action_travel_mode_walking));
+					
+					}
+				else {
+					travelMode ="walking";
+					map.clear();
+					mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon()))
+            				.title(mensa.getName()));
+					findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
+                            mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
+					
+					item.setTitle(getString(R.string.action_travel_mode_driveing));
+					}
+				
+				return true;
+			default:
+		           return super.onOptionsItemSelected(item);
+	    	}
+	}
 	@Override
 	public void onResume() {
         super.onResume();
@@ -130,41 +186,9 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		
 	}
 	@Override
-	protected void onResumeFragments() {
-	    super.onResumeFragments();
-	    initilizeMap();
-	}
-	@Override
 	public void onStart() {
 		super.onStart();
 		mLocation.callOnStart();
-	}
-
-	
-	public void setUpMap(){
-		if(mLocation == null){
-			mLocation = MyLocation.getInstance();
-			mLocation.setActivity(this);
-		}
-		mMensaId = getIntent().getIntExtra("int_value",0);
-		mensa = Model.getInstance().getMensaById(mMensaId);
-		mLocationLatLng =new LatLng(mLocation.getLocation().getLatitude(),mLocation.getLocation().getLongitude());
-		
-		final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
-        if (mapView.getViewTreeObserver().isAlive()) {
-            mapView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-                @SuppressLint("NewApi") // We check which build version we are using.
-                @Override
-                public void onGlobalLayout() {
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                      mapView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                    } else {
-                      mapView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                    }
-                    map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(mLocationLatLng.latitude, mLocationLatLng.longitude),14.0f) );
-                }
-            });}
-		
 	}
 	
 	public void locationReady(boolean b){
@@ -173,8 +197,8 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		}else locationReady = false;
 	}
 	
-	public void notifyDataSetChanged() {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
+
+	
 }

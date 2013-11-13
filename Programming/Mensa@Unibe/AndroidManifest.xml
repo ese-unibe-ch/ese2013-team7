@@ -55,14 +55,16 @@
         <activity
             android:name="com.ese2013.mensaunibe.MapActivityOneMensa"
             android:label="@string/map_activity_one_mensa"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName="com.ese2013.mensaunibe.MensaActivity" >
-
+	
             <!-- Parent activity meta-data to support 4.0 and lower -->
 
         </activity>
         
         <activity
             android:name="com.ese2013.mensaunibe.MapActivityAllMensas"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/map_activity_all_mensas"
             android:parentActivityName="com.ese2013.mensaunibe.MensaActivity">
 
