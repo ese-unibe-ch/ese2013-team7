@@ -229,7 +229,7 @@ GooglePlayServicesClient.OnConnectionFailedListener {
 	public void onDisconnected() {
 		Log.d(TAG, App.getAppContext().getString(R.string.disconnected));
 		if (mMensaListAdapter != null) {mMensaListAdapter.locationReady(false);}
-		if(mFragActivity instanceof BaseMapActivity){mMensaListAdapter.locationReady(false);}
+		if(mFragActivity instanceof BaseMapActivity){((BaseMapActivity) mFragActivity).locationReady(false);}
 	}
 
 
