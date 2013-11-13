@@ -27,7 +27,12 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class GetMapDirection {
 
-
+	/**
+	 * Connects with google mpa api and request direction 
+	 * @param start Starting point for directions request
+	 * @param end Endpoint for directions request
+	 * @param mode travel mode e.g. walking 
+	 */
 	public Document getDocument(LatLng start, LatLng end, String mode) {
 	    String url = "http://maps.googleapis.com/maps/api/directions/xml?" 
 	            + "origin=" + start.latitude + "," + start.longitude  
@@ -105,7 +110,12 @@ public class GetMapDirection {
 	    Log.i("CopyRights", node1.getTextContent());
 	    return node1.getTextContent();
 	}
-
+	
+	/**
+	 * 
+	 * @param doc Googlemap direction request Document
+	 * @return Array<LatLng> with Geopoints of the route
+	 */
 	public ArrayList<LatLng> getDirection (Document doc) {
 	    NodeList nl1, nl2, nl3;
 	    ArrayList<LatLng> listGeopoints = new ArrayList<LatLng>();
@@ -151,6 +161,11 @@ public class GetMapDirection {
 	    }
 	    return -1;
 	}
+	/**
+	 * 
+	 * @param encoded takes a encoded coordniates String
+	 * @return Array<LatLng> with Geopoints
+	 */
 
 	private ArrayList<LatLng> decodePoly(String encoded) {
 	    ArrayList<LatLng> poly = new ArrayList<LatLng>();
