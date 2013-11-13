@@ -18,9 +18,6 @@ public class MenuDateTest extends AndroidTestCase{
 	private MenuDate menuDate;
 	private	Calendar cal;
 
-	/**
-	 * @see android.test.AndroidTestCase#setUp()
-	 */
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();

@@ -29,9 +29,6 @@ public class MensaActivityTest extends
 	}
 
 	
-	/**
-	 * @see android.test.ActivityInstrumentationTestCase2#setUp()
-	 */
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -75,7 +72,7 @@ public class MensaActivityTest extends
 	/**
 	 * Test favorite Button state.
 	 * Emulator should be started with wiped user data for this test case to
-	 * work properly
+	 * work properly.
 	 */
 	@SmallTest
 	public void testFavoriteToggleButton() {

@@ -23,9 +23,6 @@ public class MensaTest extends InstrumentationTestCase{
 	private MensaBuilder mockBuilder;
 	private Mensa mensa;
 
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#setUp()
-	 */
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
@@ -50,9 +47,6 @@ public class MensaTest extends InstrumentationTestCase{
 		verify(mockBuilder).getFav();
 	}
 	
-	/* (non-Javadoc)
-	 * @see android.test.InstrumentationTestCase#tearDown()
-	 */
 	@Override
 	public void tearDown() throws Exception{
 		mensa.setFavorite(false);
@@ -89,9 +83,9 @@ public class MensaTest extends InstrumentationTestCase{
 	/**
 	 * Testing if distance between canteen and device location gives back
 	 * the correct Strings.
-	 *  Under 1 km -- x m
-	 *  Between 10 and 1 km -- x.y km
-	 *  Above 10 km -- x km
+	 *  Under 1 km --> x m
+	 *  Between 10 and 1 km --> x.y km
+	 *  Above 10 km --> x km
 	 */
 	public void testDistance() {
 		MyLocation mockLocation = mock(MyLocation.class);
