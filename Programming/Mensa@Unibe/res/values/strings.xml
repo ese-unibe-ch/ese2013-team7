@@ -41,6 +41,7 @@
     <string name="avg_rating">Average</string>
     <string name="edit_message">Rating text</string>
     <string name="button_submit">Submit</string>
+    <string name="settings">Settings</string>
 
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

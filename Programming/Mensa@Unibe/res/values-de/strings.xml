@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mensa@Unibe</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_refresh">Neu laden</string>
+    <string name="action_share">Teilen</string>
+    <string name="menu_list">Menu</string>
+    <string name="base_map_activity">Karte</string>
+    <string name="map_activity_one_mensa">Mensa Karte</string>
+    <string name="map_activity_all_mensas">Mensa Karte</string>
+    <string name="no_menu">Kein Menu verfügbar</string>
+    <string name="mensa_list_favorites">Favorisierte Mensas</string>
+    <string name="mensa_list_header">Mensas</string>
+    <string name="action_mensainfo">Mensa Informationen</string>
+    <string name="soon">Soon</string>
+    <string name="today">Heute</string>
+    <string name="tomorrow">Morgen</string>
+    <string name="Monday">Montag</string>
+    <string name="Tuesday">Dienstag</string>
+    <string name="Wednesday">Mittwoch</string>
+    <string name="Thursday">Donnerstag</string>
+    <string name="Friday">Freitag</string>
+    <string name="Saturday">Samstag</string>
+    <string name="Sunday">Sonntag</string>
+    <string name="loading">laden</string>
+    <string name="from">von</string>
+    <string name="action_travel_mode">Flugmodus</string>
+    <string name="action_travel_mode_driveing">Change to driveing</string>
+    <string name="action_travel_mode_walking">Change to walking</string>
+    <string name="action_translate_to_german">Auf deutsch übersetzen</string>
+    <string name="action_translate_to_english">Auf englisch übersetzen</string>
+    <string name="added_to_favorites">wurde zu den Favoriten hinzugefügt</string>
+    <string name="removed_from_favorites">wurde von den Favoriten gelöscht</string>
+    <string name="action_map">Mensas location</string>
+    <string name="get_directions">get directions</string>
+    <string name="ok">OK</string>
+    <string name="address">Adresse</string>
+    <string name="menurating_title">Bewertung von</string>
+    <string name="action_rate">Menu bewerten</string>
+    <string name="avg_rating">Durchschnitt</string>
+    <string name="edit_message">Bewertungstext</string>
+    <string name="button_submit">Absenden</string>
+    <string name="settings">Einstellungen</string>
+
+    <!-- Debug Messages -->
+    <string name ="pls_wait">Please wait</string>
+    <string name="load_map_message">loading Map</string> 
+    <string name="connected">Client connected</string>
+    <string name="disconnected">Client disconnected</string>
+    <string name="resolved">Error resolved. Please re-try operation.</string>
+    <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
+    <string name="unknown_activity_request_code">        Received an unknown activity request code %1$d in onActivityResult.</string>
+    <string name="play_services_available">Google Play services is available</string>
+    <string name="location_requested">Periodic updates requested</string>
+    <string name="location_updated">Location updated</string>
+    <string name="location_updates_stopped">Periodic updates stopped</string>
+    <string name="error_when_retrieving_data">error when retrieving DATA</string>
+    <string name="title_activity_rating">RatingActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_new_rating">NewRatingActivity</string>
+
+</resources>

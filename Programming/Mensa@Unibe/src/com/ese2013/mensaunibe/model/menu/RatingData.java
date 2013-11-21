@@ -103,7 +103,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 					try {
 						avg = (float) json.getDouble("avgstars");
 						JSONArray ratings = json.getJSONArray("content");
-						JSONObject rating;
+						JSONObject rating; 
 						for(int i = 0; i< ( json.length() == 1 ? 0 : json.length()+1 ); i++) {
 							if(!ratings.isNull(i)) {
 								rating = ratings.getJSONObject(i);

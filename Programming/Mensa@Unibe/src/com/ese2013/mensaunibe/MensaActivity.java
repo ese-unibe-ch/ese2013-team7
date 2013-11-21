@@ -69,7 +69,9 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 		case R.id.action_map:
 			startActivity(new Intent(getApplicationContext(), MapActivityAllMensas.class));
 			return true;
-		
+		case R.id.action_settings:
+			startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
