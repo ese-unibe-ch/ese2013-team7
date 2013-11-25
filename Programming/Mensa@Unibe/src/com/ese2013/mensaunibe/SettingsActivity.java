@@ -9,6 +9,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ToggleButton;
 
 /**
  * @author group7
@@ -21,7 +23,7 @@ public class SettingsActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_rating);
+		setContentView(R.layout.activity_settings);
 
 		setTitle( getString(R.string.settings) );
 		
@@ -68,6 +70,16 @@ public class SettingsActivity extends ActionBarActivity {
 		/*if(resultCode == RESULT_OK) {
 			fragment.update();
 		}*/
+	}
+	
+	public void onToggleClicked(View view) {
+	    // Is the toggle on?
+	    boolean on = ((ToggleButton) view).isChecked();
+	    if (on) {
+	        // Enable vibrate
+	    } else {
+	        // Disable vibrate
+	    }
 	}
 	
 }

@@ -22,6 +22,8 @@ public class SettingsFragment extends ListFragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
+		NotificationSettingsAdapter adapter = new NotificationSettingsAdapter(getActivity(), R.layout.notification_list_layout);
+		setListAdapter(adapter);
 		/*RatingListAdapter adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout);
 		setListAdapter(adapter);
 		Model.getInstance().loadMenuRating(getActivity(), adapter, menu, mMensaId, RatingData.TYPE_LOAD);*/
