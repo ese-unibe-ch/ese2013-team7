@@ -1,6 +1,7 @@
 package com.ese2013.mensaunibe;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,20 +10,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
-import android.view.MenuItem;
 import android.view.Menu;
+import android.view.MenuItem;
 
+import com.ese2013.mensaunibe.model.MenuDate;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.api.ForceReloadTask;
 import com.ese2013.mensaunibe.model.api.LanguageChanger;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
-import com.ese2013.mensaunibe.MenuListAdapter;
 import com.memetix.mst.language.Language;
 
 /**
@@ -187,6 +187,14 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 				newFragment.setArguments(args);
 			    newFragment.show(getSupportFragmentManager(), AppUtils.TAG_MENSA_INFO_DIALOG);
 			    return true;
+			case R.id.action_share:
+				Mensa mensaChoosen = Model.getInstance().getMensaById(mMensaId);
+				MenuDate md = new MenuDate(new Date());
+				Intent sendIntent = new Intent();
+				sendIntent.setAction(Intent.ACTION_SEND);
+				sendIntent.putExtra(Intent.EXTRA_TEXT, "Hi,\nToday I'm going to eat at the Mensa " + mensaChoosen.getName() + "\nTodays Menu is:\n\n" + mensaChoosen.getDailyMenu(md) + "Will you join me?");
+				sendIntent.setType("text/plain");
+				startActivity(sendIntent);
 	        default:
 	            return super.onOptionsItemSelected(item);
 		}
