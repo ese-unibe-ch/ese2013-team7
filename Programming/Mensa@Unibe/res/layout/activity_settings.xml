@@ -33,7 +33,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentRight="true"
-	    android:contentDescription="add keyword"
+	    android:contentDescription="@string/add_keyword"
 	    android:background="@android:color/transparent"
 	    android:src="@drawable/ic_action_new_dark" />
     
@@ -43,7 +43,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_toLeftOf="@+id/settings_add_button"
 	    android:completionThreshold="1"
-	    android:hint="Insert keyword"
+	    android:hint="@string/insert_keyword_auto"
 	    android:inputType="textCapSentences" />
 	
     </RelativeLayout>
