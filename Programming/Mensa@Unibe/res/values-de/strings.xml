@@ -13,7 +13,7 @@
     <string name="mensa_list_favorites">Favorisierte Mensas</string>
     <string name="mensa_list_header">Mensas</string>
     <string name="action_mensainfo">Mensa Informationen</string>
-    <string name="soon">Soon</string>
+    <string name="soon">Bald</string>
     <string name="today">Heute</string>
     <string name="tomorrow">Morgen</string>
     <string name="Monday">Montag</string>
@@ -24,9 +24,9 @@
     <string name="Saturday">Samstag</string>
     <string name="Sunday">Sonntag</string>
     <string name="loading">laden</string>
-    <string name="from">von</string>
+    <string name="from">ab</string>
     <string name="action_travel_mode">Flugmodus</string>
-    <string name="action_travel_mode_driveing">Change to driveing</string>
+    <string name="action_travel_mode_driveing">Change to driving</string>
     <string name="action_travel_mode_walking">Change to walking</string>
     <string name="action_translate_to_german">Auf deutsch übersetzen</string>
     <string name="action_translate_to_english">Auf englisch übersetzen</string>
