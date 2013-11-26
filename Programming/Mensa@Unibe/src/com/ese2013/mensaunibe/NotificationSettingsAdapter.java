@@ -2,12 +2,13 @@ package com.ese2013.mensaunibe;
 
 import java.util.ArrayList;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,22 +33,38 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
-		if(view == null) inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		if(view == null) {
+			ViewHolder viewHolder = new ViewHolder();
+			inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			view = inflater.inflate(this.resource, parent, false);
+			viewHolder.text = (TextView) view.findViewById(R.id.notification_list_text);
+			viewHolder.delete = (ImageButton) view.findViewById(R.id.delete_keyword);
+			view.setTag(viewHolder);
+		}
+		
 
-		view = inflater.inflate(this.resource, parent, false);
-
-		//TextView textView=(TextView) view.findViewById(android.R.id.text1);
-		TextView textView=(TextView) view.findViewById(R.id.notification_list_text);
-		Button delete = (Button) view.findViewById(R.id.delete_keyword);
+		ViewHolder holder = (ViewHolder) view.getTag();
+		clearHolder(holder);
+		
 		String item = items.get(position);
-
-		textView.setText( item );
+		
+		holder.delete.setOnClickListener( new NotificationEntryListener(item, this) );
+		holder.text.setText( item );
+		holder.text.setVisibility(View.VISIBLE);
+		holder.delete.setVisibility(View.VISIBLE);
 		return view;
 	}
 
 	/**
 	 * Is the public method to repopulate the whole List.
 	 */
+	
+	@Override
+	public void notifyDataSetChanged() {
+		super.notifyDataSetChanged();
+		// UPDATE LIST SAVE
+	}
+	
 	public void update() {
 		populate();
 	}
@@ -59,6 +76,8 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 	private void populate() {
 		//fill
 		items = new ArrayList<String>();
+		items.add("text");
+		items.add("testtest");
 		//items = Model.getInstance().getNotificationKeywords();
 		if(items.size() == 0) Toast.makeText(this.context, "No existing keywords found.", Toast.LENGTH_LONG).show();
 	}
@@ -86,5 +105,28 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 	 */
 	public int getCount() {
 		return items.size();
+	}
+	
+	static class ViewHolder {
+		public TextView text;
+		public ImageButton delete;
+	}
+	
+	/**
+	 * Clears all the views and hide them
+	 * @param ViewHolder that holds all views
+	 */
+	private void clearHolder(ViewHolder holder) {
+		holder.text.setText("");
+		holder.text.setVisibility(View.GONE);
+		holder.delete.setVisibility(View.GONE);
+	}
+
+	public void add(String string) {
+		items.add(string);
+	}
+	
+	public void remove(String string) {
+		items.remove(string);
 	}
 }

@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,60 +6,53 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:descendantFocusability="beforeDescendants"
+	android:focusableInTouchMode="true"
     tools:context=".SettingsActivity" >
 
-    <RelativeLayout
-        android:id="@+id/notificationSettings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp" >
-        
-  	<ToggleButton
+    <Switch
         android:id="@+id/tgl_notifications"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentRight="true"
-        android:padding="5dp"
-        android:layout_marginLeft="5dp"
-        android:onClick="onToggleClicked" />
-
-    <TextView android:id="@+id/rating_comment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:textStyle="bold"
-        android:layout_toLeftOf="@+id/tgl_notifications"
-        android:hint="@string/notification_toggle" />
-    
-    </RelativeLayout>
-    
-    <ListView
-        android:id="@+id/listViewNotificationKeywords"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/notificationSettings"
-        android:visibility="gone"
-        android:textColor="#000000" >
-
-    </ListView>
-   
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/notification_toggle" />
+    
+     
+	<RelativeLayout
+        android:id="@+id/addNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" >
+    
     <Button
 	    android:id="@+id/settings_add_button"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentRight="true"
-	    android:layout_below="@+id/listViewNotificationKeywords"
 	    android:text="+" />
     
 	<AutoCompleteTextView
-        android:id="@+id/settings_add_keyword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/settings_add_button"
-        android:layout_below="@+id/listViewNotificationKeywords"
-        android:completionThreshold="1"
-        android:hint="insert keyword"
-        android:inputType="textCapSentences" />
+	    android:id="@+id/settings_add_keyword"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_toLeftOf="@+id/settings_add_button"
+	    android:completionThreshold="1"
+	    android:hint="Insert keyword"
+	    android:inputType="textCapSentences" />
+	
+    </RelativeLayout>
     
-</RelativeLayout>
+	<ListView
+       android:id="@+id/listViewNotificationKeywords"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textColor="#000000"
+       android:background="#E9E9E9"
+       tools:listitem="@android:layout/simple_list_item_1" >		
+	</ListView>
+    
+</LinearLayout>

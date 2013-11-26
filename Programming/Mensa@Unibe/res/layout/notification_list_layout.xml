@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-   	<Button
+   	<ImageButton
         android:id="@+id/delete_keyword"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="@string/button_submit" />
+        android:contentDescription="delete keyword"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_action_cancel" />
         
     <TextView
         android:id="@+id/notification_list_text"
@@ -17,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/delete_keyword"
+        android:color="#000000"
         android:paddingLeft="5dp" />
 
 

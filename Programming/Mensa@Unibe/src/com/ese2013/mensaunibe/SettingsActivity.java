@@ -1,10 +1,8 @@
 package com.ese2013.mensaunibe;
 
-import com.ese2013.mensaunibe.model.api.AppUtils;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
@@ -30,13 +28,11 @@ public class SettingsActivity extends ActionBarActivity {
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
-		fragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_SETTINGS_FRAGMENT);
-		if (fragment == null) {
-			fragment = new SettingsFragment();
-			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-			ft.add(android.R.id.content, fragment, AppUtils.TAG_RATINGLIST_FRAGMENT);
-			ft.commit();
-		}
+		fragment = new SettingsFragment();
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+		ft.add(android.R.id.content, fragment);
+		ft.commit();
 	}
 
 	@Override
