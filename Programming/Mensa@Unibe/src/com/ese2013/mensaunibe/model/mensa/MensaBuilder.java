@@ -21,11 +21,15 @@ public class MensaBuilder {
 	private Double lon;
 	private boolean fav;
 	
+	public MensaBuilder(JSONObject obj){
+		parseJson(obj);
+	}
+	
 	/**
 	 * uses the json object input and parse the data
 	 * @param o JsonObject
 	 */
-	public void parseJson(JSONObject o) {
+	private void parseJson(JSONObject o) {
 		try {
 			id = o.getInt("id");
 			name = o.getString("mensa");
@@ -58,9 +62,8 @@ public class MensaBuilder {
 	/**
 	 * loads the user favorite setting of one mensa
 	 */
-	public void loadFavorit() {
+	private void loadFavorit() {
 		PreferenceRequest pr = new PreferenceRequest();
 		fav = pr.readPreference(id);		
-	}
-	
+	}	
 }
