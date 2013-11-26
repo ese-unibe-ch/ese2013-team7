@@ -24,11 +24,11 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 
 	private ArrayList<String> items;
 	
-	public NotificationSettingsAdapter(Context context, int resource) {
+	public NotificationSettingsAdapter(Context context, int resource, ArrayList<String> keywords ) {
 		super();
 		this.context = context;
 		this.resource = resource;
-		populate();
+		populate( keywords );
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -64,18 +64,14 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 		super.notifyDataSetChanged();
 		// UPDATE LIST SAVE
 	}
-	
-	public void update() {
-		populate();
-	}
 
 	/**
 	 * Populates the List with the data from the Model.
 	 * Can show a toast, if no data is available
 	 */
-	private void populate() {
+	private void populate( ArrayList<String> keywords ) {
 		//fill
-		items = new ArrayList<String>();
+		items = new ArrayList<String>(keywords);
 		items.add("text");
 		items.add("testtest");
 		//items = Model.getInstance().getNotificationKeywords();
@@ -128,5 +124,9 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 	
 	public void remove(String string) {
 		items.remove(string);
+	}
+
+	public ArrayList<String> getKeywords() {
+		return items;
 	}
 }

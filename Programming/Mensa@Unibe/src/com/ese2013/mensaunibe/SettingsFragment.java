@@ -2,6 +2,10 @@ package com.ese2013.mensaunibe;
 
 
 
+import java.util.ArrayList;
+
+import com.ese2013.mensaunibe.model.Model;
+
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -15,6 +19,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView.FindListener;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 /**
@@ -25,17 +30,23 @@ import android.widget.Toast;
 public class SettingsFragment extends Fragment{
 	private static final String TAG= "SettingsFragment";
 	private View view;
+	private NotificationSettingsAdapter adapter;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		view = inflater.inflate(R.layout.activity_settings, container, false);		
+		view = inflater.inflate(R.layout.activity_settings, container, false);	
+		
+		Switch sw = (Switch) view.findViewById(R.id.tgl_notifications);
+		sw.setChecked( Model.getInstance().loadNotificationStatus() );
+		
 		updateAdapter();
 		return view;
 	}
 	
 	private void updateAdapter() {
-		NotificationSettingsAdapter adapter = new NotificationSettingsAdapter(getActivity(), R.layout.notification_list_layout);
+		ArrayList<String> keywords = Model.getInstance().loadNotificationKeywords();
+		adapter = new NotificationSettingsAdapter(getActivity(), R.layout.notification_list_layout, keywords);
 		
         ListView listView = (ListView) view.findViewById(R.id.listViewNotificationKeywords);
         listView.setAdapter(adapter);
@@ -73,5 +84,23 @@ public class SettingsFragment extends Fragment{
 			}
 			return false;
 		}
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		save();
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		save();
+	}
+	
+	private void save() {
+		Switch sw = (Switch) view.findViewById(R.id.tgl_notifications);
+		boolean notifyStatus = sw.isChecked();
+		Model.getInstance().saveNotificationSettings(notifyStatus, adapter.getKeywords());
 	}
 }
