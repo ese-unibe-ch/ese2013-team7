@@ -48,8 +48,7 @@ public class MensaData {
 					
 			for(int i = 0; i<js.length(); i++) {
 				JSONObject m = js.getJSONObject(i);
-				MensaBuilder mb = new MensaBuilder();
-				mb.parseJson(m);
+				MensaBuilder mb = new MensaBuilder(m);
 				Mensa mensa = mb.create();
 				MenuData md = new MenuData();
 				mensa.setWeeklyMenu( md.getWeeklyMenuList( mensa.getId() ) );
