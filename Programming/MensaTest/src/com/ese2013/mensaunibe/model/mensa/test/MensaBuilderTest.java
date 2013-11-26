@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import org.json.JSONObject;
 
+import android.os.Handler;
 import android.test.InstrumentationTestCase;
 
 import com.ese2013.mensaunibe.model.api.PreferenceRequest;
@@ -31,14 +32,26 @@ public class MensaBuilderTest extends InstrumentationTestCase{
     	when(mockJSON.getString("plz")).thenReturn("3012 Bern");
     	when(mockJSON.getDouble("lat")).thenReturn(46.9518);
     	when(mockJSON.getDouble("lon")).thenReturn(7.438350);
-    	//prefReq.writePreference(true, mensaId);
+    	usePreferenceRequest(true);
 		mensaBuilder = new MensaBuilder(mockJSON);
 
 	}
 	
 	@Override
 	public void tearDown() throws Exception{
-		//prefReq.writePreference(false, mensaId);
+		usePreferenceRequest(false);
+	}
+	
+	//to use PreferenceRequest, the method should run on the terget thread
+	private void usePreferenceRequest(boolean favorite){
+		final boolean fav = favorite;
+		Handler mainHandler = new Handler(getInstrumentation().getTargetContext().getMainLooper());
+
+		mainHandler.post(new Runnable(){
+			public void run(){
+				prefReq.writePreference(fav, mensaId);
+			}
+		});
 	}
 	
 	public void testId(){
