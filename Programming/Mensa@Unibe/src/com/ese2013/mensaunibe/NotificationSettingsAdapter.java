@@ -62,7 +62,6 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 	@Override
 	public void notifyDataSetChanged() {
 		super.notifyDataSetChanged();
-		// UPDATE LIST SAVE
 	}
 
 	/**
@@ -72,9 +71,6 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 	private void populate( ArrayList<String> keywords ) {
 		//fill
 		items = new ArrayList<String>(keywords);
-		items.add("text");
-		items.add("testtest");
-		//items = Model.getInstance().getNotificationKeywords();
 		if(items.size() == 0) Toast.makeText(this.context, "No existing keywords found.", Toast.LENGTH_LONG).show();
 	}
 
@@ -118,8 +114,10 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 		holder.delete.setVisibility(View.GONE);
 	}
 
-	public void add(String string) {
+	public boolean add(String string) {
+		if(items.contains(string)) return false;
 		items.add(string);
+		return true;
 	}
 	
 	public void remove(String string) {

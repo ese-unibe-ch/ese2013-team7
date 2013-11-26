@@ -9,15 +9,14 @@ import com.ese2013.mensaunibe.model.Model;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -32,11 +31,9 @@ public class SettingsFragment extends Fragment{
 	private View view;
 	private NotificationSettingsAdapter adapter;
 	
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.activity_settings, container, false);	
-		
+
 		Switch sw = (Switch) view.findViewById(R.id.tgl_notifications);
 		sw.setChecked( Model.getInstance().loadNotificationStatus() );
 		
@@ -53,6 +50,10 @@ public class SettingsFragment extends Fragment{
         
         AutoCompleteTextView ac = (AutoCompleteTextView) view.findViewById(R.id.settings_add_keyword);
 		ac.setOnKeyListener( new OnKeyEnter(this.getActivity(), adapter) );
+		ac.setAdapter( new NotificationAutoCompleteAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line) );
+		
+		ImageButton add = (ImageButton) view.findViewById(R.id.settings_add_button);
+		add.setOnClickListener( new OnNotificationAddClicker(this.getActivity(), adapter, ac));
 	
 	}
 	@Override
@@ -66,6 +67,25 @@ public class SettingsFragment extends Fragment{
 		super.onActivityCreated(savedInstanceState);
 	}
 	
+	private class OnNotificationAddClicker implements OnClickListener {
+		Context context;
+		NotificationSettingsAdapter adapter;
+		AutoCompleteTextView input;
+		public OnNotificationAddClicker(Context context, NotificationSettingsAdapter adapter, AutoCompleteTextView input) {
+			this.context = context;
+			this.adapter = adapter;
+			this.input = input;
+		}
+		public void onClick(View view) {
+			if( adapter.add( input.getText().toString() ) ) {
+				Toast.makeText(context, "Keyword added", Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(context, "Keyword does already exist", Toast.LENGTH_LONG).show();
+			}
+			adapter.notifyDataSetChanged();
+		}
+	}
+	
 	private class OnKeyEnter implements OnKeyListener {
 		Context context;
 		NotificationSettingsAdapter adapter;
@@ -77,8 +97,11 @@ public class SettingsFragment extends Fragment{
 		public boolean onKey(View v, int keyCode, KeyEvent event) {
 			if ((event.getAction() == KeyEvent.ACTION_DOWN)) {
 				if(keyCode == KeyEvent.KEYCODE_ENTER) {
-					Toast.makeText(context, "Keyword added", Toast.LENGTH_LONG).show();
-					adapter.add( ((AutoCompleteTextView) v).getText().toString() );
+					if( adapter.add( ((AutoCompleteTextView) v).getText().toString() ) ) {
+						Toast.makeText(context, "Keyword added", Toast.LENGTH_LONG).show();
+					} else {
+						Toast.makeText(context, "Keyword does already exist", Toast.LENGTH_LONG).show();
+					}
 					adapter.notifyDataSetChanged();
 				}
 			}

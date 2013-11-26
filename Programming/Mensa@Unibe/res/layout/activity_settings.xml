@@ -28,12 +28,14 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp" >
     
-    <Button
+    <ImageButton
 	    android:id="@+id/settings_add_button"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentRight="true"
-	    android:text="+" />
+	    android:contentDescription="add keyword"
+	    android:background="@android:color/transparent"
+	    android:src="@drawable/ic_action_new_dark" />
     
 	<AutoCompleteTextView
 	    android:id="@+id/settings_add_keyword"
@@ -52,7 +54,7 @@
        android:layout_height="wrap_content"
        android:textColor="#000000"
        android:background="#E9E9E9"
-       tools:listitem="@android:layout/simple_list_item_1" >		
+        >		
 	</ListView>
     
 </LinearLayout>
