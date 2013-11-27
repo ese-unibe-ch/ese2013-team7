@@ -4,6 +4,7 @@ import com.ese2013.mensaunibe.MensaListAdapter;
 import com.ese2013.mensaunibe.model.api.AppUtils;
 import com.ese2013.mensaunibe.model.api.ForceReloadTask;
 import com.ese2013.mensaunibe.model.api.MyLocation;
+import com.ese2013.mensaunibe.notificationservice.MensaService;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -80,12 +81,18 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 	@Override
 	public void onStop() {
 		mLocation.callOnStop();
+		Intent intent =new Intent(this, MensaService.class);
+		   startService(intent);
 		super.onStop();
 	}
 
 	@Override
 	public void onPause() {
 		mLocation.callOnPause();
+		
+		Intent intent =new Intent(this, MensaService.class);
+		   startService(intent);
+		   
 		super.onPause();
 	}
 

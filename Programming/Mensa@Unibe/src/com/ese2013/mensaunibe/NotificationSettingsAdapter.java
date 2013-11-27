@@ -2,12 +2,13 @@ package com.ese2013.mensaunibe;
 
 import java.util.ArrayList;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,43 +24,53 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 
 	private ArrayList<String> items;
 	
-	public NotificationSettingsAdapter(Context context, int resource) {
+	public NotificationSettingsAdapter(Context context, int resource, ArrayList<String> keywords ) {
 		super();
 		this.context = context;
 		this.resource = resource;
-		populate();
+		populate( keywords );
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
-		if(view == null) inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		if(view == null) {
+			ViewHolder viewHolder = new ViewHolder();
+			inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			view = inflater.inflate(this.resource, parent, false);
+			viewHolder.text = (TextView) view.findViewById(R.id.notification_list_text);
+			viewHolder.delete = (ImageButton) view.findViewById(R.id.delete_keyword);
+			view.setTag(viewHolder);
+		}
+		
 
-		view = inflater.inflate(this.resource, parent, false);
-
-		//TextView textView=(TextView) view.findViewById(android.R.id.text1);
-		TextView textView=(TextView) view.findViewById(R.id.notification_list_text);
-		Button delete = (Button) view.findViewById(R.id.delete_keyword);
+		ViewHolder holder = (ViewHolder) view.getTag();
+		clearHolder(holder);
+		
 		String item = items.get(position);
-
-		textView.setText( item );
+		
+		holder.delete.setOnClickListener( new NotificationEntryListener(item, this) );
+		holder.text.setText( item );
+		holder.text.setVisibility(View.VISIBLE);
+		holder.delete.setVisibility(View.VISIBLE);
 		return view;
 	}
 
 	/**
 	 * Is the public method to repopulate the whole List.
 	 */
-	public void update() {
-		populate();
+	
+	@Override
+	public void notifyDataSetChanged() {
+		super.notifyDataSetChanged();
 	}
 
 	/**
 	 * Populates the List with the data from the Model.
 	 * Can show a toast, if no data is available
 	 */
-	private void populate() {
+	private void populate( ArrayList<String> keywords ) {
 		//fill
-		items = new ArrayList<String>();
-		//items = Model.getInstance().getNotificationKeywords();
+		items = new ArrayList<String>(keywords);
 		if(items.size() == 0) Toast.makeText(this.context, "No existing keywords found.", Toast.LENGTH_LONG).show();
 	}
 
@@ -86,5 +97,34 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 	 */
 	public int getCount() {
 		return items.size();
+	}
+	
+	static class ViewHolder {
+		public TextView text;
+		public ImageButton delete;
+	}
+	
+	/**
+	 * Clears all the views and hide them
+	 * @param ViewHolder that holds all views
+	 */
+	private void clearHolder(ViewHolder holder) {
+		holder.text.setText("");
+		holder.text.setVisibility(View.GONE);
+		holder.delete.setVisibility(View.GONE);
+	}
+
+	public boolean add(String string) {
+		if(items.contains(string)) return false;
+		items.add(string);
+		return true;
+	}
+	
+	public void remove(String string) {
+		items.remove(string);
+	}
+
+	public ArrayList<String> getKeywords() {
+		return items;
 	}
 }

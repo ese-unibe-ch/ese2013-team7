@@ -6,6 +6,7 @@ import java.util.Calendar;
 import android.content.Context;
 
 import com.ese2013.mensaunibe.RatingListAdapter;
+import com.ese2013.mensaunibe.model.api.PreferenceRequest;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.mensa.MensaData;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
@@ -135,5 +136,21 @@ public class Model {
 		RatingData rd = new RatingData(context, menu, mensaId, RatingData.TYPE_SAVE);
 		rd.setPostData(username, comment, rating);
 		rd.execute();
+	}
+
+	public void saveNotificationSettings(boolean notify, ArrayList<String> keywords) {
+		PreferenceRequest pr = new PreferenceRequest();
+		pr.writeNotification(notify);
+		pr.writeNotificationKeywords(keywords);
+	}
+	
+	public ArrayList<String> loadNotificationKeywords() {
+		PreferenceRequest pr = new PreferenceRequest();
+		return pr.readNotificationKeywords();
+	}
+	
+	public boolean loadNotificationStatus() {
+		PreferenceRequest pr = new PreferenceRequest();
+		return pr.readNotification();
 	}
 }
