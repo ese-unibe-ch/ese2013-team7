@@ -5,7 +5,6 @@ import static org.mockito.Mockito.when;
 
 import org.json.JSONObject;
 
-import android.os.Handler;
 import android.test.InstrumentationTestCase;
 
 import com.ese2013.mensaunibe.model.api.PreferenceRequest;
@@ -16,8 +15,9 @@ public class MensaBuilderTest extends InstrumentationTestCase{
 
 	private JSONObject mockJSON;
 	private MensaBuilder mensaBuilder;
-	private PreferenceRequest prefReq;
 	private int mensaId = 1;
+	private PreferenceRequest prefReq;
+    private boolean favorite;
 
 	@Override
 	public void setUp() throws Exception {
@@ -26,32 +26,24 @@ public class MensaBuilderTest extends InstrumentationTestCase{
 		System.setProperty("dexmaker.dexcache", getInstrumentation().getTargetContext().getCacheDir().getPath());
 		
 		mockJSON = mock(JSONObject.class);
+		prefReq = new PreferenceRequest();
+		favorite = prefReq.readPreference(mensaId);
+		if(!favorite) prefReq.writePreference(true, mensaId);
+
 		when(mockJSON.getInt("id")).thenReturn(mensaId);
 		when(mockJSON.getString("mensa")).thenReturn("Mensa Gesellschaftsstrasse");
     	when(mockJSON.getString("street")).thenReturn("Gesellschaftsstrasse 2");
     	when(mockJSON.getString("plz")).thenReturn("3012 Bern");
     	when(mockJSON.getDouble("lat")).thenReturn(46.9518);
     	when(mockJSON.getDouble("lon")).thenReturn(7.438350);
-    	usePreferenceRequest(true);
 		mensaBuilder = new MensaBuilder(mockJSON);
 
 	}
 	
 	@Override
 	public void tearDown() throws Exception{
-		usePreferenceRequest(false);
-	}
-	
-	//to use PreferenceRequest, the method should run on the terget thread
-	private void usePreferenceRequest(boolean favorite){
-		final boolean fav = favorite;
-		Handler mainHandler = new Handler(getInstrumentation().getTargetContext().getMainLooper());
+		prefReq.writePreference(favorite, mensaId);
 
-		mainHandler.post(new Runnable(){
-			public void run(){
-				prefReq.writePreference(fav, mensaId);
-			}
-		});
 	}
 	
 	public void testId(){
@@ -75,12 +67,16 @@ public class MensaBuilderTest extends InstrumentationTestCase{
 		assertEquals("Longitude is not matching", 7.438350, mensaBuilder.getLon());
 	}
 	
-//	public void testIsFavorite(){
-//		assertTrue(mensaBuilder.getFav());
-//	}
+	public void testFavorite(){
+		assertTrue(mensaBuilder.getFav());
+		prefReq.writePreference(false, mensaId);
+		mensaBuilder = new MensaBuilder(mockJSON);
+		assertTrue(!mensaBuilder.getFav());
+	}
 	
 	public void testCreate(){
 		Mensa mensa = mensaBuilder.create();
 		assertNotNull(mensa);
 	}
+	
 }
