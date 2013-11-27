@@ -93,6 +93,7 @@
             android:name="com.ese2013.mensaunibe.NewRatingActivity"
             android:label="@string/title_activity_new_rating" >
         </activity>
+        <service android:enabled="true" android:name="com.ese2013.mensaunibe.notificationservice.MensaService"></service>
     </application>
 
 </manifest>
