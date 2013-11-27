@@ -1,7 +1,5 @@
 package com.ese2013.mensaunibe;
 
-import java.util.ArrayList;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 

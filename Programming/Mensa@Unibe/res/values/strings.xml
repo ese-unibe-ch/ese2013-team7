@@ -43,6 +43,9 @@
     <string name="button_submit">Submit</string>
     <string name="settings">Settings</string>
     <string name="notification_toggle">Enable/Disable Notifications</string>
+    <string name="delete_keyword">Delete a keyword</string>
+    <string name="insert_keyword_auto">Insert a keyword (autocomplete)</string>
+    <string name="add_keyword">Add a keyword</string>
 
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

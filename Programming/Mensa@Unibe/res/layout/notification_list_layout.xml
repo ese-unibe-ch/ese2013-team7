@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:contentDescription="delete keyword"
+        android:contentDescription="@string/delete_keyword"
         android:background="@android:color/transparent"
         android:visibility="gone"
         android:src="@drawable/ic_action_cancel" />
@@ -22,7 +22,7 @@
         android:layout_toLeftOf="@id/delete_keyword"
         android:visibility="gone"
         android:textColor="#000000"
-        android:textSize="16dp"
+        android:textSize="17sp"
         android:paddingLeft="6dp" />
     
 </RelativeLayout>
