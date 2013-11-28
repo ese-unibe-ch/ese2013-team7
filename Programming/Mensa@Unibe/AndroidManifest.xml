@@ -82,9 +82,15 @@
         <activity
             android:name="com.ese2013.mensaunibe.menu.RatingActivity"
             android:label="@string/title_activity_rating"
-            android:parentActivityName="com.ese2013.mensaunibe.ratingActivity" >
+            android:parentActivityName="com.ese2013.mensaunibe.menu.MenuActivity" >
         </activity>
 
+        <activity
+            android:name="com.ese2013.mensaunibe.settings.SettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName="com.ese2013.mensaunibe.ratingActivity" >
+        </activity>
+        
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBsKCxvitY-agP3JZH7Ckq4qRhz3etfOjg" />

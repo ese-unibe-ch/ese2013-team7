@@ -9,52 +9,29 @@
     android:orientation="vertical"
     android:descendantFocusability="beforeDescendants"
 	android:focusableInTouchMode="true"
-    tools:context=".NotificationActivity" >
+    tools:context=".SettingsActivity" >
 
-    <Switch
-        android:id="@+id/tgl_notifications"
+    <LinearLayout
+        android:id="@+id/languageLayout"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+    
+    <TextView
+        android:id="@+id/language_spinner_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/system_language" />
+
+    <Spinner
+        android:id="@+id/language_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:text="@string/notification_toggle" />
+        android:paddingTop="16dp" />
     
-     
-	<RelativeLayout
-        android:id="@+id/addNotification"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp" >
-    
-    <ImageButton
-	    android:id="@+id/settings_add_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentRight="true"
-	    android:contentDescription="@string/add_keyword"
-	    android:background="@android:color/transparent"
-	    android:src="@drawable/ic_action_new_dark" />
-    
-	<AutoCompleteTextView
-	    android:id="@+id/settings_add_keyword"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_toLeftOf="@+id/settings_add_button"
-	    android:completionThreshold="1"
-	    android:hint="@string/insert_keyword_auto"
-	    android:inputType="textCapSentences" />
-	
-    </RelativeLayout>
-    
-	<ListView
-       android:id="@+id/listViewNotificationKeywords"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:textColor="#000000"
-       android:background="#E9E9E9"
-        >		
-	</ListView>
-    
+    </LinearLayout>
+
 </LinearLayout>

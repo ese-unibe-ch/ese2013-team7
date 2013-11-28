@@ -28,7 +28,7 @@ public class NotificationFragment extends Fragment{
 	private NotificationSettingsAdapter adapter;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.activity_settings, container, false);	
+		view = inflater.inflate(R.layout.activity_notifications, container, false);	
 
 		Switch sw = (Switch) view.findViewById(R.id.tgl_notifications);
 		sw.setChecked( Model.getInstance().loadNotificationStatus() );

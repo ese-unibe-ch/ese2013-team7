@@ -1,4 +1,4 @@
-package com.ese2013.mensaunibe.notification;
+package com.ese2013.mensaunibe.settings;
 
 import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.R.string;
@@ -16,19 +16,19 @@ import android.view.Menu;
  * @author Andreas Hohler
  */
 
-public class NotificationActivity extends ActionBarActivity {
-	private NotificationFragment fragment;
+public class SettingsActivity extends ActionBarActivity {
+	private SettingsFragment fragment;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setTitle( getString(R.string.notifications) );
+		setTitle( getString(R.string.settings) );
 		
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
-		fragment = new NotificationFragment();
+		fragment = new SettingsFragment();
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 
 		ft.add(android.R.id.content, fragment);

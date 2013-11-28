@@ -5,10 +5,12 @@ import com.ese2013.mensaunibe.map.MapActivityAllMensas;
 import com.ese2013.mensaunibe.map.MyLocation;
 import com.ese2013.mensaunibe.mensa.MensaListAdapter;
 import com.ese2013.mensaunibe.menu.MenuActivity;
+import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.data.ForceReloadTask;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 import com.ese2013.mensaunibe.notification.NotificationActivity;
 import com.ese2013.mensaunibe.notificationservice.MensaService;
+import com.ese2013.mensaunibe.settings.SettingsActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -77,6 +79,9 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 			return true;
 		case R.id.action_notification:
 			startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+			return true;
+		case R.id.action_settings:
+			startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

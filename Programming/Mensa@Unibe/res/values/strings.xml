@@ -48,7 +48,12 @@
     <string name="add_keyword">Add a keyword</string>
 	<string name="action_notification">Notifications</string>
 	<string name="notification_keyword_added">Keyword added</string>
-	<string name="notification_keyword_exist">Keyword does already exist</string>  
+	<string name="notification_keyword_exist">Keyword does already exist</string>
+	<string name="notifications">Notifications</string>
+	<string name="language_german">German</string>
+	<string name="language_english">English</string>  
+	<string name="system_language">System language</string>
+	<string name="language_changed_to">Language changed to</string>
 
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

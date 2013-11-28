@@ -29,6 +29,7 @@ import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.menu.MenuDate;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 import com.ese2013.mensaunibe.notification.NotificationActivity;
+import com.ese2013.mensaunibe.settings.SettingsActivity;
 import com.memetix.mst.language.Language;
 
 /**
@@ -204,6 +205,9 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 				return true;
 			case R.id.action_notification:
 				startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+				return true;
+			case R.id.action_settings:
+				startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
 				return true;
 	        default:
 	            return super.onOptionsItemSelected(item);

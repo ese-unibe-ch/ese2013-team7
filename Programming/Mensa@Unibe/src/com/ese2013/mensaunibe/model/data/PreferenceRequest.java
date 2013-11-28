@@ -12,6 +12,7 @@ import com.ese2013.mensaunibe.App;
 /**
  * @author group7
  * @author Jan Binzegger
+ * @author Andreas Hohler
  */
 
 public class PreferenceRequest {
@@ -44,7 +45,6 @@ public class PreferenceRequest {
 		builder.deleteCharAt( builder.length()-1 );
 		editor.putString("KEYWORDS_NOTIFY_LIST", builder.toString());
 		editor.commit();
-		Log.v("prefs save","save keywords: "+builder.toString());
 	}
 	
 	@SuppressLint("CommitPrefEdits")
@@ -52,7 +52,6 @@ public class PreferenceRequest {
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putBoolean("KEYWORDS_NOTIFY_STATUS", notify);
 		editor.commit();
-		Log.v("prefs save","save notify status: "+notify);
 	}
 	
 	/**
@@ -71,7 +70,6 @@ public class PreferenceRequest {
 	 */
 	public boolean readNotification () {
 		boolean b = sharedPref.getBoolean("KEYWORDS_NOTIFY_STATUS", false);
-		Log.v("read prefs","notify status: "+b);
 		return b;
 	}
 	public ArrayList<String> readNotificationKeywords() {
@@ -82,7 +80,19 @@ public class PreferenceRequest {
 				result.add(k);
 			}
 		}
-		Log.v("read prefs", "keywords: "+keywords);
 		return result;
+	}
+
+	public String readLanguage(String def) {
+		String l = sharedPref.getString("SYS_LANG", def);
+		Log.v("PREFS","SYS_LANG LOAD "+l);
+		return l;
+	}
+	
+	public void writeLanguage(String lang) {
+		SharedPreferences.Editor editor = sharedPref.edit();
+		editor.putString("SYS_LANG", lang);
+		editor.commit();
+		Log.v("PREFS", "SYS_LANG SAVE "+lang);
 	}
 }

@@ -42,7 +42,18 @@
     <string name="edit_message">Bewertungstext</string>
     <string name="button_submit">Absenden</string>
     <string name="settings">Einstellungen</string>
-    
+    <string name="notification_toggle">An/abschalten der Benachrichtigungen</string>
+    <string name="delete_keyword">Ein Schlüsselwort löschen</string>
+    <string name="insert_keyword_auto">Schlüsselwort eingeben</string>
+    <string name="add_keyword">Ein Schlüsselwort hinzufügen</string>
+	<string name="action_notification">Benachrichtigungen</string>
+	<string name="notification_keyword_added">Schlüsselwort hinzugefügt</string>
+	<string name="notification_keyword_exist">Schlüsselwort existiert bereits</string>
+	<string name="notifications">Benachrichtigungen</string>
+	<string name="language_german">Deutsch</string>
+	<string name="language_english">Englisch</string>  
+	<string name="system_language">System-Sprache</string>
+	<string name="language_changed_to">Sprache geändert zu</string>
 
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>
