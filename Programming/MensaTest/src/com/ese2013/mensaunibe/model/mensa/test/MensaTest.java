@@ -7,7 +7,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.test.InstrumentationTestCase;
 
-import com.ese2013.mensaunibe.model.api.MyLocation;
+import com.ese2013.mensaunibe.map.MyLocation;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.mensa.MensaBuilder;
 import com.ese2013.mensaunibe.model.menu.WeeklyMenu;

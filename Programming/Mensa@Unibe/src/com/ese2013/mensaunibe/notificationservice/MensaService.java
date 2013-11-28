@@ -1,8 +1,9 @@
 package com.ese2013.mensaunibe.notificationservice;
 
-import com.ese2013.mensaunibe.MensaActivity;
 
 import com.ese2013.mensaunibe.R;
+import com.ese2013.mensaunibe.mensa.MensaActivity;
+
 import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.app.Notification;

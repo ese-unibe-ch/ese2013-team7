@@ -9,10 +9,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.ese2013.mensaunibe.RatingListAdapter;
+import com.ese2013.mensaunibe.menu.RatingListAdapter;
 import com.ese2013.mensaunibe.model.api.ApiUrl;
 import com.ese2013.mensaunibe.model.api.JSONParser;
-import com.ese2013.mensaunibe.model.api.URLRequest;
+import com.ese2013.mensaunibe.model.data.URLRequest;
 
 import android.util.Log;
 import android.widget.Toast;

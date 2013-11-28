@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.ese2013.mensaunibe.MenuActivity.TabCollectionPagerAdapter;
+import com.ese2013.mensaunibe.menu.MenuActivity.TabCollectionPagerAdapter;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
 import com.ese2013.mensaunibe.model.menu.Menuplan;

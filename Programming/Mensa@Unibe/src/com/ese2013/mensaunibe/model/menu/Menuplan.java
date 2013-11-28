@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
 import android.util.Log;
-import com.ese2013.mensaunibe.model.MenuDate;
 
 /**
  * @author group7

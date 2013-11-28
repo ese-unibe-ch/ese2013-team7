@@ -1,7 +1,6 @@
 package com.ese2013.mensaunibe.model.menu;
 
-import com.ese2013.mensaunibe.ListItem;
-import com.ese2013.mensaunibe.model.MenuDate;
+import com.ese2013.mensaunibe.model.utils.ListItem;
 
 /**
  * @author group7

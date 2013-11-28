@@ -1,11 +1,11 @@
 package com.ese2013.mensaunibe.model.mensa;
 
-import com.ese2013.mensaunibe.ListItem;
-import com.ese2013.mensaunibe.model.MenuDate;
-import com.ese2013.mensaunibe.model.api.MyLocation;
-import com.ese2013.mensaunibe.model.api.PreferenceRequest;
+import com.ese2013.mensaunibe.map.MyLocation;
+import com.ese2013.mensaunibe.model.data.PreferenceRequest;
+import com.ese2013.mensaunibe.model.menu.MenuDate;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 import com.ese2013.mensaunibe.model.menu.WeeklyMenu;
+import com.ese2013.mensaunibe.model.utils.ListItem;
 import com.memetix.mst.language.Language;
 
 import android.annotation.SuppressLint;

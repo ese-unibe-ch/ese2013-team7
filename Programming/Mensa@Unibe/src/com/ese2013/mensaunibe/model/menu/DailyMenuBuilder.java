@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import android.util.Log;
-import com.ese2013.mensaunibe.model.MenuDate;
 
 /**
  * @author group7

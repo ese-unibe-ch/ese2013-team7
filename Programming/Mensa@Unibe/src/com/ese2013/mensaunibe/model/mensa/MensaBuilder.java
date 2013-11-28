@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-import com.ese2013.mensaunibe.model.api.PreferenceRequest;
+import com.ese2013.mensaunibe.model.data.PreferenceRequest;
 
 /**
  * @author group7

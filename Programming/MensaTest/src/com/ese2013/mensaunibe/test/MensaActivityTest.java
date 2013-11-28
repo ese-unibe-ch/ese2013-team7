@@ -7,9 +7,9 @@ import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.ListAdapter;
 import android.widget.ToggleButton;
 
-import com.ese2013.mensaunibe.MensaActivity;
-import com.ese2013.mensaunibe.MensaListFragment;
-import com.ese2013.mensaunibe.model.api.AppUtils;
+import com.ese2013.mensaunibe.mensa.MensaActivity;
+import com.ese2013.mensaunibe.mensa.MensaListFragment;
+import com.ese2013.mensaunibe.model.utils.AppUtils;
 
 /**
  * @author group7

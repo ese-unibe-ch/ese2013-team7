@@ -5,9 +5,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import android.test.InstrumentationTestCase;
 
-import com.ese2013.mensaunibe.model.MenuDate;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
 import com.ese2013.mensaunibe.model.menu.DailyMenuBuilder;
+import com.ese2013.mensaunibe.model.menu.MenuDate;
 
 /**
  * @author group7

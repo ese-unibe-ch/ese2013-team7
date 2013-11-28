@@ -5,10 +5,11 @@ import java.util.Calendar;
 
 import android.content.Context;
 
-import com.ese2013.mensaunibe.RatingListAdapter;
-import com.ese2013.mensaunibe.model.api.PreferenceRequest;
+import com.ese2013.mensaunibe.menu.RatingListAdapter;
+import com.ese2013.mensaunibe.model.data.PreferenceRequest;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.mensa.MensaData;
+import com.ese2013.mensaunibe.model.menu.MenuDate;
 import com.ese2013.mensaunibe.model.menu.Menuplan;
 import com.ese2013.mensaunibe.model.menu.RatingData;
 

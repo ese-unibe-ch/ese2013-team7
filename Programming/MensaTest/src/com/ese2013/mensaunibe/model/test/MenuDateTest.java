@@ -6,7 +6,7 @@ import android.content.Context;
 import android.test.AndroidTestCase;
 
 import com.ese2013.mensaunibe.App;
-import com.ese2013.mensaunibe.model.MenuDate;
+import com.ese2013.mensaunibe.model.menu.MenuDate;
 
 /**
  * @author group7
