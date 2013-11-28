@@ -26,7 +26,7 @@ import android.widget.Toast;
  * @author Andreas Hohler
  */
 
-public class SettingsFragment extends Fragment{
+public class NotificationFragment extends Fragment{
 	private static final String TAG= "SettingsFragment";
 	private View view;
 	private NotificationSettingsAdapter adapter;
@@ -78,9 +78,9 @@ public class SettingsFragment extends Fragment{
 		}
 		public void onClick(View view) {
 			if( adapter.add( input.getText().toString() ) ) {
-				Toast.makeText(context, "Keyword added", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, getString(R.string.notification_keyword_added), Toast.LENGTH_LONG).show();
 			} else {
-				Toast.makeText(context, "Keyword does already exist", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, getString(R.string.notification_keyword_exist), Toast.LENGTH_LONG).show();
 			}
 			adapter.notifyDataSetChanged();
 		}
@@ -98,9 +98,9 @@ public class SettingsFragment extends Fragment{
 			if ((event.getAction() == KeyEvent.ACTION_DOWN)) {
 				if(keyCode == KeyEvent.KEYCODE_ENTER) {
 					if( adapter.add( ((AutoCompleteTextView) v).getText().toString() ) ) {
-						Toast.makeText(context, "Keyword added", Toast.LENGTH_LONG).show();
+						Toast.makeText(context, getString(R.string.notification_keyword_added), Toast.LENGTH_LONG).show();
 					} else {
-						Toast.makeText(context, "Keyword does already exist", Toast.LENGTH_LONG).show();
+						Toast.makeText(context, getString(R.string.notification_keyword_exist), Toast.LENGTH_LONG).show();
 					}
 					adapter.notifyDataSetChanged();
 				}

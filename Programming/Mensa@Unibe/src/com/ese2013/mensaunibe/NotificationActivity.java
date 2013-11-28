@@ -13,8 +13,8 @@ import android.view.Menu;
  * @author Andreas Hohler
  */
 
-public class SettingsActivity extends ActionBarActivity {
-	private SettingsFragment fragment;
+public class NotificationActivity extends ActionBarActivity {
+	private NotificationFragment fragment;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class SettingsActivity extends ActionBarActivity {
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
-		fragment = new SettingsFragment();
+		fragment = new NotificationFragment();
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 
 		ft.add(android.R.id.content, fragment);

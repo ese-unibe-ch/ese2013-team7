@@ -42,6 +42,7 @@
     <string name="edit_message">Bewertungstext</string>
     <string name="button_submit">Absenden</string>
     <string name="settings">Einstellungen</string>
+    
 
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

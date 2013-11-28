@@ -16,5 +16,10 @@
           android:title="@string/action_settings"
           mensaApp:showAsAction="never"
           android:orderInCategory="5" />
+    
+    <item android:id="@+id/action_notification"
+          android:title="@string/action_notification"
+          android:orderInCategory="6"
+          mensaApp:showAsAction="never" />
    
 </menu>

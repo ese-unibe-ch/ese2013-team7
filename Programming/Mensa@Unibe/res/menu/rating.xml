@@ -6,11 +6,4 @@
           android:title="@string/action_rate"
           mensaApp:showAsAction="ifRoom"
           android:orderInCategory="1"/>
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
-
 </menu>

@@ -12,6 +12,10 @@
           android:title="@string/action_settings"
           mensaApp:showAsAction="never" />
     
+    <item android:id="@+id/action_notification"
+          android:title="@string/action_notification"
+          mensaApp:showAsAction="never" />
+    
    <item android:id="@+id/action_map"
           android:icon="@drawable/ic_action_direction"
           android:title="@string/action_map"

@@ -195,6 +195,10 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 				sendIntent.putExtra(Intent.EXTRA_TEXT, "Hi,\nToday I'm going to eat at the Mensa " + mensaChoosen.getName() + "\nTodays Menu is:\n\n" + mensaChoosen.getDailyMenu(md) + "Will you join me?");
 				sendIntent.setType("text/plain");
 				startActivity(sendIntent);
+				return true;
+			case R.id.action_notification:
+				startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+				return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 		}

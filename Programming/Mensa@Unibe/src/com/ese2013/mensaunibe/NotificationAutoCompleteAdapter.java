@@ -23,7 +23,4 @@ public class NotificationAutoCompleteAdapter extends ArrayAdapter<String> {
 		LoadNotificationSettingsTask t = new LoadNotificationSettingsTask(context, this);
 		t.execute();
 	}
-	/*public void populate(HashSet<String> words) {
-		this.addAll(words);
-	}*/
 }
