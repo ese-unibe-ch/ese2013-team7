@@ -42,7 +42,7 @@
     <string name="edit_message">Bewertungstext</string>
     <string name="button_submit">Absenden</string>
     <string name="settings">Einstellungen</string>
-    <string name="notification_toggle">An/abschalten der Benachrichtigungen</string>
+    <string name="notification_toggle">Aktivieren/deaktivieren der Benachrichtigungen</string>
     <string name="delete_keyword">Ein Schlüsselwort löschen</string>
     <string name="insert_keyword_auto">Schlüsselwort eingeben</string>
     <string name="add_keyword">Ein Schlüsselwort hinzufügen</string>
