@@ -10,7 +10,7 @@ include("json_readable.php");
 
 if (isset($_GET['androidrequest']) AND 
     isset($_GET['mensaid']) AND 
-    isset($_GET['menutitle'])) {
+    isset($_GET['menutitle']) AND strlen($_GET['menutitle']) > 3) {
     
     $sql = 'SELECT
                id

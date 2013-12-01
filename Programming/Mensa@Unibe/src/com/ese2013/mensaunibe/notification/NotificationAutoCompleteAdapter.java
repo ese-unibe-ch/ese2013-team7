@@ -1,7 +1,5 @@
 package com.ese2013.mensaunibe.notification;
 
-import java.util.HashSet;
-
 import android.content.Context;
 import android.widget.ArrayAdapter;
 

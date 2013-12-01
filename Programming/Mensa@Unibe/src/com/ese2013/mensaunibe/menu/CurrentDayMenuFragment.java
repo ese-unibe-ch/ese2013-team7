@@ -1,9 +1,6 @@
 package com.ese2013.mensaunibe.menu;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.layout;
-import com.ese2013.mensaunibe.R.menu;
-import com.ese2013.mensaunibe.R.string;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 
 import android.os.Bundle;

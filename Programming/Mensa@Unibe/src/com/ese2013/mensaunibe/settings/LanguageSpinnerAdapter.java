@@ -2,8 +2,6 @@ package com.ese2013.mensaunibe.settings;
 
 import java.util.ArrayList;
 
-import com.ese2013.mensaunibe.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,7 +1,6 @@
 package com.ese2013.mensaunibe.notification;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.string;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,8 +36,6 @@ public class NotificationActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.rating, menu);
 		return true;
 	}
 

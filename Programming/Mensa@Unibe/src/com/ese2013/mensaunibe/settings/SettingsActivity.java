@@ -1,7 +1,6 @@
 package com.ese2013.mensaunibe.settings;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.string;
 
 import android.content.Intent;
 import android.os.Bundle;

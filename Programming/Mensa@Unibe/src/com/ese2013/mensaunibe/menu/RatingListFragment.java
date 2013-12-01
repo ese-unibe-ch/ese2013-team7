@@ -1,25 +1,37 @@
 package com.ese2013.mensaunibe.menu;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.layout;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.menu.RatingData;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
 
 /**
  * @author group7
  * @author Andreas Hohler
  */
 
-public class RatingListFragment extends ListFragment{
-	private static final String TAG= "RatingListFragment";
+public class RatingListFragment extends Fragment{
+	private static final String TAG = RatingListFragment.class.getName();
 
 	private String menu;
 	private int mMensaId;
+	private View view;
+	private RatingListAdapter adapter;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		view = inflater.inflate(R.layout.activity_rating_old, container, false);
+		updateAdapter();
+		return view;
+	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -35,17 +47,20 @@ public class RatingListFragment extends ListFragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
-		RatingListAdapter adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout);
-		setListAdapter(adapter);
-		Model.getInstance().loadMenuRating(getActivity(), adapter, menu, mMensaId, RatingData.TYPE_LOAD);
 	}
 	
+	private void updateAdapter() {
+		RatingListAdapter adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout);
+		adapter.setBaseView(view);
+		Model.getInstance().loadMenuRating(getActivity(), adapter, menu, mMensaId, RatingData.TYPE_LOAD);
+		
+		ListView listView = (ListView) view.findViewById(R.id.ratingListView);
+        listView.setAdapter(adapter);
+	}
 	/**
 	 * public method to repopulate the rating list
 	 */
 	public void update() {
-		RatingListAdapter a = (RatingListAdapter) getListAdapter();
-		Model.getInstance().loadMenuRating(getActivity(), a, menu, mMensaId, RatingData.TYPE_LOAD);
+		Model.getInstance().loadMenuRating(getActivity(), adapter, menu, mMensaId, RatingData.TYPE_LOAD);
 	}
 }

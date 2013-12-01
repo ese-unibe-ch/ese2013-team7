@@ -10,6 +10,7 @@ import com.ese2013.mensaunibe.model.utils.SystemLanguage;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,7 @@ public class SettingsFragment extends Fragment implements OnItemSelectedListener
 	@Override
 	public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        
+        Log.d(TAG,"SettingsFragment created");
     }
 	
 	@Override

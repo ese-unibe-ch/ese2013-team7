@@ -1,16 +1,13 @@
 package com.ese2013.mensaunibe.menu;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.id;
-import com.ese2013.mensaunibe.R.layout;
-import com.ese2013.mensaunibe.R.menu;
-import com.ese2013.mensaunibe.R.string;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import android.app.FragmentTransaction;
+//import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
@@ -29,7 +26,7 @@ public class RatingActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_rating);
+		setContentView(R.layout.activity_rating_old);
 
 		mMensaId = getIntent().getIntExtra(AppUtils.MENSA_ID, 0);
 		mMenu = getIntent().getStringExtra("menu");
@@ -39,7 +36,16 @@ public class RatingActivity extends ActionBarActivity {
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
-		fragment = (RatingListFragment) getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_RATINGLIST_FRAGMENT);
+		fragment = new RatingListFragment();
+		Bundle args = new Bundle();
+		args.putInt(AppUtils.MENSA_ID, mMensaId);
+		args.putString("menu", mMenu);
+		fragment.setArguments(args);
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		ft.add(android.R.id.content, fragment);
+		ft.commit();
+		
+		/*fragment = (RatingListFragment) getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_RATINGLIST_FRAGMENT);
 		if (fragment == null) {
 			fragment = new RatingListFragment();
 			Bundle args = new Bundle();
@@ -49,7 +55,7 @@ public class RatingActivity extends ActionBarActivity {
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			ft.add(android.R.id.content, fragment, AppUtils.TAG_RATINGLIST_FRAGMENT);
 			ft.commit();
-		}
+		}*/
 	}
 
 	@Override

@@ -3,9 +3,6 @@ package com.ese2013.mensaunibe.notification;
 import java.util.ArrayList;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.id;
-
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

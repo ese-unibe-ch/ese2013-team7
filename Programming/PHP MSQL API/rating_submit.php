@@ -9,6 +9,7 @@ var_dump($_POST);
 if (isset($_POST['androidrequest']) AND 
     isset($_POST['usernamemd5']) AND 
     isset($_POST['menutitle']) AND 
+	strlen($_POST['menutitle']) > 3 AND
     isset($_POST['stars']) AND 
     isset($_POST['mensaid']) AND 
     isset($_POST['comment'])) {

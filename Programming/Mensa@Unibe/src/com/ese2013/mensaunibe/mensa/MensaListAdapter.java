@@ -15,9 +15,6 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.id;
-import com.ese2013.mensaunibe.R.layout;
-import com.ese2013.mensaunibe.R.string;
 import com.ese2013.mensaunibe.map.MapActivityOneMensa;
 import com.ese2013.mensaunibe.map.MyLocation;
 import com.ese2013.mensaunibe.model.Model;

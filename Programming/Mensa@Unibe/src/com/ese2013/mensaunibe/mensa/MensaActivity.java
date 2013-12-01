@@ -5,7 +5,6 @@ import com.ese2013.mensaunibe.map.MapActivityAllMensas;
 import com.ese2013.mensaunibe.map.MyLocation;
 import com.ese2013.mensaunibe.mensa.MensaListAdapter;
 import com.ese2013.mensaunibe.menu.MenuActivity;
-import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.data.ForceReloadTask;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 import com.ese2013.mensaunibe.notification.NotificationActivity;

@@ -13,8 +13,6 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.id;
-import com.ese2013.mensaunibe.R.layout;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.utils.UserEmailMD5Fetcher;
 

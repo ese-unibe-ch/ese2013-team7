@@ -1,7 +1,6 @@
 package com.ese2013.mensaunibe.mensa;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;

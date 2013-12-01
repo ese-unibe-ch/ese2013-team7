@@ -66,31 +66,8 @@ public class LoadNotificationSettingsTask extends AsyncTask<Void, Void, Boolean>
 	}
 	
 	private void loadData() {
-		words = new HashSet<String>();
-		for(Mensa m : Model.getInstance().getMensaList()) {
-			for(Menuplan w : m.getWeeklyMenu()) {
-				for(DailyMenu d : w) {
-					String t = d.getMenu();
-					t = t.replaceAll(",|«|»", "");
-					t = t.replace(".","");
-					String[] all = t.split("\\s+");
-					for(String s : all) {
-						if(s.matches("CHF|Schweiz") || s.length() < 5 || !hasUpperChars(s)) continue;
-						words.add(s);
-					}
-				}
-			}
-		}
-	}
-	
-	private boolean hasUpperChars(String s) {
-		boolean upperFound = false;
-		for (char c : s.toCharArray()) {
-		    if (Character.isUpperCase(c)) {
-		        upperFound = true;
-		        break;
-		    }
-		}
-		return upperFound;
+		//words = new HashSet<String>();
+		WordNotificationUtil w = new WordNotificationUtil();
+		words = w.getWordList();
 	}
 }

@@ -11,10 +11,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.drawable;
-import com.ese2013.mensaunibe.R.id;
-import com.ese2013.mensaunibe.R.layout;
-import com.ese2013.mensaunibe.R.string;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.utils.AppUtils;

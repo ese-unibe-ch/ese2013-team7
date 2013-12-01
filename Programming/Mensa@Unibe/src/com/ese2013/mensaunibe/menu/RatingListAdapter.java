@@ -11,7 +11,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.id;
 import com.ese2013.mensaunibe.model.menu.Rating;
 
 /**
@@ -23,15 +22,19 @@ public class RatingListAdapter extends BaseAdapter {
 	private Context context;
 	private int resource;
 	private LayoutInflater inflater;
+	private View baseView;
+	private static final int NICKNAME_LENGTH = 8;
 
 	private ArrayList<Rating> items = new ArrayList<Rating>();
-
-	private float avgStars;
 
 	public RatingListAdapter(Context context, int resource) {
 		super();
 		this.context = context;
 		this.resource = resource;
+	}
+	
+	public void setBaseView(View view) {
+		this.baseView = view;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -43,8 +46,8 @@ public class RatingListAdapter extends BaseAdapter {
 			viewHolder.user = (TextView) view.findViewById(R.id.rating_user);
 			viewHolder.text = (TextView) view.findViewById(R.id.rating_text);
 			viewHolder.rating = (RatingBar) view.findViewById(R.id.rating_stars);
-			viewHolder.avg_rating = (RatingBar) view.findViewById(R.id.rating_avg);
-			viewHolder.avg_rating_text = (TextView) view.findViewById(R.id.rating_avg_text);
+			//viewHolder.avg_rating = (RatingBar) view.findViewById(R.id.rating_avg);
+			//viewHolder.avg_rating_text = (TextView) view.findViewById(R.id.rating_avg_text);
 			view.setTag(viewHolder);
 		}
 		
@@ -57,18 +60,18 @@ public class RatingListAdapter extends BaseAdapter {
 
 		Rating rating = items.get(position);
 		
-		if(rating.isAvg()) {
+		/*if(rating.isAvg()) {
 			holder.avg_rating_text.setVisibility(View.VISIBLE);
 			holder.avg_rating.setRating(this.avgStars);
 			holder.avg_rating.setVisibility(View.VISIBLE);
-		} else {
-			holder.user.setText(rating.getNickname());
+		} else {*/
+			holder.user.setText(rating.getNickname().substring(0, NICKNAME_LENGTH));
 			holder.user.setVisibility(View.VISIBLE);
 			holder.text.setText(rating.getText());
 			holder.text.setVisibility(View.VISIBLE);
 			holder.rating.setRating(rating.getRating());
 			holder.rating.setVisibility(View.VISIBLE);
-		}
+		//}
 		return view;
 	}
 
@@ -81,14 +84,23 @@ public class RatingListAdapter extends BaseAdapter {
 		assert avgStars <= 5;
 		//fill
 		items = new ArrayList<Rating>();
-		Rating avg = new Rating("Average Rating", "", 0);
-		avg.setAvg(true);
-		items.add( avg );
-		this.avgStars = avgStars; 
+		//Rating avg = new Rating("Average Rating", "", 0);
+		//avg.setAvg(true);
+		//items.add( avg );
+		//this.avgStars = avgStars;
+		updateAvg(avgStars);
 		for(Rating ra : r) {
 			items.add(ra);
 		}
 		//items = r;
+	}
+	
+	private void updateAvg(float avg) {
+		TextView avg_rating_text = (TextView) baseView.findViewById(R.id.rating_avg_text);
+		RatingBar avg_rating = (RatingBar) baseView.findViewById(R.id.rating_avg);
+		avg_rating_text.setVisibility(View.VISIBLE);
+		avg_rating.setRating(avg);
+		avg_rating.setVisibility(View.VISIBLE);
 	}
 
 	public Rating getItem(int position) {
@@ -107,8 +119,8 @@ public class RatingListAdapter extends BaseAdapter {
 		public TextView user;
 		public TextView text;
 		public RatingBar rating;
-		public TextView avg_rating_text;
-		public RatingBar avg_rating;
+		//public TextView avg_rating_text;
+		//public RatingBar avg_rating;
 	}
 	
 	/**
@@ -122,7 +134,7 @@ public class RatingListAdapter extends BaseAdapter {
 		holder.user.setVisibility(View.GONE);
 		holder.text.setText("");
 		holder.text.setVisibility(View.GONE);
-		holder.avg_rating.setVisibility(View.GONE);
-		holder.avg_rating_text.setVisibility(View.GONE);
+		//holder.avg_rating.setVisibility(View.GONE);
+		//holder.avg_rating_text.setVisibility(View.GONE);
 	}
 }

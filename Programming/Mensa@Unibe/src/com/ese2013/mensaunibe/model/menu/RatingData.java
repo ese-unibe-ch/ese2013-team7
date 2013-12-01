@@ -17,6 +17,8 @@ import com.ese2013.mensaunibe.model.data.URLRequest;
 import android.util.Log;
 import android.widget.Toast;
 
+/* should be refactored in two classes for saving and storing */
+
 /**
  * @author group7
  * @author Andreas Hohler
@@ -63,6 +65,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		if(tmp[0].contains("VEGI+")) {
 			return tmp[1];
 		}
+		tmp[0] = tmp[0].replaceAll(",|«|»", "");
 		return tmp[0];
 	}
 	

@@ -18,9 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.id;
-import com.ese2013.mensaunibe.R.layout;
-import com.ese2013.mensaunibe.R.string;
 import com.ese2013.mensaunibe.mensa.MensaInfoDialogFragment;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.api.LanguageChanger;

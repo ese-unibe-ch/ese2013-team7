@@ -2,7 +2,6 @@ package com.ese2013.mensaunibe.mensa;
 
 import com.ese2013.mensaunibe.App;
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.string;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 
 import android.content.Context;

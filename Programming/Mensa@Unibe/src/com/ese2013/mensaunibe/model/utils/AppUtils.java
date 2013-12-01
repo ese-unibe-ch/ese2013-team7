@@ -64,4 +64,16 @@ public final class AppUtils {
 	public static final int FIRST_MENU = 0;
 	
 	public static final int ALL_EXCEPT_FIRST = 1;
+	
+	
+	public static boolean hasUpperChars(String s) {
+		boolean upperFound = false;
+		for (char c : s.toCharArray()) {
+		    if (Character.isUpperCase(c)) {
+		        upperFound = true;
+		        break;
+		    }
+		}
+		return upperFound;
+	}
 }

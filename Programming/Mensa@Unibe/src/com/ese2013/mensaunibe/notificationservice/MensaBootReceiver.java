@@ -14,7 +14,6 @@ public class MensaBootReceiver extends BroadcastReceiver {
 	      AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 	      PendingIntent pendingIntent =
 	               PendingIntent.getBroadcast(context, 0, new Intent(context, MensaAlarmReceiver.class), 0);
-
 	      // use inexact repeating which is easier on battery (system can phase events and not wake at exact times)
 	      alarmMgr.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, Constants.ALARM_TRIGGER_AT_TIME,
 	               Constants.ALARM_INTERVAL, pendingIntent);

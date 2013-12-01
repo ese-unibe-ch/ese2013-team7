@@ -1,8 +1,13 @@
 package com.ese2013.mensaunibe.notificationservice;
 
 
+import java.util.ArrayList;
+
 import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.mensa.MensaActivity;
+import com.ese2013.mensaunibe.model.data.PreferenceRequest;
+import com.ese2013.mensaunibe.notification.NotificationHolder;
+import com.ese2013.mensaunibe.notification.WordNotificationUtil;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
@@ -17,7 +22,7 @@ import android.support.v4.app.NotificationCompat.Builder;
 public class MensaService extends IntentService {
 	
 	private MensaActivity mensaActivity;
-		
+
 	public MensaService() {
 		super("Mensa@Unibe");
 	}
@@ -33,9 +38,11 @@ public class MensaService extends IntentService {
 		// TODO Auto-generated method stub
 		
 		//here we can add a server Query. 
+		PreferenceRequest pr = new PreferenceRequest();
+		WordNotificationUtil wu = new WordNotificationUtil();
+		ArrayList<NotificationHolder> result = wu.compareToKeywords( pr.readNotificationKeywords() );
 		
-		
-		this.sendNotification(this, "test");
+		this.sendNotification(this, "matches: "+result.size());
 	}
 	
 	 @SuppressLint("NewApi")
