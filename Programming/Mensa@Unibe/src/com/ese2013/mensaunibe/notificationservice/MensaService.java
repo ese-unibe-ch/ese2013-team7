@@ -42,23 +42,34 @@ public class MensaService extends IntentService {
 		WordNotificationUtil wu = new WordNotificationUtil();
 		ArrayList<NotificationHolder> result = wu.compareToKeywords( pr.readNotificationKeywords() );
 		
-		this.sendNotification(this, "matches: "+result.size());
+		this.sendNotification(this, result);
 	}
 	
 	 @SuppressLint("NewApi")
-	private void sendNotification(Context context, String menuName) {
+	private void sendNotification(Context context, ArrayList<NotificationHolder> keywordResultList) {
 	      Intent notificationIntent = new Intent(context, MensaActivity.class);
+	      notificationIntent.putParcelableArrayListExtra("keywordResultList", keywordResultList);
 	      PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
 
 	      NotificationManager notificationMgr =
 	               (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 	      Builder notification = new NotificationCompat.Builder(this)
-	            	        .setContentTitle("Today in your Mensa: "+ menuName)
-	            	        .setContentText("Don't know yet")
-	            	        .setSmallIcon(R.drawable.ic_launcher);
-	               
+	            	        .setContentTitle("Todays MensaMenu contain some of your favorite ingredients")
+	            	        .setContentText("ingredients"+getMatchedKeywords(keywordResultList))
+	            	        .setSmallIcon(R.drawable.ic_launcher)
+	            	        .setContentIntent(contentIntent);
+	      				
 	            
 	      notificationMgr.notify(0, notification.build());
 	   }
+	 
+	 private String getMatchedKeywords(ArrayList<NotificationHolder> keywordResultList){
+		String matchedKeywords = "";
+		 for(int i=0; i <keywordResultList.size();i++){
+			 if(matchedKeywords.contains(keywordResultList.get(i).getKeyword())==false)
+			matchedKeywords = keywordResultList.get(i).getKeyword()+", ";
+		}
+		return matchedKeywords;
+	 }
 	
 }
