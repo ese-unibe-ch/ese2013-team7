@@ -50,7 +50,8 @@ if (isset($_GET['androidrequest']) AND
     $sql = 'SELECT
                user.name,
                rating.stars,
-               rating.comment
+               rating.comment,
+			   rating.time
            FROM
                rating
            JOIN
@@ -68,14 +69,15 @@ if (isset($_GET['androidrequest']) AND
     if (!$stmt->execute()) {
         die ('Query 3 konnte nicht ausgeführt werden: '.$stmt->error);
     }
-    $stmt->bind_result($name, $stars, $comment);
+    $stmt->bind_result($name, $stars, $comment, $time);
     $ratings = array();
     $numOfRatings = 0;
     $totalStars = 0;
     while ($stmt->fetch()) {
         $ratings['result']['content'][] = array('username' => $name,
                            'stars' => $stars,
-                           'comment' => $comment);
+                           'comment' => $comment,
+						   'time' => $time);
         $totalStars += $stars;
         $numOfRatings++;
     }

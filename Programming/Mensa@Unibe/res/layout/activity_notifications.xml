@@ -53,8 +53,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:textColor="#000000"
-       android:background="#E9E9E9"
-        >		
+       android:background="#E9E9E9" >
 	</ListView>
     
 </LinearLayout>

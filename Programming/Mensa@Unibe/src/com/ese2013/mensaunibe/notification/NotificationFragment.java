@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.model.Model;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;

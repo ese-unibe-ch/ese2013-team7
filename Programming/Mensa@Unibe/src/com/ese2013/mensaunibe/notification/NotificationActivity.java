@@ -1,10 +1,11 @@
 package com.ese2013.mensaunibe.notification;
 
 import com.ese2013.mensaunibe.R;
+import com.ese2013.mensaunibe.model.utils.AppUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
@@ -27,11 +28,13 @@ public class NotificationActivity extends ActionBarActivity {
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
-		fragment = new NotificationFragment();
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-		ft.add(android.R.id.content, fragment);
-		ft.commit();
+		fragment = (NotificationFragment) getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_NOTIFICATION_FRAGMENT);
+		if (fragment == null) {
+			fragment = new NotificationFragment();
+			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+			ft.add(android.R.id.content, fragment, AppUtils.TAG_NOTIFICATION_FRAGMENT);
+			ft.commit();
+		}
 	}
 
 	@Override
@@ -41,7 +44,14 @@ public class NotificationActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		return super.onOptionsItemSelected(item);
+		switch(item.getItemId()) {
+		case android.R.id.home:
+			onBackPressed();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+		//return super.onOptionsItemSelected(item);
 	}
 
 	@Override
