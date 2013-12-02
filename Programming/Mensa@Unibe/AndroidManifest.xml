@@ -37,7 +37,8 @@
         
         <activity
             android:name="com.ese2013.mensaunibe.notification.NotificationActivity"
-            android:label="@string/settings" >
+            android:label="@string/settings"
+            android:parentActivityName="com.ese2013.mensaunibe.mensa.MensaActivity" >
         </activity>
         
         <activity

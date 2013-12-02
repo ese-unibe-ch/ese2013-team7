@@ -53,7 +53,6 @@ public class SettingsActivity extends ActionBarActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-		//return super.onOptionsItemSelected(item);
 	}
 
 	@Override

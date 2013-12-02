@@ -54,7 +54,10 @@
 	<string name="language_english">English</string>  
 	<string name="system_language">System language</string>
 	<string name="language_changed_to">Language changed to</string>
-
+	<string name="share_todayimgoing">Hi,\nToday I\'m going to eat at the Mensa</string>
+	<string name="share_todaymenu">\nToday\'s Menu is:\n\n</string>
+	<string name="share_joinme">Will you join me?</string>
+				
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>
     <string name="load_map_message">loading Map</string> 

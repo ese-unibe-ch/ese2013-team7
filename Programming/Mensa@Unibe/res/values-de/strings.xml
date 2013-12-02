@@ -54,7 +54,10 @@
 	<string name="language_english">Englisch</string>  
 	<string name="system_language">System-Sprache</string>
 	<string name="language_changed_to">Sprache geändert zu</string>
-
+	<string name="share_todayimgoing">Hei, \nHeute gehe ich essen in der Mensa</string>
+	<string name="share_todaymenu">\nDas heutige Menu ist:\n\n</string>
+	<string name="share_joinme">Willst du mit mir essen gehen?</string>
+				
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>
     <string name="load_map_message">loading Map</string> 
