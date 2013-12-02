@@ -1,5 +1,7 @@
 package com.ese2013.mensaunibe.notificationservice;
 
+import java.util.Calendar;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -14,8 +16,16 @@ public class MensaBootReceiver extends BroadcastReceiver {
 	      AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 	      PendingIntent pendingIntent =
 	               PendingIntent.getBroadcast(context, 0, new Intent(context, MensaAlarmReceiver.class), 0);
+	      
+	      //set start time of the service
+	      Calendar startTime = Calendar.getInstance();
+	      startTime.set(Calendar.HOUR_OF_DAY, 10);
+	      startTime.set(Calendar.MINUTE, 30);
+	      startTime.set(Calendar.SECOND, 0);
 	      // use inexact repeating which is easier on battery (system can phase events and not wake at exact times)
-	      alarmMgr.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, Constants.ALARM_TRIGGER_AT_TIME,
+	      alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(),
 	               Constants.ALARM_INTERVAL, pendingIntent);
 	   }
 }
+
+
