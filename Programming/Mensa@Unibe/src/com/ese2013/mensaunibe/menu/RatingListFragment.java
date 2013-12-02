@@ -28,7 +28,7 @@ public class RatingListFragment extends Fragment{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.activity_rating_old, container, false);
+		view = inflater.inflate(R.layout.activity_rating, container, false);
 		updateAdapter();
 		return view;
 	}

@@ -33,7 +33,7 @@ public class WeeklyMenu implements Iterable<Menuplan> {
 	public Menuplan getDailyMenu(MenuDate date) {
 		assert date != null;
 		Menuplan m = menuPlans.get(date.toString());
-		Log.d("WeeklyMenu", "date: "+date+" menuplan: "+m);
+		//Log.d("WeeklyMenu", "date: "+date+" menuplan: "+m);
 		return m;
 	}
 	
