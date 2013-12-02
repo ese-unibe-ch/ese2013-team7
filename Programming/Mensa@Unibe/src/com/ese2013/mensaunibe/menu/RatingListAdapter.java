@@ -46,8 +46,6 @@ public class RatingListAdapter extends BaseAdapter {
 			viewHolder.user = (TextView) view.findViewById(R.id.rating_user);
 			viewHolder.text = (TextView) view.findViewById(R.id.rating_text);
 			viewHolder.rating = (RatingBar) view.findViewById(R.id.rating_stars);
-			//viewHolder.avg_rating = (RatingBar) view.findViewById(R.id.rating_avg);
-			//viewHolder.avg_rating_text = (TextView) view.findViewById(R.id.rating_avg_text);
 			view.setTag(viewHolder);
 		}
 		
@@ -60,18 +58,14 @@ public class RatingListAdapter extends BaseAdapter {
 
 		Rating rating = items.get(position);
 		
-		/*if(rating.isAvg()) {
-			holder.avg_rating_text.setVisibility(View.VISIBLE);
-			holder.avg_rating.setRating(this.avgStars);
-			holder.avg_rating.setVisibility(View.VISIBLE);
-		} else {*/
-			holder.user.setText(rating.getNickname().substring(0, NICKNAME_LENGTH));
-			holder.user.setVisibility(View.VISIBLE);
-			holder.text.setText(rating.getText());
-			holder.text.setVisibility(View.VISIBLE);
-			holder.rating.setRating(rating.getRating());
-			holder.rating.setVisibility(View.VISIBLE);
-		//}
+		holder.user.setText("User "
+			+ ((rating.getNickname().length() > NICKNAME_LENGTH) ? rating.getNickname().substring(0, NICKNAME_LENGTH) : rating.getNickname() )
+			+ ", " + rating.getDate());
+		holder.user.setVisibility(View.VISIBLE);
+		holder.text.setText(rating.getText());
+		holder.text.setVisibility(View.VISIBLE);
+		holder.rating.setRating(rating.getRating());
+		holder.rating.setVisibility(View.VISIBLE);
 		return view;
 	}
 
@@ -81,18 +75,13 @@ public class RatingListAdapter extends BaseAdapter {
 	 * @param avgStars: average rating
 	 */
 	public void populate(ArrayList<Rating> r, float avgStars) {
-		assert avgStars <= 5;
+		assert avgStars <= 5 && avgStars >= 0;
 		//fill
 		items = new ArrayList<Rating>();
-		//Rating avg = new Rating("Average Rating", "", 0);
-		//avg.setAvg(true);
-		//items.add( avg );
-		//this.avgStars = avgStars;
 		updateAvg(avgStars);
 		for(Rating ra : r) {
 			items.add(ra);
 		}
-		//items = r;
 	}
 	
 	private void updateAvg(float avg) {
@@ -134,7 +123,5 @@ public class RatingListAdapter extends BaseAdapter {
 		holder.user.setVisibility(View.GONE);
 		holder.text.setText("");
 		holder.text.setVisibility(View.GONE);
-		//holder.avg_rating.setVisibility(View.GONE);
-		//holder.avg_rating_text.setVisibility(View.GONE);
 	}
 }

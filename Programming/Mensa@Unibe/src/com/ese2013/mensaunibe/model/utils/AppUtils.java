@@ -64,6 +64,8 @@ public final class AppUtils {
 	public static final int FIRST_MENU = 0;
 	
 	public static final int ALL_EXCEPT_FIRST = 1;
+
+	public static final String TAG_NOTIFICATION_FRAGMENT = "NotificationFragment_tag";
 	
 	
 	public static boolean hasUpperChars(String s) {

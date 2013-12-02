@@ -1,5 +1,7 @@
 package com.ese2013.mensaunibe.model.menu;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -52,7 +54,6 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 		if(type == TYPE_LOAD) url = ApiUrl.API_RATING_GET + "&mensaid="+this.mensaId
 				+"&menutitle="+this.menu.replace(" ", "%20");
 		else if(type == TYPE_SAVE) url = ApiUrl.API_RATING_POST;
-		Log.v(TAG, url);
 	}
 	
 	/**
@@ -66,7 +67,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 			return tmp[1];
 		}
 		tmp[0] = tmp[0].replaceAll(",|«|»", "");
-		return tmp[0];
+		return encodeString(tmp[0]);
 	}
 	
 	/**
@@ -75,9 +76,28 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	 * @param text
 	 * @param rating
 	 */
+	
+	private String decodeString(String text) {
+		String decodedText = text;
+		try {
+		  decodedText = URLDecoder.decode(text, "UTF-8");
+		} catch (Exception e) {
+		}
+		return decodedText;
+	}
+	
+	private String encodeString(String text) {
+		String encodedText = text;
+		try {
+		    encodedText= URLEncoder.encode(text, "UTF-8");
+		} catch (Exception e) {
+		}
+		return encodedText;
+	}
+	
 	public void setPostData(String nickname, String text, int rating) {
 		this.postData = "androidrequest=1&mensaid="+mensaId+"&usernamemd5="
-				+nickname+"&menutitle="+menu.replace(" ", "%20")+"&stars="+rating+"&comment="+text;
+				+nickname+"&menutitle="+menu.replace(" ", "%20")+"&stars="+rating+"&comment="+encodeString(text);
 	}
 	
 	protected void onPreExecute() {
@@ -110,7 +130,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 						for(int i = 0; i< ( json.length() == 1 ? 0 : json.length()+1 ); i++) {
 							if(!ratings.isNull(i)) {
 								rating = ratings.getJSONObject(i);
-								r.add( new Rating( rating.getString("username"), rating.getString("comment"), rating.getInt("stars")) );
+								r.add( new Rating( rating.getString("username"), decodeString( rating.getString("comment") ), rating.getInt("stars"), rating.getLong("time")) );
 							}
 							
 						}
@@ -151,9 +171,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 				result = urlRequest.get(this.url);
 			} else
 			if(this.type == TYPE_SAVE) {
-				Log.v(TAG, this.url+this.postData);
 				result = urlRequest.post(this.url, this.postData);
-				Log.v(TAG, result);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

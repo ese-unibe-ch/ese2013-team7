@@ -5,7 +5,7 @@ import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.menu.RatingData;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,12 +50,12 @@ public class RatingListFragment extends Fragment{
 	}
 	
 	private void updateAdapter() {
-		RatingListAdapter adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout);
+		adapter = new RatingListAdapter(getActivity(), R.layout.rating_list_row_layout);
 		adapter.setBaseView(view);
-		Model.getInstance().loadMenuRating(getActivity(), adapter, menu, mMensaId, RatingData.TYPE_LOAD);
-		
 		ListView listView = (ListView) view.findViewById(R.id.ratingListView);
         listView.setAdapter(adapter);
+        
+		Model.getInstance().loadMenuRating(getActivity(), adapter, menu, mMensaId, RatingData.TYPE_LOAD);
 	}
 	/**
 	 * public method to repopulate the rating list
