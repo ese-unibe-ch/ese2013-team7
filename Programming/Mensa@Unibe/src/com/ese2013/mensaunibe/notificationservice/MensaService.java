@@ -7,6 +7,7 @@ import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.mensa.MensaActivity;
 import com.ese2013.mensaunibe.model.data.PreferenceRequest;
 import com.ese2013.mensaunibe.notification.NotificationHolder;
+import com.ese2013.mensaunibe.notification.NotificationResultActivity;
 import com.ese2013.mensaunibe.notification.WordNotificationUtil;
 
 import android.annotation.SuppressLint;
@@ -47,7 +48,7 @@ public class MensaService extends IntentService {
 	
 	 @SuppressLint("NewApi")
 	private void sendNotification(Context context, ArrayList<NotificationHolder> keywordResultList) {
-	      Intent notificationIntent = new Intent(context, MensaActivity.class);
+	      Intent notificationIntent = new Intent(context, NotificationResultActivity.class);
 	      notificationIntent.putParcelableArrayListExtra("keywordResultList", keywordResultList);
 	      PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
 
