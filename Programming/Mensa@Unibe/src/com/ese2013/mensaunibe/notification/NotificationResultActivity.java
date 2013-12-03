@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 
@@ -15,7 +16,7 @@ import com.ese2013.mensaunibe.menu.MenuActivity;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 import com.ese2013.mensaunibe.notification.NotificationResultFragment.DataPullingInterface;
 
-public class NotificationResultActivity extends ActionBarActivity implements DataPullingInterface {
+public class NotificationResultActivity extends ActionBarActivity implements DataPullingInterface,  NotificationResultFragment.OnListItemClickListener {
 	private NotificationResultFragment fragment;
 	private ArrayList<NotificationHolder> keywordResultList;
 
@@ -23,7 +24,14 @@ public class NotificationResultActivity extends ActionBarActivity implements Dat
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		setTitle( getString(R.string.notification_result) );
+				ActionBar actionBar = getSupportActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		
 		setContentView(R.layout.fragment_notification_result);
+		
+		keywordResultList = getIntent().getParcelableArrayListExtra("keywordResultList");
 		
 		fragment = (NotificationResultFragment) getSupportFragmentManager().findFragmentByTag(AppUtils.TAG_NOTIFICATION_RESULT_FRAGMENT);
 		if (fragment == null) {

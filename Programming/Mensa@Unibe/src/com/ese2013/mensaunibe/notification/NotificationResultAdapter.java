@@ -36,12 +36,11 @@ public class NotificationResultAdapter extends BaseAdapter {
 	private int mMensaId;
 	private String keyword;
 
-	public NotificationResultAdapter(Context context, int resource, ArrayList<NotificationHolder> keywordResultList ) {
+	public NotificationResultAdapter(Context context, int resource, ArrayList<NotificationHolder> result ) {
 		super();
 		this.context = context;
 		this.resource = resource;
-		keywordResultList = keywordResultList;
-		populate();
+		keywordResultList = result;
 	}
 
 
@@ -62,13 +61,13 @@ public class NotificationResultAdapter extends BaseAdapter {
 		clearHolder(holder);
 		
 		ListItem item = items.get(position);
-		
-			ListSectionItem si = (ListSectionItem) item;
+			NotificationHolder nh= (NotificationHolder) item;
+			
 			holder.mensa.setLongClickable(false);
-			holder.mensa.setText(si.toString());
+			holder.mensa.setText(Model.getInstance().getMensaById(nh.getMensaId()).getName());
 			holder.mensa.setVisibility(View.VISIBLE);
 	
-			NotificationHolder nh= (NotificationHolder) item;
+			
 			holder.keyword.setText(nh.getKeyword());
 			holder.keyword.setVisibility(View.VISIBLE);
 			view.setOnClickListener( new NotificationResultOnClickListener(nh.getMensaId()) );
@@ -76,20 +75,7 @@ public class NotificationResultAdapter extends BaseAdapter {
 		return view;
 	}
 	
-	private class  NotificationResultOnClickListener implements OnClickListener {
-		private int mMensaId;
-		public  NotificationResultOnClickListener(int mMensaId) {
-			this.mMensaId = mMensaId;
-		}
-		
-		@Override
-		public void onClick(View view) {
-			Intent intent = new Intent();
-			intent.setClass(context, MenuActivity.class);
-			intent.putExtra("int_value", mMensaId);
-			context.startActivity(intent);
-		}
-	}
+
 	/**
 	 * clears all views in a ViewHolder and hide them.
 	 * @param ViewHolder
@@ -100,16 +86,19 @@ public class NotificationResultAdapter extends BaseAdapter {
 		holder.keyword.setText("");
 		holder.keyword.setVisibility(View.GONE);
 	}
-
-	private void populate() {
+	
+	
+	
+	private void populate( ArrayList<String> keywords ) {
+		//fill
 		items = new ArrayList<ListItem>();
-	
-			for(NotificationHolder n : keywordResultList) {
-				 items.add((ListItem) n);
-			}
+		for(NotificationHolder n:keywordResultList){
+			items.add((ListItem) n);
 		}
-	
-	
+		if(items.size() == 0) Toast.makeText(this.context, context.getString(R.string.notification_no_keywords), Toast.LENGTH_LONG).show();
+		
+	}
+
 
 	public long getItemId(int position) {
 		return position;
@@ -131,5 +120,19 @@ public class NotificationResultAdapter extends BaseAdapter {
 	static class ViewHolder {
 		public TextView mensa;
 		public TextView keyword;
+	}
+	private class  NotificationResultOnClickListener implements OnClickListener {
+		private int mMensaId;
+		public  NotificationResultOnClickListener(int mMensaId) {
+			this.mMensaId = mMensaId;
+		}
+		
+		@Override
+		public void onClick(View view) {
+			Intent intent = new Intent();
+			intent.setClass(context, MenuActivity.class);
+			intent.putExtra("int_value", mMensaId);
+			context.startActivity(intent);
+		}
 	}
 }

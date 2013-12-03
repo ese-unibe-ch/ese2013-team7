@@ -52,6 +52,7 @@
 	<string name="notification_keyword_added">Keyword added</string>
 	<string name="notification_keyword_exist">Keyword does already exist</string>
 	<string name="notification_no_keywords">No existing keywords found.</string>
+	<string name="notification_result">Mensa</string>
 	<string name="notifications">Notifications</string>
 	<string name="language_german">German</string>
 	<string name="language_english">English</string>  

@@ -25,7 +25,8 @@ public class NotificationResultFragment extends ListFragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		NotificationResultAdapter adapter = new NotificationResultAdapter(getActivity(), R.layout.notifications_result_row, 
+		
+		NotificationResultAdapter adapter = new NotificationResultAdapter(getActivity(), R.layout.notification_result_item , 
 			keywordResultList);
 		setListAdapter(adapter);
 	}
