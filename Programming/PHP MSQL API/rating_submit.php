@@ -143,7 +143,7 @@ if (isset($_POST['androidrequest']) AND
          }
          $stmt->close();
     }
+	echo'ok';
 }
-
 
 ?>

@@ -1,5 +1,6 @@
 package com.ese2013.mensaunibe.model.data;
 
+import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.mensa.MensaListAdapter;
 import com.ese2013.mensaunibe.menu.MenuActivity.TabCollectionPagerAdapter;
 import com.ese2013.mensaunibe.model.Model;
@@ -65,14 +66,14 @@ public class ForceReloadTask {
 		}
 		
 		if(success) {
-			Toast.makeText(context,  "Data has been refreshed", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context,  context.getString(R.string.data_refresh_ok), Toast.LENGTH_SHORT).show();
 			if(listAdapter != null) {
 				listAdapter.notifyDataSetChanged();
 			} else {
 				listAdapter2.notifyDataSetChanged();
 			}
 		} else {
-			Toast.makeText(context,  "Data could not be refreshed", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context,  context.getString(R.string.data_refresh_fail), Toast.LENGTH_SHORT).show();
 		}
 	}
 	

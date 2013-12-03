@@ -71,7 +71,7 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 	private void populate( ArrayList<String> keywords ) {
 		//fill
 		items = new ArrayList<String>(keywords);
-		if(items.size() == 0) Toast.makeText(this.context, "No existing keywords found.", Toast.LENGTH_LONG).show();
+		if(items.size() == 0) Toast.makeText(this.context, context.getString(R.string.notification_no_keywords), Toast.LENGTH_LONG).show();
 	}
 
 	/**
