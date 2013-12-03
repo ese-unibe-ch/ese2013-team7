@@ -9,10 +9,12 @@
     <string name="base_map_activity">Map</string>
     <string name="map_activity_one_mensa">Canteen Map</string>
     <string name="map_activity_all_mensas">Canteen Map</string>
+    <string name ="notification_result_activity">These Mensas Match your Keywords</string>
     <string name="no_menu">No menu available</string>
     <string name="mensa_list_favorites">Favorite Canteens</string>
     <string name="mensa_list_header">Canteens</string>
     <string name="action_mensainfo">Canteen Information</string>
+    <string name="mensa_no_data_av">No data available. Please refresh.</string>
     <string name="soon">Soon</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
@@ -49,12 +51,28 @@
 	<string name="action_notification">Notifications</string>
 	<string name="notification_keyword_added">Keyword added</string>
 	<string name="notification_keyword_exist">Keyword does already exist</string>
+	<string name="notification_no_keywords">No existing keywords found.</string>
 	<string name="notifications">Notifications</string>
 	<string name="language_german">German</string>
 	<string name="language_english">English</string>  
 	<string name="system_language">System language</string>
 	<string name="language_changed_to">Language changed to</string>
-
+	<string name="share_todayimgoing">Hi,\nToday I\'m going to eat at the Mensa</string>
+	<string name="share_todaymenu">\nToday\'s Menu is:\n\n</string>
+	<string name="share_joinme">Will you join me?</string>
+	<string name="loading_ratings">Load menu ratings..</string>
+	<string name="save_ratings">Save menu rating..</string>
+	<string name="no_ratings_av">No ratings available for this menu</string>
+	<string name="ratings_loaded">Menu ratings habe been loaded</string>
+	<string name="rating_load_fail">Menu ratings could not be loaded</string>
+	<string name="rating_saved">Your rating has been saved</string>
+	<string name="rating_save_fail">Your rating could not be saved</string>
+	<string name="translating_menu_data">Translaing menu data..</string>
+	<string name="menu_translate_done">Menus have been translated</string>
+	<string name="menu_translate_fail">Menus could not have been translated</string>
+	<string name="data_refresh_ok">Data has been refreshed</string>
+	<string name="data_refresh_fail">Data could not be refreshed</string>	
+	
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>
     <string name="load_map_message">loading Map</string> 
@@ -62,7 +80,7 @@
     <string name="disconnected">Client disconnected</string>
     <string name="resolved">Error resolved. Please re-try operation.</string>
     <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
-    <string name="unknown_activity_request_code">        Received an unknown activity request code %1$d in onActivityResult.</string>
+    <string name="unknown_activity_request_code">Received an unknown activity request code %1$d in onActivityResult.</string>
     <string name="play_services_available">Google Play services is available</string>
     <string name="location_requested">Periodic updates requested</string>
     <string name="location_updated">Location updated</string>

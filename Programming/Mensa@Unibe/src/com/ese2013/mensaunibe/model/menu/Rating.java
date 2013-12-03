@@ -1,5 +1,7 @@
 package com.ese2013.mensaunibe.model.menu;
 
+import java.util.Date;
+
 /**
  * @author group7
  * @author Andreas Hohler
@@ -9,13 +11,13 @@ public class Rating {
 	private String text;
 	private int rating;
 	private String nickname;
-	private boolean avg;
+	private MenuDate date;
 	
-	public Rating(String nickname, String text, int rating) {
+	public Rating(String nickname, String text, int rating, long time) {
 		this.nickname = nickname;
 		this.text = text;
 		this.rating = rating;
-		this.avg = false;
+		this.date = new MenuDate( new Date(time*1000));
 	}
 	
 	public String toString() {
@@ -32,16 +34,7 @@ public class Rating {
 	public int getRating() {
 		return rating;
 	}
-
-	/**
-	 * for the average rating of every menu
-	 * @param true, if this is an average object or not
-	 */
-	public void setAvg(boolean b) {
-		this.avg = b;
-	}
-	
-	public boolean isAvg() {
-		return avg;
+	public String getDate() {
+		return date.toString();
 	}
 }

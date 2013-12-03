@@ -3,11 +3,6 @@ package com.ese2013.mensaunibe.model.menu;
 import java.util.HashMap;
 import java.util.Iterator;
 
-//import android.util.Log;
-
-
-import android.util.Log;
-
 
 /**
  * @author group7
@@ -33,7 +28,6 @@ public class WeeklyMenu implements Iterable<Menuplan> {
 	public Menuplan getDailyMenu(MenuDate date) {
 		assert date != null;
 		Menuplan m = menuPlans.get(date.toString());
-		Log.d("WeeklyMenu", "date: "+date+" menuplan: "+m);
 		return m;
 	}
 	

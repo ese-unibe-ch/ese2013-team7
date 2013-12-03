@@ -144,7 +144,7 @@ public class MensaListAdapter extends BaseAdapter {
 			if(!m2.isFavorite()) items.add(m2);
 		}
 
-		if(mensas.size() == 0) Toast.makeText(this.context, "No data available. Please refresh.", Toast.LENGTH_LONG).show();
+		if(mensas.size() == 0) Toast.makeText(this.context, context.getString(R.string.mensa_no_data_av), Toast.LENGTH_LONG).show();
 	}
 
 	/**

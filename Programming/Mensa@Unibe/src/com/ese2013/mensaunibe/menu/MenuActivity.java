@@ -196,7 +196,7 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 				MenuDate md = new MenuDate(new Date());
 				Intent sendIntent = new Intent();
 				sendIntent.setAction(Intent.ACTION_SEND);
-				sendIntent.putExtra(Intent.EXTRA_TEXT, "Hi,\nToday I'm going to eat at the Mensa " + mensaChoosen.getName() + "\nTodays Menu is:\n\n" + mensaChoosen.getDailyMenu(md) + "Will you join me?");
+				sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_todayimgoing) + " " + mensaChoosen.getName() + getString(R.string.share_todaymenu) + mensaChoosen.getDailyMenu(md) + getString(R.string.share_joinme));
 				sendIntent.setType("text/plain");
 				startActivity(sendIntent);
 				return true;

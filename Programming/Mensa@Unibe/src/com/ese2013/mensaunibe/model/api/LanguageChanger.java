@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.menu.MenuActivity.TabCollectionPagerAdapter;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
@@ -41,9 +42,9 @@ public class LanguageChanger extends AsyncTask<Void, Void, Boolean> {
 		Translate.setClientId(CLIENT_ID);
 		Translate.setClientSecret(CLIENT_TOKEN);
 	}
-	
+
 	protected void onPreExecute() {
-        this.dialog.setMessage("Translating menu data...");
+        this.dialog.setMessage(context.getString(R.string.translating_menu_data));
         this.dialog.show();
     }
 	
@@ -53,10 +54,10 @@ public class LanguageChanger extends AsyncTask<Void, Void, Boolean> {
 		}
 		
 		if(success) {
-			Toast.makeText(context, "Menus have been translated", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, context.getString(R.string.menu_translate_done), Toast.LENGTH_SHORT).show();
 			if(adapter != null) adapter.notifyDataSetChanged();
 		} else {
-			Toast.makeText(context, "Menus could not have been translated", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, context.getString(R.string.menu_translate_fail), Toast.LENGTH_SHORT).show();
 		}
 		
 	}

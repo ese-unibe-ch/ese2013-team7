@@ -2,6 +2,8 @@ package com.ese2013.mensaunibe.settings;
 
 import java.util.ArrayList;
 
+import com.ese2013.mensaunibe.R;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +48,7 @@ public class LanguageSpinnerAdapter extends BaseAdapter implements SpinnerAdapte
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = vi.inflate(android.R.layout.simple_spinner_dropdown_item, null);
+            convertView = vi.inflate(R.layout.spinner_dropdown_item, null);
         }
         ((TextView) convertView).setText(items.get(position).toString());
         return convertView;
@@ -54,7 +56,7 @@ public class LanguageSpinnerAdapter extends BaseAdapter implements SpinnerAdapte
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView textView = (TextView) View.inflate(context, android.R.layout.simple_spinner_item, null);    	
+        TextView textView = (TextView) View.inflate(context, R.layout.spinner_item, null);    	
         textView.setText(items.get(position).toString());
         return textView;
     }
