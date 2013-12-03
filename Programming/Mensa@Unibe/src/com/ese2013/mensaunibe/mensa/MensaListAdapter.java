@@ -80,7 +80,6 @@ public class MensaListAdapter extends BaseAdapter {
 			favorite.setOnCheckedChangeListener(new FavoriteOnClickListener(mensa,favorite,this));
 			if(locationReady){	
 				
-				direction.setVisibility(View.VISIBLE);
 				direction.setText(mensa.getDistance(mLocation));
 				Log.v("Distance of " +mensa.getName(), mensa.getDistance(mLocation));
 				direction.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +144,7 @@ public class MensaListAdapter extends BaseAdapter {
 			if(!m2.isFavorite()) items.add(m2);
 		}
 
-		if(mensas.size() == 0) Toast.makeText(this.context, "No data available. Please refresh.", Toast.LENGTH_LONG).show();
+		if(mensas.size() == 0) Toast.makeText(this.context, context.getString(R.string.mensa_no_data_av), Toast.LENGTH_LONG).show();
 	}
 
 	/**

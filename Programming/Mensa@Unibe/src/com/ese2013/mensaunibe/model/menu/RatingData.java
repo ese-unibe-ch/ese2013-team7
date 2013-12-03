@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.menu.RatingListAdapter;
 import com.ese2013.mensaunibe.model.api.ApiUrl;
 import com.ese2013.mensaunibe.model.api.JSONParser;
@@ -101,8 +102,8 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 	}
 	
 	protected void onPreExecute() {
-        if(this.type == TYPE_LOAD) this.dialog.setMessage("Load menu ratings...");
-        else if(this.type == TYPE_SAVE) this.dialog.setMessage("Save menu rating...");
+        if(this.type == TYPE_LOAD) this.dialog.setMessage(context.getString(R.string.loading_ratings));
+        else if(this.type == TYPE_SAVE) this.dialog.setMessage(context.getString(R.string.save_ratings));
         this.dialog.show();
     }
 	
@@ -120,7 +121,7 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 				ArrayList<Rating> r = new ArrayList<Rating>();
 				JSONObject json = parser.parse( result );
 				if( !json.has("content") ) {
-					Toast.makeText(context, "No ratings available for this menu", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, context.getString(R.string.no_ratings_av), Toast.LENGTH_SHORT).show();
 				} else {
 					float avg = 0;
 					try {
@@ -141,18 +142,21 @@ public class RatingData extends AsyncTask<Void, Void, String> {
 								Log.e(TAG, t.toString());
 							}
 					}
-					Toast.makeText(context, "Menu ratings habe been loaded", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, context.getString(R.string.ratings_loaded), Toast.LENGTH_SHORT).show();
 					adapter.populate(r, avg);
 					adapter.notifyDataSetChanged();
 				}
 			} else {
-				Toast.makeText(context, "Menu ratings could not be loaded", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, context.getString(R.string.rating_load_fail), Toast.LENGTH_SHORT).show();
 			}
 		} else
 		if(type == TYPE_SAVE) {
-			Toast.makeText(context, "Your rating has been saved", Toast.LENGTH_SHORT).show();
+			if(result.contains("ok")) {
+				Toast.makeText(context, context.getString(R.string.rating_saved), Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(context, context.getString(R.string.rating_save_fail), Toast.LENGTH_SHORT).show();
+			}
 		}
-		
 	}
 	
 	/**

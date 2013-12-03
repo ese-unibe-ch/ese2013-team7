@@ -98,7 +98,6 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 	@Override
 	public void onPause() {
 		mLocation.callOnPause();
-		   
 		super.onPause();
 	}
 

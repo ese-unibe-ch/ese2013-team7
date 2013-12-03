@@ -7,6 +7,7 @@ import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.menu.MenuActivity;
 import com.ese2013.mensaunibe.menu.MenuListAdapter.TitleListener;
 import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
 import com.ese2013.mensaunibe.model.menu.MenuDate;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
@@ -129,6 +130,8 @@ public class NotificationResultAdapter extends BaseAdapter {
 
 	@Override
 	public DailyMenu getItem(int position) {
+		if( items.get(position).isSection() ) return null;
+		return (Mensa) items.get(position);
 		return null;
 	}
 	/**
