@@ -10,6 +10,7 @@ import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
 import com.ese2013.mensaunibe.model.menu.MenuDate;
+import com.ese2013.mensaunibe.model.menu.Menuplan;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 import com.ese2013.mensaunibe.model.utils.ListItem;
 import com.ese2013.mensaunibe.model.utils.ListSectionItem;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class NotificationResultAdapter extends BaseAdapter {
@@ -29,7 +31,7 @@ public class NotificationResultAdapter extends BaseAdapter {
 	private Context context;
 	private int resource;
 	private LayoutInflater inflater;
-	ArrayList<NotificationHolder> keywordResultList;
+	private ArrayList<NotificationHolder> keywordResultList;
 	private ArrayList<ListItem> items;
 	private int mMensaId;
 	private String keyword;
@@ -39,19 +41,10 @@ public class NotificationResultAdapter extends BaseAdapter {
 		this.context = context;
 		this.resource = resource;
 		keywordResultList = keywordResultList;
-		attachListener();
 		populate();
 	}
 
-	private void attachListener() {
-		try {
-			mCallback = (TitleListener) context;
-		} catch (ClassCastException e) {
-			throw new ClassCastException(context.toString()
-					+ " must implement TitleListener");
-		}
 
-	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
@@ -59,7 +52,7 @@ public class NotificationResultAdapter extends BaseAdapter {
 			inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(this.resource, parent, false);
 			ViewHolder viewHolder = new ViewHolder();
-			viewHolder.mensa = (TextView) view.findViewById(R.id.menu_date);
+			viewHolder.mensa = (TextView) view.findViewById(R.id.notification_result_mensa);
 			viewHolder.keyword = (TextView) view.findViewById(R.id.result_keyword);
 			view.setTag(viewHolder);
 
@@ -83,10 +76,6 @@ public class NotificationResultAdapter extends BaseAdapter {
 		return view;
 	}
 	
-	/**
-	 * OnClickListener on Menu-Item.
-	 * @author Andreas Hohler
-	 */
 	private class  NotificationResultOnClickListener implements OnClickListener {
 		private int mMensaId;
 		public  NotificationResultOnClickListener(int mMensaId) {
@@ -97,11 +86,10 @@ public class NotificationResultAdapter extends BaseAdapter {
 		public void onClick(View view) {
 			Intent intent = new Intent();
 			intent.setClass(context, MenuActivity.class);
-			intent.putExtra("mMensaId", mMensaId);
+			intent.putExtra("int_value", mMensaId);
 			context.startActivity(intent);
 		}
 	}
-
 	/**
 	 * clears all views in a ViewHolder and hide them.
 	 * @param ViewHolder
@@ -113,13 +101,16 @@ public class NotificationResultAdapter extends BaseAdapter {
 		holder.keyword.setVisibility(View.GONE);
 	}
 
-
 	private void populate() {
 		items = new ArrayList<ListItem>();
-		for(int i=0; i > keywordResultList.size(); i++) {
-			items.add(Model.getInstance().getMensaById(keywordResultList.get(i).getMensaId()));
+	
+			for(NotificationHolder n : keywordResultList) {
+				 items.add((ListItem) n);
+			}
 		}
-	}
+	
+	
+
 	public long getItemId(int position) {
 		return position;
 	}
@@ -129,10 +120,8 @@ public class NotificationResultAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public DailyMenu getItem(int position) {
-		if( items.get(position).isSection() ) return null;
-		return (Mensa) items.get(position);
-		return null;
+	public NotificationHolder getItem(int position) {
+		return (NotificationHolder) items.get(position);
 	}
 	/**
 	 * @author group7

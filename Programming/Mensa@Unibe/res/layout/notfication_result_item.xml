@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
     <TextView
-        android:id="@+id/notification_result_mensa"
+        android:id="@+id/notification_mensa"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#FFFFFF"
@@ -16,7 +16,7 @@
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/result_keyword"
+        android:id="@+id/matched_keywords"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical"
@@ -25,5 +25,5 @@
         android:textStyle="bold"
         android:paddingLeft="8dp"
         android:visibility="gone" />
-
+  
 </LinearLayout>
