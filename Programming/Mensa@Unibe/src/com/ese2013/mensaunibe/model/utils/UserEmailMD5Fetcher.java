@@ -45,7 +45,7 @@ public class UserEmailMD5Fetcher {
 	   * @param string
 	   * @return a md5-hashed string
 	   */
-	  public static String doMD5(String string) {
+	  private static String doMD5(String string) {
 		  String hashtext = null;
 		  
 		  try {

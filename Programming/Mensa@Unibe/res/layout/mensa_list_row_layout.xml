@@ -39,7 +39,6 @@
         android:paddingBottom="5dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:background="@drawable/map_launch_direction"
-        android:visibility="invisible"/>
+        android:background="@drawable/map_launch_direction"/>
 
 </RelativeLayout>

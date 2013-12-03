@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import android.test.InstrumentationTestCase;
 
-import com.ese2013.mensaunibe.model.api.PreferenceRequest;
+import com.ese2013.mensaunibe.model.data.PreferenceRequest;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.mensa.MensaBuilder;
 
@@ -26,6 +26,7 @@ public class MensaBuilderTest extends InstrumentationTestCase{
 		System.setProperty("dexmaker.dexcache", getInstrumentation().getTargetContext().getCacheDir().getPath());
 		
 		mockJSON = mock(JSONObject.class);
+		
 		prefReq = new PreferenceRequest();
 		favorite = prefReq.readPreference(mensaId);
 		if(!favorite) prefReq.writePreference(true, mensaId);

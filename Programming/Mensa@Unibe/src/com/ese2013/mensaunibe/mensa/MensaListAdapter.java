@@ -80,7 +80,6 @@ public class MensaListAdapter extends BaseAdapter {
 			favorite.setOnCheckedChangeListener(new FavoriteOnClickListener(mensa,favorite,this));
 			if(locationReady){	
 				
-				direction.setVisibility(View.VISIBLE);
 				direction.setText(mensa.getDistance(mLocation));
 				Log.v("Distance of " +mensa.getName(), mensa.getDistance(mLocation));
 				direction.setOnClickListener(new View.OnClickListener() {

@@ -1,14 +1,22 @@
-package com.ese2013.mensaunibe.test;
+package com.ese2013.mensaunibe.mensa.test;
 
+import android.app.Instrumentation.ActivityMonitor;
 import android.support.v4.app.ListFragment;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.TouchUtils;
+import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
+import android.view.KeyEvent;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.mensa.MensaActivity;
+import com.ese2013.mensaunibe.mensa.MensaListAdapter;
 import com.ese2013.mensaunibe.mensa.MensaListFragment;
+import com.ese2013.mensaunibe.menu.MenuActivity;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 
 /**
@@ -40,7 +48,7 @@ public class MensaActivityTest extends
 				.findFragmentByTag(AppUtils.TAG_MENSALIST_FRAGMENT);
 		mAdapter = mFragment.getListAdapter();
 		mFavButton = (ToggleButton) getActivity()
-				.findViewById(com.ese2013.mensaunibe.R.id.tgl_favorite);
+				.findViewById(R.id.tgl_favorite);
 
 	}
 
@@ -51,6 +59,7 @@ public class MensaActivityTest extends
 		assertNotNull(activity);
 		assertNotNull(mFragment);
 		assertNotNull(mAdapter);
+		assertTrue(mAdapter instanceof MensaListAdapter);
 	}
 
 	/**
@@ -79,14 +88,43 @@ public class MensaActivityTest extends
 		assertNotNull("Favorite button not allowed to be null", mFavButton);
 		assertTrue("Favorite toggle button should not be checked", !mFavButton.isChecked());
 	}
+	
+	@MediumTest
+	public void testMenuActivityStarted(){
+	    // add monitor to check for the second activity
+	    ActivityMonitor monitor =
+	        getInstrumentation().
+	          addMonitor(MenuActivity.class.getName(), null, false);
 
+		TextView listItem = (TextView) activity
+				.findViewById(R.id.mensa_list_row);
+	    
+	    // TouchUtils handles the sync with the main thread internally
+	    TouchUtils.clickView(this, listItem);
+
+	    // wait 2 seconds for the start of the activity
+	    MenuActivity startedActivity = (MenuActivity) monitor
+	        .waitForActivityWithTimeout(2000);
+	    assertNotNull(startedActivity);
+
+	    // search for the textView
+	    TextView textView = (TextView) startedActivity.findViewById(R.id.menu_text);
+	    
+	    // check that the TextView is on the screen
+	    ViewAsserts.assertOnScreen(startedActivity.getWindow().getDecorView(),
+	        textView);
+	    
+	    // press back
+	    this.sendKeys(KeyEvent.KEYCODE_BACK);
+	}
+	
 	/**
 	 * Test if application state is preserved between launches 
 	 */
 	@MediumTest
 	public void testFavMensaPersistedBetweenLaunches() {
 		mFavButton = (ToggleButton) getActivity()
-				.findViewById(com.ese2013.mensaunibe.R.id.tgl_favorite);
+				.findViewById(R.id.tgl_favorite);
 		assertEquals(mFavButton.isChecked(), false);
 
 		activity.runOnUiThread(new Runnable() {
@@ -104,7 +142,7 @@ public class MensaActivityTest extends
 		activity = this.getActivity();
 
 		mFavButton = (ToggleButton) getActivity()
-				.findViewById(com.ese2013.mensaunibe.R.id.tgl_favorite);
+				.findViewById(R.id.tgl_favorite);
 		assertEquals(mFavButton.isChecked(), true);
 
 		activity.runOnUiThread(new Runnable() {
@@ -120,7 +158,7 @@ public class MensaActivityTest extends
 		activity = this.getActivity();
 
 		mFavButton = (ToggleButton) getActivity()
-				.findViewById(com.ese2013.mensaunibe.R.id.tgl_favorite);
+				.findViewById(R.id.tgl_favorite);
 		assertEquals(mFavButton.isChecked(), false);
 	}
 }

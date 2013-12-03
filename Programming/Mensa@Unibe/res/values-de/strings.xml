@@ -29,7 +29,7 @@
     <string name="action_travel_mode_driveing">Change to driving</string>
     <string name="action_travel_mode_walking">Change to walking</string>
     <string name="action_translate_to_german">Auf deutsch übersetzen</string>
-    <string name="action_translate_to_english">Auf englisch übersetzen</string>
+    <string name="action_translate_to_english">Translate to English</string>
     <string name="added_to_favorites">wurde zu den Favoriten hinzugefügt</string>
     <string name="removed_from_favorites">wurde von den Favoriten gelöscht</string>
     <string name="action_map">Mensas location</string>

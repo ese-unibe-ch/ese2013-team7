@@ -28,7 +28,7 @@
     <string name="action_travel_mode">travel mode</string>
     <string name="action_travel_mode_driveing">Change to driving</string>
     <string name="action_travel_mode_walking">Change to walking</string>
-    <string name="action_translate_to_german">Translate to German</string>
+    <string name="action_translate_to_german">Auf deutsch übersetzen</string>
     <string name="action_translate_to_english">Translate to English</string>
     <string name="added_to_favorites">added to favorites</string>
     <string name="removed_from_favorites">removed from favorites</string>

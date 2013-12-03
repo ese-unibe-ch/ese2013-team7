@@ -123,6 +123,8 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		}
 		mMensaId = getIntent().getIntExtra("int_value",0);
 		mensa = Model.getInstance().getMensaById(mMensaId);
+		//canteen name as action bar title
+		setTitle(mensa.getName());
 		mLocationLatLng =new LatLng(mLocation.getLocation().getLatitude(),mLocation.getLocation().getLongitude());
 		
 		final View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
