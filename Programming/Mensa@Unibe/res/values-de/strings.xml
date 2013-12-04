@@ -69,6 +69,8 @@
 	<string name="menu_translate_fail">Die Menus konnten nicht übersetzt werden</string>
 	<string name="data_refresh_ok">Daten wurden neu geladen</string>
 	<string name="data_refresh_fail">Daten konnten nicht neu geladen werden</string>
+	<string name="notification_header">Die heutigen Menus enthalten einige deiner favorisierten Zutaten</string>
+	<string name="notification_ingredients">Zutaten: </string>
 	
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>
