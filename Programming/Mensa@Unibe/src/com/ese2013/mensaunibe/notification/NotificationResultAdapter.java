@@ -2,28 +2,17 @@ package com.ese2013.mensaunibe.notification;
 
 import java.util.ArrayList;
 
-import com.ese2013.mensaunibe.R;
-
-import com.ese2013.mensaunibe.menu.MenuActivity;
-import com.ese2013.mensaunibe.menu.MenuListAdapter.TitleListener;
-import com.ese2013.mensaunibe.model.Model;
-import com.ese2013.mensaunibe.model.mensa.Mensa;
-import com.ese2013.mensaunibe.model.menu.DailyMenu;
-import com.ese2013.mensaunibe.model.menu.MenuDate;
-import com.ese2013.mensaunibe.model.menu.Menuplan;
-import com.ese2013.mensaunibe.model.utils.AppUtils;
-import com.ese2013.mensaunibe.model.utils.ListItem;
-import com.ese2013.mensaunibe.model.utils.ListSectionItem;
-
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.ese2013.mensaunibe.R;
+import com.ese2013.mensaunibe.menu.MenuListAdapter.TitleListener;
+import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.model.utils.ListItem;
 
 
 public class NotificationResultAdapter extends BaseAdapter {
@@ -32,12 +21,9 @@ public class NotificationResultAdapter extends BaseAdapter {
 	private int resource;
 	private LayoutInflater inflater;
 	private ArrayList<NotificationHolder> keywordResultList;
-	private ArrayList<ListItem> items;
-	private int mMensaId;
-	private String keyword;
 
 	public NotificationResultAdapter(Context context, int resource, ArrayList<NotificationHolder> result ) {
-		super();
+		assert result != null;
 		this.context = context;
 		this.resource = resource;
 		keywordResultList = result;
@@ -55,16 +41,16 @@ public class NotificationResultAdapter extends BaseAdapter {
 			viewHolder.keyword = (TextView) view.findViewById(R.id.notification_keywords);
 			view.setTag(viewHolder);
 		}
+		
 		ViewHolder holder = (ViewHolder) view.getTag();
-		//list is not consistent, if we don't clear the holder
 		clearHolder(holder);
 			
-			holder.mensa.setLongClickable(false);
-			holder.mensa.setText(Model.getInstance().getMensaById(keywordResultList.get(position).getMensaId()).getName());
-			holder.mensa.setVisibility(View.VISIBLE);
+		holder.mensa.setLongClickable(false);
+		holder.mensa.setText(Model.getInstance().getMensaById(keywordResultList.get(position).getMensaId()).getName());
+		holder.mensa.setVisibility(View.VISIBLE);
 		
-			holder.keyword.setText(keywordResultList.get(position).getKeyword());
-			holder.keyword.setVisibility(View.VISIBLE);
+		holder.keyword.setText(keywordResultList.get(position).getKeyword());
+		holder.keyword.setVisibility(View.VISIBLE);
 		
 		return view;
 	}

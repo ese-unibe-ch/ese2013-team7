@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.ese2013.mensaunibe.R;
 
@@ -21,7 +22,7 @@ public class NotificationResultActivity extends ActionBarActivity implements Dat
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.fragment_notification_result);
 		setTitle( getString(R.string.notification_result) );
 		ActionBar actionBar = getSupportActionBar();
@@ -36,14 +37,23 @@ public class NotificationResultActivity extends ActionBarActivity implements Dat
 			ft.add(android.R.id.content, fragment, AppUtils.TAG_NOTIFICATION_RESULT_FRAGMENT);
 			ft.commit();
 		}
-
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.actionbar_mensa_list, menu);
+		//getMenuInflater().inflate(R.menu.actionbar_mensa_list, menu);
 		return super.onCreateOptionsMenu(menu);
-
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+			case android.R.id.home:
+				onBackPressed();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 /*
 	public void onListItemSelected(int mensaId) {

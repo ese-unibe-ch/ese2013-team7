@@ -206,6 +206,9 @@ public class MenuActivity extends ActionBarActivity implements ActionBar.TabList
 			case R.id.action_settings:
 				startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
 				return true;
+			case android.R.id.home:
+				onBackPressed();
+				return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 		}

@@ -1,13 +1,7 @@
 package com.ese2013.mensaunibe.notification;
 
-
 import java.util.ArrayList;
 
-import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.mensa.MensaListFragment.OnListItemClickListener;
-import com.ese2013.mensaunibe.menu.MenuActivity;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,14 +9,14 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.ese2013.mensaunibe.R;
+import com.ese2013.mensaunibe.menu.MenuActivity;
 
 
 public class NotificationResultFragment extends ListFragment{
 	private static final String TAG = "NotificationResultFragment";
 	private ArrayList<NotificationHolder> keywordResultList;
 	private DataPullingInterface mHostInterface;
-
-	
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -50,7 +44,7 @@ public class NotificationResultFragment extends ListFragment{
 	    } catch(ClassCastException e) {
 	        throw new ClassCastException(activity.toString() + " must implement DataPullingInterface");
 	    }
-	    ArrayList<NotificationHolder>  keywordResultList = mHostInterface.getKeywordList();           
+	    keywordResultList = mHostInterface.getKeywordList();           
 	}
 	
 
