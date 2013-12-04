@@ -44,33 +44,27 @@ public class NotificationResultAdapter extends BaseAdapter {
 	}
 
 
-
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
 		if(view == null) {
 			inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inflater.inflate(this.resource, parent, false);
 			ViewHolder viewHolder = new ViewHolder();
-			viewHolder.mensa = (TextView) view.findViewById(R.id.notification_result_mensa);
-			viewHolder.keyword = (TextView) view.findViewById(R.id.result_keyword);
+			viewHolder.mensa = (TextView) view.findViewById(R.id.notification_mensa);
+			viewHolder.keyword = (TextView) view.findViewById(R.id.notification_keywords);
 			view.setTag(viewHolder);
-
 		}
 		ViewHolder holder = (ViewHolder) view.getTag();
 		//list is not consistent, if we don't clear the holder
 		clearHolder(holder);
-		
-		ListItem item = items.get(position);
-			NotificationHolder nh= (NotificationHolder) item;
 			
 			holder.mensa.setLongClickable(false);
-			holder.mensa.setText(Model.getInstance().getMensaById(nh.getMensaId()).getName());
+			holder.mensa.setText(Model.getInstance().getMensaById(keywordResultList.get(position).getMensaId()).getName());
 			holder.mensa.setVisibility(View.VISIBLE);
-	
-			
-			holder.keyword.setText(nh.getKeyword());
+		
+			holder.keyword.setText(keywordResultList.get(position).getKeyword());
 			holder.keyword.setVisibility(View.VISIBLE);
-			view.setOnClickListener( new NotificationResultOnClickListener(nh.getMensaId()) );
 		
 		return view;
 	}
@@ -87,30 +81,18 @@ public class NotificationResultAdapter extends BaseAdapter {
 		holder.keyword.setVisibility(View.GONE);
 	}
 	
-	
-	
-	private void populate( ArrayList<String> keywords ) {
-		//fill
-		items = new ArrayList<ListItem>();
-		for(NotificationHolder n:keywordResultList){
-			items.add((ListItem) n);
-		}
-		if(items.size() == 0) Toast.makeText(this.context, context.getString(R.string.notification_no_keywords), Toast.LENGTH_LONG).show();
-		
-	}
-
-
+	@Override
 	public long getItemId(int position) {
 		return position;
 	}
-
+	@Override
 	public int getCount() {
-		return items.size();
+		return keywordResultList.size();
 	}
 
 	@Override
 	public NotificationHolder getItem(int position) {
-		return (NotificationHolder) items.get(position);
+		return keywordResultList.get(position);
 	}
 	/**
 	 * @author group7
@@ -120,19 +102,5 @@ public class NotificationResultAdapter extends BaseAdapter {
 	static class ViewHolder {
 		public TextView mensa;
 		public TextView keyword;
-	}
-	private class  NotificationResultOnClickListener implements OnClickListener {
-		private int mMensaId;
-		public  NotificationResultOnClickListener(int mMensaId) {
-			this.mMensaId = mMensaId;
-		}
-		
-		@Override
-		public void onClick(View view) {
-			Intent intent = new Intent();
-			intent.setClass(context, MenuActivity.class);
-			intent.putExtra("int_value", mMensaId);
-			context.startActivity(intent);
-		}
 	}
 }

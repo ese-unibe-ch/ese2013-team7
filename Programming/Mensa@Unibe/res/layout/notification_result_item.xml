@@ -17,7 +17,7 @@
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/matched_keywords"
+        android:id="@+id/notification_keywords"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical"
