@@ -36,9 +36,11 @@ public class MensaService extends IntentService {
 		
 		//here we can add a server Query. 
 		PreferenceRequest pr = new PreferenceRequest();
-		WordNotificationUtil wu = new WordNotificationUtil();
-		ArrayList<NotificationHolder> result = wu.compareToKeywords( pr.readNotificationKeywords() );
-		if(result.size()>0) this.sendNotification(this, result);
+		if(pr.readNotification()) {
+			WordNotificationUtil wu = new WordNotificationUtil();
+			ArrayList<NotificationHolder> result = wu.compareToKeywords( pr.readNotificationKeywords() );
+			if(result.size()>0) this.sendNotification(this, result);
+		}
 	}
 	
 	@SuppressLint("NewApi")
