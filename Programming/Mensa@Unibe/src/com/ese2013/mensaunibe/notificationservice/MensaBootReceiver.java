@@ -24,7 +24,7 @@ public class MensaBootReceiver extends BroadcastReceiver {
 	      startTime.set(Calendar.SECOND, 0);
 	      // use inexact repeating which is easier on battery (system can phase events and not wake at exact times)
 	      alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(),
-	               Constants.ALARM_INTERVAL, pendingIntent);
+	               AlarmConstants.ALARM_INTERVAL, pendingIntent);
 	   }
 }
 

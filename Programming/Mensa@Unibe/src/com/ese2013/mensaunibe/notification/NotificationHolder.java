@@ -50,15 +50,15 @@ public class NotificationHolder implements Parcelable {
 	}
 	@Override
 	public void writeToParcel(Parcel out, int flags) {
-		        // Again this order must match the Question(Parcel) constructor
-		        out.writeInt(mensaId);
-		        out.writeString(keyword);
+		//Again this order must match the Question(Parcel) constructor
+		out.writeInt(mensaId);
+		out.writeString(keyword);
 		
 	}
 	
 	public static final Parcelable.Creator<NotificationHolder> CREATOR = new Parcelable.Creator<NotificationHolder>() {
         public NotificationHolder createFromParcel(Parcel in) {
-            return new NotificationHolder(in);
+        	return new NotificationHolder(in);
         }
 
         public NotificationHolder[] newArray(int size) {

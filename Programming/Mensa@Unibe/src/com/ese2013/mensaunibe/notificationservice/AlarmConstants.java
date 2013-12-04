@@ -1,10 +1,9 @@
 package com.ese2013.mensaunibe.notificationservice;
 
 
-import android.app.AlarmManager;
 import android.os.SystemClock;
 
-public class Constants {
+public class AlarmConstants {
 
    public static final String FORCE_RELOAD = "FORCE_RELOAD";
 

@@ -1,7 +1,10 @@
 package com.ese2013.mensaunibe.notification;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +15,6 @@ import android.widget.TextView;
 import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.menu.MenuListAdapter.TitleListener;
 import com.ese2013.mensaunibe.model.Model;
-import com.ese2013.mensaunibe.model.utils.ListItem;
 
 
 public class NotificationResultAdapter extends BaseAdapter {
@@ -21,12 +23,29 @@ public class NotificationResultAdapter extends BaseAdapter {
 	private int resource;
 	private LayoutInflater inflater;
 	private ArrayList<NotificationHolder> keywordResultList;
-
+	private ArrayList<Integer> mensaIds;
+	private HashMap<Integer, ArrayList<String>> map;
+	
 	public NotificationResultAdapter(Context context, int resource, ArrayList<NotificationHolder> result ) {
 		assert result != null;
 		this.context = context;
 		this.resource = resource;
 		keywordResultList = result;
+		sortList();
+	}
+	
+	@SuppressLint("UseSparseArrays")
+	private void sortList() {
+		map = new HashMap<Integer, ArrayList<String>>();
+		HashSet<Integer> tempIds = new HashSet<Integer>();
+		
+		for(NotificationHolder nf : keywordResultList) {
+			int i = nf.getMensaId();
+			tempIds.add(i);
+			if(!map.containsKey(i)) map.put(i,  new ArrayList<String>());
+			map.get(i).add( nf.getKeyword() );
+		}
+		mensaIds = new ArrayList<Integer>(tempIds);
 	}
 
 
@@ -44,12 +63,22 @@ public class NotificationResultAdapter extends BaseAdapter {
 		
 		ViewHolder holder = (ViewHolder) view.getTag();
 		clearHolder(holder);
-			
+		
+		int mensaId = mensaIds.get(position);
+		ArrayList<String> keywords = map.get(mensaId);
+		
 		holder.mensa.setLongClickable(false);
-		holder.mensa.setText(Model.getInstance().getMensaById(keywordResultList.get(position).getMensaId()).getName());
+		holder.mensa.setText(Model.getInstance().getMensaById(mensaId).getName());
 		holder.mensa.setVisibility(View.VISIBLE);
 		
-		holder.keyword.setText(keywordResultList.get(position).getKeyword());
+		String text = "";
+		int fid = 0;
+		for(String k : keywords) {
+			text+=k;
+			fid++;
+			if(keywords.size()>1 && fid<keywords.size()) text+=", ";
+		}
+		holder.keyword.setText(text);
 		holder.keyword.setVisibility(View.VISIBLE);
 		
 		return view;
@@ -73,12 +102,12 @@ public class NotificationResultAdapter extends BaseAdapter {
 	}
 	@Override
 	public int getCount() {
-		return keywordResultList.size();
+		return mensaIds.size();
 	}
 
 	@Override
-	public NotificationHolder getItem(int position) {
-		return keywordResultList.get(position);
+	public Integer getItem(int position) {
+		return mensaIds.get(position);
 	}
 	/**
 	 * @author group7

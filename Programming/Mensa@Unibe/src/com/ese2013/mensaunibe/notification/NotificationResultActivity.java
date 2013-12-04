@@ -41,7 +41,6 @@ public class NotificationResultActivity extends ActionBarActivity implements Dat
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		//getMenuInflater().inflate(R.menu.actionbar_mensa_list, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -55,17 +54,8 @@ public class NotificationResultActivity extends ActionBarActivity implements Dat
 				return super.onOptionsItemSelected(item);
 		}
 	}
-/*
-	public void onListItemSelected(int mensaId) {
-		Intent intent = new Intent();
-		intent.setClass(getApplicationContext(), MenuActivity.class);
-		intent.putExtra("int_value", mensaId);
-		startActivity(intent);		              
-	}
-*/
 	
 	@Override
-	
 	public ArrayList<NotificationHolder> getKeywordList() {
         return keywordResultList;
     }
