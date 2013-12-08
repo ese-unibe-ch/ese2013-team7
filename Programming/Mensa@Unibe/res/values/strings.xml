@@ -9,7 +9,7 @@
     <string name="base_map_activity">Map</string>
     <string name="map_activity_one_mensa">Canteen Map</string>
     <string name="map_activity_all_mensas">Canteen Map</string>
-    <string name ="notification_result_activity">These Mensas Match your Keywords</string>
+    <string name ="notification_result_activity">These Canteens Match your Keywords</string>
     <string name="no_menu">No menu available</string>
     <string name="mensa_list_favorites">Favorite Canteens</string>
     <string name="mensa_list_header">Canteens</string>
