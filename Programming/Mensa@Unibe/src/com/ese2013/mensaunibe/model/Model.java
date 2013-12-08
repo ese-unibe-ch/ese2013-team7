@@ -80,6 +80,14 @@ public class Model {
 		}
 		return null;
 	}
+	public int getMensaIdByName(String name) {
+		assert name != "";
+		for(Mensa m : mensas) {
+			if(m.getName().contentEquals(name)) return m.getId();
+		}
+		return (Integer) null;
+	}
+	
 	
 	/**
 	 * load the rating of a specific menu

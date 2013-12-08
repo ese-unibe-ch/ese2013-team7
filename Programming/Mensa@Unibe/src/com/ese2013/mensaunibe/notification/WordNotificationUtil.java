@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 
+import android.annotation.SuppressLint;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
 import com.ese2013.mensaunibe.model.menu.DailyMenu;
@@ -28,7 +29,7 @@ public class WordNotificationUtil {
 			for(Menuplan w : m.getWeeklyMenu()) {
 				for(DailyMenu d : w) {
 					String t = d.getMenu();
-					t = t.replaceAll(",|«|»", "");
+					t = t.replaceAll(",|«|»|:", "");
 					t = t.replace(".","");
 					String[] all = t.split("\\s+");
 					for(String s : all) {
@@ -43,16 +44,17 @@ public class WordNotificationUtil {
 		}
 	}
 	
+	@SuppressLint("DefaultLocale")
 	public ArrayList<NotificationHolder> compareToKeywords( ArrayList<String> list ) {
-		ArrayList<NotificationHolder> result = new ArrayList<NotificationHolder>();
+		HashSet<NotificationHolder> result = new HashSet<NotificationHolder>();
 		for(NotificationHolder nf : notificationHolders) {
 			for(String s : list) {
-				if(nf.getKeyword().equals(s)) {
+				if(nf.getKeyword().toLowerCase().contains(s.toLowerCase())) {
 					result.add(nf);
 				}
 			}
 		}
-		return result;
+		return new ArrayList<NotificationHolder>(result);
 	}
 	
 	public HashSet<String> getWordList() {

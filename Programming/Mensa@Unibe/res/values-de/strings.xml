@@ -49,6 +49,7 @@
 	<string name="notification_keyword_added">Schlüsselwort hinzugefügt</string>
 	<string name="notification_keyword_exist">Schlüsselwort existiert bereits</string>
 	<string name="notification_no_keywords">Keine vorhandenen Schlüsselwörter gefunden.</string>
+	<string name="notification_result">Mensa Benachrichtigung Resultate</string>
 	<string name="notifications">Benachrichtigungen</string>
 	<string name="language_german">Deutsch</string>
 	<string name="language_english">Englisch</string>  
@@ -69,6 +70,8 @@
 	<string name="menu_translate_fail">Die Menus konnten nicht übersetzt werden</string>
 	<string name="data_refresh_ok">Daten wurden neu geladen</string>
 	<string name="data_refresh_fail">Daten konnten nicht neu geladen werden</string>
+	<string name="notification_header">Die heutigen Menus enthalten einige deiner favorisierten Zutaten</string>
+	<string name="notification_ingredients">Zutaten: </string>
 	
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

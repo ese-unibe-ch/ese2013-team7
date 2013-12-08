@@ -1,6 +1,9 @@
 
 package com.ese2013.mensaunibe.model.utils;
 
+import android.app.AlarmManager;
+import android.os.SystemClock;
+
 /**
  * Defines app-wide constants and utilities
  */
@@ -67,6 +70,13 @@ public final class AppUtils {
 
 	public static final String TAG_NOTIFICATION_FRAGMENT = "NotificationFragment_tag";
 	public static final String TAG_NOTIFICATION_RESULT_FRAGMENT = "NotificationResultFragment_tag";
+	
+	// In real life, use AlarmManager.INTERVALs with longer periods of time 
+	// for dev you can shorten this to 10000 or such, but deals don't change often anyway
+	// (better yet, allow user to set and use PreferenceActivity)
+	///public static final long ALARM_INTERVAL = 10000;
+	public static final long ALARM_INTERVAL = AlarmManager.INTERVAL_DAY;
+	public static final long ALARM_TRIGGER_AT_TIME = SystemClock.elapsedRealtime() + 30000;
 	
 	
 	public static boolean hasUpperChars(String s) {

@@ -90,8 +90,6 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 	@Override
 	public void onStop() {
 		mLocation.callOnStop();
-		Intent intent =new Intent(this, MensaService.class);
-		   startService(intent);
 		super.onStop();
 	}
 

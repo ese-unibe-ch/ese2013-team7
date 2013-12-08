@@ -32,8 +32,8 @@ public class NotificationResultFragment extends ListFragment{
 		NotificationResultAdapter a = (NotificationResultAdapter) l.getAdapter();
 		Intent intent = new Intent();
 		intent.setClass(getActivity().getApplicationContext(), MenuActivity.class );
-		intent.putExtra("int_value", a.getItem(position).getMensaId());
-		startActivity(intent);	
+		intent.putExtra("int_value", a.getItem(position).intValue());
+		startActivity(intent);
 	}
 
 	@Override

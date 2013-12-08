@@ -62,8 +62,10 @@ public class RatingListAdapter extends BaseAdapter {
 			+ ((rating.getNickname().length() > NICKNAME_LENGTH) ? rating.getNickname().substring(0, NICKNAME_LENGTH) : rating.getNickname() )
 			+ ", " + rating.getDate());
 		holder.user.setVisibility(View.VISIBLE);
-		holder.text.setText(rating.getText());
-		holder.text.setVisibility(View.VISIBLE);
+		if(rating.getText().length() > 1) {
+			holder.text.setText(rating.getText());
+			holder.text.setVisibility(View.VISIBLE);
+		}
 		holder.rating.setRating(rating.getRating());
 		holder.rating.setVisibility(View.VISIBLE);
 		return view;

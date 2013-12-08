@@ -2,11 +2,6 @@ package com.ese2013.mensaunibe.notification;
 
 import java.util.HashSet;
 
-import com.ese2013.mensaunibe.model.Model;
-import com.ese2013.mensaunibe.model.mensa.Mensa;
-import com.ese2013.mensaunibe.model.menu.DailyMenu;
-import com.ese2013.mensaunibe.model.menu.Menuplan;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -66,7 +61,6 @@ public class LoadNotificationSettingsTask extends AsyncTask<Void, Void, Boolean>
 	}
 	
 	private void loadData() {
-		//words = new HashSet<String>();
 		WordNotificationUtil w = new WordNotificationUtil();
 		words = w.getWordList();
 	}

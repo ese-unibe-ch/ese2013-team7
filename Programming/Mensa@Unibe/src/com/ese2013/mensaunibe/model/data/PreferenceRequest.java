@@ -42,7 +42,7 @@ public class PreferenceRequest {
 			builder.append(k);
 			builder.append(",");
 		}
-		builder.deleteCharAt( builder.length()-1 );
+		if(keywords.size()>1) builder.deleteCharAt( builder.length()-1 );
 		editor.putString("KEYWORDS_NOTIFY_LIST", builder.toString());
 		editor.commit();
 	}

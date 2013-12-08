@@ -73,6 +73,8 @@
 	<string name="menu_translate_fail">Menus could not have been translated</string>
 	<string name="data_refresh_ok">Data has been refreshed</string>
 	<string name="data_refresh_fail">Data could not be refreshed</string>	
+	<string name="notification_header">Today\'s menus contain some of your favorite ingredients</string>
+	<string name="notification_ingredients">ingredients: </string>
 	
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

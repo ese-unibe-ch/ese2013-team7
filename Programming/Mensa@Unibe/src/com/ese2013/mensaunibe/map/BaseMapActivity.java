@@ -65,8 +65,7 @@ public void findDirections(double fromPositionDoubleLat, double fromPositionDoub
 	
 }
 
-public void initilizeMap() {
-      
+public void initilizeMap() { 
     }
 
 public void setUpMap(){
@@ -77,9 +76,7 @@ public void locationReady(boolean b){
 	
 }
 
-public void notifyDataSetChanged() {
-	// TODO Auto-generated method stub
-	
+public void onInfoWindowClick(Marker marker) {
 }
 
 }

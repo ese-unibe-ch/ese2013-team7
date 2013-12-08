@@ -116,6 +116,8 @@ public class NotificationSettingsAdapter extends BaseAdapter {
 
 	public boolean add(String string) {
 		if(items.contains(string)) return false;
+		String res = string.replaceAll("\\s", "");
+		if(res.length() < 1) return false;
 		items.add(string);
 		return true;
 	}
