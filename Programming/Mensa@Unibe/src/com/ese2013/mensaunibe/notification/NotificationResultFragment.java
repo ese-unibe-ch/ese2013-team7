@@ -14,7 +14,6 @@ import com.ese2013.mensaunibe.menu.MenuActivity;
 
 
 public class NotificationResultFragment extends ListFragment{
-	private static final String TAG = "NotificationResultFragment";
 	private ArrayList<NotificationHolder> keywordResultList;
 	private DataPullingInterface mHostInterface;
 

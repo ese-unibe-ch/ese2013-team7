@@ -57,7 +57,6 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		private Marker mensaMarker;
 		private int mMensaId;
 		private String  travelMode = "walking";// default
-		private Polyline newPolyline;
 	
 	 
 
@@ -87,7 +86,7 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		    {          
 		        rectLine.add(directionPoints.get(i));
 		    }
-		    newPolyline = map.addPolyline(rectLine);	
+		    map.addPolyline(rectLine);	
 	}
 
 
@@ -171,6 +170,7 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		           return super.onOptionsItemSelected(item);
 	    	}
 	}
+	
 	@Override
 	public void onResume() {
         super.onResume();

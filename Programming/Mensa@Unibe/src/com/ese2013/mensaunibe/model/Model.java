@@ -20,8 +20,6 @@ import com.ese2013.mensaunibe.model.menu.RatingData;
  */
 
 public class Model {
-
-	private static final String TAG = "Model";
 	private static Model instance = null;
 	private ArrayList<Mensa> mensas;
 	public Model() {
