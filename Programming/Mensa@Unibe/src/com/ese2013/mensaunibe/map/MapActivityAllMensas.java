@@ -60,14 +60,6 @@ public class MapActivityAllMensas extends BaseMapActivity {
 	
 		initilizeMap();	
 	}
-	
-	
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		  getMenuInflater().inflate(R.menu.actionbar_map, menu);
-	    return super.onCreateOptionsMenu(menu);
-	  }
 
 	
 	@Override
