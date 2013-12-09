@@ -1,16 +1,5 @@
 package com.ese2013.mensaunibe.mensa;
 
-import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.map.MapActivityAllMensas;
-import com.ese2013.mensaunibe.map.MyLocation;
-import com.ese2013.mensaunibe.mensa.MensaListAdapter;
-import com.ese2013.mensaunibe.menu.MenuActivity;
-import com.ese2013.mensaunibe.model.data.ForceReloadTask;
-import com.ese2013.mensaunibe.model.utils.AppUtils;
-import com.ese2013.mensaunibe.notification.NotificationActivity;
-import com.ese2013.mensaunibe.notificationservice.MensaService;
-import com.ese2013.mensaunibe.settings.SettingsActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +7,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.ese2013.mensaunibe.R;
+import com.ese2013.mensaunibe.map.MapActivityAllMensas;
+import com.ese2013.mensaunibe.map.MyLocation;
+import com.ese2013.mensaunibe.menu.MenuActivity;
+import com.ese2013.mensaunibe.model.data.ForceReloadTask;
+import com.ese2013.mensaunibe.model.utils.AppUtils;
+import com.ese2013.mensaunibe.notification.NotificationActivity;
+import com.ese2013.mensaunibe.settings.SettingsActivity;
 
 /**
  * @author group7
@@ -59,7 +57,6 @@ public class MensaActivity extends ActionBarActivity implements MensaListFragmen
 	@Override
 	public void onListItemSelected(int mensaId) {
 		Intent intent = new Intent();
-		//intent.setClassName(getPackageName(), getPackageName()+".MenuActivity");
 		intent.setClass(getApplicationContext(), MenuActivity.class);
 		intent.putExtra("int_value", mensaId);
 		startActivity(intent);		              
