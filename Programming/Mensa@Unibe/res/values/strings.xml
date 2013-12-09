@@ -75,6 +75,8 @@
 	<string name="data_refresh_fail">Data could not be refreshed</string>	
 	<string name="notification_header">Today\'s menus contain some of your favorite ingredients</string>
 	<string name="notification_ingredients">ingredients: </string>
+	<string name="language">Language</string>
+	<string name="changing_language">Changing language..</string>
 	
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

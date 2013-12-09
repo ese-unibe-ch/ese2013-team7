@@ -72,6 +72,8 @@
 	<string name="data_refresh_fail">Daten konnten nicht neu geladen werden</string>
 	<string name="notification_header">Die heutigen Menus enthalten einige deiner favorisierten Zutaten</string>
 	<string name="notification_ingredients">Zutaten: </string>
+	<string name="language">Sprache</string>
+	<string name="changing_language">Sprache ändern..</string>
 	
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>
