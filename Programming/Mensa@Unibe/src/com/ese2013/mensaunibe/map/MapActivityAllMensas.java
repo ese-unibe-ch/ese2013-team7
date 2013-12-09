@@ -100,7 +100,7 @@ public class MapActivityAllMensas extends BaseMapActivity {
 			@Override
 			 public void onInfoWindowClick(Marker marker) {
 				Intent intent = new Intent(MapActivityAllMensas.this, MenuActivity.class);
-				intent.putExtra("int_value", Model.getInstance().getMensaIdByName(mensaMarker.getTitle()));
+				intent.putExtra("int_value", Model.getInstance().getMensaIdByName(marker.getTitle()));
 				MapActivityAllMensas.this.startActivity(intent); 
 			 }
 			
