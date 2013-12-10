@@ -64,11 +64,11 @@
 	<string name="loading_ratings">Load menu ratings..</string>
 	<string name="save_ratings">Save menu rating..</string>
 	<string name="no_ratings_av">No ratings available for this menu</string>
-	<string name="ratings_loaded">Menu ratings habe been loaded</string>
+	<string name="ratings_loaded">Menu ratings have been loaded</string>
 	<string name="rating_load_fail">Menu ratings could not be loaded</string>
 	<string name="rating_saved">Your rating has been saved</string>
 	<string name="rating_save_fail">Your rating could not be saved</string>
-	<string name="translating_menu_data">Translaing menu data..</string>
+	<string name="translating_menu_data">Translating menu data..</string>
 	<string name="menu_translate_done">Menus have been translated</string>
 	<string name="menu_translate_fail">Menus could not have been translated</string>
 	<string name="data_refresh_ok">Data has been refreshed</string>
@@ -77,6 +77,7 @@
 	<string name="notification_ingredients">ingredients: </string>
 	<string name="language">Language</string>
 	<string name="changing_language">Changing language..</string>
+	<string name="menu_hint">Show the rating of this menu</string>
 	
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

@@ -74,6 +74,7 @@
 	<string name="notification_ingredients">Zutaten: </string>
 	<string name="language">Sprache</string>
 	<string name="changing_language">Sprache ändern..</string>
+	<string name="menu_hint">Bewertung dieses Menus anzeigen</string>
 	
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

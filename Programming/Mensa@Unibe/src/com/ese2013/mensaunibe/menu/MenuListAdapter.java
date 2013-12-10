@@ -7,9 +7,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.model.Model;
@@ -66,6 +70,8 @@ public class MenuListAdapter extends BaseAdapter{
 			viewHolder.date = (TextView) view.findViewById(R.id.menu_date);
 			viewHolder.title = (TextView) view.findViewById(R.id.menu_title);
 			viewHolder.text = (TextView) view.findViewById(R.id.menu_text);
+			viewHolder.item = (RelativeLayout) view.findViewById(R.id.menu_list_item);
+			viewHolder.section_item = (LinearLayout) view.findViewById(R.id.menu_list_section_item);
 			view.setTag(viewHolder);
 
 		}
@@ -80,14 +86,17 @@ public class MenuListAdapter extends BaseAdapter{
 			holder.date.setLongClickable(false);
 			holder.date.setText(si.toString());
 			holder.date.setVisibility(View.VISIBLE);
+			holder.section_item.setVisibility(View.VISIBLE);
 		} else {
 			DailyMenu dm = (DailyMenu) item;
 			holder.title.setText(dm.getTitle());
 			holder.title.setVisibility(View.VISIBLE);
 			holder.text.setText(dm.getMenu());
 			holder.text.setVisibility(View.VISIBLE);
+			holder.item.setVisibility(View.VISIBLE);
 			
 			view.setOnClickListener( new MenuOnClickListener( dm.getMenu() ) );
+			view.setOnLongClickListener( new MenuOnLongClickListener () );
 		}
 		return view;
 	}
@@ -96,6 +105,14 @@ public class MenuListAdapter extends BaseAdapter{
 	 * OnClickListener on Menu-Item.
 	 * @author Andreas Hohler
 	 */
+	private class MenuOnLongClickListener implements OnLongClickListener {
+		@Override
+		public boolean onLongClick(View v) {
+			Toast.makeText(v.getContext(), context.getString(R.string.menu_hint), Toast.LENGTH_SHORT).show();
+	        return true;
+		}
+	}
+	
 	private class MenuOnClickListener implements OnClickListener {
 		private String title;
 		public MenuOnClickListener(String title) {
@@ -123,6 +140,8 @@ public class MenuListAdapter extends BaseAdapter{
 		holder.title.setVisibility(View.GONE);
 		holder.text.setText("");
 		holder.text.setVisibility(View.GONE);
+		holder.item.setVisibility(View.GONE);
+		holder.section_item.setVisibility(View.GONE);
 	}
 
 	/**
@@ -190,6 +209,8 @@ public class MenuListAdapter extends BaseAdapter{
 		public TextView date;
 		public TextView title;
 		public TextView text;
+		public RelativeLayout item;
+		public LinearLayout section_item;
 	}
 
 }
