@@ -12,6 +12,10 @@ import android.widget.ListView;
 import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.menu.MenuActivity;
 
+/**
+ * @author group7
+ * @author Marc Dojtschinov
+ */
 
 public class NotificationResultFragment extends ListFragment{
 	private ArrayList<NotificationHolder> keywordResultList;

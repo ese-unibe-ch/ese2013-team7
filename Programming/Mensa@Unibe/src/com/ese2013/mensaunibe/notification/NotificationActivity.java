@@ -51,7 +51,6 @@ public class NotificationActivity extends ActionBarActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-		//return super.onOptionsItemSelected(item);
 	}
 
 	@Override

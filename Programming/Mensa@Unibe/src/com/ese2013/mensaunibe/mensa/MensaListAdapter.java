@@ -55,7 +55,6 @@ public class MensaListAdapter extends BaseAdapter {
 
 		view = inflater.inflate(this.resource, parent, false);
 
-		//TextView textView=(TextView) view.findViewById(android.R.id.text1);
 		TextView textView=(TextView) view.findViewById(R.id.mensa_list_row);
 		TextView direction = (TextView) view.findViewById(R.id.direction);
 		ListItem item = items.get(position);

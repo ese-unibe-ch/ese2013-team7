@@ -3,45 +3,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.widget.Toast;
 
 import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.R.id;
-import com.ese2013.mensaunibe.R.layout;
-import com.ese2013.mensaunibe.R.menu;
-import com.ese2013.mensaunibe.R.string;
 import com.ese2013.mensaunibe.model.Model;
 import com.ese2013.mensaunibe.model.mensa.Mensa;
-import com.ese2013.mensaunibe.model.utils.AppUtils;
-import com.ese2013.mensaunibe.model.api.LanguageChanger;
-import com.ese2013.mensaunibe.model.data.ForceReloadTask;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.memetix.mst.language.Language;
-
-
-import android.support.v7.app.ActionBarActivity;
 
 /**
  * @author group17
@@ -53,7 +32,6 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		private GoogleMap map;
 		private MyLocation mLocation;
 		private LatLng mLocationLatLng;
-		private boolean locationReady = false;
 		private Marker mensaMarker;
 		private int mMensaId;
 		private String  travelMode = "walking";// default
@@ -61,35 +39,35 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 	 
 
 	@Override
-	  	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.fragment_map);
 	    //Setup action bar
 	    ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		initilizeMap();
-		
-		}
+	
+	}
 	 
 	
 	@Override
-	  public boolean onCreateOptionsMenu(Menu menu) {
-		  getMenuInflater().inflate(R.menu.actionbar_map, menu);
-	    return super.onCreateOptionsMenu(menu);
-	  }
-
-
-	public void handleGetDirectionsResult(ArrayList<LatLng> directionPoints) { 
-		
-		PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.RED);		 
-		    for(int i = 0 ; i < directionPoints.size() ; i++) 
-		    {          
-		        rectLine.add(directionPoints.get(i));
-		    }
-		    map.addPolyline(rectLine);	
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.actionbar_map, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 
 
+	public void handleGetDirectionsResult(ArrayList<LatLng> directionPoints) { 
+		PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.RED);		 
+	    for(int i = 0 ; i < directionPoints.size() ; i++) 
+	    {          
+	        rectLine.add(directionPoints.get(i));
+	    }
+	    map.addPolyline(rectLine);	
+	}
+
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public void findDirections(double fromPositionDoubleLat, double fromPositionDoubleLong, double toPositionDoubleLat, double toPositionDoubleLong, String mode) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -106,14 +84,14 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 	 
 	@Override
 	public void initilizeMap() {
-	        if (map == null) {
-	        	map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-	            // check if map is created successfully or not
-	            if (map != null) {
-	            	setUpMap();
-	            }
-	        }
-	    }
+		if (map == null) {
+			map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+			//check if map is created successfully or not
+			if (map != null) {
+				setUpMap();
+			}
+		}
+	}
 	
 	public void setUpMap(){
 		if(mLocation == null){
@@ -137,8 +115,8 @@ public class MapActivityOneMensa extends BaseMapActivity  {
                 	findDirections(mLocationLatLng.latitude, mLocationLatLng.longitude,
                                mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
                 }
-            });}
-		
+            });
+        }
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -153,8 +131,7 @@ public class MapActivityOneMensa extends BaseMapActivity  {
                             mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
 					item.setTitle(getString(R.string.action_travel_mode_walking));
 					
-					}
-				else {
+				} else {
 					travelMode ="walking";
 					map.clear();
 					mensaMarker = map.addMarker(new MarkerOptions().position(new LatLng(mensa.getLat(),mensa.getLon()))
@@ -163,12 +140,12 @@ public class MapActivityOneMensa extends BaseMapActivity  {
                             mensaMarker.getPosition().latitude, mensaMarker.getPosition().longitude, travelMode );
 					
 					item.setTitle(getString(R.string.action_travel_mode_driveing));
-					}
+				}
 				
 				return true;
 			default:
 		           return super.onOptionsItemSelected(item);
-	    	}
+	    }
 	}
 	
 	@Override
@@ -194,15 +171,4 @@ public class MapActivityOneMensa extends BaseMapActivity  {
 		super.onStart();
 		mLocation.callOnStart();
 	}
-	
-	public void locationReady(boolean b){
-		if(b){
-			locationReady = true;
-		}else locationReady = false;
-	}
-	
-
-	
-
-	
 }

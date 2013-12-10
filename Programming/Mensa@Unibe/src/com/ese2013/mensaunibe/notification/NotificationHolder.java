@@ -3,6 +3,12 @@ package com.ese2013.mensaunibe.notification;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * @author group7
+ * @author Andreas Hohler
+ * @author Marc Dojtschinov
+ */
+
 public class NotificationHolder implements Parcelable {
 	private int mensaId;
 	private String keyword;

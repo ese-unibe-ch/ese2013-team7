@@ -1,22 +1,23 @@
 package com.ese2013.mensaunibe.notification;
 
 
-
 import java.util.ArrayList;
 
-import com.ese2013.mensaunibe.R;
-import com.ese2013.mensaunibe.model.Model;
-
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Switch;
+
+import com.ese2013.mensaunibe.R;
+import com.ese2013.mensaunibe.model.Model;
+import com.ese2013.mensaunibe.notificationservice.MensaService;
 
 /**
  * @author group7
@@ -24,7 +25,6 @@ import android.widget.Switch;
  */
 
 public class NotificationFragment extends Fragment{
-	private static final String TAG = NotificationFragment.class.getName();
 	private View view;
 	private NotificationSettingsAdapter adapter;
 	
@@ -39,24 +39,35 @@ public class NotificationFragment extends Fragment{
 	}
 	
 	private void updateAdapter() {
+		//List with keywords
 		ArrayList<String> keywords = Model.getInstance().loadNotificationKeywords();
 		adapter = new NotificationSettingsAdapter(getActivity(), R.layout.notification_list_layout, keywords);
-		
+
         ListView listView = (ListView) view.findViewById(R.id.listViewNotificationKeywords);
         listView.setAdapter(adapter);
         
+        //Auto complete text field for keywords
         AutoCompleteTextView ac = (AutoCompleteTextView) view.findViewById(R.id.settings_add_keyword);
 		ac.setOnKeyListener( new NotificationOnKeyEnter(this.getActivity(), adapter) );
 		ac.setAdapter( new NotificationAutoCompleteAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line) );
 		
+		//Add-Button for keywords
 		ImageButton add = (ImageButton) view.findViewById(R.id.settings_add_button);
 		add.setOnClickListener( new OnNotificationAddClicker(this.getActivity(), adapter, ac));
-	
+		
+		//Test notification button
+		Button test = (Button) view.findViewById(R.id.testNotification);
+		test.setOnClickListener( new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				save();
+				getActivity().startService(new Intent(getActivity(), MensaService.class));
+			}
+		});
 	}
 	@Override
 	public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "NotificationFragment created");
     }
 	
 	@Override

@@ -78,6 +78,7 @@
 	<string name="language">Language</string>
 	<string name="changing_language">Changing language..</string>
 	<string name="menu_hint">Show the rating of this menu</string>
+	<string name="test_notification">Test the notification</string>
 	
     <!-- Debug Messages -->
     <string name ="pls_wait">Please wait</string>

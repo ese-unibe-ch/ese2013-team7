@@ -16,6 +16,11 @@ import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.menu.MenuListAdapter.TitleListener;
 import com.ese2013.mensaunibe.model.Model;
 
+/**
+ * @author group7
+ * @author Marc Dojtschinov
+ * @author Andreas Hohler
+ */
 
 public class NotificationResultAdapter extends BaseAdapter {
 	TitleListener mCallback;

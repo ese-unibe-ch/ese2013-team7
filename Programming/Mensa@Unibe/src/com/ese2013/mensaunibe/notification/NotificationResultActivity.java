@@ -14,6 +14,11 @@ import com.ese2013.mensaunibe.R;
 import com.ese2013.mensaunibe.model.utils.AppUtils;
 import com.ese2013.mensaunibe.notification.NotificationResultFragment.DataPullingInterface;
 
+/**
+ * @author group7
+ * @author Marc Dojtschinov
+ */
+
 public class NotificationResultActivity extends ActionBarActivity implements DataPullingInterface {
 	private NotificationResultFragment fragment;
 	private ArrayList<NotificationHolder> keywordResultList;

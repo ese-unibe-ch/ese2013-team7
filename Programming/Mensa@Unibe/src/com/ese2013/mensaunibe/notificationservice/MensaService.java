@@ -1,6 +1,5 @@
 package com.ese2013.mensaunibe.notificationservice;
 
-
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
@@ -18,6 +17,12 @@ import com.ese2013.mensaunibe.notification.NotificationHolder;
 import com.ese2013.mensaunibe.notification.NotificationResultActivity;
 import com.ese2013.mensaunibe.notification.WordNotificationUtil;
 
+/**
+ * @author group7
+ * @author Marc Dojtschinov
+ * @author Andreas Hohler
+ */
+
 public class MensaService extends IntentService {
 
 	public MensaService() {
@@ -32,8 +37,6 @@ public class MensaService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		// TODO Auto-generated method stub
-		
 		//here we can add a server Query. 
 		PreferenceRequest pr = new PreferenceRequest();
 		if(pr.readNotification()) {
@@ -67,12 +70,18 @@ public class MensaService extends IntentService {
 		notificationMgr.notify(0, notification.build());
 	}
 	 //returns a String with all keywords
-	 private String getMatchedKeywords(ArrayList<NotificationHolder> keywordResultList){
+	private String getMatchedKeywords(ArrayList<NotificationHolder> keywordResultList){
 		String matchedKeywords = "";
-		 for(int i=0; i <keywordResultList.size();i++){
-			 if(matchedKeywords.contains(keywordResultList.get(i).getKeyword())==false)
-			matchedKeywords += keywordResultList.get(i).getKeyword();
-			 if(keywordResultList.size()>1 && i<keywordResultList.size())matchedKeywords += ", ";
+		for(int i=0; i <keywordResultList.size();i++) {
+			if(matchedKeywords.contains(keywordResultList.get(i).getKeyword())==false) {
+				matchedKeywords += keywordResultList.get(i).getKeyword();
+				if(keywordResultList.size()>1 && i<keywordResultList.size()) {
+					matchedKeywords += ", ";
+				}
+			}
+		}
+		if(matchedKeywords.endsWith(", ")) {
+			matchedKeywords = matchedKeywords.substring(0, matchedKeywords.length()-2);
 		}
 		return matchedKeywords;
 	 }

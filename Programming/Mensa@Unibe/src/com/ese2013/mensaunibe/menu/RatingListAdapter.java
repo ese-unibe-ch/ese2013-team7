@@ -23,7 +23,6 @@ public class RatingListAdapter extends BaseAdapter {
 	private int resource;
 	private LayoutInflater inflater;
 	private View baseView;
-	//private static final int NICKNAME_LENGTH = 8;
 
 	private ArrayList<Rating> items = new ArrayList<Rating>();
 
@@ -52,15 +51,9 @@ public class RatingListAdapter extends BaseAdapter {
 		
 		ViewHolder holder = (ViewHolder) view.getTag();
 		clearHolder(holder);
-		
-		view.setClickable(false);
-		view.setFocusable(false);
 
 		Rating rating = items.get(position);
-		
-		/*holder.user.setText("User "
-			+ ((rating.getNickname().length() > NICKNAME_LENGTH) ? rating.getNickname().substring(0, NICKNAME_LENGTH) : rating.getNickname() )
-			+ ", " + rating.getDate());*/
+
 		holder.user.setText(rating.getDate());
 		holder.user.setVisibility(View.VISIBLE);
 		if(rating.getText().length() > 1) {
@@ -111,8 +104,6 @@ public class RatingListAdapter extends BaseAdapter {
 		public TextView user;
 		public TextView text;
 		public RatingBar rating;
-		//public TextView avg_rating_text;
-		//public RatingBar avg_rating;
 	}
 	
 	/**

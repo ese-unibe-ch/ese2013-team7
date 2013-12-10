@@ -20,6 +20,12 @@
         android:paddingRight="16dp"
         android:text="@string/notification_toggle" />
     
+    <Button
+	    android:id="@+id/testNotification"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="20dp"
+	    android:text="@string/test_notification" />
      
 	<RelativeLayout
         android:id="@+id/addNotification"
@@ -53,7 +59,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:textColor="#000000"
-       android:background="#E9E9E9" >
+       android:background="#D2D2D2" >
 	</ListView>
     
 </LinearLayout>
