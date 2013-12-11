@@ -13,7 +13,6 @@ Thumbs.db
 #Android specific----------------------------------------------------------------
 #found on https://github.com/github/gitignore/blob/master/Android.gitignore
 # built application files
-*.apk
 *.ap_
 
 # files for the dex VM
