@@ -7,3 +7,7 @@ Project: **Mensa@Unibe**
 Je vous souhaite bonne chance pour ce projet.
 
 Now let's begin.
+
+Now we've finished.
+
+habemus!
